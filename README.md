@@ -309,7 +309,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<Category>/<FileNa
 
 ## 📄 许可 / License
 
-[MIT](LICENSE) © 沈江月工作室
+[MIT](LICENSE)
 
 ---
 
