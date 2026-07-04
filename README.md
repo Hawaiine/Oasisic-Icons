@@ -162,10 +162,28 @@
 ```ini
 Netflix = select, HK, TW, JP, SG
 icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
-
-YouTube = select, HK, TW, SG, JP
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/YouTube-1.png
 ```
+
+> **批量导入（推荐）：** Surge 支持一次性订阅整个图标库。
+>
+> Surge iOS：设置 → 策略组图标 → 订阅URL
+> Surge Mac：偏好设置 → Policy Group Icons → 添加订阅
+>
+> ```
+> 订阅地址：
+> https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/surge-icon.json
+> ```
+
+### Loon
+
+```ini
+[Policy]
+Netflix = select, HK, TW, JP, SG
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
+```
+
+> **批量导入：** 配置 → 图标 → 订阅URL，填入同上 JSON 地址。
+> Surge 和 Loon 的 JSON 格式通用。
 
 ### Clash Meta / Mihomo
 
@@ -177,13 +195,7 @@ proxy-groups:
     icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
 ```
 
-### Loon
-
-```ini
-[Policy]
-Netflix = select, HK, TW, JP, SG
-icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
-```
+> Clash/Mihomo/Stash 不支持批量订阅，需在每个策略组单独配置 `icon:` 字段。
 
 ### Quantumult X
 
