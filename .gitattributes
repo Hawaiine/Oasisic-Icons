@@ -1,0 +1,15 @@
+# Normalize line endings
+* text=auto
+
+# PNG binaries - treat as binary
+*.png binary
+
+# Markdown
+*.md text diff=markdown
+
+# JSON
+*.json text
+
+# Config
+*.yml text
+*.yaml text
