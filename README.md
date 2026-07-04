@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge(4).png">
-    <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge(4).png" width="120" alt="Oasisic-Icons">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge-4.png">
+    <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge-4.png" width="120" alt="Oasisic-Icons">
   </picture>
 </p>
 
@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-373+-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/icons-385+-blue?style=flat-square" alt="Icons Count">
 </p>
 
 ---
@@ -27,8 +27,7 @@
 - [简介 / Introduction](#简介--introduction)
 - [图标分类 / Icon Categories](#-图标分类--icon-categories)
 - [快速开始 / Quick Start](#-快速开始--quick-start)
-- [配置文件 / Config Templates](#-配置文件--config-templates)
-- [新增分类说明 / New Categories](#-新增分类说明--new-categories)
+- [自动化同步 / Auto Sync](#-自动化同步--auto-sync)
 - [相关项目 / Related Projects](#-相关项目--related-projects)
 - [贡献指南 / Contributing](#-贡献指南--contributing)
 - [许可 / License](#-许可--license)
@@ -37,7 +36,7 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **373+** 个高质量 PNG 图标，涵盖 **20+** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **385+** 个高质量 PNG 图标，涵盖 **23** 个分类。
 
 | 支持的工具 / Supported Tools | 用途 / Usage |
 |---|---|
@@ -48,7 +47,7 @@
 | [Egern](https://egernapp.com) | `icon:` |
 | [Quantumult X](https://quantumult.app) | `img-url=` |
 
-> 支持 Surge、Clash Meta / Mihomo、Loon、Stash、Egern、Quantumult X 等主流代理工具。
+> 每日自动同步上游图标源，保持图标更新。
 
 ---
 
@@ -56,123 +55,101 @@
 
 ### 📱 AI — 人工智能服务
 
-| 图标 | 名称 | 预览 |
-|:---:|---|---|
-| ![AI](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/AI.png) | AI | `AI.png` |
-| ![ChatGPT](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/ChatGPT(1).png) | ChatGPT (×4) | `ChatGPT(1).png` ~ `(4)` |
-| ![Claude](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Claude(1).png) | Claude (×2) | `Claude(1).png` ~ `(2)` |
-| ![Copilot](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Copilot(1).png) | Copilot (×2) | `Copilot(1).png` ~ `(2)` |
-| ![Perplexity](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Perplexity.png) | Perplexity | `Perplexity.png` |
-| ![Poe](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Poe(1).png) | Poe | `Poe(1).png` |
+| 文件名 | 说明 |
+|:---|---|
+| `AI.png` | 通用 AI |
+| `ChatGPT-1.png` ~ `-4.png` | ChatGPT (4 种风格) |
+| `Claude-1.png` ~ `-2.png` | Claude (2 种风格) |
+| `Copilot-1.png` ~ `-2.png` | Microsoft Copilot (2 种风格) |
+| `Perplexity.png` | Perplexity AI |
+| `Poe-1.png` | Poe |
 
 <details>
 <summary><b>📦 其他分类请展开 / Other categories (click to expand)</b></summary>
 
 ### 🍎 Apple — 苹果生态
 
-AppStore, Apple, AppleFitness, AppleIntelligence, AppleMusic, AppleNews, AppleTV, AppleTVPlus, Siri, TestFlight, iCloud
+`AppStore-1.png` ~ `-4.png`, `Apple-1.png` ~ `-3.png`, `AppleFitness-1.png` ~ `-4.png`, `AppleIntelligence.png`, `AppleMusic.png`, `AppleNews.png`, `AppleTV.png`, `AppleTVPlus.png`, `Siri.png`, `TestFlight-1.png` ~ `-2.png`, `iCloud.png`
 
 ### 🌍 Country — 国家与地区旗帜
 
-Argentina, Australia, CN-Taiwan, Canada, China, Egypt, Germany, HongKong, India, Japan, Korea, Netherlands, Nigeria, NorthKorea, Poland, Singapore, Spain, Thailand, Turkey, UK, US
+`Argentina-1.png` ~ `-2.png`, `Australia.png` + `-1.png`, `CN-Taiwan.png` + `-2.png`, `Canada.png`, `China.png` + `-1.png`, `Egypt.png`, `Germany.png` + `-1.png`, `HongKong.png`, `Hongkong-1.png` ~ `-3.png`, `India.png` + `-1.png`, `Japan.png` + `-1.png` ~ `-3.png`, `Korea.png` + `-1.png`, `Netherlands.png` + `-1.png`, `Nigeria.png` + `-1.png`, `NorthKorea.png` + `-1.png`, `Poland.png` + `-1.png`, `Singapore.png` + `-1.png` ~ `-2.png`, `Spain.png` + `-1.png`, `Thailand.png` + `-1.png`, `Turkey.png` + `-1.png` ~ `-3.png`, `UK.png` + `-1.png` ~ `-2.png`, `US.png` + `-1.png` ~ `-2.png`
 
-### ₿ Crypto — 加密货币与区块链 _(New!)_
+### ₿ Crypto — 加密货币
 
-> 新分类 — 欢迎贡献图标！
-> - Bitcoin, Ethereum, Solana, USDT, USDC
-> - Binance, Coinbase, OKX, Bybit, Uniswap
-> - WalletConnect, MetaMask, Ledger, Trezor
+`Cryptocurrency.png`, `Cryptocurrency_1.png` ~ `_3.png`
 
-### 🛠 DevOps — 开发运维 _(New!)_
+### 🛠 DevOps — 开发运维
 
-> 新分类 — 欢迎贡献图标！
-> - VPS 服务商：AWS, GCP, Azure, Alibaba Cloud, Tencent Cloud, Oracle, Vultr, DigitalOcean, Linode, Hetzner
-> - CI/CD：GitHub Actions, GitLab CI, Jenkins, Docker, Kubernetes
-> - 监控：Grafana, Prometheus, Datadog, uptime-kuma
+`Alibaba.png`, `Azure.png`, `Cloudflare.png`
 
 ### ☁️ Drive — 云盘与存储
 
-115, 123, 189, AliCloud, BaiduNetDisk, ChinaMobileDisk, GoogleDrive, iCloud, OneDrive, Quark
+`115.png`, `123.png`, `189.png`, `AliCloud-1.png` ~ `-2.png`, `BaiduNetDisk.png`, `ChinaMobileDisk.png`, `Dropbox-1.png` ~ `-2.png`, `OneDrive.png`, `PikPak.png`, `Quark.png`
 
-### 📚 Education — 教育 _(New!)_
+### 📚 Education — 教育
 
-> 新分类 — 欢迎贡献图标！
-> - 学习平台：Coursera, edX, Udemy, Khan Academy, Duolingo
-> - 学术：Google Scholar, ResearchGate, arXiv, Z-Library
-> - 知识：Wikipedia, Zhihu, Medium
+> 暂无图标 — 欢迎贡献！
 
-### 💰 Finance — 金融理财 _(New!)_
+### 💰 Finance — 金融理财
 
-> 新分类 — 欢迎贡献图标！
-> - 支付：PayPal, Stripe, Alipay, WeChat Pay, UnionPay
-> - 银行：各大银行图标
-> - 理财：YNAB, Mint, Robinhood, Webull
+> 暂无图标 — 欢迎贡献！
 
 ### 🎮 Game — 游戏平台
 
-EpicGames, Game, Nintendo, PlayStation, Steam, Twitch, Xbox
+`EpicGames.png`, `Game-1.png` ~ `-3.png`, `Nintendo.png`, `PlayStation-1.png` ~ `-2.png`, `Steam-1.png` ~ `-3.png`, `Twitch-1.png` ~ `-2.png`, `Xbox.png`
 
 ### 🔧 General — 通用策略
 
-AD, Area, Auto, Blacklist, Bot, Direct, Final, Global, Lightning, Mail, Play, Proxy, Reject, SSID, Search, Traffic, URL
+`AD-1.png` ~ `-7.png`, `Area.png`, `Auto.png`, `Blacklist.png`, `Bot.png`, `Global-1.png` ~ `-6.png`, `Lightning-1.png` ~ `-3.png`, `Mail-1.png` ~ `-5.png`, `Play-1.png` ~ `-3.png`, `Reject.png`, `SSID.png`, `Search-1.png` ~ `-3.png`, `Traffic-1.png` ~ `-6.png`, `URL-1.png` ~ `-2.png`
 
 ### 🔎 Google — Google 服务
 
-Gemini, Gmail, Google, GoogleDrive, GoogleVoice, YouTubeMusic
+`Gemini.png`, `Gmail.png`, `Google-1.png` ~ `-3.png`, `GoogleDrive.png`, `GoogleVoice-1.png` ~ `-2.png`, `YouTubeMusic.png`
 
-### 🏥 Health — 健康 _(New!)_
+### 🏥 Health — 健康
 
-> 新分类 — 欢迎贡献图标！
-> - 健康追踪：Apple Health, Google Fit, Strava, Nike Run Club
-> - 运动：Keep, Fitbit, MyFitnessPal
-> - 医疗：药品、医院通用图标
+> 暂无图标 — 欢迎贡献！
 
 ### 🎬 Media — 影音流媒体
 
-AbemaTV, AfreecaTV, Aqiyi, Bahamut, Bilibili, CatchPlay+, DAZN, DMMTV, Disney, Disney+, ESPN+, Emby, Fan, Fileball, HBO, HOY, HamiVideo, Hanxiaoquan, HotStar, Hulu, Infuse, KKBOX, KKTV, LiTV, LineTV, MangoTV, Migu, MyVideo, NBA, Netflix, NextPlusTV, Niconico, Paramount+, Peacock, Plex, PrimeVideo, SONY, STARZ, SlingTV, Star+, TVB, TVer, VideoMarket, Vimeo, Viu, ViuTV, WeTV, YouTube, discovery+, friDay, myTVSUPER
+`AbemaTV.png`, `AfreecaTV.png`, `Aqiyi-1.png` ~ `-2.png`, `Bahamut-1.png` ~ `-2.png`, `Bilibili-1.png` ~ `-9.png`, `CatchPlay-Plus-1.png` ~ `-2.png`, `DAZN-1.png` ~ `-3.png`, `DMMTV-1.png` ~ `-2.png`, `Disney.png`, `Disney-1.png` ~ `-3.png`, `Disney-Plus-1.png` ~ `-3.png`, `ESPN-Plus-1.png` ~ `-3.png`, `Emby-1.png` ~ `-2.png`, `Fan.png`, `Fileball.png`, `HBO-1.png` ~ `-4.png`, `HOY.png`, `HamiVideo-1.png`, `Hanxiaoquan.png`, `HotStar-1.png` ~ `-2.png`, `Hulu.png`, `Infuse.png`, `KKBOX.png`, `KKTV.png`, `LiTV.png`, `LineTV.png`, `MangoTV-1.png` ~ `-2.png`, `Migu.png`, `MyVideo.png`, `NBA.png`, `NBC.png`, `Netflix-1.png` ~ `-4.png`, `NowE.png`, `Paramount.png`, `Peacock-1.png` ~ `-3.png`, `Plex.png`, `PrimeVideo-1.png` ~ `-3.png`, `SONY.png`, `STARZ.png`, `SlingTV.png`, `Star-Plus.png`, `TVB.png`, `TVer.png`, `VideoMarket.png`, `Vimeo.png`, `Viu.png`, `ViuTV.png`, `WeTV.png`, `YouTube-1.png` ~ `-7.png`, `Discovery-Plus.png`, `friDay.png`, `myTVSUPER.png`
 
 ### 🪟 Microsoft — 微软服务
 
-Bing, Copilot, Microsoft, OneDrive
+`Bing-1.png` ~ `-4.png`, `Copilot-1.png` ~ `-2.png`, `Microsoft-1.png` ~ `-4.png`, `OneDrive.png`
 
 ### 🎵 Music — 音乐服务
 
-NeteaseMusic, Pandora, Spotify, TIDAL
+`NeteaseMusic-1.png` ~ `-3.png`, `Pandora.png`, `Spotify-1.png` ~ `-3.png`, `TIDAL-1.png` ~ `-3.png`
 
-### 📰 News — 新闻 _(New!)_
+### 📰 News — 新闻
 
-> 新分类 — 欢迎贡献图标！
-> - Apple News, Google News, Reuters, BBC News, CNN
-> - Bloomberg, Financial Times, NYT, The Guardian
-> - RSS 相关：Feedly, Inoreader, NetNewsWire
+`Apple_News.png`
 
 ### 💳 Payment — 支付
 
-UnionPay, Alipay(×4), WeChatPay(×4)
+`AliPay.png`, `BiAn.png`, `OKX-1.png` ~ `-2.png`, `PayPal-1.png` ~ `-3.png`, `SWIFT.png`
 
-### 🌐 Proxy — 代理与网络 _(New!)_
+### 🌐 Proxy — 代理线路
 
-> 新分类 — 欢迎贡献图标！
-> - 线路类型：IPLC, IEPL, BGP, CN2, CN2 GIA, CN2 GT
-> - 机场/服务商标识
-> - 协议标识：WireGuard, OpenVPN, Shadowsocks, V2Ray, Trojan, Hysteria
-> - 网络工具：Speedtest, Cloudflare, Netlify, Vercel, CDN
+`BGP.png`, `GIA.png`, `IEPL.png`, `IPLC.png`
 
 ### 🛒 Shopping — 购物
 
-Alibaba, Amazon, JD, Meituan, Pinduoduo, Taobao
+`Alibaba.png`, `Amazon.png`, `JD-1.png` ~ `-3.png`, `Meituan-1.png` ~ `-2.png`, `Pinduoduo.png`, `Taobao-1.png` ~ `-2.png`
 
 ### 👥 Social — 社交
 
-BBC, Bluesky, Discord, Facebook, Instagram, Kakao, Line, Messenger, Meta, Pipixia, Redbook, Reddit, Sina, Telegram, Tencent, Threads, Tieba, TikTok, WeChat, WhatsApp, Wikipedia, X (Twitter), Zhihu
+`BBC-1.png` ~ `-3.png`, `Bluesky-1.png` ~ `-2.png`, `Discord-1.png` ~ `-4.png`, `Facebook-1.png` ~ `-4.png`, `Instagram-1.png` ~ `-3.png`, `Kakao.png`, `Line.png`, `Messenger.png`, `Meta-1.png` ~ `-3.png`, `Pipixia-1.png` ~ `-2.png`, `Redbook-1.png` ~ `-2.png`, `Reddit-1.png` ~ `-2.png`, `Sina-1.png` ~ `-2.png`, `Telegram-1.png` ~ `-4.png`, `Tencent.png`, `Threads-1.png`, `Tieba-1.png` ~ `-3.png`, `TikTok-1.png` ~ `-5.png`, `WeChat-1.png` ~ `-2.png`, `WhatsApp-1.png` ~ `-2.png`, `Wikipedia.png`, `X-1.png` ~ `-4.png`, `Zhihu.png`
 
 ### 📡 Telecom — 运营商
 
-ChinaBroadnet, ChinaMobile, ChinaUnicom, ChinaTelecom
+`ChinaBroadnet.png`, `ChinaMobile-1.png` ~ `-2.png`, `ChinaUnicom-1.png` ~ `-2.png`, `ChinaTelecom-1.png` ~ `-2.png`
 
 ### 🔩 Tool — 工具
 
-1Password, AdGuard, Cloudflare, Duolingguo, GitHub, Keep, Notion, Oracle, SF-Express, Speedtest, TMDB, Z-Library
+`1Password.png`, `AdGuard.png`, `Cloudflare.png`, `Duolingguo-1.png` ~ `-2.png`, `GitHub-1.png` ~ `-2.png`, `Keep.png`, `Notion.png`, `Oracle.png`, `SF-Express.png`, `Speedtest-1.png` ~ `-2.png`, `TMDB.png`, `Z-Library.png`
 
 </details>
 
@@ -182,14 +159,12 @@ ChinaBroadnet, ChinaMobile, ChinaUnicom, ChinaTelecom
 
 ### Surge
 
-在策略组中添加 `icon-url` 参数：
-
 ```ini
 Netflix = select, HK, TW, JP, SG
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
 
 YouTube = select, HK, TW, SG, JP
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/YouTube(1).png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/YouTube-1.png
 ```
 
 ### Clash Meta / Mihomo
@@ -199,7 +174,7 @@ proxy-groups:
   - name: Netflix
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
 ```
 
 ### Loon
@@ -207,69 +182,49 @@ proxy-groups:
 ```ini
 [Policy]
 Netflix = select, HK, TW, JP, SG
-icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
 ```
 
 ### Quantumult X
 
 ```ini
 [policy]
-static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
 ```
 
 ### 通用图片直链格式
 
 ```
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<Category>/<FileName>.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<分类>/<文件名>.png
 ```
 
-> **提示：** 可以使用 `cdn.jsdelivr.net` 加速中国大陆访问：
+> **提示：** 中国大陆访问可用 jsDelivr CDN 加速：
 > ```
-> https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/<Category>/<FileName>.png
+> https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/<分类>/<文件名>.png
 > ```
 
 ---
 
-## 📝 配置文件 / Config Templates
+## 🤖 自动化同步 / Auto Sync
 
-### Surge
+项目通过 GitHub Actions **每天自动同步**上游图标源：
 
-[`surge-icon.json`](surge-icon.json) — 完整的 Surge 图标配置文件，可直接导入 Surge。
-
-```json
-{
-  "name": "Oasisic-Icons",
-  "description": "Cross-platform Proxy Policy Group Icons",
-  "icons": [
-    { "name": "Netflix", "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png" },
-    ...
-  ]
-}
+```
+上游源 (Qure Color 等)
+     ↓  sync-upstream.sh (北京时间每日 08:00)
+  Oasisic-Icons 对应分类目录
+     ↓  generate-icon-json.sh
+  surge-icon.json (385 图标完整配置)
+     ↓  git commit (中文时间戳)
+  GitHub 自动推送
 ```
 
-### Clash / Mihomo
-
-可直接使用 `icon:` 字段配合 raw URL。
-
-> 各平台完整配置模板见 [`docs/guides/`](docs/guides/) 目录。
-
----
-
-## 🆕 新增分类说明 / New Categories
-
-本项目新增了以下分类：
-
-| 分类 | 说明 | 推荐图标 |
-|:---|---:|---:|
-| `Crypto/` | 加密货币 & 区块链 | Bitcoin, Ethereum, Binance, MetaMask |
-| `DevOps/` | 开发运维 & 云服务 | AWS, GCP, Docker, GitHub Actions |
-| `Education/` | 教育 & 学习平台 | Coursera, Duolingo, arXiv, Wikipedia |
-| `Finance/` | 金融 & 支付 | PayPal, Stripe, Alipay, WeChat Pay |
-| `Health/` | 健康 & 运动 | Apple Health, Strava, Keep |
-| `News/` | 新闻 & RSS | Reuters, CNN, Feedly, Feishu |
-| `Proxy/` | 代理线路 & 协议 | IPLC, CN2 GIA, WireGuard, V2Ray |
-
-> 这些新分类目前是空的，欢迎通过 [Issue](https://github.com/Hawaiine/Oasisic-Icons/issues) 或 PR 贡献图标！
+| 脚本 | 作用 |
+|:---|---|
+| `sync-upstream.sh` | 读取 `icon-mapping.json`，从上游下载新图标 |
+| `icon-mapping.json` | 配置上游源 URL 和图标映射规则 |
+| `generate-icon-json.sh` | 扫描目录，自动生成 `surge-icon.json` |
+| `rename-icons.sh` | 统一命名规范：`(N)` → `-N`，`+` → `Plus` |
 
 ---
 
@@ -286,24 +241,20 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<Category>/<FileNa
 
 ## 🤝 贡献指南 / Contributing
 
-欢迎贡献新图标！请遵循以下规范：
-
 ### 图标要求
-- **格式：** PNG
+- **格式：** PNG，透明背景
 - **尺寸：** 建议 128×128 或 256×256 px
-- **背景：** 透明背景优先
-- **风格：** 圆角矩形或方形图标均可
 
 ### 命名规范
-- 使用 **PascalCase**：`Netflix.png`, `GitHub.png`, `BaiduNetDisk.png`
-- 多色变体使用 `(1)`, `(2)` 后缀：`Google(1).png`, `Google(2).png`
-- 文件名不含空格或特殊字符
+- **PascalCase**：`Netflix.png`, `GitHub.png`
+- **编号变体**使用 `-N` 后缀：`Google-1.png`, `Google-2.png`
+- **特殊字符**：`+` → `Plus`（如 `Disney-Plus.png`）
+- **Country**：裸文件为主版本，编号为可选变体
 
 ### 提交流程
-1. Fork 本仓库
-2. 将图标放入对应分类目录
-3. 更新 `surge-icon.json`（如果适用）
-4. 提交 PR
+1. 将图标放入对应分类目录
+2. 运行 `bash generate-icon-json.sh` 更新配置
+3. 提交 PR
 
 ---
 
