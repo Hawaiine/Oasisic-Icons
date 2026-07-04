@@ -333,6 +333,6 @@ https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName
 ---
 
 <p align="center">
-  <sub>Made with ❤️ by 沈江月工作室 · 图标版权归各自所属公司所有</sub><br>
+  <sub>Made with ❤️ · 图标版权归各自所属公司所有</sub><br>
   <sub>Icon copyrights belong to their respective owners.</sub>
 </p>
