@@ -1,22 +1,20 @@
 #!/usr/bin/env bash
-# generate-icon-json.sh — 生成完整的 surge-icon.json
-# Usage: ./generate-icon-json.sh
+# generate-icon-json.sh — 自动生成 Oasisic-Icons/surge-icon.json
 set -euo pipefail
 
-BASE_URL="https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main"
+BASE_URL="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main"
 OUTPUT="surge-icon.json"
 
 echo '{'
-echo '  "name": "PolicyIcons",'
+echo '  "name": "Oasisic-Icons",'
 echo '  "description": "Cross-platform Proxy Policy Group Icons / 跨平台代理策略组图标合集",'
 echo '  "icons": ['
 
 first=true
-for dir in AI Apple Country Drive Game General Google Media Microsoft Music Payment Shopping Social Surge Telecom Tool; do
+for dir in AI Apple Country Crypto DevOps Drive Education Finance Game General Google Health Media Microsoft Music News Payment Proxy Shopping Social Surge Telecom Tool; do
   for icon in "$dir"/*.png; do
     [ -f "$icon" ] || continue
     name=$(basename "$icon" .png)
-    # Sanitize name for JSON
     name=$(echo "$name" | sed 's/["\\]/\\&/g')
     [ "$first" = true ] && first=false || echo ','
     echo -n "    {\"name\": \"$name\", \"category\": \"$dir\", \"url\": \"$BASE_URL/$dir/$(basename "$icon" | sed 's/"/\\"/g')\"}"

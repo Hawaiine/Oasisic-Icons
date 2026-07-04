@@ -1,6 +1,6 @@
 # 代理工具策略组图标资源参考
 
-> 整理目标：为 [Hawaiine/PolicyIcons](https://github.com/Hawaiine/PolicyIcons) 项目提供开源图标资源、分类体系与常见品牌清单的参考。
+> 整理目标：为 [Hawaiine/Oasisic-Icons](https://github.com/Hawaiine/Oasisic-Icons) 项目提供开源图标资源、分类体系与常见品牌清单的参考。
 >
 > 适用工具：Surge / Clash / Loon / Quantumult X / Stash / Egern / sing-box 等。
 
@@ -522,10 +522,10 @@
 
 ---
 
-## 6. 建议的 PolicyIcons 项目资源结构参考
+## 6. 建议的 Oasisic-Icons 项目资源结构参考
 
 ```
-PolicyIcons/
+Oasisic-Icons/
 ├── README.md
 ├── IconSet/
 │   ├── mini/          # 纯白图标（适合深色/浅色通用）

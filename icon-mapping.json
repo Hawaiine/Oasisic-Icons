@@ -1,0 +1,35 @@
+{
+  "name": "Oasisic-Icons",
+  "description": "上游图标源映射表 / Upstream icon source mappings",
+  "version": "1.0.0",
+  "upstreams": {
+    "Qure": {
+      "name": "Qure Color",
+      "repo": "Koolson/Qure",
+      "base_url": "https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color",
+      "license": "MIT",
+      "enabled": true
+    },
+    "Orz3": {
+      "name": "Orz-3 mini Color",
+      "repo": "Orz-3/mini",
+      "base_url": "https://raw.githubusercontent.com/Orz-3/mini/master/Color",
+      "license": "MIT",
+      "enabled": false
+    }
+  },
+  "mappings": [
+    {"source": "Qure/IPLC.png", "target": "Proxy/IPLC.png"},
+    {"source": "Qure/IEPL.png", "target": "Proxy/IEPL.png"},
+    {"source": "Qure/BGP.png", "target": "Proxy/BGP.png"},
+    {"source": "Qure/GIA.png", "target": "Proxy/GIA.png"},
+    {"source": "Qure/Cryptocurrency.png", "target": "Crypto/Cryptocurrency.png"},
+    {"source": "Qure/Cryptocurrency_1.png", "target": "Crypto/Cryptocurrency_1.png"},
+    {"source": "Qure/Cryptocurrency_2.png", "target": "Crypto/Cryptocurrency_2.png"},
+    {"source": "Qure/Cryptocurrency_3.png", "target": "Crypto/Cryptocurrency_3.png"},
+    {"source": "Qure/Azure.png", "target": "DevOps/Azure.png"},
+    {"source": "Qure/Alibaba.png", "target": "DevOps/Alibaba.png"},
+    {"source": "Qure/Cloudflare.png", "target": "DevOps/Cloudflare.png"},
+    {"source": "Qure/Apple_News.png", "target": "News/Apple_News.png"}
+  ]
+}

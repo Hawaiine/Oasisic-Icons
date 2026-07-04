@@ -1,11 +1,11 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Surge/Surge(4).png">
-    <img src="https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Surge/Surge(4).png" width="120" alt="PolicyIcons">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge(4).png">
+    <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge(4).png" width="120" alt="Oasisic-Icons">
   </picture>
 </p>
 
-<h1 align="center">🎨 PolicyIcons</h1>
+<h1 align="center">🎨 Oasisic-Icons</h1>
 
 <p align="center">
   <b>跨平台代理策略组图标合集</b><br>
@@ -13,10 +13,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/Hawaiine/PolicyIcons?style=flat-square" alt="License">
-  <img src="https://img.shields.io/github/stars/Hawaiine/PolicyIcons?style=flat-square" alt="Stars">
-  <img src="https://img.shields.io/github/last-commit/Hawaiine/PolicyIcons?style=flat-square" alt="Last Commit">
-  <img src="https://img.shields.io/github/repo-size/Hawaiine/PolicyIcons?style=flat-square" alt="Repo Size">
+  <img src="https://img.shields.io/github/license/Hawaiine/Oasisic-Icons?style=flat-square" alt="License">
+  <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
+  <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
+  <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
   <img src="https://img.shields.io/badge/icons-373+-blue?style=flat-square" alt="Icons Count">
 </p>
 
@@ -29,7 +29,6 @@
 - [快速开始 / Quick Start](#-快速开始--quick-start)
 - [配置文件 / Config Templates](#-配置文件--config-templates)
 - [新增分类说明 / New Categories](#-新增分类说明--new-categories)
-- [目录优化说明 / Structure Optimizations](#-目录优化说明--structure-optimizations)
 - [相关项目 / Related Projects](#-相关项目--related-projects)
 - [贡献指南 / Contributing](#-贡献指南--contributing)
 - [许可 / License](#-许可--license)
@@ -38,7 +37,7 @@
 
 ## 📖 简介 / Introduction
 
-**PolicyIcons** 是一套专为代理工具设计的策略组图标合集，包含 **373+** 个高质量 PNG 图标，涵盖 **20+** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **373+** 个高质量 PNG 图标，涵盖 **20+** 个分类。
 
 | 支持的工具 / Supported Tools | 用途 / Usage |
 |---|---|
@@ -49,7 +48,7 @@
 | [Egern](https://egernapp.com) | `icon:` |
 | [Quantumult X](https://quantumult.app) | `img-url=` |
 
-> 本项目基于 [Surge-Icons](https://github.com/Hawaiine/Surge-Icons) 重构优化，新增了多个分类并改进目录结构。
+> 支持 Surge、Clash Meta / Mihomo、Loon、Stash、Egern、Quantumult X 等主流代理工具。
 
 ---
 
@@ -59,12 +58,12 @@
 
 | 图标 | 名称 | 预览 |
 |:---:|---|---|
-| ![AI](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/AI.png) | AI | `AI.png` |
-| ![ChatGPT](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/ChatGPT(1).png) | ChatGPT (×4) | `ChatGPT(1).png` ~ `(4)` |
-| ![Claude](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/Claude(1).png) | Claude (×2) | `Claude(1).png` ~ `(2)` |
-| ![Copilot](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/Copilot(1).png) | Copilot (×2) | `Copilot(1).png` ~ `(2)` |
-| ![Perplexity](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/Perplexity.png) | Perplexity | `Perplexity.png` |
-| ![Poe](https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/AI/Poe(1).png) | Poe | `Poe(1).png` |
+| ![AI](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/AI.png) | AI | `AI.png` |
+| ![ChatGPT](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/ChatGPT(1).png) | ChatGPT (×4) | `ChatGPT(1).png` ~ `(4)` |
+| ![Claude](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Claude(1).png) | Claude (×2) | `Claude(1).png` ~ `(2)` |
+| ![Copilot](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Copilot(1).png) | Copilot (×2) | `Copilot(1).png` ~ `(2)` |
+| ![Perplexity](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Perplexity.png) | Perplexity | `Perplexity.png` |
+| ![Poe](https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/AI/Poe(1).png) | Poe | `Poe(1).png` |
 
 <details>
 <summary><b>📦 其他分类请展开 / Other categories (click to expand)</b></summary>
@@ -187,10 +186,10 @@ ChinaBroadnet, ChinaMobile, ChinaUnicom, ChinaTelecom
 
 ```ini
 Netflix = select, HK, TW, JP, SG
-icon-url = https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/Netflix.png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
 
 YouTube = select, HK, TW, SG, JP
-icon-url = https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/YouTube(1).png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/YouTube(1).png
 ```
 
 ### Clash Meta / Mihomo
@@ -200,7 +199,7 @@ proxy-groups:
   - name: Netflix
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/Netflix.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
 ```
 
 ### Loon
@@ -208,25 +207,25 @@ proxy-groups:
 ```ini
 [Policy]
 Netflix = select, HK, TW, JP, SG
-icon = https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/Netflix.png
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
 ```
 
 ### Quantumult X
 
 ```ini
 [policy]
-static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/Netflix.png
+static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
 ```
 
 ### 通用图片直链格式
 
 ```
-https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName>.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<Category>/<FileName>.png
 ```
 
 > **提示：** 可以使用 `cdn.jsdelivr.net` 加速中国大陆访问：
 > ```
-> https://cdn.jsdelivr.net/gh/Hawaiine/PolicyIcons@main/<Category>/<FileName>.png
+> https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/<Category>/<FileName>.png
 > ```
 
 ---
@@ -239,10 +238,10 @@ https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName
 
 ```json
 {
-  "name": "PolicyIcons",
+  "name": "Oasisic-Icons",
   "description": "Cross-platform Proxy Policy Group Icons",
   "icons": [
-    { "name": "Netflix", "url": "https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/Media/Netflix.png" },
+    { "name": "Netflix", "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png" },
     ...
   ]
 }
@@ -258,7 +257,7 @@ https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName
 
 ## 🆕 新增分类说明 / New Categories
 
-相比原 [Surge-Icons](https://github.com/Hawaiine/Surge-Icons)，本项目新增了以下分类：
+本项目新增了以下分类：
 
 | 分类 | 说明 | 推荐图标 |
 |:---|---:|---:|
@@ -270,24 +269,7 @@ https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName
 | `News/` | 新闻 & RSS | Reuters, CNN, Feedly, Feishu |
 | `Proxy/` | 代理线路 & 协议 | IPLC, CN2 GIA, WireGuard, V2Ray |
 
-> 这些新分类目前是空的，欢迎通过 [Issue](https://github.com/Hawaiine/PolicyIcons/issues) 或 PR 贡献图标！
-
----
-
-## 🔄 目录优化说明 / Structure Optimizations
-
-相比原 [Surge-Icons](https://github.com/Hawaiine/Surge-Icons) 的以下优化：
-
-| 优化项 | 原项目 | 本项目 |
-|:---|---:|---:|
-| **分类扩展** | 16 个分类 | 23 个分类（+7 新分类） |
-| **Stream 重命名** | `Stream/` | `Media/` — 更广泛的媒体范畴 |
-| **LICENSE** | ❌ 无 | ✅ MIT License |
-| **.gitignore** | ❌ 无 | ✅ 常用忽略规则 |
-| **.gitattributes** | ❌ 无 | ✅ 行尾 & 二进制文件规范 |
-| **README** | 一句话简介 | 完整中英双语文档 |
-| **多平台支持** | 仅 Surge JSON | Surge + Clash + Loon + QX |
-| **空分类文档** | ❌ 无 | ✅ 各新分类含推荐图标清单 |
+> 这些新分类目前是空的，欢迎通过 [Issue](https://github.com/Hawaiine/Oasisic-Icons/issues) 或 PR 贡献图标！
 
 ---
 
@@ -299,7 +281,6 @@ https://raw.githubusercontent.com/Hawaiine/PolicyIcons/main/<Category>/<FileName
 | [lige47/QuanX-icon-rule](https://github.com/lige47/QuanX-icon-rule) | 离歌图标集，支持 Surge/Clash/Loon |
 | [Repcz/Tool](https://github.com/Repcz/Tool) | 综合代理工具配置及图标 |
 | [Orz-3/mini](https://github.com/Orz-3/mini) | Quantumult X 迷你图标集 |
-| [Hawaiine/Surge-Icons](https://github.com/Hawaiine/Surge-Icons) | 本项目的前身 |
 
 ---
 

@@ -1,0 +1,50 @@
+name: 每日图标同步
+
+on:
+  schedule:
+    # 北京时间每天早上 8:00 运行 (UTC 0:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # 支持手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 安装依赖
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq jq curl
+
+      - name: 同步上游图标
+        run: |
+          chmod +x sync-upstream.sh generate-icon-json.sh
+          bash sync-upstream.sh
+
+      - name: 提交并推送更新
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "没有变更，跳过提交"
+            exit 0
+          fi
+
+          git config user.name "Oasisic-Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 生成北京时间的 commit message
+          BEIJING_TIME=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
+          CHANGED=$(git status --porcelain | wc -l)
+
+          git add -A
+          git commit -m "chore: 自动同步上游图标 ${BEIJING_TIME}
+
+          更新文件数: ${CHANGED}"
+          git push
