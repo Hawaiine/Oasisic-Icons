@@ -127,7 +127,7 @@ Gemini, Gmail, Google, GoogleDrive, GoogleVoice, YouTubeMusic
 > - 运动：Keep, Fitbit, MyFitnessPal
 > - 医疗：药品、医院通用图标
 
-### 🎬 Media — 影音流媒体 _(原 Stream，已优化)_
+### 🎬 Media — 影音流媒体
 
 AbemaTV, AfreecaTV, Aqiyi, Bahamut, Bilibili, CatchPlay+, DAZN, DMMTV, Disney, Disney+, ESPN+, Emby, Fan, Fileball, HBO, HOY, HamiVideo, Hanxiaoquan, HotStar, Hulu, Infuse, KKBOX, KKTV, LiTV, LineTV, MangoTV, Migu, MyVideo, NBA, Netflix, NextPlusTV, Niconico, Paramount+, Peacock, Plex, PrimeVideo, SONY, STARZ, SlingTV, Star+, TVB, TVer, VideoMarket, Vimeo, Viu, ViuTV, WeTV, YouTube, discovery+, friDay, myTVSUPER
 
