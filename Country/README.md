@@ -1,0 +1,55 @@
+# 🌍 Country / 国家与地区旗帜
+
+> 共 **49** 个图标
+
+| 文件名 | 说明 |
+|:---|---|
+| `Argentina-1.png` | `Argentina-1` |
+| `Argentina-2.png` | `Argentina-2` |
+| `Australia-1.png` | `Australia-1` |
+| `Australia.png` | `Australia` |
+| `CN-Taiwan-2.png` | `CN-Taiwan-2` |
+| `CN-Taiwan.png` | `CN-Taiwan` |
+| `Canada.png` | `Canada` |
+| `China-1.png` | `China-1` |
+| `China.png` | `China` |
+| `Egypt.png` | `Egypt` |
+| `Germany-1.png` | `Germany-1` |
+| `Germany.png` | `Germany` |
+| `HongKong.png` | `HongKong` |
+| `Hongkong-1.png` | `Hongkong-1` |
+| `Hongkong-2.png` | `Hongkong-2` |
+| `Hongkong-3.png` | `Hongkong-3` |
+| `India-1.png` | `India-1` |
+| `India.png` | `India` |
+| `Japan-1.png` | `Japan-1` |
+| `Japan-2.png` | `Japan-2` |
+| `Japan-3.png` | `Japan-3` |
+| `Japan.png` | `Japan` |
+| `Korea-1.png` | `Korea-1` |
+| `Korea.png` | `Korea` |
+| `Netherlands-1.png` | `Netherlands-1` |
+| `Netherlands.png` | `Netherlands` |
+| `Nigeria-1.png` | `Nigeria-1` |
+| `Nigeria.png` | `Nigeria` |
+| `NorthKorea-1.png` | `NorthKorea-1` |
+| `NorthKorea.png` | `NorthKorea` |
+| `Poland-1.png` | `Poland-1` |
+| `Poland.png` | `Poland` |
+| `Singapore-1.png` | `Singapore-1` |
+| `Singapore-2.png` | `Singapore-2` |
+| `Singapore.png` | `Singapore` |
+| `Spain-1.png` | `Spain-1` |
+| `Spain.png` | `Spain` |
+| `Thailand-1.png` | `Thailand-1` |
+| `Thailand.png` | `Thailand` |
+| `Turkey-1.png` | `Turkey-1` |
+| `Turkey-2.png` | `Turkey-2` |
+| `Turkey-3.png` | `Turkey-3` |
+| `Turkey.png` | `Turkey` |
+| `UK-1.png` | `UK-1` |
+| `UK-2.png` | `UK-2` |
+| `UK.png` | `UK` |
+| `US-1.png` | `US-1` |
+| `US-2.png` | `US-2` |
+| `US.png` | `US` |
