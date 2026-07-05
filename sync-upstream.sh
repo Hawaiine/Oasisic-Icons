@@ -5,48 +5,56 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 MAPPING="icon-mapping.json"
-UPDATED=()
-SKIPPED=()
-FAILED=()
+UPDATED=0
+SKIPPED=0
+FAILED=0
 
 # 检查依赖
-for cmd in curl jq python3; do
+for cmd in curl python3; do
   if ! command -v "$cmd" &>/dev/null; then
     echo "❌ 缺少依赖: $cmd"
     exit 1
   fi
 done
 
-# 读取上游 base_url
-get_base_url() {
-  local upstream="$1"
-  python3 -c "
-import json
-with open('$MAPPING') as f:
-    data = json.load(f)
-print(data['upstreams'].get('$upstream', {}).get('base_url', ''))
-"
-}
-
-# 检查上游是否启用
-is_enabled() {
-  local upstream="$1"
-  python3 -c "
-import json
-with open('$MAPPING') as f:
-    data = json.load(f)
-enabled = data['upstreams'].get('$upstream', {}).get('enabled', False)
-exit(0 if enabled else 1)
-"
-}
-
 echo "=========================================="
 echo " Oasisic-Icons 上游同步开始"
 echo " 时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
 echo "=========================================="
 
-# 读取 mappings 并下载
-entries=$(python3 -c "
+# 读取 mappings 并逐条处理（使用进程替代避免 subshell 问题）
+while IFS='|' read -r upstream filename target base_url; do
+  dir=$(dirname "$target")
+  mkdir -p "$dir"
+
+  src_url="$base_url/$filename"
+  dest="$target"
+
+  if [ -f "$dest" ]; then
+    local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
+    remote_size=$(curl -sI "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
+    if [ "$local_size" = "$remote_size" ] && [ "$remote_size" -gt 0 ]; then
+      echo "  ⏭️  $target — 已是最新"
+      SKIPPED=$((SKIPPED + 1))
+      continue
+    fi
+  fi
+
+  echo "  ↓ 下载: $upstream/$filename → $target"
+  if curl -sL -o "$dest" "$src_url"; then
+    actual_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
+    if [ "$actual_size" -gt 0 ]; then
+      echo "    ✓ $target ($actual_size bytes)"
+      UPDATED=$((UPDATED + 1))
+    else
+      echo "    ✗ $target — 文件为空"
+      FAILED=$((FAILED + 1))
+    fi
+  else
+    echo "    ✗ 下载失败"
+    FAILED=$((FAILED + 1))
+  fi
+done < <(python3 -c "
 import json
 with open('$MAPPING') as f:
     data = json.load(f)
@@ -56,49 +64,17 @@ for m in data['mappings']:
     filename = parts[1]
     if data['upstreams'].get(upstream, {}).get('enabled', False):
         base = data['upstreams'][upstream]['base_url']
-        print(f\"{upstream}|{filename}|{m['target']}|{base}\")
+        print(f'{upstream}|{filename}|{m[\"target\"]}|{base}')
 ")
-
-if [ -z "$entries" ]; then
-  echo "⚠️  没有启用的上游源或映射。请在 icon-mapping.json 中启用 upstreams。"
-  exit 0
-fi
-
-echo "$entries" | while IFS='|' read -r upstream filename target base_url; do
-  dir=$(dirname "$target")
-  mkdir -p "$dir"
-
-  src_url="$base_url/$filename"
-  dest="$target"
-
-  if [ -f "$dest" ]; then
-    # 检查是否已有相同文件（跳过）
-    local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
-    remote_size=$(curl -sI "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
-    if [ "$local_size" = "$remote_size" ] && [ "$remote_size" -gt 0 ]; then
-      echo "  ⏭️  $target — 已是最新"
-      return
-    fi
-  fi
-
-  echo "  ↓ 下载: $upstream/$filename → $target"
-  if curl -sL -o "$dest" "$src_url"; then
-    echo "    ✓ $target ($(stat --printf='%s' "$dest") bytes)"
-    UPDATED+=("$target")
-  else
-    echo "    ✗ 下载失败"
-    FAILED+=("$target")
-  fi
-done
 
 echo ""
 echo "=========================================="
 echo " 同步完成"
-echo " 更新: ${#UPDATED[@]}  跳过: ${#SKIPPED[@]}  失败: ${#FAILED[@]}"
+echo " 更新: $UPDATED  跳过: $SKIPPED  失败: $FAILED"
 echo "=========================================="
 
 # 如果有更新，自动生成 JSON
-if [ ${#UPDATED[@]} -gt 0 ]; then
+if [ "$UPDATED" -gt 0 ]; then
   echo ""
   echo "→ 重新生成 surge-icon.json..."
   bash generate-icon-json.sh
