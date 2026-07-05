@@ -1,6 +1,6 @@
 # 🪟 Microsoft / 微软服务
 
-> 共 **11** 个图标
+> 共 **12** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -14,4 +14,5 @@
 | `Microsoft-2.png` | `Microsoft-2` |
 | `Microsoft-3.png` | `Microsoft-3` |
 | `Microsoft-4.png` | `Microsoft-4` |
+| `Microsoft-Semporia.png` | `Microsoft-Semporia` |
 | `OneDrive.png` | `OneDrive` |

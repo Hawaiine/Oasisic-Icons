@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **88** 个图标
+> 共 **93** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -10,6 +10,7 @@
 | `Aqiyi-2.png` | `Aqiyi-2` |
 | `Bahamut-1.png` | `Bahamut-1` |
 | `Bahamut-2.png` | `Bahamut-2` |
+| `BiliBili-Semporia.png` | `BiliBili-Semporia` |
 | `Bilibili-1.png` | `Bilibili-1` |
 | `Bilibili-2.png` | `Bilibili-2` |
 | `Bilibili-3.png` | `Bilibili-3` |
@@ -65,6 +66,7 @@
 | `Netflix-2.png` | `Netflix-2` |
 | `Netflix-3.png` | `Netflix-3` |
 | `Netflix-4.png` | `Netflix-4` |
+| `Netflix-Semporia.png` | `Netflix-Semporia` |
 | `NowE.png` | `NowE` |
 | `Paramount.png` | `Paramount` |
 | `Peacock-1.png` | `Peacock-1` |
@@ -78,6 +80,7 @@
 | `Star-Plus.png` | `Star-Plus` |
 | `TVB.png` | `TVB` |
 | `TVer.png` | `TVer` |
+| `TencentVideo.png` | `TencentVideo` |
 | `VideoMarket.png` | `VideoMarket` |
 | `Vimeo.png` | `Vimeo` |
 | `Viu.png` | `Viu` |
@@ -90,5 +93,7 @@
 | `YouTube-5.png` | `YouTube-5` |
 | `YouTube-6.png` | `YouTube-6` |
 | `YouTube-7.png` | `YouTube-7` |
+| `YouTube-Semporia-2.png` | `YouTube-Semporia-2` |
+| `YouTube-Semporia.png` | `YouTube-Semporia` |
 | `friDay.png` | `friDay` |
 | `myTVSUPER.png` | `myTVSUPER` |

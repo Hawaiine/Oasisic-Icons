@@ -1,10 +1,11 @@
 # 🛒 Shopping / 购物
 
-> 共 **10** 个图标
+> 共 **11** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
 | `Alibaba.png` | `Alibaba` |
+| `Amazon-Semporia.png` | `Amazon-Semporia` |
 | `Amazon.png` | `Amazon` |
 | `JD-1.png` | `JD-1` |
 | `JD-2.png` | `JD-2` |

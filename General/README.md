@@ -1,6 +1,6 @@
 # 🔧 General / 通用策略
 
-> 共 **41** 个图标
+> 共 **42** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -15,6 +15,7 @@
 | `Auto.png` | `Auto` |
 | `Blacklist.png` | `Blacklist` |
 | `Bot.png` | `Bot` |
+| `Final.png` | `Final` |
 | `Global-1.png` | `Global-1` |
 | `Global-2.png` | `Global-2` |
 | `Global-3.png` | `Global-3` |
