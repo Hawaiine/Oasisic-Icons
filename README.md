@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge-4.png">
-    <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Surge/Surge-4.png" width="120" alt="Oasisic-Icons">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge-4.png">
+    <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge-4.png" width="120" alt="Oasisic-Icons">
   </picture>
 </p>
 
@@ -161,7 +161,7 @@
 
 ```ini
 Netflix = select, HK, TW, JP, SG
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 > **批量导入（推荐）：** Surge 支持一次性订阅整个图标库。
@@ -171,7 +171,7 @@ icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/N
 >
 > ```
 > 订阅地址：
-> https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/surge-icon.json
+> https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/surge-icon.json
 > ```
 
 ### Loon
@@ -179,7 +179,7 @@ icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/N
 ```ini
 [Policy]
 Netflix = select, HK, TW, JP, SG
-icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 > **批量导入：** 配置 → 图标 → 订阅URL，填入同上 JSON 地址。
@@ -192,7 +192,7 @@ proxy-groups:
   - name: Netflix
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 > Clash/Mihomo/Stash 不支持批量订阅，需在每个策略组单独配置 `icon:` 字段。
@@ -201,13 +201,13 @@ proxy-groups:
 
 ```ini
 [policy]
-static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix-1.png
+static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 ### 通用图片直链格式
 
 ```
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<分类>/<文件名>.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<文件名>.png
 ```
 
 > **提示：** 中国大陆访问可用 jsDelivr CDN 加速：

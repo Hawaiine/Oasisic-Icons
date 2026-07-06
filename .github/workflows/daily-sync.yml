@@ -26,8 +26,8 @@ jobs:
 
       - name: 同步上游图标
         run: |
-          chmod +x sync-upstream.sh generate-icon-json.sh
-          bash sync-upstream.sh
+          chmod +x scripts/sync-upstream.sh scripts/generate-icon-json.sh
+          bash scripts/sync-upstream.sh
 
       - name: 提交并推送更新
         run: |
