@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # sync-upstream.sh — 自动同步上游图标到 Oasisic-Icons
-# 读取 icon-mapping.json，从上游仓库下载图标到对应分类目录
+# 读取 config/icon-mapping.json，从上游仓库下载图标到对应分类目录
 set -euo pipefail
 
-cd "$(dirname "$0")"
-MAPPING="icon-mapping.json"
+# 切换到仓库根目录（scripts/ 的父目录）
+cd "$(dirname "$0")/.."
+
+MAPPING="config/icon-mapping.json"
+ICONS_DIR="icons"
 UPDATED=0
 SKIPPED=0
 FAILED=0
@@ -22,13 +25,13 @@ echo " Oasisic-Icons 上游同步开始"
 echo " 时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
 echo "=========================================="
 
-# 读取 mappings 并逐条处理（使用进程替代避免 subshell 问题）
+# 读取 mappings 并逐条处理
 while IFS='|' read -r upstream filename target base_url; do
-  dir=$(dirname "$target")
+  dir="$ICONS_DIR/$(dirname "$target")"
   mkdir -p "$dir"
 
   src_url="$base_url/$filename"
-  dest="$target"
+  dest="$dir/$(basename "$target")"
 
   if [ -f "$dest" ]; then
     local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
@@ -40,14 +43,15 @@ while IFS='|' read -r upstream filename target base_url; do
     fi
   fi
 
-  echo "  ↓ 下载: $upstream/$filename → $target"
+  echo "  ↓ 下载: $upstream/$filename → $dest"
   if curl -sL -o "$dest" "$src_url"; then
     actual_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
     if [ "$actual_size" -gt 0 ]; then
-      echo "    ✓ $target ($actual_size bytes)"
+      echo "    ✓ $dest ($actual_size bytes)"
       UPDATED=$((UPDATED + 1))
     else
-      echo "    ✗ $target — 文件为空"
+      echo "    ✗ $dest — 文件为空"
+      rm -f "$dest"
       FAILED=$((FAILED + 1))
     fi
   else
@@ -77,6 +81,6 @@ echo "=========================================="
 if [ "$UPDATED" -gt 0 ]; then
   echo ""
   echo "→ 重新生成 surge-icon.json..."
-  bash generate-icon-json.sh
+  bash scripts/generate-icon-json.sh
   echo "→ 重新生成完毕"
 fi

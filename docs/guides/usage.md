@@ -9,10 +9,10 @@
 ```ini
 # Surge 配置文件策略组示例
 Netflix = select, HK, TW, JP, SG
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 
 Telegram = select, SG, JP, US, HK
-icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Social/Telegram(2).png
+icon-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram-2.png
 ```
 
 ## Clash Meta / Mihomo
@@ -22,12 +22,12 @@ proxy-groups:
   - name: Netflix
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 
   - name: Telegram
     type: select
     proxies: [SG, JP, US]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Social/Telegram(2).png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram-2.png
 ```
 
 ## Loon
@@ -35,18 +35,18 @@ proxy-groups:
 ```ini
 [Policy]
 Netflix = select, HK, TW, JP, SG
-icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 
 Telegram = select, SG, JP, US, HK
-icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Social/Telegram(2).png
+icon = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram-2.png
 ```
 
 ## Quantumult X
 
 ```ini
 [policy]
-static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
-static=Telegram, SG, JP, US, HK, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Social/Telegram(2).png
+static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
+static=Telegram, SG, JP, US, HK, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram-2.png
 ```
 
 ## Stash
@@ -56,7 +56,7 @@ proxy-groups:
   - name: Netflix
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 ## Egern
@@ -66,22 +66,22 @@ proxies:
   Netflix:
     type: select
     proxies: [HK, TW, JP, SG]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/Media/Netflix.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix-1.png
 ```
 
 ## CDN 加速（中国大陆）
 
 ```ini
 # 使用 jsDelivr CDN 加速访问
-icon-url = https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/Media/Netflix.png
+icon-url = https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/Media/Netflix-1.png
 ```
 
 ## 图片直链格式
 
 ```
 # 通用格式
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/<Category>/<FileName>.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<Category>/<FileName>.png
 
 # Surge 专用 JSON
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/surge-icon.json
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/surge-icon.json
 ```

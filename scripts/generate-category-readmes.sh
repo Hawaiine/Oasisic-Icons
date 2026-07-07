@@ -2,14 +2,16 @@
 # generate-category-readmes.sh — 为每个分类自动生成 README 清单
 set -euo pipefail
 
-cd "$(dirname "$0")"
+# 切换到仓库根目录（scripts/ 的父目录）
+cd "$(dirname "$0")/.."
+
+ICONS_DIR="icons"
 
 generate_readme() {
   local dir="$1"
   local name="$2"
   local desc="$3"
 
-  # 统计图标数
   local total=0
   local brands=()
 
@@ -17,22 +19,20 @@ generate_readme() {
     [ -f "$f" ] || continue
     total=$((total + 1))
     base=$(basename "$f" .png)
-    # 去掉数字后缀（-1, -2, _1, _2, (1), (2) 等）去重
     clean=$(echo "$base" | sed -E 's/[-_][0-9]+$//; s/\([0-9]+\)$//')
     brands+=("$clean")
   done
 
-  # 去重
   unique=($(printf "%s\n" "${brands[@]}" | sort -u))
 
-  cat > "$dir/README.md" << EOF
+  cat > "$dir/README.md" << README_EOF
 # ${name} / ${desc}
 
 > 共 **${total}** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
-EOF
+README_EOF
 
   for f in "$dir"/*.png; do
     [ -f "$f" ] || continue
@@ -43,29 +43,37 @@ EOF
   echo "  ✓ $dir ($total icons)"
 }
 
-generate_readme "AI"         "🤖 AI"              "人工智能服务"
-generate_readme "Apple"      "🍎 Apple"           "苹果生态"
-generate_readme "Country"    "🌍 Country"         "国家与地区旗帜"
-generate_readme "Crypto"     "₿ Crypto"           "加密货币与区块链"
-generate_readme "DevOps"     "🛠 DevOps"           "开发运维与云服务"
-generate_readme "Drive"      "☁️ Drive"           "云盘与存储"
-generate_readme "Education"  "📚 Education"        "教育平台"
-generate_readme "Finance"    "💰 Finance"          "金融理财"
-generate_readme "Game"       "🎮 Game"            "游戏平台"
-generate_readme "General"    "🔧 General"          "通用策略"
-generate_readme "Google"     "🔎 Google"           "Google 服务"
-generate_readme "Health"     "🏥 Health"           "健康与运动"
-generate_readme "Media"      "🎬 Media"            "影音流媒体"
-generate_readme "Microsoft"  "🪟 Microsoft"        "微软服务"
-generate_readme "Music"      "🎵 Music"            "音乐服务"
-generate_readme "News"       "📰 News"             "新闻与资讯"
-generate_readme "Payment"    "💳 Payment"          "支付"
-generate_readme "Proxy"      "🌐 Proxy"            "代理线路与协议"
-generate_readme "Shopping"   "🛒 Shopping"         "购物"
-generate_readme "Social"     "👥 Social"           "社交"
-generate_readme "Surge"      "⚡ Surge"            "Surge 应用图标"
-generate_readme "Telecom"    "📡 Telecom"          "运营商"
-generate_readme "Tool"       "🔩 Tool"             "工具"
+# 动态扫描所有分类目录
+for dir in "$ICONS_DIR"/*/; do
+  [ -d "$dir" ] || continue
+  category=$(basename "$dir")
+  case "$category" in
+    AI)        generate_readme "$dir" "🤖 AI" "人工智能服务" ;;
+    Apple)     generate_readme "$dir" "🍎 Apple" "苹果生态" ;;
+    Country)   generate_readme "$dir" "🌍 Country" "国家与地区旗帜" ;;
+    Crypto)    generate_readme "$dir" "₿ Crypto" "加密货币与区块链" ;;
+    DevOps)    generate_readme "$dir" "🛠 DevOps" "开发运维与云服务" ;;
+    Drive)     generate_readme "$dir" "☁️ Drive" "云盘与存储" ;;
+    Education) generate_readme "$dir" "📚 Education" "教育平台" ;;
+    Finance)   generate_readme "$dir" "💰 Finance" "金融理财" ;;
+    Game)      generate_readme "$dir" "🎮 Game" "游戏平台" ;;
+    General)   generate_readme "$dir" "🔧 General" "通用策略" ;;
+    Google)    generate_readme "$dir" "🔎 Google" "Google 服务" ;;
+    Health)    generate_readme "$dir" "🏥 Health" "健康与运动" ;;
+    Media)     generate_readme "$dir" "🎬 Media" "影音流媒体" ;;
+    Microsoft) generate_readme "$dir" "🪟 Microsoft" "微软服务" ;;
+    Music)     generate_readme "$dir" "🎵 Music" "音乐服务" ;;
+    News)      generate_readme "$dir" "📰 News" "新闻与资讯" ;;
+    Payment)   generate_readme "$dir" "💳 Payment" "支付" ;;
+    Proxy)     generate_readme "$dir" "🌐 Proxy" "代理线路与协议" ;;
+    Shopping)  generate_readme "$dir" "🛒 Shopping" "购物" ;;
+    Social)    generate_readme "$dir" "👥 Social" "社交" ;;
+    Surge)     generate_readme "$dir" "⚡ Surge" "Surge 应用图标" ;;
+    Telecom)   generate_readme "$dir" "📡 Telecom" "运营商" ;;
+    Tool)      generate_readme "$dir" "🔩 Tool" "工具" ;;
+    *)         generate_readme "$dir" "$category" "$category" ;;
+  esac
+done
 
 echo ""
 echo "全部 README 生成完毕"
