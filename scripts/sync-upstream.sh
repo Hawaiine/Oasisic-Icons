@@ -20,6 +20,8 @@ for cmd in curl python3; do
   fi
 done
 
+CURL_OPTS=(-sL --retry 3 --retry-delay 5 --retry-all-errors)
+
 echo "=========================================="
 echo " Oasisic-Icons 上游同步开始"
 echo " 时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
@@ -35,7 +37,7 @@ while IFS='|' read -r upstream filename target base_url; do
 
   if [ -f "$dest" ]; then
     local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
-    remote_size=$(curl -sI "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
+    remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
     if [ "$local_size" = "$remote_size" ] && [ "$remote_size" -gt 0 ]; then
       echo "  ⏭️  $target — 已是最新"
       SKIPPED=$((SKIPPED + 1))
@@ -44,7 +46,7 @@ while IFS='|' read -r upstream filename target base_url; do
   fi
 
   echo "  ↓ 下载: $upstream/$filename → $dest"
-  if curl -sL -o "$dest" "$src_url"; then
+  if curl "${CURL_OPTS[@]}" -o "$dest" "$src_url"; then
     actual_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
     if [ "$actual_size" -gt 0 ]; then
       echo "    ✓ $dest ($actual_size bytes)"
@@ -58,6 +60,9 @@ while IFS='|' read -r upstream filename target base_url; do
     echo "    ✗ 下载失败"
     FAILED=$((FAILED + 1))
   fi
+
+  # 避免 GitHub 限流，每请求间隔 300ms
+  sleep 0.3
 done < <(python3 -c "
 import json
 with open('$MAPPING') as f:
