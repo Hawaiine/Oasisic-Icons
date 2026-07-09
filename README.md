@@ -60,8 +60,8 @@
 | 文件名 | 说明 |
 |:---|---|
 | `AI.png` | 通用 AI |
-| `ChatGPT-1.png` ~ `-4.png` | ChatGPT (4 种风格) |
-| `Claude-1.png` ~ `-2.png` | Claude (2 种风格) |
+| `OpenAI-1.png` ~ `-4.png` | OpenAI (4 种风格) |
+| `Anthropic-1.png` ~ `-2.png` | Anthropic (2 种风格) |
 | `Copilot-1.png` ~ `-2.png` | Microsoft Copilot (2 种风格) |
 | `Perplexity.png` | Perplexity AI |
 | `Poe-1.png` | Poe |
