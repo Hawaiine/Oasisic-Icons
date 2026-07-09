@@ -4,15 +4,15 @@
 
 | 文件名 | 说明 |
 |:---|---|
-| `Bing-1.png` | `Bing-1` |
-| `Bing-2.png` | `Bing-2` |
-| `Bing-3.png` | `Bing-3` |
-| `Bing-4.png` | `Bing-4` |
-| `Copilot-1.png` | `Copilot-1` |
-| `Copilot-2.png` | `Copilot-2` |
-| `Microsoft-1.png` | `Microsoft-1` |
-| `Microsoft-2.png` | `Microsoft-2` |
-| `Microsoft-3.png` | `Microsoft-3` |
-| `Microsoft-4.png` | `Microsoft-4` |
-| `Microsoft-Semporia.png` | `Microsoft-Semporia` |
-| `OneDrive.png` | `OneDrive` |
+| `Bing-1.png` | Bing 搜索 — 风格 1 |
+| `Bing-2.png` | Bing 搜索 — 风格 2 |
+| `Bing-3.png` | Bing 搜索 — 风格 3 |
+| `Bing-4.png` | Bing 搜索 — 风格 4 |
+| `Copilot-1.png` | Microsoft Copilot — 风格 1 |
+| `Copilot-2.png` | Microsoft Copilot — 风格 2 |
+| `Microsoft-1.png` | Microsoft 通用 — 风格 1 |
+| `Microsoft-2.png` | Microsoft 通用 — 风格 2 |
+| `Microsoft-3.png` | Microsoft 通用 — 风格 3 |
+| `Microsoft-4.png` | Microsoft 通用 — 风格 4 |
+| `Microsoft-Semporia.png` | Microsoft 通用 (Semporia) |
+| `OneDrive.png` | Microsoft OneDrive |

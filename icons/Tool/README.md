@@ -1,26 +1,28 @@
 # 🔩 Tool / 工具
 
-> 共 **20** 个图标
+> 共 **22** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
-| `1Password.png` | `1Password` |
-| `AdGuard.png` | `AdGuard` |
-| `Airport.png` | `Airport` |
-| `Cloudflare.png` | `Cloudflare` |
-| `Duolingguo-1.png` | `Duolingguo-1` |
-| `Duolingguo-2.png` | `Duolingguo-2` |
-| `GitHub-1.png` | `GitHub-1` |
-| `GitHub-2.png` | `GitHub-2` |
-| `GitHub-Semporia.png` | `GitHub-Semporia` |
-| `Keep.png` | `Keep` |
-| `Notion.png` | `Notion` |
-| `Oracle.png` | `Oracle` |
-| `SF-Express.png` | `SF-Express` |
-| `Speedtest-1.png` | `Speedtest-1` |
-| `Speedtest-2.png` | `Speedtest-2` |
-| `Speedtest-Semporia.png` | `Speedtest-Semporia` |
-| `TMDB.png` | `TMDB` |
-| `Uber.png` | `Uber` |
-| `Z-Library.png` | `Z-Library` |
-| `Zoom.png` | `Zoom` |
+| `1Password.png` | 1Password 密码管理 |
+| `AdGuard.png` | AdGuard 广告过滤 |
+| `Airbnb.png` | Airbnb 民宿 |
+| `Airport.png` | 机场/代理订阅 |
+| `Booking.png` | Booking.com 酒店 |
+| `Cloudflare.png` | Cloudflare |
+| `Duolingo-1.png` | Duolingo 多邻国 — 风格 1 |
+| `Duolingo-2.png` | Duolingo 多邻国 — 风格 2 |
+| `GitHub-1.png` | GitHub — 风格 1 |
+| `GitHub-2.png` | GitHub — 风格 2 |
+| `GitHub-Semporia.png` | GitHub (Semporia) |
+| `Keep.png` | Keep 运动健身 |
+| `Notion.png` | Notion 笔记 |
+| `Oracle.png` | Oracle 甲骨文 |
+| `SF-Express.png` | 顺丰速运 |
+| `Speedtest-1.png` | Speedtest 测速 — 风格 1 |
+| `Speedtest-2.png` | Speedtest 测速 — 风格 2 |
+| `Speedtest-Semporia.png` | Speedtest 测速 (Semporia) |
+| `TMDB.png` | TMDB 电影数据库 |
+| `Uber.png` | Uber 出行 |
+| `Z-Library.png` | Z-Library 电子书 |
+| `Zoom.png` | Zoom 视频会议 |

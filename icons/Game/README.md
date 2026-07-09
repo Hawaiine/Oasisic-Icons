@@ -4,18 +4,18 @@
 
 | 文件名 | 说明 |
 |:---|---|
-| `EpicGames.png` | `EpicGames` |
-| `Game-1.png` | `Game-1` |
-| `Game-2.png` | `Game-2` |
-| `Game-3.png` | `Game-3` |
-| `Game-Semporia.png` | `Game-Semporia` |
-| `Nintendo.png` | `Nintendo` |
-| `PlayStation-1.png` | `PlayStation-1` |
-| `PlayStation-2.png` | `PlayStation-2` |
-| `Steam-1.png` | `Steam-1` |
-| `Steam-2.png` | `Steam-2` |
-| `Steam-3.png` | `Steam-3` |
-| `Steam-Semporia.png` | `Steam-Semporia` |
-| `Twitch-1.png` | `Twitch-1` |
-| `Twitch-2.png` | `Twitch-2` |
-| `Xbox.png` | `Xbox` |
+| `EpicGames.png` | Epic Games 游戏商店 |
+| `Game-1.png` | 游戏通用 — 风格 1 |
+| `Game-2.png` | 游戏通用 — 风格 2 |
+| `Game-3.png` | 游戏通用 — 风格 3 |
+| `Game-Semporia.png` | 游戏通用 (Semporia) |
+| `Nintendo.png` | Nintendo 任天堂 |
+| `PlayStation-1.png` | PlayStation — 风格 1 |
+| `PlayStation-2.png` | PlayStation — 风格 2 |
+| `Steam-1.png` | Steam — 风格 1 |
+| `Steam-2.png` | Steam — 风格 2 |
+| `Steam-3.png` | Steam — 风格 3 |
+| `Steam-Semporia.png` | Steam (Semporia) |
+| `Twitch-1.png` | Twitch 直播 — 风格 1 |
+| `Twitch-2.png` | Twitch 直播 — 风格 2 |
+| `Xbox.png` | Xbox |
