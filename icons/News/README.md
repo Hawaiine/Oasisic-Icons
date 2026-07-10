@@ -5,4 +5,4 @@
 | 文件名 | 说明 |
 |:---|---|
 | `AppleNews.png` | Apple News |
-| `GoogleNews.png` | Google News |
+| `GoogleNews.png` | GoogleNews |

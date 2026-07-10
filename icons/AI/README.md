@@ -1,6 +1,6 @@
 # 🤖 AI / 人工智能服务
 
-> 共 **11** 个图标
+> 共 **12** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -9,6 +9,7 @@
 | `Anthropic-2.png` | Anthropic / Claude — 风格 2 |
 | `Copilot-1.png` | Microsoft Copilot — 风格 1 |
 | `Copilot-2.png` | Microsoft Copilot — 风格 2 |
+| `Gemini.png` | Google Gemini AI |
 | `OpenAI-1.png` | OpenAI / ChatGPT — 风格 1 |
 | `OpenAI-2.png` | OpenAI / ChatGPT — 风格 2 |
 | `OpenAI-3.png` | OpenAI / ChatGPT — 风格 3 |

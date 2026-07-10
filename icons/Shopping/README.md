@@ -4,16 +4,16 @@
 
 | 文件名 | 说明 |
 |:---|---|
-| `Alibaba.png` | 阿里巴巴 |
-| `Amazon-Semporia.png` | Amazon 亚马逊 (Semporia) |
-| `Amazon.png` | Amazon 亚马逊 |
+| `Alibaba.png` | 阿里云 |
+| `Amazon-Semporia.png` | Amazon-Semporia |
+| `Amazon.png` | Amazon |
 | `DoorDash.png` | DoorDash 外卖 |
-| `JD-1.png` | 京东 — 风格 1 |
-| `JD-2.png` | 京东 — 风格 2 |
-| `JD-3.png` | 京东 — 风格 3 |
-| `Meituan-1.png` | 美团 — 风格 1 |
-| `Meituan-2.png` | 美团 — 风格 2 |
-| `Pinduoduo.png` | 拼多多 |
-| `Taobao-1.png` | 淘宝 — 风格 1 |
-| `Taobao-2.png` | 淘宝 — 风格 2 |
+| `JD-1.png` | JD-1 |
+| `JD-2.png` | JD-2 |
+| `JD-3.png` | JD-3 |
+| `Meituan-1.png` | Meituan-1 |
+| `Meituan-2.png` | Meituan-2 |
+| `Pinduoduo.png` | Pinduoduo |
+| `Taobao-1.png` | Taobao-1 |
+| `Taobao-2.png` | Taobao-2 |
 | `UberEats.png` | Uber Eats 外卖 |

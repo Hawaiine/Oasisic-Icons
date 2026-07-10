@@ -33,4 +33,4 @@ OUTPUT="config/surge-icon.json"
   echo '}'
 } > "$OUTPUT"
 
-echo "✓ 已生成 $OUTPUT ($(grep -c '"name"' "$OUTPUT") 个图标)"
+echo "✓ 已生成 $OUTPUT ($(grep -c '"category"' "$OUTPUT") 个图标)"

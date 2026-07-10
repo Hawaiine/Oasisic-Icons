@@ -3,7 +3,7 @@
 # 规则：
 #   1. (N) → -N          ChatGPT(1).png → ChatGPT-1.png
 #   2. _N → -N           Cryptocurrency_1.png → Cryptocurrency-1.png (Qure 上游格式)
-#   3. + → Plus           CatchPlay+(1).png → CatchPlayPlus-1.png, discovery+.png → DiscoveryPlus.png
+#   3. + → -Plus         CatchPlay+(1).png → CatchPlay-Plus-1.png, discovery+.png → Discovery-Plus.png
 #   4. SURGE → Surge      SURGE(8).png → Surge-8.png
 #   5. Hongkong → HongKong（统一大小写）
 #   6. BiliBili → Bilibili（统一大小写）
@@ -43,7 +43,9 @@ rename_file() {
   new=$(echo "$new" | sed -E 's/^Duolingguo-/Duolingo-/')
   new=$(echo "$new" | sed -E 's/^Duolingguo\./Duolingo./')
   new=$(echo "$new" | sed -E 's/^Hongkong-/HongKong-/')
+  new=$(echo "$new" | sed -E 's/^Hongkong\./HongKong./')
   new=$(echo "$new" | sed -E 's/^BiliBili-/Bilibili-/')
+  new=$(echo "$new" | sed -E 's/^BiliBili\./Bilibili./')
   new=$(echo "$new" | sed -E 's/^NeteaseMusic-/NetEaseMusic-/')
   new=$(echo "$new" | sed -E 's/^NeteaseMusic\./NetEaseMusic./')
   new=$(echo "$new" | sed -E 's/^Apple_News\./AppleNews./')

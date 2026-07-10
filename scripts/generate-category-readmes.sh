@@ -23,8 +23,6 @@ generate_readme() {
     brands+=("$clean")
   done
 
-  unique=($(printf "%s\n" "${brands[@]}" | sort -u))
-
   cat > "$dir/README.md" << README_EOF
 # ${name} / ${desc}
 

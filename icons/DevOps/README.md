@@ -4,7 +4,7 @@
 
 | 文件名 | 说明 |
 |:---|---|
-| `Alibaba.png` | 阿里巴巴 |
+| `Alibaba.png` | 阿里云 |
 | `Azure.png` | Microsoft Azure |
 | `Cloudflare.png` | Cloudflare |
 | `Oracle.png` | Oracle 甲骨文 |
