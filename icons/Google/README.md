@@ -1,10 +1,9 @@
 # 🔎 Google / Google 服务
 
-> 共 **14** 个图标
+> 共 **13** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
-| `Gemini.png` | Google Gemini AI |
 | `Gmail-Semporia.png` | Gmail 邮箱 (Semporia) |
 | `Gmail.png` | Gmail 邮箱 |
 | `Google-1.png` | Google 通用 — 风格 1 |
