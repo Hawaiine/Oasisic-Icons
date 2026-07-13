@@ -1,6 +1,6 @@
 # 🔧 General / 通用策略组图标
 
-> 共 **42** 个图标
+> 共 **44** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -15,6 +15,7 @@
 | `Auto.png` | 自动策略组 |
 | `Blacklist.png` | 黑名单策略组 |
 | `Bot.png` | 爬虫/机器人流量 |
+| `Direct.png` | 直连策略组 |
 | `Final.png` | 兜底策略组 |
 | `Global-1.png` | 全局代理 — 风格 1 |
 | `Global-2.png` | 全局代理 — 风格 2 |
@@ -33,6 +34,7 @@
 | `Play-1.png` | 媒体播放 — 风格 1 |
 | `Play-2.png` | 媒体播放 — 风格 2 |
 | `Play-3.png` | 媒体播放 — 风格 3 |
+| `Proxy.png` | 代理策略组 |
 | `Reject.png` | 拒绝/拦截策略组 |
 | `SSID.png` | Wi-Fi SSID 策略组 |
 | `Search-1.png` | 搜索引擎 — 风格 1 |

@@ -1,6 +1,6 @@
 # 👥 Social / 社交
 
-> 共 **69** 个图标
+> 共 **70** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -14,6 +14,7 @@
 | `Discord-2.png` | Discord — 风格 2 |
 | `Discord-3.png` | Discord — 风格 3 |
 | `Discord-4.png` | Discord — 风格 4 |
+| `Discord-Qure.png` | Discord (Qure 风格) |
 | `Facebook-1.png` | Facebook — 风格 1 |
 | `Facebook-2.png` | Facebook — 风格 2 |
 | `Facebook-3.png` | Facebook — 风格 3 |

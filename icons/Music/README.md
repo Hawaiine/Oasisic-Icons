@@ -1,6 +1,6 @@
 # 🎵 Music / 音乐服务
 
-> 共 **13** 个图标
+> 共 **14** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -8,6 +8,7 @@
 | `NetEaseMusic-2.png` | 网易云音乐 — 风格 2 |
 | `NetEaseMusic-3.png` | 网易云音乐 — 风格 3 |
 | `NetEaseMusic-Semporia.png` | 网易云音乐 (Semporia) |
+| `MusicBrainz.png` | MusicBrainz 音乐数据库 |
 | `Pandora.png` | Pandora 音乐电台 |
 | `SoundCloud.png` | SoundCloud 音频平台 |
 | `Spotify-1.png` | Spotify — 风格 1 |
