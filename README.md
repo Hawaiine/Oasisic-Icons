@@ -1,6 +1,6 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge-4.png">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge-3.png">
     <img src="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge-4.png" width="120" alt="Oasisic-Icons">
   </picture>
 </p>
