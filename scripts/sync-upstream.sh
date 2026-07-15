@@ -37,9 +37,11 @@ while IFS='|' read -r upstream filename target base_url; do
 
   if [ -f "$dest" ]; then
       local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
-      remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\\r' || echo 0)
-      if [ "$remote_size" -gt 0 ] && [ "$local_size" -gt "$remote_size" ]; then
-        echo "  🔒 $target — 本地已升级（${local_size}B > 上游 ${remote_size}B），跳过"
+      remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
+      if [ "$remote_size" -gt 0 ] && [ "$local_size" -ne "$remote_size" ]; then
+        diff_note=""
+        [ "$local_size" -gt "$remote_size" ] && diff_note="（较大，可能已升级）" || diff_note="（较小，可能已替换）"
+        echo "  🔒 $target — 本地与上游不一致${diff_note}，跳过"
         SKIPPED=$((SKIPPED + 1))
         continue
       fi
