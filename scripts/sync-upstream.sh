@@ -68,6 +68,8 @@ import json
 with open('$MAPPING') as f:
     data = json.load(f)
 for m in data['mappings']:
+    if m.get('locked', False):
+        continue
     parts = m['source'].split('/', 1)
     upstream = parts[0]
     filename = parts[1]

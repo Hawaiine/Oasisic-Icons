@@ -67,6 +67,11 @@
       "target": "DevOps/Alibaba.png"
     },
     {
+      "source": "Qure/Cloudflare.png",
+      "target": "DevOps/Cloudflare.png",
+      "locked": true
+    },
+    {
       "source": "Qure/Apple_News.png",
       "target": "News/AppleNews.png"
     },
