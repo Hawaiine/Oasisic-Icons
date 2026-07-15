@@ -36,14 +36,19 @@ while IFS='|' read -r upstream filename target base_url; do
   dest="$dir/$(basename "$target")"
 
   if [ -f "$dest" ]; then
-    local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
-    remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
-    if [ "$local_size" = "$remote_size" ] && [ "$remote_size" -gt 0 ]; then
-      echo "  ⏭️  $target — 已是最新"
-      SKIPPED=$((SKIPPED + 1))
-      continue
+      local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
+      remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\\r' || echo 0)
+      if [ "$remote_size" -gt 0 ] && [ "$local_size" -gt "$remote_size" ]; then
+        echo "  🔒 $target — 本地已升级（${local_size}B > 上游 ${remote_size}B），跳过"
+        SKIPPED=$((SKIPPED + 1))
+        continue
+      fi
+      if [ "$local_size" = "$remote_size" ] && [ "$remote_size" -gt 0 ]; then
+        echo "  ⏭️  $target — 已是最新"
+        SKIPPED=$((SKIPPED + 1))
+        continue
+      fi
     fi
-  fi
 
   echo "  ↓ 下载: $upstream/$filename → $dest"
   if curl "${CURL_OPTS[@]}" -o "$dest" "$src_url"; then
