@@ -71,7 +71,7 @@
 
 ### 🍎 Apple — 苹果生态
 
-`AppStore-1.png` ~ `-4.png`, `Apple-1.png` ~ `-3.png`, `AppleFitness-1.png` ~ `-4.png`, `AppleIntelligence.png`, `AppleMusic.png`, `AppleNews.png`, `AppleTV.png`, `AppleTVPlus.png`, `Siri.png`, `TestFlight-1.png` ~ `-2.png`, `iCloud.png`
+`AppStore-1.png` ~ `-4.png`, `Apple-1.png` ~ `-3.png`, `AppleFitness-1.png` ~ `-4.png`, `AppleMusic.png`, `AppleNews.png`, `AppleTV.png`, `AppleTVPlus.png`, `Siri.png`, `SiriAI.png`, `TestFlight-1.png` ~ `-2.png`, `iCloud.png`
 
 ### 🌍 Country — 国家与地区旗帜
 

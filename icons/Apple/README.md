@@ -15,7 +15,7 @@
 | `AppleFitness-2.png` | Apple Fitness — 风格 2 |
 | `AppleFitness-3.png` | Apple Fitness — 风格 3 |
 | `AppleFitness-4.png` | Apple Fitness — 风格 4 |
-| `AppleIntelligence.png` | Apple Intelligence |
+| `SiriAI.png` | Apple Intelligence |
 | `AppleMusic.png` | Apple Music |
 | `AppleNews.png` | Apple News |
 | `AppleTV.png` | Apple TV |
