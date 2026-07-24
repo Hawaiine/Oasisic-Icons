@@ -49,7 +49,7 @@
 | [Quantumult X](https://quantumult.app) | `img-url=` |
 
 > 每日自动同步上游图标源，保持图标更新。
-> 当前共 **441** 个图标，覆盖 **23** 个分类。
+> 当前共 **441** 个图标，覆盖 **23** 个分类（含 Education/Finance/Health 等无图标占位空目录）。
 
 ---
 
@@ -235,9 +235,10 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 
 | 脚本 | 作用 |
 |:---|---|
-| `sync-upstream.sh` | 读取 `icon-mapping.json`，从上游下载新图标 |
+| `sync-upstream.sh` | 读取 `icon-mapping.json`，从上游下载新图标（含 PNG 魔数校验） |
 | `icon-mapping.json` | 配置上游源 URL 和图标映射规则 |
-| `generate-icon-json.sh` | 扫描目录，自动生成 `surge-icon.json` |
+| `generate-icon-json.sh` | 扫描目录，自动生成 `surge-icon.json`（按分类+名称稳定排序） |
+| `generate-category-readmes.sh` | 自动生成各分类目录下的 README 清单 |
 | `rename-icons.sh` | 统一命名规范：`(N)` → `-N`，`+` → `Plus` |
 
 ---
@@ -250,6 +251,8 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 | [lige47/QuanX-icon-rule](https://github.com/lige47/QuanX-icon-rule) | 离歌图标集，支持 Surge/Clash/Loon |
 | [Repcz/Tool](https://github.com/Repcz/Tool) | 综合代理工具配置及图标 |
 | [Orz-3/mini](https://github.com/Orz-3/mini) | Quantumult X 迷你图标集 |
+| [Hawaiine/mihomo-rules](https://github.com/Hawaiine/mihomo-rules) | mihomo/Clash Meta 规则集与配置（策略组 icon 引用本仓） |
+| [Hawaiine/oasisic-openwrt](https://github.com/Hawaiine/oasisic-openwrt) | Oasisic OpenWrt 固件（同品牌） |
 
 ---
 
