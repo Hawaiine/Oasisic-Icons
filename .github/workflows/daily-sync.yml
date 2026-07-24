@@ -46,7 +46,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           BEIJING_TIME=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
           CHANGED=$(git status --porcelain | wc -l)
-          git commit -m "chore: 自动同步上游图标 ${BEIJING_TIME}
-
-更新文件数: ${CHANGED}"
+          git commit -m "chore: 自动同步上游图标 ${BEIJING_TIME} (files: ${CHANGED})"
           git push
