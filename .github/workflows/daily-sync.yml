@@ -15,9 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 检出仓库
-        uses: actions/checkout@v4
+        # v7 消除 Node.js 20 deprecation 告警（runner 已强制 Node 24）
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 安装依赖
         run: |
@@ -47,4 +49,6 @@ jobs:
           BEIJING_TIME=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
           CHANGED=$(git status --porcelain | wc -l)
           git commit -m "chore: 自动同步上游图标 ${BEIJING_TIME} (files: ${CHANGED})"
-          git push
+          # 避免与本地推送竞态导致 non-fast-forward
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin "HEAD:${{ github.ref_name }}"
