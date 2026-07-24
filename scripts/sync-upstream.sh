@@ -22,6 +22,22 @@ done
 
 CURL_OPTS=(-sL --retry 3 --retry-delay 5 --retry-all-errors)
 
+# === PNG 校验函数 ===
+# 参数: 文件路径
+# 返回: 0=合法PNG, 1=非法
+validate_png() {
+  local f="$1"
+  # 最小尺寸（至少包含 PNG 头 + IHDR）
+  local sz
+  sz=$(stat --printf='%s' "$f" 2>/dev/null || echo 0)
+  [ "$sz" -ge 50 ] || return 1
+  # PNG 魔数: \x89PNG\r\n\x1a\n
+  local magic
+  magic=$(od -A n -t x1 -N 8 "$f" 2>/dev/null | tr -d ' \n')
+  [ "$magic" = "89504e470d0a1a0a" ] || return 1
+  return 0
+}
+
 echo "=========================================="
 echo " Oasisic-Icons 上游同步开始"
 echo " 时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')"
@@ -35,7 +51,10 @@ while IFS='|' read -r upstream filename target base_url; do
   src_url="$base_url/$filename"
   dest="$dir/$(basename "$target")"
 
+  # 本地已存在，先校验 PNG 合法性
   if [ -f "$dest" ]; then
+    if validate_png "$dest"; then
+      # 合法 PNG：做 size 对比跳过
       local_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
       remote_size=$(curl -sI --retry 2 --retry-delay 5 "$src_url" 2>/dev/null | grep -i 'content-length' | awk '{print $2}' | tr -d '\r' || echo 0)
       if [ "$remote_size" -gt 0 ] && [ "$local_size" -ne "$remote_size" ]; then
@@ -50,21 +69,28 @@ while IFS='|' read -r upstream filename target base_url; do
         SKIPPED=$((SKIPPED + 1))
         continue
       fi
+    else
+      # 本地文件非法（404假文件/损坏）→ 删除并重新下载
+      echo "  ⚠️  $target — 本地文件损坏（非 PNG 或过小），删除重下"
+      rm -f "$dest"
     fi
+  fi
 
   echo "  ↓ 下载: $upstream/$filename → $dest"
   if curl "${CURL_OPTS[@]}" -o "$dest" "$src_url"; then
-    actual_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
-    if [ "$actual_size" -gt 0 ]; then
+    # 下载后校验
+    if validate_png "$dest"; then
+      actual_size=$(stat --printf='%s' "$dest" 2>/dev/null || echo 0)
       echo "    ✓ $dest ($actual_size bytes)"
       UPDATED=$((UPDATED + 1))
     else
-      echo "    ✗ $dest — 文件为空"
+      echo "    ✗ $dest — 下载文件非合法 PNG（可能是上游 404）"
       rm -f "$dest"
       FAILED=$((FAILED + 1))
     fi
   else
     echo "    ✗ 下载失败"
+    rm -f "$dest"
     FAILED=$((FAILED + 1))
   fi
 

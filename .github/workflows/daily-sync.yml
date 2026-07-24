@@ -22,29 +22,31 @@ jobs:
       - name: 安装依赖
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq jq curl
+          sudo apt-get install -y -qq curl
 
       - name: 同步上游图标
+        run: bash scripts/sync-upstream.sh
+
+      - name: 强制重新生成配置
         run: |
-          chmod +x scripts/sync-upstream.sh scripts/generate-icon-json.sh
-          bash scripts/sync-upstream.sh
+          bash scripts/generate-icon-json.sh
+          bash scripts/generate-category-readmes.sh
+
+      - name: 校验所有图标与配置
+        run: python3 scripts/ci-validate-icons.py
 
       - name: 提交并推送更新
         run: |
+          git add icons/ config/ scripts/ .github/workflows/ README.md docs/
           if [ -z "$(git status --porcelain)" ]; then
             echo "没有变更，跳过提交"
             exit 0
           fi
-
           git config user.name "Oasisic-Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 生成北京时间的 commit message
           BEIJING_TIME=$(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')
           CHANGED=$(git status --porcelain | wc -l)
-
-          git add -A
           git commit -m "chore: 自动同步上游图标 ${BEIJING_TIME}
 
-          更新文件数: ${CHANGED}"
+更新文件数: ${CHANGED}"
           git push

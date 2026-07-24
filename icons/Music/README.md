@@ -1,20 +1,22 @@
 # 🎵 Music / 音乐服务
 
-> 共 **14** 个图标
+> 共 **16** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
-| `NetEaseMusic-1.png` | 网易云音乐 — 风格 1 |
-| `NetEaseMusic-2.png` | 网易云音乐 — 风格 2 |
-| `NetEaseMusic-3.png` | 网易云音乐 — 风格 3 |
-| `NetEaseMusic-Semporia.png` | 网易云音乐 (Semporia) |
-| `MusicBrainz.png` | MusicBrainz 音乐数据库 |
-| `Pandora.png` | Pandora 音乐电台 |
-| `SoundCloud.png` | SoundCloud 音频平台 |
-| `Spotify-1.png` | Spotify — 风格 1 |
-| `Spotify-2.png` | Spotify — 风格 2 |
-| `Spotify-3.png` | Spotify — 风格 3 |
-| `Spotify-Semporia.png` | Spotify (Semporia) |
-| `TIDAL-1.png` | TIDAL 无损音乐 — 风格 1 |
-| `TIDAL-2.png` | TIDAL 无损音乐 — 风格 2 |
-| `TIDAL-3.png` | TIDAL 无损音乐 — 风格 3 |
+| `Deezer.png` | `Deezer` |
+| `MusicBrainz.png` | `MusicBrainz` |
+| `NetEaseMusic-1.png` | `NetEaseMusic-1` |
+| `NetEaseMusic-2.png` | `NetEaseMusic-2` |
+| `NetEaseMusic-3.png` | `NetEaseMusic-3` |
+| `NetEaseMusic-Semporia.png` | `NetEaseMusic-Semporia` |
+| `Pandora.png` | `Pandora` |
+| `Qobuz.png` | `Qobuz` |
+| `SoundCloud.png` | `SoundCloud` |
+| `Spotify-1.png` | `Spotify-1` |
+| `Spotify-2.png` | `Spotify-2` |
+| `Spotify-3.png` | `Spotify-3` |
+| `Spotify-Semporia.png` | `Spotify-Semporia` |
+| `TIDAL-1.png` | `TIDAL-1` |
+| `TIDAL-2.png` | `TIDAL-2` |
+| `TIDAL-3.png` | `TIDAL-3` |

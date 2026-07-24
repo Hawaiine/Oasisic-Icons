@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
   <img src="https://img.shields.io/github/actions/workflow/status/Hawaiine/Oasisic-Icons/daily-sync.yml?style=flat-square&label=auto-sync" alt="Auto Sync">
-  <img src="https://img.shields.io/badge/icons-434+-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/icons-441-blue?style=flat-square" alt="Icons Count">
 </p>
 
 ---
@@ -37,7 +37,7 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **434+** 个高质量 PNG 图标，涵盖 **23** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **441** 个高质量 PNG 图标，涵盖 **23** 个分类。
 
 | 支持的工具 / Supported Tools | 用途 / Usage |
 |---|---|
@@ -49,7 +49,7 @@
 | [Quantumult X](https://quantumult.app) | `img-url=` |
 
 > 每日自动同步上游图标源，保持图标更新。
-> 当前共 **434** 个图标，覆盖 **23** 个分类。
+> 当前共 **441** 个图标，覆盖 **23** 个分类。
 
 ---
 
@@ -214,7 +214,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 
 > **提示：** 中国大陆访问可用 jsDelivr CDN 加速：
 > ```
-> https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/<分类>/<文件名>.png
+> https://cdn.jsdelivr.net/gh/Hawaiine/Oasisic-Icons@main/icons/<分类>/<文件名>.png
 > ```
 
 ---
@@ -228,7 +228,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
      ↓  sync-upstream.sh (北京时间每日 08:00)
   Oasisic-Icons 对应分类目录
      ↓  generate-icon-json.sh
-  surge-icon.json (434 图标完整配置)
+  surge-icon.json (全量图标配置)
      ↓  git commit (中文时间戳)
   GitHub 自动推送
 ```
@@ -267,7 +267,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 
 ### 提交流程
 1. 将图标放入对应分类目录
-2. 运行 `bash generate-icon-json.sh` 更新配置
+2. 运行 `bash scripts/generate-icon-json.sh` 更新配置（也可同时运行 `bash scripts/generate-category-readmes.sh` 更新分类 README）
 3. 提交 PR
 
 ---

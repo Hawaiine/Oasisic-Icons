@@ -1,6 +1,6 @@
 {
   "name": "Oasisic-Icons",
-  "description": "\u4e0a\u6e38\u56fe\u6807\u6e90\u6620\u5c04\u8868 / Upstream icon source mappings",
+  "description": "上游图标源映射表 / Upstream icon source mappings",
   "version": "1.1.0",
   "upstreams": {
     "Qure": {
@@ -242,34 +242,6 @@
     {
       "source": "Semporia/Social_Media/YouTube.png",
       "target": "Media/YouTube-Semporia-2.png"
-    },
-    {
-      "source": "Semporia/Fitness/Apple_Fitness.png",
-      "target": "Health/AppleFitness.png"
-    },
-    {
-      "source": "Semporia/Fitness/Strava.png",
-      "target": "Health/Strava.png"
-    },
-    {
-      "source": "Semporia/Fitness/Keep.png",
-      "target": "Health/Keep.png"
-    },
-    {
-      "source": "Semporia/Accommodation/Airbnb.png",
-      "target": "Tool/Airbnb.png"
-    },
-    {
-      "source": "Semporia/Accommodation/Booking.png",
-      "target": "Tool/Booking.png"
-    },
-    {
-      "source": "Semporia/Food-Delivery/UberEats.png",
-      "target": "Shopping/UberEats.png"
-    },
-    {
-      "source": "Semporia/Food-Delivery/DoorDash.png",
-      "target": "Shopping/DoorDash.png"
     }
   ]
 }
