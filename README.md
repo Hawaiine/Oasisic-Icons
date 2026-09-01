@@ -17,14 +17,14 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-408-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/icons-413-blue?style=flat-square" alt="Icons Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **408** 个 PNG 图标，覆盖 **20** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集，包含 **413** 个 PNG 图标，覆盖 **23** 个分类。
 
 > 所有图标均为 **512×512 RGBA 圆角矩形**，保留原始底色。适配 Surge、Loon、Clash Meta / Mihomo、Quantumult X 等主流代理客户端。
 
