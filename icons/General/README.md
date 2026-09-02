@@ -1,6 +1,6 @@
 # 🔧 General / 通用策略
 
-> 共 **44** 个图标
+> 共 **46** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -31,10 +31,12 @@
 | `Mail-3.png` | `Mail-3` |
 | `Mail-4.png` | `Mail-4` |
 | `Mail-5.png` | `Mail-5` |
+| `NetEaseMail.png` | `NetEaseMail` |
 | `Play-1.png` | `Play-1` |
 | `Play-2.png` | `Play-2` |
 | `Play-3.png` | `Play-3` |
 | `Proxy.png` | `Proxy` |
+| `QQMail.png` | `QQMail` |
 | `Reject.png` | `Reject` |
 | `SSID.png` | `SSID` |
 | `Search-1.png` | `Search-1` |

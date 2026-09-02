@@ -1,13 +1,11 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **97** 个图标
+> 共 **95** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
 | `AbemaTV.png` | `AbemaTV` |
 | `AfreecaTV.png` | `AfreecaTV` |
-| `Aqiyi-1.png` | `Aqiyi-1` |
-| `Aqiyi-2.png` | `Aqiyi-2` |
 | `Bahamut-1.png` | `Bahamut-1` |
 | `Bahamut-2.png` | `Bahamut-2` |
 | `Bilibili-1.png` | `Bilibili-1` |
@@ -19,7 +17,7 @@
 | `Bilibili-7.png` | `Bilibili-7` |
 | `Bilibili-8.png` | `Bilibili-8` |
 | `Bilibili-9.png` | `Bilibili-9` |
-| `Bilibili-Semporia.png` | `Bilibili-Semporia` |
+| `Bilibili.png` | `Bilibili` |
 | `CatchPlay-Plus-1.png` | `CatchPlay-Plus-1` |
 | `CatchPlay-Plus-2.png` | `CatchPlay-Plus-2` |
 | `DAZN-1.png` | `DAZN-1` |
@@ -30,10 +28,10 @@
 | `Discovery-Plus.png` | `Discovery-Plus` |
 | `Disney-1.png` | `Disney-1` |
 | `Disney-2.png` | `Disney-2` |
-| `Disney-3.png` | `Disney-3` |
 | `Disney-Plus-1.png` | `Disney-Plus-1` |
 | `Disney-Plus-2.png` | `Disney-Plus-2` |
 | `Disney-Plus-3.png` | `Disney-Plus-3` |
+| `Douyin.png` | `Douyin` |
 | `ESPN-Plus-1.png` | `ESPN-Plus-1` |
 | `ESPN-Plus-2.png` | `ESPN-Plus-2` |
 | `ESPN-Plus-3.png` | `ESPN-Plus-3` |
@@ -47,10 +45,11 @@
 | `HBO-3.png` | `HBO-3` |
 | `HBO-4.png` | `HBO-4` |
 | `HOY.png` | `HOY` |
-| `HamiVideo-1.png` | `HamiVideo-1` |
+| `HOYTV.png` | `HOYTV` |
+| `HamiVideo.png` | `HamiVideo` |
 | `Hanxiaoquan.png` | `Hanxiaoquan` |
-| `HotStar-1.png` | `HotStar-1` |
-| `HotStar-2.png` | `HotStar-2` |
+| `Hotstar-1.png` | `Hotstar-1` |
+| `Hotstar-2.png` | `Hotstar-2` |
 | `Hulu.png` | `Hulu` |
 | `Infuse.png` | `Infuse` |
 | `KKBOX.png` | `KKBOX` |
@@ -63,11 +62,12 @@
 | `MyVideo.png` | `MyVideo` |
 | `NBA.png` | `NBA` |
 | `NBC.png` | `NBC` |
+| `NHK.png` | `NHK` |
 | `Netflix-1.png` | `Netflix-1` |
 | `Netflix-2.png` | `Netflix-2` |
 | `Netflix-3.png` | `Netflix-3` |
 | `Netflix-4.png` | `Netflix-4` |
-| `Netflix-Semporia.png` | `Netflix-Semporia` |
+| `Netflix.png` | `Netflix` |
 | `Niconico.png` | `Niconico` |
 | `NowE.png` | `NowE` |
 | `Paramount.png` | `Paramount` |
@@ -75,29 +75,27 @@
 | `Peacock-2.png` | `Peacock-2` |
 | `Peacock-3.png` | `Peacock-3` |
 | `Podcasts.png` | `Podcasts` |
-| `PrimeVideo-1.png` | `PrimeVideo-1` |
 | `PrimeVideo-2.png` | `PrimeVideo-2` |
 | `PrimeVideo-3.png` | `PrimeVideo-3` |
+| `PrimeVideo.png` | `PrimeVideo` |
+| `RedNote.png` | `RedNote` |
 | `STARZ.png` | `STARZ` |
 | `SlingTV.png` | `SlingTV` |
 | `Star-Plus.png` | `Star-Plus` |
 | `TVB.png` | `TVB` |
 | `TVer.png` | `TVer` |
 | `TencentVideo.png` | `TencentVideo` |
+| `Tubi.png` | `Tubi` |
+| `Twitch.png` | `Twitch` |
+| `UNEXT.png` | `UNEXT` |
 | `VideoMarket.png` | `VideoMarket` |
 | `Vimeo.png` | `Vimeo` |
 | `Viu.png` | `Viu` |
 | `ViuTV.png` | `ViuTV` |
 | `Wallpaper.png` | `Wallpaper` |
 | `WeTV.png` | `WeTV` |
-| `YouTube-1.png` | `YouTube-1` |
-| `YouTube-2.png` | `YouTube-2` |
-| `YouTube-3.png` | `YouTube-3` |
-| `YouTube-4.png` | `YouTube-4` |
-| `YouTube-5.png` | `YouTube-5` |
-| `YouTube-6.png` | `YouTube-6` |
-| `YouTube-7.png` | `YouTube-7` |
-| `YouTube-Semporia-2.png` | `YouTube-Semporia-2` |
-| `YouTube-Semporia.png` | `YouTube-Semporia` |
+| `Youku.png` | `Youku` |
 | `friDay.png` | `friDay` |
+| `iqiyi-1.png` | `iqiyi-1` |
+| `iqiyi-2.png` | `iqiyi-2` |
 | `myTVSUPER.png` | `myTVSUPER` |

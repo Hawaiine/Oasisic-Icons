@@ -1,6 +1,6 @@
 # 👥 Social / 社交
 
-> 共 **71** 个图标
+> 共 **49** 个图标
 
 | 文件名 | 说明 |
 |:---|---|
@@ -10,20 +10,12 @@
 | `Bluesky-1.png` | `Bluesky-1` |
 | `Bluesky-2.png` | `Bluesky-2` |
 | `DingTalk.png` | `DingTalk` |
-| `Discord-1.png` | `Discord-1` |
-| `Discord-2.png` | `Discord-2` |
-| `Discord-3.png` | `Discord-3` |
-| `Discord-4.png` | `Discord-4` |
-| `Discord-Qure.png` | `Discord-Qure` |
+| `Discord.png` | `Discord` |
 | `Facebook-1.png` | `Facebook-1` |
-| `Facebook-2.png` | `Facebook-2` |
-| `Facebook-3.png` | `Facebook-3` |
-| `Facebook-4.png` | `Facebook-4` |
-| `Facebook-Semporia.png` | `Facebook-Semporia` |
 | `Instagram-1.png` | `Instagram-1` |
 | `Instagram-2.png` | `Instagram-2` |
 | `Instagram-3.png` | `Instagram-3` |
-| `Instagram-Semporia.png` | `Instagram-Semporia` |
+| `Instagram.png` | `Instagram` |
 | `Kakao.png` | `Kakao` |
 | `Line.png` | `Line` |
 | `LinkedIn.png` | `LinkedIn` |
@@ -35,11 +27,11 @@
 | `Pipixia-1.png` | `Pipixia-1` |
 | `Pipixia-2.png` | `Pipixia-2` |
 | `Pixiv.png` | `Pixiv` |
+| `QQ.png` | `QQ` |
 | `Redbook-1.png` | `Redbook-1` |
 | `Redbook-2.png` | `Redbook-2` |
 | `Reddit-1.png` | `Reddit-1` |
 | `Reddit-2.png` | `Reddit-2` |
-| `Reddit-Semporia.png` | `Reddit-Semporia` |
 | `Sina-1.png` | `Sina-1` |
 | `Sina-2.png` | `Sina-2` |
 | `Skype.png` | `Skype` |
@@ -48,30 +40,16 @@
 | `Telegram-2.png` | `Telegram-2` |
 | `Telegram-3.png` | `Telegram-3` |
 | `Telegram-4.png` | `Telegram-4` |
-| `Telegram-Semporia.png` | `Telegram-Semporia` |
-| `Tencent-Semporia.png` | `Tencent-Semporia` |
 | `Tencent.png` | `Tencent` |
-| `Threads-1.png` | `Threads-1` |
+| `Threads.png` | `Threads` |
 | `Tieba-1.png` | `Tieba-1` |
 | `Tieba-2.png` | `Tieba-2` |
 | `Tieba-3.png` | `Tieba-3` |
-| `TikTok-1.png` | `TikTok-1` |
-| `TikTok-2.png` | `TikTok-2` |
-| `TikTok-3.png` | `TikTok-3` |
-| `TikTok-4.png` | `TikTok-4` |
-| `TikTok-5.png` | `TikTok-5` |
-| `TikTok-Semporia.png` | `TikTok-Semporia` |
-| `WeChat-1.png` | `WeChat-1` |
-| `WeChat-2.png` | `WeChat-2` |
-| `WeChat-Semporia.png` | `WeChat-Semporia` |
-| `WhatsApp-1.png` | `WhatsApp-1` |
-| `WhatsApp-2.png` | `WhatsApp-2` |
-| `WhatsApp-Semporia.png` | `WhatsApp-Semporia` |
+| `TikTok.png` | `TikTok` |
+| `WeChat.png` | `WeChat` |
+| `Weibo.png` | `Weibo` |
+| `WhatsApp.png` | `WhatsApp` |
 | `Wikipedia.png` | `Wikipedia` |
-| `X-1.png` | `X-1` |
-| `X-2.png` | `X-2` |
-| `X-3.png` | `X-3` |
-| `X-4.png` | `X-4` |
-| `X-Semporia.png` | `X-Semporia` |
+| `X.png` | `X` |
 | `XiaoHongShu.png` | `XiaoHongShu` |
 | `Zhihu.png` | `Zhihu` |
