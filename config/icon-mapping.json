@@ -1,7 +1,7 @@
 {
   "name": "Oasisic-Icons",
   "description": "上游图标源映射表 / Upstream icon source mappings",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "upstreams": {
     "Qure": {
       "name": "Qure Color",
@@ -30,13 +30,13 @@
     { "source": "Qure/IEPL.png", "target": "Proxy/IEPL/IEPL.png" },
     { "source": "Qure/BGP.png", "target": "Proxy/BGP/BGP.png" },
     { "source": "Qure/GIA.png", "target": "Proxy/GIA/GIA.png" },
-    { "source": "Qure/Cryptocurrency.png", "target": "Crypto/Cryptocurrency/Cryptocurrency.png" },
+    { "source": "Qure/Cryptocurrency.png", "target": "Crypto/Cryptocurrency/Cryptocurrency03.png" },
     { "source": "Qure/Cryptocurrency_1.png", "target": "Crypto/Cryptocurrency/Cryptocurrency01.png" },
     { "source": "Qure/Cryptocurrency_2.png", "target": "Crypto/Cryptocurrency/Cryptocurrency02.png" },
-    { "source": "Qure/Cryptocurrency_3.png", "target": "Crypto/Cryptocurrency/Cryptocurrency03.png" },
+    { "source": "Qure/Cryptocurrency_3.png", "target": "Crypto/Cryptocurrency/Cryptocurrency.png" },
     { "source": "Qure/Azure.png", "target": "DevOps/Azure/Azure.png" },
     { "source": "Qure/Alibaba.png", "target": "Shopping/Alibaba/Alibaba.png" },
-    { "source": "Qure/Cloudflare.png", "target": "DevOps/Cloudflare/Cloudflare.png", "locked": true },
+    { "source": "Qure/Cloudflare.png", "target": "DevOps/Cloudflare/Cloudflare.png" , "locked": true },
     { "source": "Qure/Apple_News.png", "target": "Apple/AppleNews/AppleNews.png" }
   ]
 }

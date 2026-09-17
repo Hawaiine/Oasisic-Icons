@@ -53,6 +53,7 @@ for dir in "$ICONS_DIR"/*/; do
     Country)   generate_readme "$dir" "🌍 Country" "国家与地区旗帜" ;;
     Crypto)    generate_readme "$dir" "₿ Crypto" "加密货币与区块链" ;;
     DevOps)    generate_readme "$dir" "🛠 DevOps" "开发运维与云服务" ;;
+    Development) generate_readme "$dir" "💻 Development" "开发工具" ;;
     Drive)     generate_readme "$dir" "☁️ Drive" "云盘与存储" ;;
     Education) generate_readme "$dir" "📚 Education" "教育平台" ;;
     Finance)   generate_readme "$dir" "💰 Finance" "金融理财" ;;
