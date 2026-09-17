@@ -1,15 +1,11 @@
 # 💳 Payment / 支付
 
-> 共 **9** 个图标
+> 共 **5** 个图标，**5** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `AliPay.png` | `AliPay` |
-| `BiAn.png` | `BiAn` |
-| `OKX-1.png` | `OKX-1` |
-| `OKX-2.png` | `OKX-2` |
-| `PayPal-1.png` | `PayPal-1` |
-| `PayPal-2.png` | `PayPal-2` |
-| `PayPal-3.png` | `PayPal-3` |
-| `PayPal.png` | `PayPal` |
-| `SWIFT.png` | `SWIFT` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `AliPay` | `AliPay.png ` |
+| `BiAn` | `BiAn.png ` |
+| `OKX` | `OKX.png ` |
+| `PayPal` | `PayPal.png ` |
+| `SWIFT` | `SWIFT.png ` |

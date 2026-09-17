@@ -1,20 +1,17 @@
 # 🔎 Google / Google 服务
 
-> 共 **14** 个图标
+> 共 **11** 个图标，**11** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `Gmail.png` | `Gmail` |
-| `Google-1.png` | `Google-1` |
-| `Google-2.png` | `Google-2` |
-| `Google-3.png` | `Google-3` |
-| `GoogleAI.png` | `GoogleAI` |
-| `GoogleDrive.png` | `GoogleDrive` |
-| `GoogleMaps.png` | `GoogleMaps` |
-| `GooglePhotos.png` | `GooglePhotos` |
-| `GooglePlay.png` | `GooglePlay` |
-| `GoogleTranslate.png` | `GoogleTranslate` |
-| `GoogleVoice-1.png` | `GoogleVoice-1` |
-| `GoogleVoice-2.png` | `GoogleVoice-2` |
-| `YouTube.png` | `YouTube` |
-| `YouTubeMusic.png` | `YouTubeMusic` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `Gmail` | `Gmail.png ` |
+| `Google` | `Google.png ` |
+| `GoogleAI` | `GoogleAI.png ` |
+| `GoogleDrive` | `GoogleDrive.png ` |
+| `GoogleMaps` | `GoogleMaps.png ` |
+| `GooglePhotos` | `GooglePhotos.png ` |
+| `GooglePlay` | `GooglePlay.png ` |
+| `GoogleTranslate` | `GoogleTranslate.png ` |
+| `GoogleVoice` | `GoogleVoice.png ` |
+| `YouTube` | `YouTube.png ` |
+| `YouTubeMusic` | `YouTubeMusic.png ` |

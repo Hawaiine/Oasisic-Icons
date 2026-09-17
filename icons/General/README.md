@@ -1,52 +1,27 @@
 # 🔧 General / 通用策略
 
-> 共 **46** 个图标
+> 共 **56** 个图标，**21** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `AD-1.png` | `AD-1` |
-| `AD-2.png` | `AD-2` |
-| `AD-3.png` | `AD-3` |
-| `AD-4.png` | `AD-4` |
-| `AD-5.png` | `AD-5` |
-| `AD-6.png` | `AD-6` |
-| `AD-7.png` | `AD-7` |
-| `Area.png` | `Area` |
-| `Auto.png` | `Auto` |
-| `Blacklist.png` | `Blacklist` |
-| `Bot.png` | `Bot` |
-| `Direct.png` | `Direct` |
-| `Final.png` | `Final` |
-| `Global-1.png` | `Global-1` |
-| `Global-2.png` | `Global-2` |
-| `Global-3.png` | `Global-3` |
-| `Global-4.png` | `Global-4` |
-| `Global-5.png` | `Global-5` |
-| `Global-6.png` | `Global-6` |
-| `Lightning-1.png` | `Lightning-1` |
-| `Lightning-2.png` | `Lightning-2` |
-| `Lightning-3.png` | `Lightning-3` |
-| `Mail-1.png` | `Mail-1` |
-| `Mail-2.png` | `Mail-2` |
-| `Mail-3.png` | `Mail-3` |
-| `Mail-4.png` | `Mail-4` |
-| `Mail-5.png` | `Mail-5` |
-| `NetEaseMail.png` | `NetEaseMail` |
-| `Play-1.png` | `Play-1` |
-| `Play-2.png` | `Play-2` |
-| `Play-3.png` | `Play-3` |
-| `Proxy.png` | `Proxy` |
-| `QQMail.png` | `QQMail` |
-| `Reject.png` | `Reject` |
-| `SSID.png` | `SSID` |
-| `Search-1.png` | `Search-1` |
-| `Search-2.png` | `Search-2` |
-| `Search-3.png` | `Search-3` |
-| `Traffic-1.png` | `Traffic-1` |
-| `Traffic-2.png` | `Traffic-2` |
-| `Traffic-3.png` | `Traffic-3` |
-| `Traffic-4.png` | `Traffic-4` |
-| `Traffic-5.png` | `Traffic-5` |
-| `Traffic-6.png` | `Traffic-6` |
-| `URL-1.png` | `URL-1` |
-| `URL-2.png` | `URL-2` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `AD` | `AD.png AD01.png AD02.png AD03.png AD04.png AD05.png AD06.png AD07.png ` |
+| `Area` | `Area.png ` |
+| `Auto` | `Auto.png ` |
+| `Blacklist` | `Blacklist.png ` |
+| `Bot` | `Bot.png ` |
+| `Direct` | `Direct.png ` |
+| `Final` | `Final.png ` |
+| `Global` | `Global.png Global01.png Global02.png Global03.png Global04.png Global05.png Global06.png ` |
+| `Lightning` | `Lightning.png Lightning01.png Lightning02.png Lightning03.png ` |
+| `Mail` | `Mail.png Mail01.png Mail02.png Mail03.png Mail04.png Mail05.png ` |
+| `Manus` | `Manus.png ` |
+| `MetaBrainz` | `MetaBrainz.png ` |
+| `NetEaseMail` | `NetEaseMail.png ` |
+| `Play` | `Play.png Play01.png Play02.png Play03.png ` |
+| `Proxy` | `Proxy.png ` |
+| `QQMail` | `QQMail.png ` |
+| `Reject` | `Reject.png ` |
+| `SSID` | `SSID.png ` |
+| `Search` | `Search.png Search01.png Search02.png Search03.png ` |
+| `Traffic` | `Traffic.png Traffic01.png Traffic02.png Traffic03.png Traffic04.png Traffic05.png Traffic06.png ` |
+| `URL` | `URL.png URL01.png URL02.png ` |

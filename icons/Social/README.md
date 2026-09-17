@@ -1,55 +1,38 @@
 # 👥 Social / 社交
 
-> 共 **49** 个图标
+> 共 **32** 个图标，**32** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `BBC-1.png` | `BBC-1` |
-| `BBC-2.png` | `BBC-2` |
-| `BBC-3.png` | `BBC-3` |
-| `Bluesky-1.png` | `Bluesky-1` |
-| `Bluesky-2.png` | `Bluesky-2` |
-| `DingTalk.png` | `DingTalk` |
-| `Discord.png` | `Discord` |
-| `Facebook-1.png` | `Facebook-1` |
-| `Instagram-1.png` | `Instagram-1` |
-| `Instagram-2.png` | `Instagram-2` |
-| `Instagram-3.png` | `Instagram-3` |
-| `Instagram.png` | `Instagram` |
-| `Kakao.png` | `Kakao` |
-| `Line.png` | `Line` |
-| `LinkedIn.png` | `LinkedIn` |
-| `Messenger.png` | `Messenger` |
-| `Meta-1.png` | `Meta-1` |
-| `Meta-2.png` | `Meta-2` |
-| `Meta-3.png` | `Meta-3` |
-| `Pinterest.png` | `Pinterest` |
-| `Pipixia-1.png` | `Pipixia-1` |
-| `Pipixia-2.png` | `Pipixia-2` |
-| `Pixiv.png` | `Pixiv` |
-| `QQ.png` | `QQ` |
-| `Redbook-1.png` | `Redbook-1` |
-| `Redbook-2.png` | `Redbook-2` |
-| `Reddit-1.png` | `Reddit-1` |
-| `Reddit-2.png` | `Reddit-2` |
-| `Sina-1.png` | `Sina-1` |
-| `Sina-2.png` | `Sina-2` |
-| `Skype.png` | `Skype` |
-| `Snapchat.png` | `Snapchat` |
-| `Telegram-1.png` | `Telegram-1` |
-| `Telegram-2.png` | `Telegram-2` |
-| `Telegram-3.png` | `Telegram-3` |
-| `Telegram-4.png` | `Telegram-4` |
-| `Tencent.png` | `Tencent` |
-| `Threads.png` | `Threads` |
-| `Tieba-1.png` | `Tieba-1` |
-| `Tieba-2.png` | `Tieba-2` |
-| `Tieba-3.png` | `Tieba-3` |
-| `TikTok.png` | `TikTok` |
-| `WeChat.png` | `WeChat` |
-| `Weibo.png` | `Weibo` |
-| `WhatsApp.png` | `WhatsApp` |
-| `Wikipedia.png` | `Wikipedia` |
-| `X.png` | `X` |
-| `XiaoHongShu.png` | `XiaoHongShu` |
-| `Zhihu.png` | `Zhihu` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `BBC` | `BBC.png ` |
+| `Bluesky` | `Bluesky.png ` |
+| `DingTalk` | `DingTalk.png ` |
+| `Discord` | `Discord.png ` |
+| `Facebook` | `Facebook.png ` |
+| `Instagram` | `Instagram.png ` |
+| `Kakao` | `Kakao.png ` |
+| `Line` | `Line.png ` |
+| `LinkedIn` | `LinkedIn.png ` |
+| `Messenger` | `Messenger.png ` |
+| `Meta` | `Meta.png ` |
+| `Pinterest` | `Pinterest.png ` |
+| `Pipixia` | `Pipixia.png ` |
+| `Pixiv` | `Pixiv.png ` |
+| `QQ` | `QQ.png ` |
+| `Redbook` | `Redbook.png ` |
+| `Reddit` | `Reddit.png ` |
+| `Sina` | `Sina.png ` |
+| `Skype` | `Skype.png ` |
+| `Snapchat` | `Snapchat.png ` |
+| `Telegram` | `Telegram.png ` |
+| `Tencent` | `Tencent.png ` |
+| `Threads` | `Threads.png ` |
+| `Tieba` | `Tieba.png ` |
+| `TikTok` | `TikTok.png ` |
+| `WeChat` | `WeChat.png ` |
+| `Weibo` | `Weibo.png ` |
+| `WhatsApp` | `WhatsApp.png ` |
+| `Wikipedia` | `Wikipedia.png ` |
+| `X` | `X.png ` |
+| `XiaoHongShu` | `XiaoHongShu.png ` |
+| `Zhihu` | `Zhihu.png ` |

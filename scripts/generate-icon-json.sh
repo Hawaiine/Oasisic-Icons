@@ -2,7 +2,6 @@
 # generate-icon-json.sh — 自动生成 Oasisic-Icons/surge-icon.json（Python 稳定排序）
 set -euo pipefail
 
-# 切换到仓库根目录（scripts/ 的父目录）
 cd "$(dirname "$0")/.."
 
 BASE_URL="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main"
@@ -22,14 +21,18 @@ for cat_dir in sorted(icons_dir.iterdir()):
     if not cat_dir.is_dir():
         continue
     category = cat_dir.name
-    for png_file in cat_dir.glob('*.png'):
-        name = png_file.stem
-        url = f'{base_url}/{icons_dir.name}/{category}/{png_file.name}'
-        entries.append({
-            'name': name,
-            'category': category,
-            'url': url,
-        })
+    for brand_dir in sorted(cat_dir.iterdir()):
+        if not brand_dir.is_dir():
+            continue
+        brand = brand_dir.name
+        for png_file in sorted(brand_dir.glob('*.png')):
+            name = png_file.stem
+            url = f'{base_url}/{icons_dir.name}/{category}/{brand}/{png_file.name}'
+            entries.append({
+                'name': name,
+                'category': category,
+                'url': url,
+            })
 
 # 按 (category, name) 稳定排序
 entries.sort(key=lambda e: (e['category'], e['name']))

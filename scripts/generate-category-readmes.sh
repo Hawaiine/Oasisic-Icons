@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # generate-category-readmes.sh — 为每个分类自动生成 README 清单
+# 新结构：icons/<分类>/<品牌>/<品牌>.png + <品牌>01.png...
 set -euo pipefail
 
-# 切换到仓库根目录（scripts/ 的父目录）
 cd "$(dirname "$0")/.."
-
 ICONS_DIR="icons"
 
 generate_readme() {
@@ -15,33 +14,36 @@ generate_readme() {
   local total=0
   local brands=()
 
-  for f in "$dir"/*.png; do
-    [ -f "$f" ] || continue
-    total=$((total + 1))
-    base=$(basename "$f" .png)
-    clean=$(echo "$base" | sed -E 's/[-_][0-9]+$//; s/\([0-9]+\)$//')
-    brands+=("$clean")
+  # 新结构：每个品牌是一个子目录
+  for brand_dir in "$dir"/*/; do
+    [ -d "$brand_dir" ] || continue
+    brand=$(basename "$brand_dir")
+    # 统计该品牌下所有 .png 文件
+    for f in "$brand_dir"*.png; do
+      [ -f "$f" ] || continue
+      total=$((total + 1))
+    done
+    brands+=("$brand")
   done
 
   cat > "$dir/README.md" << README_EOF
 # ${name} / ${desc}
 
-> 共 **${total}** 个图标
+> 共 **${total}** 个图标，**${#brands[@]}** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
+| 品牌 | 图标文件 |
+|:---|:---|
 README_EOF
 
-  for f in "$dir"/*.png; do
-    [ -f "$f" ] || continue
-    base=$(basename "$f" .png)
-    echo "| \`${base}.png\` | \`${base}\` |" >> "$dir/README.md"
+  for brand in $(printf '%s\n' "${brands[@]}" | sort); do
+    brand_dir="$dir/$brand"
+    files=$(ls "$brand_dir"/*.png 2>/dev/null | xargs -I{} basename {} | sort | tr '\n' ' ')
+    echo "| \`${brand}\` | \`${files}\` |" >> "$dir/README.md"
   done
 
-  echo "  ✓ $dir ($total icons)"
+  echo "  ✓ $dir ($total icons, ${#brands[@]} brands)"
 }
 
-# 动态扫描所有分类目录
 for dir in "$ICONS_DIR"/*/; do
   [ -d "$dir" ] || continue
   category=$(basename "$dir")

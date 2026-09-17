@@ -1,10 +1,7 @@
 # ₿ Crypto / 加密货币与区块链
 
-> 共 **4** 个图标
+> 共 **4** 个图标，**1** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `Cryptocurrency-1.png` | `Cryptocurrency-1` |
-| `Cryptocurrency-2.png` | `Cryptocurrency-2` |
-| `Cryptocurrency-3.png` | `Cryptocurrency-3` |
-| `Cryptocurrency.png` | `Cryptocurrency` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `Cryptocurrency` | `Cryptocurrency.png Cryptocurrency01.png Cryptocurrency02.png Cryptocurrency03.png ` |

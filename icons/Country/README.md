@@ -1,55 +1,27 @@
 # 🌍 Country / 国家与地区旗帜
 
-> 共 **49** 个图标
+> 共 **50** 个图标，**21** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `Argentina-1.png` | `Argentina-1` |
-| `Argentina-2.png` | `Argentina-2` |
-| `Australia-1.png` | `Australia-1` |
-| `Australia.png` | `Australia` |
-| `CN-Taiwan-2.png` | `CN-Taiwan-2` |
-| `CN-Taiwan.png` | `CN-Taiwan` |
-| `Canada.png` | `Canada` |
-| `China-1.png` | `China-1` |
-| `China.png` | `China` |
-| `Egypt.png` | `Egypt` |
-| `Germany-1.png` | `Germany-1` |
-| `Germany.png` | `Germany` |
-| `HongKong-1.png` | `HongKong-1` |
-| `HongKong-2.png` | `HongKong-2` |
-| `HongKong-3.png` | `HongKong-3` |
-| `HongKong.png` | `HongKong` |
-| `India-1.png` | `India-1` |
-| `India.png` | `India` |
-| `Japan-1.png` | `Japan-1` |
-| `Japan-2.png` | `Japan-2` |
-| `Japan-3.png` | `Japan-3` |
-| `Japan.png` | `Japan` |
-| `Korea-1.png` | `Korea-1` |
-| `Korea.png` | `Korea` |
-| `Netherlands-1.png` | `Netherlands-1` |
-| `Netherlands.png` | `Netherlands` |
-| `Nigeria-1.png` | `Nigeria-1` |
-| `Nigeria.png` | `Nigeria` |
-| `NorthKorea-1.png` | `NorthKorea-1` |
-| `NorthKorea.png` | `NorthKorea` |
-| `Poland-1.png` | `Poland-1` |
-| `Poland.png` | `Poland` |
-| `Singapore-1.png` | `Singapore-1` |
-| `Singapore-2.png` | `Singapore-2` |
-| `Singapore.png` | `Singapore` |
-| `Spain-1.png` | `Spain-1` |
-| `Spain.png` | `Spain` |
-| `Thailand-1.png` | `Thailand-1` |
-| `Thailand.png` | `Thailand` |
-| `Turkey-1.png` | `Turkey-1` |
-| `Turkey-2.png` | `Turkey-2` |
-| `Turkey-3.png` | `Turkey-3` |
-| `Turkey.png` | `Turkey` |
-| `UK-1.png` | `UK-1` |
-| `UK-2.png` | `UK-2` |
-| `UK.png` | `UK` |
-| `US-1.png` | `US-1` |
-| `US-2.png` | `US-2` |
-| `US.png` | `US` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `Argentina` | `Argentina.png Argentina01.png Argentina02.png ` |
+| `Australia` | `Australia.png Australia01.png ` |
+| `CN-Taiwan` | `CN-Taiwan.png CN-Taiwan02.png ` |
+| `Canada` | `Canada.png ` |
+| `China` | `China.png China01.png ` |
+| `Egypt` | `Egypt.png ` |
+| `Germany` | `Germany.png Germany01.png ` |
+| `HongKong` | `HongKong.png HongKong01.png HongKong02.png HongKong03.png ` |
+| `India` | `India.png India01.png ` |
+| `Japan` | `Japan.png Japan01.png Japan02.png Japan03.png ` |
+| `Korea` | `Korea.png Korea01.png ` |
+| `Netherlands` | `Netherlands.png Netherlands01.png ` |
+| `Nigeria` | `Nigeria.png Nigeria01.png ` |
+| `NorthKorea` | `NorthKorea.png NorthKorea01.png ` |
+| `Poland` | `Poland.png Poland01.png ` |
+| `Singapore` | `Singapore.png Singapore01.png Singapore02.png ` |
+| `Spain` | `Spain.png Spain01.png ` |
+| `Thailand` | `Thailand.png Thailand01.png ` |
+| `Turkey` | `Turkey.png Turkey01.png Turkey02.png Turkey03.png ` |
+| `UK` | `UK.png UK01.png UK02.png ` |
+| `US` | `US.png US01.png US02.png ` |

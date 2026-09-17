@@ -1,18 +1,16 @@
 # ☁️ Drive / 云盘与存储
 
-> 共 **12** 个图标
+> 共 **10** 个图标，**10** 个品牌
 
-| 文件名 | 说明 |
-|:---|---|
-| `115.png` | `115` |
-| `123.png` | `123` |
-| `189.png` | `189` |
-| `AliCloud-1.png` | `AliCloud-1` |
-| `AliCloud-2.png` | `AliCloud-2` |
-| `BaiduNetDisk.png` | `BaiduNetDisk` |
-| `ChinaMobileDisk.png` | `ChinaMobileDisk` |
-| `Dropbox-1.png` | `Dropbox-1` |
-| `Dropbox-2.png` | `Dropbox-2` |
-| `OneDrive.png` | `OneDrive` |
-| `PikPak.png` | `PikPak` |
-| `Quark.png` | `Quark` |
+| 品牌 | 图标文件 |
+|:---|:---|
+| `115` | `115.png ` |
+| `123` | `123.png ` |
+| `189` | `189.png ` |
+| `AliCloud` | `AliCloud.png ` |
+| `BaiduNetDisk` | `BaiduNetDisk.png ` |
+| `ChinaMobileDisk` | `ChinaMobileDisk.png ` |
+| `Dropbox` | `Dropbox.png ` |
+| `OneDrive` | `OneDrive.png ` |
+| `PikPak` | `PikPak.png ` |
+| `Quark` | `Quark.png ` |
