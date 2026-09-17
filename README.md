@@ -26,7 +26,7 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **428** 个 PNG 图标，覆盖 **255** 个品牌，归入 **24** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **424** 个 PNG 图标，覆盖 **252** 个品牌，归入 **24** 个分类。
 
 图标来自官方品牌资源与上游开源图标集（[Qure](https://github.com/Koolson/Qure)、[Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon)），并经过统一命名与目录整理。适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
@@ -225,7 +225,7 @@ python3 scripts/ci-validate-icons.py   # 校验全部规则
 ### 图标质量要求
 
 - **尺寸**：512×512 像素（正方形）
-- **格式**：PNG（源文件 RGBA；发布时经无损重压缩，色型可能降为等价的调色板/灰度+透明，像素与显示效果不变）
+- **格式**：PNG，**RGBA** 模式（`scripts/optimize-icons.py` 重压缩时不降色型，仓库内全部为 RGBA）
 - **形状**：圆角矩形，圆角半径 ≈ 99px
 - **背景**：保留原始底色（不要误杀成透明）
 - **大小**：建议 < 50KB
