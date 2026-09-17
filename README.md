@@ -228,7 +228,7 @@ python3 scripts/ci-validate-icons.py   # 校验全部规则
 - **格式**：PNG，**RGBA** 模式（`scripts/optimize-icons.py` 重压缩时不降色型，仓库内全部为 RGBA）
 - **形状**：圆角矩形，圆角半径 ≈ 99px
 - **背景**：保留原始底色（不要误杀成透明）
-- **大小**：建议 < 50KB
+- **大小**：单文件 ≤ 300KB（当前平均 ≈65KB；用 `scripts/optimize-icons.py` 做无损重压缩，**不做有损量化**）
 
 ### 命名规范
 
