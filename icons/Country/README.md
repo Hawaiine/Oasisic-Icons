@@ -1,12 +1,12 @@
 # 🌍 Country / 国家与地区旗帜
 
-> 共 **50** 个图标，**21** 个品牌
+> 共 **49** 个图标，**21** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Argentina` | `Argentina.png Argentina01.png Argentina02.png ` |
+| `Argentina` | `Argentina.png Argentina01.png ` |
 | `Australia` | `Australia.png Australia01.png ` |
-| `CN-Taiwan` | `CN-Taiwan.png CN-Taiwan02.png ` |
+| `CN-Taiwan` | `CN-Taiwan.png CN-Taiwan01.png ` |
 | `Canada` | `Canada.png ` |
 | `China` | `China.png China01.png ` |
 | `Egypt` | `Egypt.png ` |
