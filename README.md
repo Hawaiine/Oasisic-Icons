@@ -17,21 +17,21 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-424-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-252-green?style=flat-square" alt="Brands Count">
-  <img src="https://img.shields.io/badge/categories-24-orange?style=flat-square" alt="Categories Count">
+  <img src="https://img.shields.io/badge/icons-424-blue alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-252-green alt="Brands Count">
+  <img src="https://img.shields.io/badge/categories-21-orange alt="Categories Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **424** 个 PNG 图标，覆盖 **252** 个品牌，归入 **24** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **424** 个 PNG 图标，覆盖 **252** 个品牌，归入 **21** 个分类。
 
 本项目为独立图标仓库，**424 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
-> 仓库内全部图标已完成规范化：**424 / 424 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
+> 仓库内全部图标已完成规范化：**424 / 424** 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
 
 ---
 
