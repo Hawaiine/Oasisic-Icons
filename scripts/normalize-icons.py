@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
-"""normalize-icons.py — 按 Oasisic-Icons 规范统一图标：512×512 / RGBA / Apple 风格 squircle（圆角半径 ≈ 115px） / 保留底色。
+"""normalize-icons.py — 按 Oasisic-Icons 规范统一图标：512×512 / RGBA / Apple 风格 squircle（r=115px） / 保留底色。
 
-规范依据（README「图标质量要求」+ docs/references/icon-quality-notes.md）：
-  - 尺寸 512×512 正方形
-  - 模式 RGBA
-  - 圆角矩形（squircle / 超椭圆），圆角半径 ≈ 115px（约 22.4%，对齐 Apple iOS 图标视觉曲线）
-  - 保留原始底色（不做背景抠除）
+强制规范（不可妥协）：
+  - 尺寸 512×512 正方形；格式 PNG RGBA；圆角 r=115px（约 22.4%），外侧完全透明
+  - 保留原图主体底色，禁止自动抠图/去白底/降色型/有损量化
+  - 像素保真：仅允许「几何补边缩放」和「alpha × rounded_mask(r=115)」
+    圆角矩形内部每一个像素的 RGB 和 alpha 必须与缩放后的原图完全一致
+  - 禁止：背景去除、alpha 阈值、二值化、描边清理、填充镂空、二次圆角、有损压缩
+  - 细线/低对比 logo（Docker 类）和带透明镂空 logo（AliCloud 类）需特别注意
 
-用法：
-  python3 scripts/normalize-icons.py --report              # 只报告需要处理的文件
-  python3 scripts/normalize-icons.py --sheet out.png       # 生成前后对比图（不写入）
-  python3 scripts/normalize-icons.py --apply               # 实际写入
-
-幂等：已是 512×512 + RGBA + 四角透明（左上角 alpha=0）的文件会被跳过，
-      因此用户手动更新过的合规图标不会被二次处理。
+幂等：已是 512×512 + RGBA + 四角透明 + 半径正确的文件会被跳过。
 """
 import argparse
 from pathlib import Path
