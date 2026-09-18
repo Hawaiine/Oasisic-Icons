@@ -28,10 +28,10 @@
 
 **Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **424** 个 PNG 图标，覆盖 **252** 个品牌，归入 **24** 个分类。
 
-图标来自官方品牌资源与上游开源图标集（[Qure](https://github.com/Koolson/Qure)、[Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon)），并经过统一命名与目录整理。适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，**424 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
-> **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，圆角矩形（圆角半径 ≈ 99px），保留原始底色。
-> 仓库内全部图标已完成规范化：**424 / 424 均为 512×512 圆角矩形（r≈99px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
+> **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
+> 仓库内全部图标已完成规范化：**424 / 424 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
 
 ---
 
@@ -226,7 +226,7 @@ python3 scripts/ci-validate-icons.py   # 校验全部规则
 
 - **尺寸**：512×512 像素（正方形）
 - **格式**：PNG，**RGBA** 模式（`scripts/optimize-icons.py` 重压缩时不降色型，仓库内全部为 RGBA）
-- **形状**：圆角矩形，圆角半径 ≈ 99px
+- **形状**：圆角矩形（Apple 风格 squircle / 超椭圆），圆角半径 ≈ 115px（约 22.4%，对齐 Apple iOS 图标视觉曲线）
 - **背景**：保留原始底色（不要误杀成透明）
 - **大小**：单文件 ≤ 300KB（当前平均 ≈65KB；用 `scripts/optimize-icons.py` 做无损重压缩，**不做有损量化**）
 

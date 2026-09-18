@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""normalize-icons.py — 按 Oasisic-Icons 规范统一图标：512×512 / RGBA / 圆角矩形 r=99px / 保留底色。
+"""normalize-icons.py — 按 Oasisic-Icons 规范统一图标：512×512 / RGBA / Apple 风格 squircle（圆角半径 ≈ 115px） / 保留底色。
 
 规范依据（README「图标质量要求」+ docs/references/icon-quality-notes.md）：
   - 尺寸 512×512 正方形
   - 模式 RGBA
-  - 圆角矩形，圆角半径 ≈ 99px
+  - 圆角矩形（squircle / 超椭圆），圆角半径 ≈ 115px（约 22.4%，对齐 Apple iOS 图标视觉曲线）
   - 保留原始底色（不做背景抠除）
 
 用法：
@@ -22,7 +22,7 @@ import numpy as np
 
 LANCZOS = getattr(Image, "Resampling", Image).LANCZOS
 SIZE = 512
-RADIUS = 99
+RADIUS = 115  # Apple iOS squircle ≈ 22.37% of 512px = 114.5px；取整 115px
 ICONS = Path("icons")
 
 
@@ -36,7 +36,14 @@ def is_compliant(im):
     if im.size != (SIZE, SIZE) or im.mode != "RGBA":
         return False
     a = np.array(im)[..., 3]
-    return int(a[0, 0]) == 0 and int(a[0, SIZE - 1]) == 0 and int(a[SIZE - 1, 0]) == 0
+    corners_transparent = (
+        int(a[0, 0]) == 0 and int(a[0, SIZE - 1]) == 0
+        and int(a[SIZE - 1, 0]) == 0 and int(a[SIZE - 1, SIZE - 1]) == 0
+    )
+    if not corners_transparent:
+        return False
+    # 圆角半径必须匹配：radius+1 处应为透明；若仍 opaque 说明旧半径 < RADIUS
+    return int(a[RADIUS + 1, 0]) == 0
 
 
 def border_color(rgba):
@@ -115,7 +122,7 @@ def main():
         H = rows * (cell + pad * 3) + 60
         sheet = Image.new("RGB", (W, H), (24, 24, 28))
         d = ImageDraw.Draw(sheet)
-        d.text((pad, 16), "BEFORE  (原始)          ->          AFTER  (512x512 RGBA r=99)", fill=(255, 255, 255))
+        d.text((pad, 16), "BEFORE  (原始)          ->          AFTER  (512x512 RGBA r=115)", fill=(255, 255, 255))
         for i, p in enumerate(picks):
             r, c = divmod(i, cols)
             x0 = c * (cell * 2 + pad * 3) + pad
