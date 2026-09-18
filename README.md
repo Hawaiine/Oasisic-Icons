@@ -65,7 +65,7 @@ icons/
 
 ```
 icons/Music/Spotify/
-├── Spotify.png          ← 默认（108×108，上游原始尺寸）
+├── Spotify.png          ← 默认（原始素材经 scripts/normalize-icons.py 规范化到 512×512）
 ├── Spotify01.png        ← 变体 1
 └── ...
 
@@ -200,22 +200,28 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 ---
 
-## 🤖 自动化同步说明 / Automated Sync
+## 📦 发布与使用 / Usage & Distribution
 
-本项目通过 GitHub Actions 实现自动化上游图标同步（[`.github/workflows/daily-sync.yml`](.github/workflows/daily-sync.yml)）：
+本项目图标已发布为独立仓库，**不依赖任何外部上游同步**。图标格式统一为：
 
-1. **每日自动同步**：北京时间每天 08:00 从 Qure、Semporia 等上游源按 [`config/icon-mapping.json`](config/icon-mapping.json) 的映射同步图标。
-2. **自动生成**：同步后自动重新生成 `config/surge-icon.json` 与各分类 `README.md`。
-3. **自动校验**：`scripts/ci-validate-icons.py` 会在提交前校验 PNG 合法性、目录结构、命名规范与 JSON 一致性，失败即中止提交。
-4. **手动触发**：也可以在 Actions 页面手动 `workflow_dispatch` 运行。
+- **512×512 PNG，RGBA 模式**
+- **Apple 风格 squircle 圆角（r=115px / 22.4%）**
+- **四角透明**，可直接用于 Surge / Loon / Mihomo / Egern 等客户端
 
-本地手动执行同样的流程：
+**订阅地址（建议用 `raw.githubusercontent.com`，不要用 jsDelivr）：**
+
+```
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/surge-icon.json
+```
+
+本地也可直接使用 `icons/` 目录下的 PNG。
+
+**规范化工具：**
 
 ```bash
-bash scripts/sync-upstream.sh          # 同步上游图标（按 icon-mapping.json）
-bash scripts/generate-icon-json.sh     # 生成 config/surge-icon.json
-bash scripts/generate-category-readmes.sh   # 生成各分类 README
-python3 scripts/ci-validate-icons.py   # 校验全部规则
+python3 scripts/normalize-icons.py --apply   # 512×512 / RGBA / r=115 圆角
+python3 scripts/optimize-icons.py            # 无损重压缩（不降色型）
+python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致性
 ```
 
 ---
@@ -249,6 +255,13 @@ python3 scripts/ci-validate-icons.py   # 校验全部规则
 
 ---
 
+## 📚 参考文档 / References
+
+- [docs/references/icon-quality-notes.md](docs/references/icon-quality-notes.md) — 画质规范、规范化结果、遗留项说明
+- [docs/references/icon-research.md](docs/references/icon-research.md) — 品牌分类体系、策略组命名、常见图标来源（中英对照）
+- [docs/references/upstream-history.md](docs/references/upstream-history.md) — 上游来源历史参考（Qure / Semporia / 官方资源）
+- [docs/references/brand-glossary.md](docs/references/brand-glossary.md) — 品牌中英对照表（文件夹名 ↔ 中文显示名）
+
 ## 📄 License
 
 MIT License © 2026 [Hawaiine](https://github.com/Hawaiine)
@@ -258,5 +271,5 @@ MIT License © 2026 [Hawaiine](https://github.com/Hawaiine)
 ## 🔗 相关项目 / Related
 
 - [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) — 代理规则集（本仓库图标的主要消费方）
-- [Qure](https://github.com/Koolson/Qure) — 上游图标源
-- [Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon) — 上游图标源
+- [Koolson/Qure](https://github.com/Koolson/Qure) — 历史参考图标源（本项目已独立，不再同步）
+- [Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon) — 历史参考图标源（本项目已独立，不再同步）
