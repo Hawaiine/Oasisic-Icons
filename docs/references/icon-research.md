@@ -1,6 +1,7 @@
 # 代理工具策略组图标资源参考
 
-> 整理目标：为 [Hawaiine/Oasisic-Icons](https://github.com/Hawaiine/Oasisic-Icons) 项目提供开源图标资源、分类体系与常见品牌清单的参考。
+> **说明**：本文档仅作开源图标资源与分类体系的调研参考。  
+> Oasisic-Icons 已独立维护，不再自动同步任何外部上游。
 >
 > 适用工具：Surge / Clash / Loon / Quantumult X / Stash / Egern / sing-box 等。
 

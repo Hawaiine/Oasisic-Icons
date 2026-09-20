@@ -107,9 +107,6 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 # 图标订阅 JSON（清单）
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/surge-icon.json
 
-# 上游源映射表
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/icon-mapping.json
-```
 
 ## 网络受限时的取舍
 

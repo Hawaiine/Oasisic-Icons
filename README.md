@@ -291,7 +291,7 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 
 - [docs/references/icon-quality-notes.md](docs/references/icon-quality-notes.md) — 画质规范、规范化结果、遗留项说明
 - [docs/references/icon-research.md](docs/references/icon-research.md) — 品牌分类体系、策略组命名、常见图标来源（中英对照）
-- [docs/references/upstream-history.md](docs/references/upstream-history.md) — 上游来源历史参考（Qure / Semporia / 官方资源）
+- [docs/references/upstream-history.md](docs/references/upstream-history.md) — 上游来源历史参考
 - [docs/references/brand-glossary.md](docs/references/brand-glossary.md) — 品牌中英对照表（文件夹名 ↔ 中文显示名）
 
 ## 📄 License
@@ -303,5 +303,3 @@ MIT License © 2026 [Hawaiine](https://github.com/Hawaiine)
 ## 🔗 相关项目 / Related
 
 - [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) — 代理规则集（本仓库图标的主要消费方）
-- [Koolson/Qure](https://github.com/Koolson/Qure) — 历史参考图标源（本项目已独立，不再同步）
-- [Semporia/Hand-Painted-icon](https://github.com/Semporia/Hand-Painted-icon) — 历史参考图标源（本项目已独立，不再同步）
