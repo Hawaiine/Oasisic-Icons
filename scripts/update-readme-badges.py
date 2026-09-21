@@ -22,20 +22,20 @@ def count():
 def update_readme(n_png, n_brands, n_cats):
     readme = REPO / "README.md"
     s = readme.read_text()
-    # badge
+    # badge（整行重写：旧正则 [^"]*" 会吞掉结尾引号与后续属性，导致 HTML 损坏）
     s = re.sub(
-        r'<img src="https://img\.shields\.io/badge/icons-\d+-blue[^"]*"',
-        f'<img src="https://img.shields.io/badge/icons-{n_png}-blue',
+        r'<img src="https://img\.shields\.io/badge/icons-\d+-blue[^\n]*',
+        f'<img src="https://img.shields.io/badge/icons-{n_png}-blue?style=flat-square" alt="Icons Count">',
         s,
     )
     s = re.sub(
-        r'<img src="https://img\.shields\.io/badge/brands-\d+-green[^"]*"',
-        f'<img src="https://img.shields.io/badge/brands-{n_brands}-green',
+        r'<img src="https://img\.shields\.io/badge/brands-\d+-green[^\n]*',
+        f'<img src="https://img.shields.io/badge/brands-{n_brands}-green?style=flat-square" alt="Brands Count">',
         s,
     )
     s = re.sub(
-        r'<img src="https://img\.shields\.io/badge/categories-\d+-orange[^"]*"',
-        f'<img src="https://img.shields.io/badge/categories-{n_cats}-orange',
+        r'<img src="https://img\.shields\.io/badge/categories-\d+-orange[^\n]*',
+        f'<img src="https://img.shields.io/badge/categories-{n_cats}-orange?style=flat-square" alt="Categories Count">',
         s,
     )
     # 正文统计句
@@ -44,10 +44,16 @@ def update_readme(n_png, n_brands, n_cats):
         f'当前共 **{n_png}** 个 PNG 图标，覆盖 **{n_brands}** 个品牌，归入 **{n_cats}** 个分类',
         s,
     )
+    # 全量规范化句
+    s = re.sub(
+        r'\*\*\d+ 个图标全部经过统一规范化处理\*\*',
+        f'**{n_png} 个图标全部经过统一规范化处理**',
+        s,
+    )
     # 规范化完成句
     s = re.sub(
-        r'\*\*\d+ / \d+ 均为 512×512 Apple 风格圆角',
-        f'**{n_png} / {n_png}** 均为 512×512 Apple 风格圆角',
+        r'\*\*\d+ / \d+(?:\*\*)? 均为 512×512 Apple 风格圆角',
+        f'**{n_png} / {n_png} 均为 512×512 Apple 风格圆角',
         s,
     )
     readme.write_text(s)
