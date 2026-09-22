@@ -833,11 +833,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DiscoveryPlus/DiscoveryPlus.png"
     },
     {
-      "name": "Disney",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Disney/Disney.png"
-    },
-    {
       "name": "DisneyPlus",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DisneyPlus/DisneyPlus.png"
@@ -948,6 +943,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/KaraokeDAM/KaraokeDAM.png"
     },
     {
+      "name": "LINETV",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/LINETV/LINETV.png"
+    },
+    {
       "name": "Lemino",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Lemino/Lemino.png"
@@ -956,11 +956,6 @@
       "name": "LiTV",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/LiTV/LiTV.png"
-    },
-    {
-      "name": "LineTV",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/LineTV/LineTV.png"
     },
     {
       "name": "MangoTV",

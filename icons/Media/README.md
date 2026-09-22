@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **73** 个图标，**70** 个品牌
+> 共 **72** 个图标，**69** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -15,7 +15,6 @@
 | `DAnimeStore` | `DAnimeStore.png ` |
 | `DMMTV` | `DMMTV.png ` |
 | `DiscoveryPlus` | `DiscoveryPlus.png ` |
-| `Disney` | `Disney.png ` |
 | `DisneyPlus` | `DisneyPlus.png ` |
 | `Douyin` | `Douyin.png ` |
 | `ESPN` | `ESPN.png ` |
@@ -35,9 +34,9 @@
 | `KKBOX` | `KKBOX.png ` |
 | `KKTV` | `KKTV.png ` |
 | `KaraokeDAM` | `KaraokeDAM.png ` |
+| `LINETV` | `LINETV.png ` |
 | `Lemino` | `Lemino.png ` |
 | `LiTV` | `LiTV.png ` |
-| `LineTV` | `LineTV.png ` |
 | `MangoTV` | `MangoTV.png ` |
 | `Migu` | `Migu.png ` |
 | `MyVideo` | `MyVideo.png ` |
