@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **80** 个图标，**68** 个品牌
+> 共 **73** 个图标，**70** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -10,6 +10,7 @@
 | `Bangumi` | `Bangumi.png ` |
 | `Bilibili` | `Bilibili.png ` |
 | `CATCHPLAY` | `CATCHPLAY.png ` |
+| `Crunchyroll` | `Crunchyroll.png ` |
 | `DAZN` | `DAZN.png ` |
 | `DAnimeStore` | `DAnimeStore.png ` |
 | `DMMTV` | `DMMTV.png ` |
@@ -17,8 +18,8 @@
 | `Disney` | `Disney.png ` |
 | `DisneyPlus` | `DisneyPlus.png ` |
 | `Douyin` | `Douyin.png ` |
-| `ESPN-Plus` | `ESPN-Plus.png ESPN-Plus01.png ESPN-Plus02.png ` |
-| `Emby` | `Emby.png Emby01.png ` |
+| `ESPN` | `ESPN.png ` |
+| `Emby` | `Emby.png ` |
 | `F1TV` | `F1TV.png F1TV02.png ` |
 | `Fan` | `Fan.png ` |
 | `Fileball` | `Fileball.png ` |
@@ -30,13 +31,14 @@
 | `Hotstar` | `Hotstar.png Hotstar01.png ` |
 | `Hulu` | `Hulu.png ` |
 | `Infuse` | `Infuse.png ` |
+| `Jellyfin` | `Jellyfin.png ` |
 | `KKBOX` | `KKBOX.png ` |
 | `KKTV` | `KKTV.png ` |
 | `KaraokeDAM` | `KaraokeDAM.png ` |
 | `Lemino` | `Lemino.png ` |
 | `LiTV` | `LiTV.png ` |
 | `LineTV` | `LineTV.png ` |
-| `MangoTV` | `MangoTV.png MangoTV01.png ` |
+| `MangoTV` | `MangoTV.png ` |
 | `Migu` | `Migu.png ` |
 | `MyVideo` | `MyVideo.png ` |
 | `NBA` | `NBA.png ` |
@@ -46,9 +48,10 @@
 | `Niconico` | `Niconico.png ` |
 | `NowE` | `NowE.png ` |
 | `Paramount` | `Paramount.png ` |
-| `Peacock` | `Peacock.png Peacock01.png Peacock02.png ` |
+| `Peacock` | `Peacock.png ` |
+| `Plex` | `Plex.png ` |
 | `Podcasts` | `Podcasts.png ` |
-| `PrimeVideo` | `PrimeVideo.png PrimeVideo01.png PrimeVideo02.png ` |
+| `PrimeVideo` | `PrimeVideo.png ` |
 | `Radiko` | `Radiko.png ` |
 | `RakutenTV` | `RakutenTV.png ` |
 | `ReadJapan` | `ReadJapan.png ` |
@@ -64,11 +67,10 @@
 | `VideoMarket` | `VideoMarket.png ` |
 | `Vimeo` | `Vimeo.png ` |
 | `Viu` | `Viu.png ` |
-| `ViuTV` | `ViuTV.png ` |
 | `WOWOW` | `WOWOW.png ` |
 | `Wallpaper` | `Wallpaper.png ` |
 | `WeTV` | `WeTV.png ` |
 | `Youku` | `Youku.png ` |
-| `friDay` | `friDay.png ` |
-| `iqiyi` | `iqiyi.png iqiyi01.png ` |
+| `friDayVideo` | `friDayVideo.png ` |
+| `iQIYI` | `iQIYI.png ` |
 | `myTVSUPER` | `myTVSUPER.png ` |

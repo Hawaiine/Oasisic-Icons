@@ -1,6 +1,6 @@
 # 🪟 Microsoft / 微软服务
 
-> 共 **8** 个图标，**5** 个品牌
+> 共 **9** 个图标，**6** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -8,4 +8,5 @@
 | `Copilot` | `Copilot.png ` |
 | `Microsoft` | `Microsoft.png Microsoft01.png Microsoft02.png Microsoft03.png ` |
 | `OneDrive` | `OneDrive.png ` |
+| `Outlook` | `Outlook.png ` |
 | `Xbox` | `Xbox.png ` |

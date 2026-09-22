@@ -743,6 +743,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/GoogleMaps/GoogleMaps.png"
     },
     {
+      "name": "GoogleNews",
+      "category": "Google",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/GoogleNews/GoogleNews.png"
+    },
+    {
       "name": "GooglePhotos",
       "category": "Google",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/GooglePhotos/GooglePhotos.png"
@@ -803,6 +808,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/CATCHPLAY/CATCHPLAY.png"
     },
     {
+      "name": "Crunchyroll",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Crunchyroll/Crunchyroll.png"
+    },
+    {
       "name": "DAZN",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DAZN/DAZN.png"
@@ -838,29 +848,14 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Douyin/Douyin.png"
     },
     {
-      "name": "ESPN-Plus",
+      "name": "ESPN",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ESPN-Plus/ESPN-Plus.png"
-    },
-    {
-      "name": "ESPN-Plus01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ESPN-Plus/ESPN-Plus01.png"
-    },
-    {
-      "name": "ESPN-Plus02",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ESPN-Plus/ESPN-Plus02.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ESPN/ESPN.png"
     },
     {
       "name": "Emby",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Emby/Emby.png"
-    },
-    {
-      "name": "Emby01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Emby/Emby01.png"
     },
     {
       "name": "F1TV",
@@ -933,6 +928,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Infuse/Infuse.png"
     },
     {
+      "name": "Jellyfin",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Jellyfin/Jellyfin.png"
+    },
+    {
       "name": "KKBOX",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/KKBOX/KKBOX.png"
@@ -966,11 +966,6 @@
       "name": "MangoTV",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/MangoTV/MangoTV.png"
-    },
-    {
-      "name": "MangoTV01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/MangoTV/MangoTV01.png"
     },
     {
       "name": "Migu",
@@ -1023,14 +1018,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Peacock/Peacock.png"
     },
     {
-      "name": "Peacock01",
+      "name": "Plex",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Peacock/Peacock01.png"
-    },
-    {
-      "name": "Peacock02",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Peacock/Peacock02.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Plex/Plex.png"
     },
     {
       "name": "Podcasts",
@@ -1041,16 +1031,6 @@
       "name": "PrimeVideo",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/PrimeVideo/PrimeVideo.png"
-    },
-    {
-      "name": "PrimeVideo01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/PrimeVideo/PrimeVideo01.png"
-    },
-    {
-      "name": "PrimeVideo02",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/PrimeVideo/PrimeVideo02.png"
     },
     {
       "name": "Radiko",
@@ -1128,11 +1108,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Viu/Viu.png"
     },
     {
-      "name": "ViuTV",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ViuTV/ViuTV.png"
-    },
-    {
       "name": "WOWOW",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/WOWOW/WOWOW.png"
@@ -1153,19 +1128,14 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Youku/Youku.png"
     },
     {
-      "name": "friDay",
+      "name": "friDayVideo",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/friDay/friDay.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/friDayVideo/friDayVideo.png"
     },
     {
-      "name": "iqiyi",
+      "name": "iQIYI",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/iqiyi/iqiyi.png"
-    },
-    {
-      "name": "iqiyi01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/iqiyi/iqiyi01.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/iQIYI/iQIYI.png"
     },
     {
       "name": "myTVSUPER",
@@ -1206,6 +1176,11 @@
       "name": "OneDrive",
       "category": "Microsoft",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Microsoft/OneDrive/OneDrive.png"
+    },
+    {
+      "name": "Outlook",
+      "category": "Microsoft",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Microsoft/Outlook/Outlook.png"
     },
     {
       "name": "Xbox",
@@ -1271,11 +1246,6 @@
       "name": "mora",
       "category": "Music",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/mora/mora.png"
-    },
-    {
-      "name": "GoogleNews",
-      "category": "News",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/News/GoogleNews/GoogleNews.png"
     },
     {
       "name": "WSJ",

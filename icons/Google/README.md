@@ -1,6 +1,6 @@
 # 🔎 Google / Google 服务
 
-> 共 **11** 个图标，**11** 个品牌
+> 共 **12** 个图标，**12** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -9,6 +9,7 @@
 | `GoogleAI` | `GoogleAI.png ` |
 | `GoogleDrive` | `GoogleDrive.png ` |
 | `GoogleMaps` | `GoogleMaps.png ` |
+| `GoogleNews` | `GoogleNews.png ` |
 | `GooglePhotos` | `GooglePhotos.png ` |
 | `GooglePlay` | `GooglePlay.png ` |
 | `GoogleTranslate` | `GoogleTranslate.png ` |
