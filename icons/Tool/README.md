@@ -1,6 +1,6 @@
 # 🔩 Tool / 工具
 
-> 共 **14** 个图标，**14** 个品牌
+> 共 **13** 个图标，**13** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -11,7 +11,6 @@
 | `GitHub` | `GitHub.png ` |
 | `Keep` | `Keep.png ` |
 | `Notion` | `Notion.png ` |
-| `Oracle` | `Oracle.png ` |
 | `SF-Express` | `SF-Express.png ` |
 | `Speedtest` | `Speedtest.png ` |
 | `TMDB` | `TMDB.png ` |

@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **82** 个图标，**70** 个品牌
+> 共 **80** 个图标，**68** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -52,7 +52,6 @@
 | `Radiko` | `Radiko.png ` |
 | `RakutenTV` | `RakutenTV.png ` |
 | `ReadJapan` | `ReadJapan.png ` |
-| `RedNote` | `RedNote.png ` |
 | `STARZ` | `STARZ.png ` |
 | `SlingTV` | `SlingTV.png ` |
 | `Star-Plus` | `Star-Plus.png ` |
@@ -61,7 +60,6 @@
 | `TVer` | `TVer.png ` |
 | `TencentVideo` | `TencentVideo.png ` |
 | `Tubi` | `Tubi.png ` |
-| `Twitch` | `Twitch.png ` |
 | `UNEXT` | `UNEXT.png ` |
 | `VideoMarket` | `VideoMarket.png ` |
 | `Vimeo` | `Vimeo.png ` |

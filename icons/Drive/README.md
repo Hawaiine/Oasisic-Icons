@@ -1,6 +1,6 @@
 # ☁️ Drive / 云盘与存储
 
-> 共 **12** 个图标，**10** 个品牌
+> 共 **10** 个图标，**9** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -10,7 +10,6 @@
 | `AliCloud` | `AliCloud.png AliCloud01.png ` |
 | `BaiduNetDisk` | `BaiduNetDisk.png ` |
 | `ChinaMobileDisk` | `ChinaMobileDisk.png ` |
-| `Dropbox` | `Dropbox.png Dropbox01.png ` |
-| `OneDrive` | `OneDrive.png ` |
+| `Dropbox` | `Dropbox.png ` |
 | `PikPak` | `PikPak.png ` |
 | `Quark` | `Quark.png ` |
