@@ -4,9 +4,9 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AWS` | `AWS.png ` |
-| `Azure` | `Azure.png ` |
-| `Cloudflare` | `Cloudflare.png ` |
-| `Docker` | `Docker.png ` |
-| `Oracle` | `Oracle.png ` |
-| `Synology` | `Synology.png ` |
+| `AWS` | `AWS.png` |
+| `Azure` | `Azure.png` |
+| `Cloudflare` | `Cloudflare.png` |
+| `Docker` | `Docker.png` |
+| `Oracle` | `Oracle.png` |
+| `Synology` | `Synology.png` |

@@ -105,7 +105,7 @@
 | 圆角 | 统一 r=115px（≈22.4%，Apple squircle），四角透明（`alpha=0`） |
 | 用户手动更新的图标 | 71 个已合规文件**像素未改动**（规范化脚本自动跳过） |
 | 规范化处理 | 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
-| 窄条字标 | 4 个（CatchPlay-Plus / HOY / TVer / VideoMarket）由 `scripts/normalize-strips.py` 处理：裁到内容后以白色圆角底块承载（保留原始字标颜色，不抠背景） |
+| 窄条字标 | 曾对 4 个窄条字标素材由 `scripts/normalize-strips.py` 处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
 | 体积 | 合计 ≈ 27.7 MB；平均 64KB / 中位 58KB / 最大 292KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
 | 模式分布 | RGBA 335（其余色型 0） |
 
@@ -121,7 +121,7 @@
 | 脚本 | 作用 |
 |------|------|
 | `scripts/normalize-icons.py` | 按标准规范化：`--report` 查看待处理 / `--sheet out.png` 生成前后对比 / `--apply` 写入（幂等） |
-| `scripts/normalize-strips.py` | 处理窄条字标类图标（裁内容 + 白色圆角底块） |
+| `scripts/normalize-strips.py` | 处理窄条字标类图标（裁内容 + 对比色圆角底块；命令行传入 PNG 路径） |
 | `scripts/optimize-icons.py` | pyoxipng 无损重压缩（`pip install pyoxipng`） |
 | `scripts/ci-validate-icons.py` | CI 校验：PNG 合法性、目录/命名规范、订阅 JSON 一致性 |
 

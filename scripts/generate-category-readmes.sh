@@ -37,7 +37,7 @@ README_EOF
 
   for brand in $(printf '%s\n' "${brands[@]}" | sort); do
     brand_dir="$dir/$brand"
-    files=$(ls "$brand_dir"/*.png 2>/dev/null | xargs -I{} basename {} | sort | tr '\n' ' ')
+    files=$(ls "$brand_dir"/*.png 2>/dev/null | xargs -I{} basename {} | sort | tr '\n' ' ' | sed 's/ $//')
     echo "| \`${brand}\` | \`${files}\` |" >> "$dir/README.md"
   done
 

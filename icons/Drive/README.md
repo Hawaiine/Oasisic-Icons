@@ -4,12 +4,12 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `115` | `115.png ` |
-| `123` | `123.png ` |
-| `189` | `189.png ` |
-| `AliCloud` | `AliCloud.png AliCloud01.png ` |
-| `BaiduNetDisk` | `BaiduNetDisk.png ` |
-| `ChinaMobileDisk` | `ChinaMobileDisk.png ` |
-| `Dropbox` | `Dropbox.png ` |
-| `PikPak` | `PikPak.png ` |
-| `Quark` | `Quark.png ` |
+| `115` | `115.png` |
+| `123` | `123.png` |
+| `189` | `189.png` |
+| `AliCloud` | `AliCloud.png AliCloud01.png` |
+| `BaiduNetDisk` | `BaiduNetDisk.png` |
+| `ChinaMobileDisk` | `ChinaMobileDisk.png` |
+| `Dropbox` | `Dropbox.png` |
+| `PikPak` | `PikPak.png` |
+| `Quark` | `Quark.png` |

@@ -9,7 +9,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 ```
 
 - 默认图标：`<品牌名>.png`，例如 `icons/Media/Netflix/Netflix.png`
-- 变体图标：`<品牌名>01.png`、`<品牌名>02.png`…，例如 `icons/Media/Netflix/Netflix01.png`
+- 变体图标：`<品牌名>01.png`、`<品牌名>02.png`…，例如 `icons/Country/Japan/Japan01.png`
 
 ---
 
@@ -106,7 +106,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 
 # 图标订阅 JSON（清单）
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/surge-icon.json
-
+```
 
 ## 网络受限时的取舍
 

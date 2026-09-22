@@ -4,7 +4,7 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `BGP` | `BGP.png ` |
-| `GIA` | `GIA.png ` |
-| `IEPL` | `IEPL.png ` |
-| `IPLC` | `IPLC.png ` |
+| `BGP` | `BGP.png` |
+| `GIA` | `GIA.png` |
+| `IEPL` | `IEPL.png` |
+| `IPLC` | `IPLC.png` |

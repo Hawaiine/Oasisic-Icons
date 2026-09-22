@@ -4,9 +4,9 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Alibaba` | `Alibaba.png ` |
-| `Amazon` | `Amazon.png ` |
-| `JD` | `JD.png ` |
-| `Meituan` | `Meituan.png Meituan01.png ` |
-| `Pinduoduo` | `Pinduoduo.png ` |
-| `Taobao` | `Taobao.png ` |
+| `Alibaba` | `Alibaba.png` |
+| `Amazon` | `Amazon.png` |
+| `JD` | `JD.png` |
+| `Meituan` | `Meituan.png Meituan01.png` |
+| `Pinduoduo` | `Pinduoduo.png` |
+| `Taobao` | `Taobao.png` |

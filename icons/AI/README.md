@@ -4,10 +4,10 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Anthropic` | `Anthropic.png ` |
-| `DeepSeek` | `DeepSeek.png ` |
-| `Doubao` | `Doubao.png ` |
-| `GeneralAI` | `GeneralAI.png ` |
-| `OpenAI` | `OpenAI.png ` |
-| `Perplexity` | `Perplexity.png ` |
-| `Poe` | `Poe.png ` |
+| `Anthropic` | `Anthropic.png` |
+| `DeepSeek` | `DeepSeek.png` |
+| `Doubao` | `Doubao.png` |
+| `GeneralAI` | `GeneralAI.png` |
+| `OpenAI` | `OpenAI.png` |
+| `Perplexity` | `Perplexity.png` |
+| `Poe` | `Poe.png` |

@@ -57,24 +57,25 @@ icons/
 2. **默认图标永远命名为 `<品牌名>.png`**（无任何后缀），且必须存在。
 3. **变体必须使用两位零填充数字**：`01`、`02`、`03`…（禁止 `-1`、`-2`、`1`、`2` 等形式）。
 4. **品牌名使用 PascalCase**，尽量与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules/tree/main/ruleset) 的品牌名保持一致。
-   - 例外：**官方品牌名的大小写优先**，已知保留官方写法的目录有 `iqiyi`（官方 iQIYI）、`friDay`、`myTVSUPER`；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
+   - 例外：**官方品牌名的大小写优先**，保留官方写法的目录有 `iQIYI`、`friDayVideo`、`myTVSUPER` 等；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
 5. **特殊字符处理**：`+` → `Plus`（例如 `DisneyPlus`）。
 6. **GitHub 文件列表排序**：`<品牌名>.png` 永远排在最上方（`.` < `0`），因此默认图标天然置顶。
 
 ### 正确示例
 
 ```
-icons/Music/Spotify/
-├── Spotify.png          ← 默认（原始素材经 scripts/normalize-icons.py 规范化到 512×512）
-├── Spotify01.png        ← 变体 1
-└── ...
+icons/Country/Japan/
+├── Japan.png            ← 默认（原始素材经 scripts/normalize-icons.py 规范化到 512×512）
+├── Japan01.png          ← 变体 1
+├── Japan02.png          ← 变体 2
+└── Japan03.png          ← 变体 3
 
 icons/Media/HBOMAX/
 ├── HBOMAX.png           ← 默认（512×512）
 └── HBOMAX01.png         ← 变体 1
 
-icons/Media/Wallpaper/
-└── Wallpaper.png        ← 只有 1 个也必须放进品牌文件夹
+icons/Media/Netflix/
+└── Netflix.png          ← 只有 1 个也必须放进品牌文件夹
 ```
 
 ### 错误示例（禁止）
@@ -101,7 +102,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
 
 # 变体（两位零填充）
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Spotify/Spotify01.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Country/Japan/Japan01.png
 
 # 单文件品牌
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/GitHub/GitHub.png
@@ -175,12 +176,12 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🛠 DevOps | 开发运维与云服务 | 6 | 6 |
 | 💻 Development | 开发工具 | 1 | 1 |
 | ☁️ Drive | 云盘与存储 | 9 | 10 |
-| 🎓 Education | 教育平台 | 0 | 0 |
-| 💰 Finance | 金融理财 | 0 | 0 |
+| 🎓 Education | 教育平台（预留空分类） | 0 | 0 |
+| 💰 Finance | 金融理财（预留空分类） | 0 | 0 |
 | 🎮 Game | 游戏平台 | 6 | 8 |
 | 🔧 General | 通用策略 | 21 | 48 |
 | 🔍 Google | Google 服务 | 12 | 12 |
-| 🏥 Health | 健康与运动 | 0 | 0 |
+| 🏥 Health | 健康与运动（预留空分类） | 0 | 0 |
 | 🎬 Media | 影音流媒体 | 69 | 72 |
 | 🪟 Microsoft | 微软服务 | 6 | 9 |
 | 🎵 Music | 音乐服务 | 12 | 12 |
@@ -273,7 +274,7 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 3. 变体图标：`<品牌名>01.png`、`<品牌名>02.png`（两位零填充，按原顺序编号）
 4. 品牌名使用 PascalCase，与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) 保持一致
 5. 特殊字符：`+` → `Plus`
-6. 官方品牌名大小写优先（`iqiyi` / `friDay` / `myTVSUPER` 等保留官方写法，同时是消费方引用的路径）
+6. 官方品牌名大小写优先（`iQIYI` / `friDayVideo` / `myTVSUPER` 等保留官方写法，同时是消费方引用的路径）
 7. 多版本品牌必须**全部保留**其变体，不要以“清理冗余”为由删除
 
 ### 提交流程

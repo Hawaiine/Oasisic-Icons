@@ -4,4 +4,4 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Cursor` | `Cursor.png ` |
+| `Cursor` | `Cursor.png` |

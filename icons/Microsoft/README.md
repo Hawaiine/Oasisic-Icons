@@ -4,9 +4,9 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Bing` | `Bing.png ` |
-| `Copilot` | `Copilot.png ` |
-| `Microsoft` | `Microsoft.png Microsoft01.png Microsoft02.png Microsoft03.png ` |
-| `OneDrive` | `OneDrive.png ` |
-| `Outlook` | `Outlook.png ` |
-| `Xbox` | `Xbox.png ` |
+| `Bing` | `Bing.png` |
+| `Copilot` | `Copilot.png` |
+| `Microsoft` | `Microsoft.png Microsoft01.png Microsoft02.png Microsoft03.png` |
+| `OneDrive` | `OneDrive.png` |
+| `Outlook` | `Outlook.png` |
+| `Xbox` | `Xbox.png` |

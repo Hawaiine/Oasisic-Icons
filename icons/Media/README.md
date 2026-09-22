@@ -4,72 +4,72 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AbemaTV` | `AbemaTV.png ` |
-| `AfreecaTV` | `AfreecaTV.png ` |
-| `Bahamut` | `Bahamut.png ` |
-| `Bangumi` | `Bangumi.png ` |
-| `Bilibili` | `Bilibili.png ` |
-| `CATCHPLAY` | `CATCHPLAY.png ` |
-| `Crunchyroll` | `Crunchyroll.png ` |
-| `DAZN` | `DAZN.png ` |
-| `DAnimeStore` | `DAnimeStore.png ` |
-| `DMMTV` | `DMMTV.png ` |
-| `DiscoveryPlus` | `DiscoveryPlus.png ` |
-| `DisneyPlus` | `DisneyPlus.png ` |
-| `Douyin` | `Douyin.png ` |
-| `ESPN` | `ESPN.png ` |
-| `Emby` | `Emby.png ` |
-| `F1TV` | `F1TV.png F1TV02.png ` |
-| `Fan` | `Fan.png ` |
-| `Fileball` | `Fileball.png ` |
-| `FujiTV` | `FujiTV.png ` |
-| `HBOMAX` | `HBOMAX.png HBOMAX01.png ` |
-| `HOYTV` | `HOYTV.png ` |
-| `HamiVideo` | `HamiVideo.png ` |
-| `Hanxiaoquan` | `Hanxiaoquan.png ` |
-| `Hotstar` | `Hotstar.png Hotstar01.png ` |
-| `Hulu` | `Hulu.png ` |
-| `Infuse` | `Infuse.png ` |
-| `Jellyfin` | `Jellyfin.png ` |
-| `KKBOX` | `KKBOX.png ` |
-| `KKTV` | `KKTV.png ` |
-| `KaraokeDAM` | `KaraokeDAM.png ` |
-| `LINETV` | `LINETV.png ` |
-| `Lemino` | `Lemino.png ` |
-| `LiTV` | `LiTV.png ` |
-| `MangoTV` | `MangoTV.png ` |
-| `Migu` | `Migu.png ` |
-| `MyVideo` | `MyVideo.png ` |
-| `NBA` | `NBA.png ` |
-| `NBC` | `NBC.png ` |
-| `NHK` | `NHK.png ` |
-| `Netflix` | `Netflix.png ` |
-| `Niconico` | `Niconico.png ` |
-| `NowE` | `NowE.png ` |
-| `Paramount` | `Paramount.png ` |
-| `Peacock` | `Peacock.png ` |
-| `Plex` | `Plex.png ` |
-| `Podcasts` | `Podcasts.png ` |
-| `PrimeVideo` | `PrimeVideo.png ` |
-| `Radiko` | `Radiko.png ` |
-| `RakutenTV` | `RakutenTV.png ` |
-| `ReadJapan` | `ReadJapan.png ` |
-| `STARZ` | `STARZ.png ` |
-| `SlingTV` | `SlingTV.png ` |
-| `Star-Plus` | `Star-Plus.png ` |
-| `TELASA` | `TELASA.png ` |
-| `TVB` | `TVB.png ` |
-| `TVer` | `TVer.png ` |
-| `TencentVideo` | `TencentVideo.png ` |
-| `Tubi` | `Tubi.png ` |
-| `UNEXT` | `UNEXT.png ` |
-| `VideoMarket` | `VideoMarket.png ` |
-| `Vimeo` | `Vimeo.png ` |
-| `Viu` | `Viu.png ` |
-| `WOWOW` | `WOWOW.png ` |
-| `Wallpaper` | `Wallpaper.png ` |
-| `WeTV` | `WeTV.png ` |
-| `Youku` | `Youku.png ` |
-| `friDayVideo` | `friDayVideo.png ` |
-| `iQIYI` | `iQIYI.png ` |
-| `myTVSUPER` | `myTVSUPER.png ` |
+| `AbemaTV` | `AbemaTV.png` |
+| `AfreecaTV` | `AfreecaTV.png` |
+| `Bahamut` | `Bahamut.png` |
+| `Bangumi` | `Bangumi.png` |
+| `Bilibili` | `Bilibili.png` |
+| `CATCHPLAY` | `CATCHPLAY.png` |
+| `Crunchyroll` | `Crunchyroll.png` |
+| `DAZN` | `DAZN.png` |
+| `DAnimeStore` | `DAnimeStore.png` |
+| `DMMTV` | `DMMTV.png` |
+| `DiscoveryPlus` | `DiscoveryPlus.png` |
+| `DisneyPlus` | `DisneyPlus.png` |
+| `Douyin` | `Douyin.png` |
+| `ESPN` | `ESPN.png` |
+| `Emby` | `Emby.png` |
+| `F1TV` | `F1TV.png F1TV02.png` |
+| `Fan` | `Fan.png` |
+| `Fileball` | `Fileball.png` |
+| `FujiTV` | `FujiTV.png` |
+| `HBOMAX` | `HBOMAX.png HBOMAX01.png` |
+| `HOYTV` | `HOYTV.png` |
+| `HamiVideo` | `HamiVideo.png` |
+| `Hanxiaoquan` | `Hanxiaoquan.png` |
+| `Hotstar` | `Hotstar.png Hotstar01.png` |
+| `Hulu` | `Hulu.png` |
+| `Infuse` | `Infuse.png` |
+| `Jellyfin` | `Jellyfin.png` |
+| `KKBOX` | `KKBOX.png` |
+| `KKTV` | `KKTV.png` |
+| `KaraokeDAM` | `KaraokeDAM.png` |
+| `LINETV` | `LINETV.png` |
+| `Lemino` | `Lemino.png` |
+| `LiTV` | `LiTV.png` |
+| `MangoTV` | `MangoTV.png` |
+| `Migu` | `Migu.png` |
+| `MyVideo` | `MyVideo.png` |
+| `NBA` | `NBA.png` |
+| `NBC` | `NBC.png` |
+| `NHK` | `NHK.png` |
+| `Netflix` | `Netflix.png` |
+| `Niconico` | `Niconico.png` |
+| `NowE` | `NowE.png` |
+| `Paramount` | `Paramount.png` |
+| `Peacock` | `Peacock.png` |
+| `Plex` | `Plex.png` |
+| `Podcasts` | `Podcasts.png` |
+| `PrimeVideo` | `PrimeVideo.png` |
+| `Radiko` | `Radiko.png` |
+| `RakutenTV` | `RakutenTV.png` |
+| `ReadJapan` | `ReadJapan.png` |
+| `STARZ` | `STARZ.png` |
+| `SlingTV` | `SlingTV.png` |
+| `Star-Plus` | `Star-Plus.png` |
+| `TELASA` | `TELASA.png` |
+| `TVB` | `TVB.png` |
+| `TVer` | `TVer.png` |
+| `TencentVideo` | `TencentVideo.png` |
+| `Tubi` | `Tubi.png` |
+| `UNEXT` | `UNEXT.png` |
+| `VideoMarket` | `VideoMarket.png` |
+| `Vimeo` | `Vimeo.png` |
+| `Viu` | `Viu.png` |
+| `WOWOW` | `WOWOW.png` |
+| `Wallpaper` | `Wallpaper.png` |
+| `WeTV` | `WeTV.png` |
+| `Youku` | `Youku.png` |
+| `friDayVideo` | `friDayVideo.png` |
+| `iQIYI` | `iQIYI.png` |
+| `myTVSUPER` | `myTVSUPER.png` |

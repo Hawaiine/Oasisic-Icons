@@ -4,8 +4,8 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AliPay` | `AliPay.png ` |
-| `Binance` | `Binance.png ` |
-| `OKX` | `OKX.png ` |
-| `PayPal` | `PayPal.png ` |
-| `SWIFT` | `SWIFT.png ` |
+| `AliPay` | `AliPay.png` |
+| `Binance` | `Binance.png` |
+| `OKX` | `OKX.png` |
+| `PayPal` | `PayPal.png` |
+| `SWIFT` | `SWIFT.png` |

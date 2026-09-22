@@ -5,11 +5,9 @@
   亮色字标 → 深色底（同色系压暗 78%）；暗色字标 → 白底。
 这样在方形画布里既填满、又保证字标可读（不做背景抠除，不改字标颜色）。
 
-适用：
-  icons/Media/CatchPlay-Plus/CatchPlay-Plus.png
-  icons/Media/HOY/HOY.png
-  icons/Media/TVer/TVer.png
-  icons/Media/VideoMarket/VideoMarket.png
+用法：
+  python3 scripts/normalize-strips.py <图标路径> [更多路径...]
+（历史上用于若干窄条字标素材；此类素材后来大多已替换为官方方形源图）
 """
 import sys, collections
 from pathlib import Path
@@ -21,8 +19,7 @@ import importlib.util
 spec = importlib.util.spec_from_file_location("nz", Path(__file__).parent / "normalize-icons.py")
 nz = importlib.util.module_from_spec(spec); spec.loader.exec_module(nz)
 
-STRIPS = ["icons/Media/CatchPlay-Plus/CatchPlay-Plus.png", "icons/Media/HOY/HOY.png",
-          "icons/Media/TVer/TVer.png", "icons/Media/VideoMarket/VideoMarket.png"]
+STRIPS = list(sys.argv[1:])
 MARGIN = 0.10
 
 
@@ -65,6 +62,9 @@ def redo(path, mask):
 
 
 if __name__ == "__main__":
+    if not STRIPS:
+        print("用法: python3 scripts/normalize-strips.py <图标路径> [更多路径...]")
+        sys.exit(0)
     mask = nz.rounded_mask()
     for rel in STRIPS:
         p = Path(rel)

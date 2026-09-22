@@ -4,4 +4,4 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Cryptocurrency` | `Cryptocurrency.png Cryptocurrency01.png Cryptocurrency02.png Cryptocurrency03.png ` |
+| `Cryptocurrency` | `Cryptocurrency.png Cryptocurrency01.png Cryptocurrency02.png Cryptocurrency03.png` |
