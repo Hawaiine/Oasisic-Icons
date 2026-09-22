@@ -17,8 +17,8 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-383-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-249-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/icons-374-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-247-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-21-orange?style=flat-square" alt="Categories Count">
 </p>
 
@@ -26,12 +26,12 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **383** 个 PNG 图标，覆盖 **249** 个品牌，归入 **21** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **374** 个 PNG 图标，覆盖 **247** 个品牌，归入 **21** 个分类。
 
-本项目为独立图标仓库，**383 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，**374 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
-> 仓库内全部图标已完成规范化：**383 / 383 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
+> 仓库内全部图标已完成规范化：**374 / 374 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
 
 ---
 
@@ -58,7 +58,7 @@ icons/
 3. **变体必须使用两位零填充数字**：`01`、`02`、`03`…（禁止 `-1`、`-2`、`1`、`2` 等形式）。
 4. **品牌名使用 PascalCase**，尽量与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules/tree/main/ruleset) 的品牌名保持一致。
    - 例外：**官方品牌名的大小写优先**，已知保留官方写法的目录有 `iqiyi`（官方 iQIYI）、`friDay`、`myTVSUPER`；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
-5. **特殊字符处理**：`+` → `Plus`（例如 `Disney-Plus`）。
+5. **特殊字符处理**：`+` → `Plus`（例如 `DisneyPlus`）。
 6. **GitHub 文件列表排序**：`<品牌名>.png` 永远排在最上方（`.` < `0`），因此默认图标天然置顶。
 
 ### 正确示例
@@ -69,12 +69,9 @@ icons/Music/Spotify/
 ├── Spotify01.png        ← 变体 1
 └── ...
 
-icons/Media/Netflix/
-├── Netflix.png          ← 默认（512×512，用户手动更新版本）
-├── Netflix01.png
-├── Netflix02.png
-├── Netflix03.png
-└── Netflix04.png
+icons/Media/HBOMAX/
+├── HBOMAX.png           ← 默认（512×512）
+└── HBOMAX01.png         ← 变体 1
 
 icons/Media/Wallpaper/
 └── Wallpaper.png        ← 只有 1 个也必须放进品牌文件夹
@@ -104,7 +101,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
 
 # 变体（两位零填充）
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix01.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Spotify/Spotify01.png
 
 # 单文件品牌
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/GitHub/GitHub.png
@@ -170,8 +167,9 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 ## 📁 图标分类列表 / Categories
 
 | 分类 | 说明 | 品牌数 | 图标数 |
-| 🤖 AI | 人工智能服务 | 7 | 11 |
-| 🍎 Apple | 苹果生态 | 12 | 19 |
+|---|---|---|---|
+| 🤖 AI | 人工智能服务 | 7 | 7 |
+| 🍎 Apple | 苹果生态 | 10 | 10 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
 | 🛠 DevOps | 开发运维与云服务 | 6 | 6 |
@@ -183,18 +181,18 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🔧 General | 通用策略 | 21 | 48 |
 | 🔍 Google | Google 服务 | 11 | 14 |
 | 🏥 Health | 健康与运动 | 0 | 0 |
-| 🎬 Media | 影音流媒体 | 71 | 105 |
+| 🎬 Media | 影音流媒体 | 70 | 82 |
 | 🪟 Microsoft | 微软服务 | 4 | 11 |
 | 🎵 Music | 音乐服务 | 12 | 18 |
 | 📰 News | 新闻与资讯 | 2 | 2 |
 | 💳 Payment | 支付 | 5 | 9 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
 | 🛒 Shopping | 购物 | 6 | 10 |
-| 👥 Social | 社交 | 32 | 49 |
+| 👥 Social | 社交 | 30 | 35 |
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
 | 📡 Telecom | 运营商 | 4 | 7 |
 | 🔩 Tool | 工具 | 14 | 17 |
-| **合计** | — | **252** | **424** |
+| **合计** | — | **247** | **374** |
 
 `Education` / `Finance` / `Health` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
 
