@@ -763,16 +763,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/Google/Google.png"
     },
     {
-      "name": "Google01",
-      "category": "Google",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/Google/Google01.png"
-    },
-    {
-      "name": "Google02",
-      "category": "Google",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/Google/Google02.png"
-    },
-    {
       "name": "GoogleAI",
       "category": "Google",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/GoogleAI/GoogleAI.png"
@@ -1308,24 +1298,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Musixmatch/Musixmatch.png"
     },
     {
-      "name": "NetEaseMusic",
+      "name": "NetEaseCloudMusic",
       "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/NetEaseMusic/NetEaseMusic.png"
-    },
-    {
-      "name": "NetEaseMusic01",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/NetEaseMusic/NetEaseMusic01.png"
-    },
-    {
-      "name": "NetEaseMusic02",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/NetEaseMusic/NetEaseMusic02.png"
-    },
-    {
-      "name": "NetEaseMusic03",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/NetEaseMusic/NetEaseMusic03.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/NetEaseCloudMusic/NetEaseCloudMusic.png"
     },
     {
       "name": "Pandora",
@@ -1353,24 +1328,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Spotify/Spotify.png"
     },
     {
-      "name": "Spotify01",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Spotify/Spotify01.png"
-    },
-    {
       "name": "TIDAL",
       "category": "Music",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/TIDAL/TIDAL.png"
-    },
-    {
-      "name": "TIDAL01",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/TIDAL/TIDAL01.png"
-    },
-    {
-      "name": "TIDAL02",
-      "category": "Music",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/TIDAL/TIDAL02.png"
     },
     {
       "name": "mora",
@@ -1808,19 +1768,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Duolingo/Duolingo.png"
     },
     {
-      "name": "Duolingo01",
-      "category": "Tool",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Duolingo/Duolingo01.png"
-    },
-    {
       "name": "GitHub",
       "category": "Tool",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/GitHub/GitHub.png"
-    },
-    {
-      "name": "GitHub01",
-      "category": "Tool",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/GitHub/GitHub01.png"
     },
     {
       "name": "Keep",
@@ -1846,11 +1796,6 @@
       "name": "Speedtest",
       "category": "Tool",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Speedtest/Speedtest.png"
-    },
-    {
-      "name": "Speedtest01",
-      "category": "Tool",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Speedtest/Speedtest01.png"
     },
     {
       "name": "TMDB",
