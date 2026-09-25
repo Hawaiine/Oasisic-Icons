@@ -249,9 +249,9 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | Pandora | Pandora |
-| Paramount | Paramount |
+| ParamountPlus | Paramount+ |
 | PayPal | PayPal |
-| Peacock | Peacock |
+| PeacockTV | Peacock TV |
 | Perplexity | Perplexity |
 | PikPak | PikPak |
 | Pinduoduo | 拼多多 |
