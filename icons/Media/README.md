@@ -46,8 +46,8 @@
 | `Netflix` | `Netflix.png` |
 | `Niconico` | `Niconico.png` |
 | `NowE` | `NowE.png` |
-| `Paramount` | `Paramount.png` |
-| `Peacock` | `Peacock.png` |
+| `ParamountPlus` | `ParamountPlus.png` |
+| `PeacockTV` | `PeacockTV.png` |
 | `Plex` | `Plex.png` |
 | `Podcasts` | `Podcasts.png` |
 | `PrimeVideo` | `PrimeVideo.png` |
