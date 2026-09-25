@@ -23,6 +23,16 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/GeneralAI/GeneralAI.png"
     },
     {
+      "name": "Grok",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Grok/Grok.png"
+    },
+    {
+      "name": "NousResearch",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/NousResearch/NousResearch.png"
+    },
+    {
       "name": "OpenAI",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/OpenAI/OpenAI.png"
@@ -1641,6 +1651,11 @@
       "name": "Keep",
       "category": "Tool",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Keep/Keep.png"
+    },
+    {
+      "name": "Lark",
+      "category": "Tool",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/Lark/Lark.png"
     },
     {
       "name": "Notion",
