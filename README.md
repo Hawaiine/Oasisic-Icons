@@ -17,21 +17,21 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-335-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-245-green?style=flat-square" alt="Brands Count">
-  <img src="https://img.shields.io/badge/categories-21-orange?style=flat-square" alt="Categories Count">
+  <img src="https://img.shields.io/badge/icons-358-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-270-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/categories-24-orange?style=flat-square" alt="Categories Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **335** 个 PNG 图标，覆盖 **245** 个品牌，归入 **21** 个分类。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **358** 个 PNG 图标，覆盖 **270** 个品牌，归入 **24** 个分类。
 
-本项目为独立图标仓库，**335 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，**358 个图标全部经过统一规范化处理**（512×512 / RGBA / Apple 风格 squircle 圆角），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
-> 仓库内全部图标已完成规范化：**335 / 335 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
+> 仓库内全部图标已完成规范化：**358 / 358 均为 512×512 Apple 风格圆角（r≈115px、保留原始底色）**，经 `scripts/optimize-icons.py` 无损重压缩。处理明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
 
 ---
 
@@ -169,31 +169,31 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 | 分类 | 说明 | 品牌数 | 图标数 |
 |---|---|---|---|
-| 🤖 AI | 人工智能服务 | 7 | 7 |
+| 🤖 AI | 人工智能服务 | 10 | 10 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
-| 🛠 DevOps | 开发运维与云服务 | 6 | 6 |
-| 💻 Development | 开发工具 | 1 | 1 |
+| 🛠 DevOps | 开发运维与云服务 | 8 | 8 |
+| 💻 Development | 开发工具 | 2 | 2 |
 | ☁️ Drive | 云盘与存储 | 9 | 10 |
 | 🎓 Education | 教育平台（预留空分类） | 0 | 0 |
 | 💰 Finance | 金融理财（预留空分类） | 0 | 0 |
 | 🎮 Game | 游戏平台 | 6 | 8 |
-| 🔧 General | 通用策略 | 21 | 48 |
+| 🔧 General | 通用策略 | 22 | 49 |
 | 🔍 Google | Google 服务 | 12 | 12 |
 | 🏥 Health | 健康与运动（预留空分类） | 0 | 0 |
-| 🎬 Media | 影音流媒体 | 69 | 72 |
-| 🪟 Microsoft | 微软服务 | 6 | 9 |
+| 🎬 Media | 影音流媒体 | 71 | 74 |
+| 🪟 Microsoft | 微软服务 | 7 | 10 |
 | 🎵 Music | 音乐服务 | 12 | 12 |
 | 📰 News | 新闻与资讯 | 1 | 1 |
-| 💳 Payment | 支付 | 5 | 5 |
+| 💳 Payment | 支付 | 6 | 6 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
-| 🛒 Shopping | 购物 | 6 | 7 |
-| 👥 Social | 社交 | 30 | 35 |
+| 🛒 Shopping | 购物 | 8 | 9 |
+| 👥 Social | 社交 | 32 | 37 |
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
-| 📡 Telecom | 运营商 | 4 | 7 |
-| 🔩 Tool | 工具 | 13 | 13 |
-| **合计** | — | **245** | **335** |
+| 📡 Telecom | 运营商 | 10 | 11 |
+| 🔩 Tool | 工具 | 17 | 17 |
+| **合计** | — | **270** | **358** |
 
 `Education` / `Finance` / `Health` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
 
