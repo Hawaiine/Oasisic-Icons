@@ -1,6 +1,6 @@
 # 👥 Social / 社交
 
-> 共 **35** 个图标，**30** 个品牌
+> 共 **37** 个图标，**32** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -8,9 +8,11 @@
 | `Bluesky` | `Bluesky.png` |
 | `DingTalk` | `DingTalk.png` |
 | `Discord` | `Discord.png` |
+| `Douban` | `Douban.png` |
 | `Facebook` | `Facebook.png` |
 | `Instagram` | `Instagram.png` |
 | `KakaoTalk` | `KakaoTalk.png` |
+| `Kwai` | `Kwai.png` |
 | `LINE` | `LINE.png` |
 | `LinkedIn` | `LinkedIn.png` |
 | `Messenger` | `Messenger.png` |

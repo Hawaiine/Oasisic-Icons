@@ -1,12 +1,13 @@
 # 🔧 General / 通用策略
 
-> 共 **48** 个图标，**21** 个品牌
+> 共 **49** 个图标，**22** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `AD` | `AD.png AD01.png AD02.png AD03.png AD04.png AD05.png AD06.png` |
 | `Area` | `Area.png` |
 | `Auto` | `Auto.png` |
+| `Baidu` | `Baidu.png` |
 | `Blacklist` | `Blacklist.png` |
 | `Bot` | `Bot.png` |
 | `Direct` | `Direct.png` |
