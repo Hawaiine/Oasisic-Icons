@@ -533,6 +533,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/General/Auto/Auto.png"
     },
     {
+      "name": "Baidu",
+      "category": "General",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/General/Baidu/Baidu.png"
+    },
+    {
       "name": "Blacklist",
       "category": "General",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/General/Blacklist/Blacklist.png"
@@ -1621,6 +1626,11 @@
       "name": "ChinaUnicom01",
       "category": "Telecom",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/ChinaUnicom/ChinaUnicom01.png"
+    },
+    {
+      "name": "Huawei",
+      "category": "Telecom",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/Huawei/Huawei.png"
     },
     {
       "name": "1Password",
