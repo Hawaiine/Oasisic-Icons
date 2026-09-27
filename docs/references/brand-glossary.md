@@ -22,9 +22,11 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | AD | AD |
+| AMC | AMC |
 | AWS | AWS |
 | AbemaTV | AbemaTV |
 | AdGuard | AdGuard |
+| Adobe | Adobe |
 | AfreecaTV | AfreecaTV |
 | Airport | Airport |
 | AliCloud | AliCloud |
@@ -38,6 +40,7 @@ proxy-groups:
 | AppleMusic | AppleMusic |
 | AppleNews | AppleNews |
 | AppleTV | Apple TV |
+| Aqara | 绿米 |
 | Area | Area |
 | Argentina | 阿根廷 |
 | Australia | 澳大利亚 |
@@ -51,8 +54,10 @@ proxy-groups:
 | BBC | BBC |
 | BGP | BGP |
 | Bahamut | Bahamut |
+| Baidu | 百度 |
 | BaiduNetDisk | BaiduNetDisk |
 | Bangumi | Bangumi |
+| BestBuy | BestBuy |
 | Bilibili | Bilibili |
 | Binance | Binance |
 | Bing | Bing |
@@ -85,15 +90,18 @@ proxy-groups:
 |---------------------|--------------------------|
 | DAZN | DAZN |
 | DAnimeStore | D Anime Store |
+| DJI | DJI |
 | DMMTV | DMM TV |
 | DeepSeek | DeepSeek |
 | Deezer | Deezer |
+| DiDi | 滴滴 |
 | DingTalk | DingTalk |
 | Direct | Direct |
 | Discord | Discord |
 | DiscoveryPlus | DiscoveryPlus |
 | DisneyPlus | DisneyPlus |
 | Docker | Docker |
+| Douban | 豆瓣 |
 | Doubao | 豆包 |
 | Douyin | 抖音 |
 | Dropbox | Dropbox |
@@ -107,6 +115,7 @@ proxy-groups:
 | Egypt | 埃及 |
 | Emby | Emby |
 | EpicGames | EpicGames |
+| eBay | eBay |
 
 ## F
 
@@ -140,6 +149,7 @@ proxy-groups:
 | GooglePlay | Google Play |
 | GoogleTranslate | GoogleTranslate |
 | GoogleVoice | GoogleVoice |
+| Grok | Grok |
 
 ## H
 
@@ -150,7 +160,9 @@ proxy-groups:
 | HamiVideo | Hami Video |
 | Hanxiaoquan | Hanxiaoquan |
 | HongKong | 香港 |
+| Honor | 荣耀 |
 | Hotstar | Hotstar |
+| Huawei | 华为 |
 | Hulu | Hulu |
 
 ## I
@@ -184,6 +196,7 @@ proxy-groups:
 | KaraokeDAM | Karaoke@DAM |
 | Keep | Keep |
 | Korea | 韩国 |
+| Kwai | 快手 |
 
 ## L
 
@@ -191,6 +204,7 @@ proxy-groups:
 |---------------------|--------------------------|
 | LINE | LINE |
 | LINETV | LINE TV |
+| Lark | Lark |
 | Lemino | Lemino |
 | LiTV | LiTV |
 | Lightning | Lightning |
@@ -208,7 +222,11 @@ proxy-groups:
 | Meta | Meta |
 | MetaBrainz | MetaBrainz |
 | Microsoft | Microsoft |
+| MicrosoftStore | 微软商店 |
 | Migu | Migu |
+| Mijia | 米家 |
+| MikroTik | MikroTik |
+| Muse | Muse |
 | MusicBrainz | MusicBrainz |
 | MusicJapan | Music Japan |
 | Musixmatch | Musixmatch |
@@ -232,6 +250,7 @@ proxy-groups:
 | Nintendo | Nintendo |
 | NorthKorea | 朝鲜 |
 | Notion | Notion |
+| NousResearch | Nous Research |
 | NowE | Now E |
 
 ## O
@@ -239,8 +258,11 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | OKX | OKX |
+| OPPO | OPPO |
+| Obsidian | Obsidian |
 | OneDrive | OneDrive |
 | OpenAI | OpenAI |
+| OpenWrt | OpenWrt |
 | Oracle | Oracle |
 | Outlook | Outlook |
 
@@ -284,6 +306,7 @@ proxy-groups:
 | Radiko | Radiko |
 | RakutenTV | Rakuten TV |
 | ReadJapan | Read Japan |
+| RedBullTV | 红牛 TV |
 | RedNote | 小红书 |
 | Reddit | Reddit |
 | Reject | Reject |
@@ -343,6 +366,7 @@ proxy-groups:
 | URL | URL |
 | US | 美国 |
 | Uber | Uber |
+| UnionPay | 银联 |
 
 ## V
 
@@ -371,6 +395,7 @@ proxy-groups:
 |---------------------|--------------------------|
 | X | X |
 | Xbox | Xbox |
+| Xiaomi | 小米 |
 
 ## Y
 
