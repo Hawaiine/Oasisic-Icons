@@ -838,11 +838,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Bangumi/Bangumi.png"
     },
     {
-      "name": "Bilibili",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Bilibili/Bilibili.png"
-    },
-    {
       "name": "CATCHPLAY",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/CATCHPLAY/CATCHPLAY.png"
@@ -858,19 +853,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DAZN/DAZN.png"
     },
     {
-      "name": "DAnimeStore",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DAnimeStore/DAnimeStore.png"
-    },
-    {
       "name": "DMMTV",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DMMTV/DMMTV.png"
-    },
-    {
-      "name": "DiscoveryPlus",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/DiscoveryPlus/DiscoveryPlus.png"
     },
     {
       "name": "DisneyPlus",
@@ -898,9 +883,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/F1TV/F1TV.png"
     },
     {
-      "name": "F1TV02",
+      "name": "F1TV01",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/F1TV/F1TV02.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/F1TV/F1TV01.png"
     },
     {
       "name": "Fan",
@@ -918,14 +903,14 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/FujiTV/FujiTV.png"
     },
     {
-      "name": "HBOMAX",
+      "name": "HBOMax",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/HBOMAX/HBOMAX.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/HBOMax/HBOMax.png"
     },
     {
-      "name": "HBOMAX01",
+      "name": "HBOMax01",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/HBOMAX/HBOMAX01.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/HBOMax/HBOMax01.png"
     },
     {
       "name": "HOYTV",
@@ -1166,6 +1151,21 @@
       "name": "Youku",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Youku/Youku.png"
+    },
+    {
+      "name": "bilibili",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/bilibili/bilibili.png"
+    },
+    {
+      "name": "dAnimeStore",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/dAnimeStore/dAnimeStore.png"
+    },
+    {
+      "name": "discoveryPlus",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/discoveryPlus/discoveryPlus.png"
     },
     {
       "name": "friDayVideo",
@@ -1483,19 +1483,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Pipixia/Pipixia01.png"
     },
     {
-      "name": "Pixiv",
-      "category": "Social",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Pixiv/Pixiv.png"
-    },
-    {
       "name": "QQ",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/QQ/QQ.png"
-    },
-    {
-      "name": "RedNote",
-      "category": "Social",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/RedNote/RedNote.png"
     },
     {
       "name": "Reddit",
@@ -1576,6 +1566,16 @@
       "name": "Zhihu",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Zhihu/Zhihu.png"
+    },
+    {
+      "name": "pixiv",
+      "category": "Social",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/pixiv/pixiv.png"
+    },
+    {
+      "name": "rednote",
+      "category": "Social",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/rednote/rednote.png"
     },
     {
       "name": "Surge",
