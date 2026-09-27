@@ -1,9 +1,10 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **72** 个图标，**69** 个品牌
+> 共 **74** 个图标，**71** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
+| `AMC` | `AMC.png` |
 | `AbemaTV` | `AbemaTV.png` |
 | `AfreecaTV` | `AfreecaTV.png` |
 | `Bahamut` | `Bahamut.png` |
@@ -54,6 +55,7 @@
 | `Radiko` | `Radiko.png` |
 | `RakutenTV` | `RakutenTV.png` |
 | `ReadJapan` | `ReadJapan.png` |
+| `RedBullTV` | `RedBullTV.png` |
 | `STARZ` | `STARZ.png` |
 | `SlingTV` | `SlingTV.png` |
 | `Star-Plus` | `Star-Plus.png` |
