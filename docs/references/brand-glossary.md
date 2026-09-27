@@ -53,7 +53,7 @@ proxy-groups:
 | Bahamut | Bahamut |
 | BaiduNetDisk | BaiduNetDisk |
 | Bangumi | Bangumi |
-| Bilibili | Bilibili |
+| bilibili | bilibili |
 | Binance | Binance |
 | Bing | Bing |
 | Blacklist | Blacklist |
@@ -84,14 +84,14 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | DAZN | DAZN |
-| DAnimeStore | D Anime Store |
+| dAnimeStore | d Anime Store |
 | DMMTV | DMM TV |
 | DeepSeek | DeepSeek |
 | Deezer | Deezer |
 | DingTalk | DingTalk |
 | Direct | Direct |
 | Discord | Discord |
-| DiscoveryPlus | DiscoveryPlus |
+| discoveryPlus | discovery+ |
 | DisneyPlus | DisneyPlus |
 | Docker | Docker |
 | Doubao | 豆包 |
@@ -145,7 +145,7 @@ proxy-groups:
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
-| HBOMAX | HBOMAX |
+| HBOMax | HBO Max |
 | HOYTV | HOY TV |
 | HamiVideo | Hami Video |
 | Hanxiaoquan | Hanxiaoquan |
@@ -257,7 +257,7 @@ proxy-groups:
 | Pinduoduo | 拼多多 |
 | Pinterest | Pinterest |
 | Pipixia | Pipixia |
-| Pixiv | Pixiv |
+| pixiv | pixiv |
 | Play | Play |
 | PlayStation | PlayStation |
 | Plex | Plex |
@@ -284,7 +284,7 @@ proxy-groups:
 | Radiko | Radiko |
 | RakutenTV | Rakuten TV |
 | ReadJapan | Read Japan |
-| RedNote | 小红书 |
+| rednote | 小红书 |
 | Reddit | Reddit |
 | Reject | Reject |
 

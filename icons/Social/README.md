@@ -19,9 +19,7 @@
 | `Meta` | `Meta.png Meta01.png Meta02.png` |
 | `Pinterest` | `Pinterest.png` |
 | `Pipixia` | `Pipixia.png Pipixia01.png` |
-| `Pixiv` | `Pixiv.png` |
 | `QQ` | `QQ.png` |
-| `RedNote` | `RedNote.png` |
 | `Reddit` | `Reddit.png` |
 | `Skype` | `Skype.png` |
 | `Snapchat` | `Snapchat.png` |
@@ -36,3 +34,5 @@
 | `Wikipedia` | `Wikipedia.png` |
 | `X` | `X.png` |
 | `Zhihu` | `Zhihu.png` |
+| `pixiv` | `pixiv.png` |
+| `rednote` | `rednote.png` |
