@@ -70,9 +70,9 @@ icons/Country/Japan/
 ├── Japan02.png          ← 变体 2
 └── Japan03.png          ← 变体 3
 
-icons/Media/HBOMAX/
-├── HBOMAX.png           ← 默认（512×512）
-└── HBOMAX01.png         ← 变体 1
+icons/Media/HBOMax/
+├── HBOMax.png           ← 默认（512×512）
+└── HBOMax01.png         ← 变体 1
 
 icons/Media/Netflix/
 └── Netflix.png          ← 只有 1 个也必须放进品牌文件夹
