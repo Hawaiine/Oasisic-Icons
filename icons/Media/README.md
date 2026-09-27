@@ -20,7 +20,7 @@
 | `Douyin` | `Douyin.png` |
 | `ESPN` | `ESPN.png` |
 | `Emby` | `Emby.png` |
-| `F1TV` | `F1TV.png F1TV02.png` |
+| `F1TV` | `F1TV.png F1TV01.png` |
 | `Fan` | `Fan.png` |
 | `Fileball` | `Fileball.png` |
 | `FujiTV` | `FujiTV.png` |
