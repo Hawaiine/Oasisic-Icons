@@ -9,13 +9,10 @@
 | `AfreecaTV` | `AfreecaTV.png` |
 | `Bahamut` | `Bahamut.png` |
 | `Bangumi` | `Bangumi.png` |
-| `Bilibili` | `Bilibili.png` |
 | `CATCHPLAY` | `CATCHPLAY.png` |
 | `Crunchyroll` | `Crunchyroll.png` |
 | `DAZN` | `DAZN.png` |
-| `DAnimeStore` | `DAnimeStore.png` |
 | `DMMTV` | `DMMTV.png` |
-| `DiscoveryPlus` | `DiscoveryPlus.png` |
 | `DisneyPlus` | `DisneyPlus.png` |
 | `Douyin` | `Douyin.png` |
 | `ESPN` | `ESPN.png` |
@@ -24,7 +21,7 @@
 | `Fan` | `Fan.png` |
 | `Fileball` | `Fileball.png` |
 | `FujiTV` | `FujiTV.png` |
-| `HBOMAX` | `HBOMAX.png HBOMAX01.png` |
+| `HBOMax` | `HBOMax.png HBOMax01.png` |
 | `HOYTV` | `HOYTV.png` |
 | `HamiVideo` | `HamiVideo.png` |
 | `Hanxiaoquan` | `Hanxiaoquan.png` |
@@ -72,6 +69,9 @@
 | `Wallpaper` | `Wallpaper.png` |
 | `WeTV` | `WeTV.png` |
 | `Youku` | `Youku.png` |
+| `bilibili` | `bilibili.png` |
+| `dAnimeStore` | `dAnimeStore.png` |
+| `discoveryPlus` | `discoveryPlus.png` |
 | `friDayVideo` | `friDayVideo.png` |
 | `iQIYI` | `iQIYI.png` |
 | `myTVSUPER` | `myTVSUPER.png` |
