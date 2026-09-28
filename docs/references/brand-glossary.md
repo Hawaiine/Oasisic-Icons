@@ -1,6 +1,6 @@
 # 品牌中英对照 / Brand Glossary
 
-> 本表为**完整对照**（由 `icons/` 目录全量生成，最后更新：2026-09-23）：`icons/<分类>/<品牌>/` 目录名 ↔ 中文显示名映射，供消费方（如 mihomo-rules）引用。  
+> 本表为**完整对照**（由 `icons/` 目录全量生成，最后更新：2026-09-28）：`icons/<分类>/<品牌>/` 目录名 ↔ 中文显示名映射，供消费方（如 mihomo-rules）引用。
 > 命名原则：优先采用品牌官方中文译名；若官方无中文名，则保留英文原名。
 
 ---
@@ -21,23 +21,25 @@ proxy-groups:
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
+| ABEMA | ABEMA |
 | AD | AD |
+| AMC | AMC |
 | AWS | AWS |
-| AbemaTV | AbemaTV |
 | AdGuard | AdGuard |
-| AfreecaTV | AfreecaTV |
+| Adobe | Adobe |
 | Airport | Airport |
-| AliCloud | AliCloud |
+| AliCloud | 阿里云 |
 | AliPay | 支付宝 |
 | Alibaba | Alibaba |
 | Amazon | Amazon |
 | Anthropic | Anthropic |
-| AppStore | AppStore |
+| AppStore | App Store |
 | Apple | Apple |
-| AppleFitnessPlus | AppleFitnessPlus |
-| AppleMusic | AppleMusic |
-| AppleNews | AppleNews |
+| AppleFitnessPlus | Apple Fitness+ |
+| AppleMusic | Apple Music |
+| AppleNews | Apple News |
 | AppleTV | Apple TV |
+| Aqara | Aqara |
 | Area | Area |
 | Argentina | 阿根廷 |
 | Australia | 澳大利亚 |
@@ -51,14 +53,16 @@ proxy-groups:
 | BBC | BBC |
 | BGP | BGP |
 | Bahamut | Bahamut |
-| BaiduNetDisk | BaiduNetDisk |
+| Baidu | 百度 |
+| BaiduNetDisk | 百度网盘 |
 | Bangumi | Bangumi |
-| bilibili | bilibili |
+| BestBuy | Best Buy |
 | Binance | Binance |
 | Bing | Bing |
 | Blacklist | Blacklist |
 | Bluesky | Bluesky |
 | Bot | Bot |
+| bilibili | bilibili |
 
 ## C
 
@@ -70,7 +74,7 @@ proxy-groups:
 | China | 中国 |
 | ChinaBroadnet | ChinaBroadnet |
 | ChinaMobile | ChinaMobile |
-| ChinaMobileDisk | ChinaMobileDisk |
+| ChinaMobileDisk | 中国移动云盘 |
 | ChinaTelecom | ChinaTelecom |
 | ChinaUnicom | ChinaUnicom |
 | Cloudflare | Cloudflare |
@@ -84,20 +88,23 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | DAZN | DAZN |
-| dAnimeStore | d Anime Store |
+| DJI | 大疆创新 |
 | DMMTV | DMM TV |
 | DeepSeek | DeepSeek |
 | Deezer | Deezer |
-| DingTalk | DingTalk |
+| DiDi | 滴滴 |
+| DingTalk | 钉钉 |
 | Direct | Direct |
 | Discord | Discord |
-| discoveryPlus | discovery+ |
-| DisneyPlus | DisneyPlus |
+| DisneyPlus | Disney+ |
 | Docker | Docker |
+| Douban | 豆瓣 |
 | Doubao | 豆包 |
 | Douyin | 抖音 |
 | Dropbox | Dropbox |
 | Duolingo | Duolingo |
+| dAnimeStore | d Anime Store |
+| discoveryPlus | discovery+ |
 
 ## E
 
@@ -106,7 +113,8 @@ proxy-groups:
 | ESPN | ESPN |
 | Egypt | 埃及 |
 | Emby | Emby |
-| EpicGames | EpicGames |
+| EpicGames | Epic Games |
+| eBay | eBay |
 
 ## F
 
@@ -118,7 +126,7 @@ proxy-groups:
 | Fileball | Fileball |
 | Final | Final |
 | FujiTV | Fuji TV |
-| friDayVideo | friDay video |
+| friDayVideo | friDay影音 |
 
 ## G
 
@@ -133,13 +141,14 @@ proxy-groups:
 | Gmail | Gmail |
 | Google | Google |
 | GoogleAI | Google AI |
-| GoogleDrive | GoogleDrive |
-| GoogleMaps | GoogleMaps |
-| GoogleNews | GoogleNews |
-| GooglePhotos | GooglePhotos |
+| GoogleDrive | Google Drive |
+| GoogleMaps | Google Maps |
+| GoogleNews | Google News |
+| GooglePhotos | Google Photos |
 | GooglePlay | Google Play |
-| GoogleTranslate | GoogleTranslate |
-| GoogleVoice | GoogleVoice |
+| GoogleTranslate | Google Translate |
+| GoogleVoice | Google Voice |
+| Grok | Grok |
 
 ## H
 
@@ -148,9 +157,10 @@ proxy-groups:
 | HBOMax | HBO Max |
 | HOYTV | HOY TV |
 | HamiVideo | Hami Video |
-| Hanxiaoquan | Hanxiaoquan |
+| Hanxiaoquan | 韩小圈 |
 | HongKong | 香港 |
-| Hotstar | Hotstar |
+| Honor | 荣耀 |
+| Huawei | 华为 |
 | Hulu | Hulu |
 
 ## I
@@ -173,6 +183,7 @@ proxy-groups:
 | JD | 京东 |
 | Japan | 日本 |
 | Jellyfin | Jellyfin |
+| JioHotstar | JioHotstar |
 
 ## K
 
@@ -184,6 +195,7 @@ proxy-groups:
 | KaraokeDAM | Karaoke@DAM |
 | Keep | Keep |
 | Korea | 韩国 |
+| Kwai | 快手 |
 
 ## L
 
@@ -191,6 +203,7 @@ proxy-groups:
 |---------------------|--------------------------|
 | LINE | LINE |
 | LINETV | LINE TV |
+| Lark | 飞书 |
 | Lemino | Lemino |
 | LiTV | LiTV |
 | Lightning | Lightning |
@@ -201,20 +214,24 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | Mail | Mail |
-| MangoTV | MangoTV |
+| MangoTV | 芒果TV |
 | Manus | Manus |
 | Meituan | 美团 |
 | Messenger | Messenger |
 | Meta | Meta |
 | MetaBrainz | MetaBrainz |
 | Microsoft | Microsoft |
-| Migu | Migu |
+| MicrosoftStore | Microsoft Store |
+| Migu | 咪咕 |
+| Mijia | 米家 |
+| MikroTik | MikroTik |
+| Muse | Muse |
 | MusicBrainz | MusicBrainz |
 | MusicJapan | Music Japan |
 | Musixmatch | Musixmatch |
 | MyVideo | MyVideo |
 | mora | mora |
-| myTVSUPER | myTV Super |
+| myTVSUPER | myTV SUPER |
 
 ## N
 
@@ -223,7 +240,7 @@ proxy-groups:
 | NBA | NBA |
 | NBC | NBC |
 | NHK | NHK |
-| NetEaseCloudMusic | NetEaseCloudMusic |
+| NetEaseCloudMusic | 网易云音乐 |
 | NetEaseMail | 网易邮箱 |
 | Netflix | Netflix |
 | Netherlands | 荷兰 |
@@ -232,6 +249,7 @@ proxy-groups:
 | Nintendo | Nintendo |
 | NorthKorea | 朝鲜 |
 | Notion | Notion |
+| NousResearch | Nous Research |
 | NowE | Now E |
 
 ## O
@@ -239,8 +257,11 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | OKX | OKX |
+| OPPO | OPPO |
+| Obsidian | Obsidian |
 | OneDrive | OneDrive |
 | OpenAI | OpenAI |
+| OpenWrt | OpenWrt |
 | Oracle | Oracle |
 | Outlook | Outlook |
 
@@ -256,8 +277,7 @@ proxy-groups:
 | PikPak | PikPak |
 | Pinduoduo | 拼多多 |
 | Pinterest | Pinterest |
-| Pipixia | Pipixia |
-| pixiv | pixiv |
+| Pipixia | 皮皮虾 |
 | Play | Play |
 | PlayStation | PlayStation |
 | Plex | Plex |
@@ -266,6 +286,7 @@ proxy-groups:
 | Poland | 波兰 |
 | PrimeVideo | Prime Video |
 | Proxy | Proxy |
+| pixiv | pixiv |
 
 ## Q
 
@@ -275,7 +296,7 @@ proxy-groups:
 | QQMail | QQ邮箱 |
 | QQMusic | QQ音乐 |
 | Qobuz | Qobuz |
-| Quark | Quark |
+| Quark | 夸克 |
 
 ## R
 
@@ -284,15 +305,17 @@ proxy-groups:
 | Radiko | Radiko |
 | RakutenTV | Rakuten TV |
 | ReadJapan | Read Japan |
-| rednote | 小红书 |
+| RedBullTV | Red Bull TV |
 | Reddit | Reddit |
 | Reject | Reject |
+| rednote | 小红书 |
 
 ## S
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | SF-Express | SF-Express |
+| SOOP | SOOP |
 | SSID | SSID |
 | STARZ | STARZ |
 | SWIFT | SWIFT |
@@ -300,13 +323,13 @@ proxy-groups:
 | Singapore | 新加坡 |
 | SiriAI | Siri AI |
 | Skype | Skype |
-| SlingTV | SlingTV |
+| SlingTV | Sling TV |
 | Snapchat | Snapchat |
 | SoundCloud | SoundCloud |
 | Spain | 西班牙 |
 | Speedtest | Speedtest |
 | Spotify | Spotify |
-| Star-Plus | Star-Plus |
+| StarPlus | StarPlus |
 | Steam | Steam |
 | Surge | Surge |
 | Synology | Synology |
@@ -322,12 +345,12 @@ proxy-groups:
 | TVer | TVer |
 | Taobao | 淘宝 |
 | Telegram | Telegram |
-| Tencent | Tencent |
+| Tencent | 腾讯 |
 | TencentVideo | 腾讯视频 |
 | TestFlight | TestFlight |
 | Thailand | 泰国 |
 | Threads | Threads |
-| Tieba | Tieba |
+| Tieba | 百度贴吧 |
 | TikTok | TikTok |
 | Traffic | Traffic |
 | Tubi | Tubi |
@@ -343,6 +366,7 @@ proxy-groups:
 | URL | URL |
 | US | 美国 |
 | Uber | Uber |
+| UnionPay | 银联 |
 
 ## V
 
@@ -371,6 +395,7 @@ proxy-groups:
 |---------------------|--------------------------|
 | X | X |
 | Xbox | Xbox |
+| Xiaomi | 小米 |
 
 ## Y
 
@@ -396,8 +421,6 @@ proxy-groups:
 | 123 | 123 |
 | 189 | 189 |
 | 1Password | 1Password |
-
----
 
 ## 补充规则
 

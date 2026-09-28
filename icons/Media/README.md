@@ -4,9 +4,8 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
+| `ABEMA` | `ABEMA.png` |
 | `AMC` | `AMC.png` |
-| `AbemaTV` | `AbemaTV.png` |
-| `AfreecaTV` | `AfreecaTV.png` |
 | `Bahamut` | `Bahamut.png` |
 | `Bangumi` | `Bangumi.png` |
 | `CATCHPLAY` | `CATCHPLAY.png` |
@@ -25,10 +24,10 @@
 | `HOYTV` | `HOYTV.png` |
 | `HamiVideo` | `HamiVideo.png` |
 | `Hanxiaoquan` | `Hanxiaoquan.png` |
-| `Hotstar` | `Hotstar.png Hotstar01.png` |
 | `Hulu` | `Hulu.png` |
 | `Infuse` | `Infuse.png` |
 | `Jellyfin` | `Jellyfin.png` |
+| `JioHotstar` | `JioHotstar.png JioHotstar01.png` |
 | `KKBOX` | `KKBOX.png` |
 | `KKTV` | `KKTV.png` |
 | `KaraokeDAM` | `KaraokeDAM.png` |
@@ -53,9 +52,10 @@
 | `RakutenTV` | `RakutenTV.png` |
 | `ReadJapan` | `ReadJapan.png` |
 | `RedBullTV` | `RedBullTV.png` |
+| `SOOP` | `SOOP.png` |
 | `STARZ` | `STARZ.png` |
 | `SlingTV` | `SlingTV.png` |
-| `Star-Plus` | `Star-Plus.png` |
+| `StarPlus` | `StarPlus.png` |
 | `TELASA` | `TELASA.png` |
 | `TVB` | `TVB.png` |
 | `TVer` | `TVer.png` |
