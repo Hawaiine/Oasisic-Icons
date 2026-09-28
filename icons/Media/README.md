@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体
 
-> 共 **74** 个图标，**71** 个品牌
+> 共 **73** 个图标，**71** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -27,7 +27,7 @@
 | `Hulu` | `Hulu.png` |
 | `Infuse` | `Infuse.png` |
 | `Jellyfin` | `Jellyfin.png` |
-| `JioHotstar` | `JioHotstar.png JioHotstar01.png` |
+| `JioHotstar` | `JioHotstar.png` |
 | `KKBOX` | `KKBOX.png` |
 | `KKTV` | `KKTV.png` |
 | `KaraokeDAM` | `KaraokeDAM.png` |
