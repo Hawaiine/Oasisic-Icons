@@ -1,6 +1,6 @@
 # 📡 Telecom / 运营商
 
-> 共 **11** 个图标，**10** 个品牌
+> 共 **14** 个图标，**13** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -13,4 +13,7 @@
 | `Huawei` | `Huawei.png` |
 | `Mijia` | `Mijia.png` |
 | `OPPO` | `OPPO.png` |
+| `SONY` | `SONY.png` |
+| `Samsung` | `Samsung.png` |
 | `Xiaomi` | `Xiaomi.png` |
+| `vivo` | `vivo.png` |

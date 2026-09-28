@@ -1,9 +1,10 @@
 # 🤖 AI / 人工智能服务
 
-> 共 **10** 个图标，**10** 个品牌
+> 共 **11** 个图标，**11** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
+| `AmazonAlexa` | `AmazonAlexa.png` |
 | `Anthropic` | `Anthropic.png` |
 | `DeepSeek` | `DeepSeek.png` |
 | `Doubao` | `Doubao.png` |

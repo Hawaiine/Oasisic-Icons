@@ -3,6 +3,11 @@
   "description": "Cross-platform Proxy Policy Group Icons / 跨平台代理策略组图标合集",
   "icons": [
     {
+      "name": "AmazonAlexa",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/AmazonAlexa/AmazonAlexa.png"
+    },
+    {
       "name": "Anthropic",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Anthropic/Anthropic.png"
@@ -1233,6 +1238,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Microsoft/Xbox/Xbox.png"
     },
     {
+      "name": "AmazonMusic",
+      "category": "Music",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/AmazonMusic/AmazonMusic.png"
+    },
+    {
       "name": "Deezer",
       "category": "Music",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Music/Deezer/Deezer.png"
@@ -1703,9 +1713,24 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/OPPO/OPPO.png"
     },
     {
+      "name": "SONY",
+      "category": "Telecom",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/SONY/SONY.png"
+    },
+    {
+      "name": "Samsung",
+      "category": "Telecom",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/Samsung/Samsung.png"
+    },
+    {
       "name": "Xiaomi",
       "category": "Telecom",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/Xiaomi/Xiaomi.png"
+    },
+    {
+      "name": "vivo",
+      "category": "Telecom",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Telecom/vivo/vivo.png"
     },
     {
       "name": "1Password",
