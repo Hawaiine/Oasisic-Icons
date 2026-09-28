@@ -813,19 +813,14 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/YouTubeMusic/YouTubeMusic.png"
     },
     {
+      "name": "ABEMA",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/ABEMA/ABEMA.png"
+    },
+    {
       "name": "AMC",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/AMC/AMC.png"
-    },
-    {
-      "name": "AbemaTV",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/AbemaTV/AbemaTV.png"
-    },
-    {
-      "name": "AfreecaTV",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/AfreecaTV/AfreecaTV.png"
     },
     {
       "name": "Bahamut",
@@ -928,16 +923,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Hanxiaoquan/Hanxiaoquan.png"
     },
     {
-      "name": "Hotstar",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Hotstar/Hotstar.png"
-    },
-    {
-      "name": "Hotstar01",
-      "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Hotstar/Hotstar01.png"
-    },
-    {
       "name": "Hulu",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Hulu/Hulu.png"
@@ -951,6 +936,16 @@
       "name": "Jellyfin",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Jellyfin/Jellyfin.png"
+    },
+    {
+      "name": "JioHotstar",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/JioHotstar/JioHotstar.png"
+    },
+    {
+      "name": "JioHotstar01",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/JioHotstar/JioHotstar01.png"
     },
     {
       "name": "KKBOX",
@@ -1073,6 +1068,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/RedBullTV/RedBullTV.png"
     },
     {
+      "name": "SOOP",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/SOOP/SOOP.png"
+    },
+    {
       "name": "STARZ",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/STARZ/STARZ.png"
@@ -1083,9 +1083,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/SlingTV/SlingTV.png"
     },
     {
-      "name": "Star-Plus",
+      "name": "StarPlus",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Star-Plus/Star-Plus.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/StarPlus/StarPlus.png"
     },
     {
       "name": "TELASA",
