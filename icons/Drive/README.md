@@ -8,7 +8,7 @@
 | `123` | `123.png` |
 | `189` | `189.png` |
 | `AliCloud` | `AliCloud.png AliCloud01.png` |
-| `BaiduNetDisk` | `BaiduNetDisk.png` |
+| `BaiduNetdisk` | `BaiduNetdisk.png` |
 | `ChinaMobileDisk` | `ChinaMobileDisk.png` |
 | `Dropbox` | `Dropbox.png` |
 | `PikPak` | `PikPak.png` |

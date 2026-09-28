@@ -54,7 +54,7 @@ proxy-groups:
 | BGP | BGP |
 | Bahamut | Bahamut |
 | Baidu | 百度 |
-| BaiduNetDisk | 百度网盘 |
+| BaiduNetdisk | 百度网盘 |
 | Bangumi | Bangumi |
 | BestBuy | Best Buy |
 | Binance | Binance |
