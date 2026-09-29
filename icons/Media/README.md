@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体与视频
 
-> 共 **70** 个图标，**68** 个品牌
+> 共 **71** 个图标，**69** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -39,6 +39,7 @@
 | `NBA` | `NBA.png` |
 | `NBC` | `NBC.png` |
 | `NHK` | `NHK.png` |
+| `NetEase` | `NetEase.png` |
 | `Netflix` | `Netflix.png` |
 | `Niconico` | `Niconico.png` |
 | `NowE` | `NowE.png` |

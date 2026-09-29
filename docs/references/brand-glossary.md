@@ -1,7 +1,7 @@
 # 品牌术语表 / Brand Glossary
 
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **280** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **282** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -58,6 +58,7 @@
 | Bing | Bing |
 | Blacklist | Blacklist |
 | Bluesky | Bluesky |
+| ByteDance | 字节跳动 |
 | Bot | Bot |
 | bilibili | bilibili |
 
@@ -241,6 +242,7 @@
 | NBA | NBA |
 | NBC | NBC |
 | NHK | NHK |
+| NetEase | 网易 |
 | NetEaseCloudMusic | 网易云音乐 |
 | NetEaseMail | 网易邮箱 |
 | Netflix | Netflix |

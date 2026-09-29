@@ -1,10 +1,11 @@
 # 👥 Social / 社交媒体与社区
 
-> 共 **24** 个图标，**19** 个品牌
+> 共 **25** 个图标，**20** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `Bluesky` | `Bluesky.png` |
+| `ByteDance` | `ByteDance.png` |
 | `Douban` | `Douban.png` |
 | `Douyin` | `Douyin.png` |
 | `Facebook` | `Facebook.png` |

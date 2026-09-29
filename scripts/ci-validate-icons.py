@@ -143,6 +143,7 @@ for h, paths in sorted(hash_to_paths.items()):
 ENTITY_TYPES = {'ecosystem', 'product_brand', 'country', 'system_icon', 'tool_app'}
 ssot = {}
 aliases = set()
+bdata = []
 if not BRANDS_PATH.exists():
     fail('Brands SSOT', '缺少 %s（品牌 SSOT）' % BRANDS_PATH)
 else:
@@ -268,10 +269,114 @@ for d in scan_dirs:
                 line_no = text.count('\n', 0, m.start()) + 1
                 fail('Legacy paths', '%s:%d 引用 legacy 路径 %s' % (rel, line_no, pat))
 
+# ---------- 11. README 分类表结构 ----------
+# header / separator / 全量覆盖 / 无重复 / 顺序 / 计数
+README_TABLE_TITLE = '图标分类列表'
+if not Path('README.md').exists():
+    fail('README 表格', '缺少 README.md')
+else:
+    readme = Path('README.md').read_text(encoding='utf-8')
+    ri = readme.find(README_TABLE_TITLE)
+    if ri < 0:
+        fail('README 表格', '未找到 %s 小节' % README_TABLE_TITLE)
+    else:
+        rj = readme.find('\n## ', ri + len(README_TABLE_TITLE))
+        if rj < 0:
+            rj = readme.find('\n### ', ri + len(README_TABLE_TITLE))
+        rseg = readme[ri:rj if rj > 0 else len(readme)]
+        trows = [l for l in rseg.splitlines() if l.strip().startswith('|')]
+        if not trows:
+            fail('README 表格', '分类小节内没有任何表格行')
+        else:
+            header = trows[0]
+            if '分类' not in header or '品牌数' not in header:
+                fail('README 表格', '表头非法（应为 分类/说明/品牌数/图标数）: %s' % header.strip())
+            if len(trows) < 2 or not re.match(r'^\|[\s\-:|]+\|$', trows[1].strip()):
+                fail('README 表格', '缺少 header 后的分隔行 |---|')
+            data_rows = [r for r in trows[2:] if r.strip() != '|']
+            # 每行 4 列 + 数字
+            parsed = []
+            for r in data_rows:
+                cells = [c.strip() for c in r.strip().strip('|').split('|')]
+                if len(cells) != 4:
+                    fail('README 表格', '列数 != 4: %s' % r.strip())
+                    continue
+                name = cells[0].split(' ', 1)[1] if ' ' in cells[0] else cells[0]
+                if cells[2].startswith('**') or '合计' in name:
+                    continue  # 合计行单独校验
+                if not (cells[2].isdigit() and cells[3].isdigit()):
+                    fail('README 表格', '计数列非数字: %s' % r.strip())
+                    continue
+                parsed.append((name, int(cells[2]), int(cells[3])))
+            cat_by_name = {c['display_name']: c for c in cats}
+            seen = set()
+            for name, nb, ni in parsed:
+                if name in seen:
+                    fail('README 表格', '分类重复: %s' % name)
+                seen.add(name)
+                if name not in cat_by_name:
+                    fail('README 表格', '未知分类: %s' % name)
+            for c in cats:
+                if c['display_name'] not in seen:
+                    fail('README 表格', '缺失分类: %s' % c['display_name'])
+            # 顺序与 categories.json 一致
+            if [n for n, _, _ in parsed] != [c['display_name'] for c in cats]:
+                fail('README 表格', '表格顺序与 categories.json 不一致')
+            # 计数与真实数据一致
+            brand_by_cat = {}
+            for e in bdata:
+                brand_by_cat[e['category']] = brand_by_cat.get(e['category'], 0) + 1
+            icon_by_cat = {}
+            for p in all_pngs:
+                c = str(p.relative_to(ICONS)).split('/')[0]
+                icon_by_cat[c] = icon_by_cat.get(c, 0) + 1
+            for name, nb, ni in parsed:
+                cobj = cat_by_name.get(name)
+                if not cobj:
+                    continue
+                cid = cobj['id']
+                if nb != brand_by_cat.get(cid, 0) or ni != icon_by_cat.get(cid, 0):
+                    fail('README 表格', '%s 计数不符: 表=%d/%d 实际=%d/%d' %
+                         (name, nb, ni, brand_by_cat.get(cid, 0), icon_by_cat.get(cid, 0)))
+
+# ---------- 12. 生态一致性 ----------
+# parent_brand 白名单不得含已有 icon 的父品牌；ecosystem ⟺ 专属生态目录；
+# 子品牌位于专属生态目录时必须标注 parent_brand
+cat_by_id = {c['id']: c for c in cats}
+brand_by_id_cat = {b['id']: b.get('category') for b in bdata}
+children_of = {}
+for e in bdata:
+    p = e.get('parent_brand')
+    if p:
+        children_of.setdefault(p, []).append(e['id'])
+# 专属生态目录 = 目录名与某品牌 id 相同的分类
+dedicated = {bid for bid in ssot if brand_by_id_cat.get(bid) == bid}
+# (a) 白名单纯净：parent_brands_without_icon 中的品牌不得已有 canonical icon
+for a in aliases:
+    if a in ssot:
+        fail('生态一致性', 'parent_brands_without_icon 含已有 icon 的品牌: %s' % a)
+# (b) entity_type ⟺ 专属生态目录
+for bid, e in ssot.items():
+    et = e.get('entity_type')
+    if et == 'ecosystem' and bid not in dedicated:
+        fail('生态一致性', 'entity_type=ecosystem 但无专属生态目录: %s' % bid)
+    if et != 'ecosystem' and bid in dedicated and bid in children_of and len(children_of[bid]) >= 2:
+        fail('生态一致性', '拥有专属生态目录与 ≥2 子品牌，entity_type 应为 ecosystem: %s' % bid)
+# (c) 子品牌位于专属生态目录必须标注 parent_brand（反方向漏标）
+for bid, e in ssot.items():
+    c = e.get('category')
+    if c in dedicated and c != bid:
+        if e.get('parent_brand') != c:
+            fail('生态一致性', '位于生态目录 %s/ 但未标注 parent_brand=%s: %s' % (c, c, bid))
+# (d) 有 root icon 且 ≥2 子品牌、无专属目录的父品牌 = 合法「功能分类根图标」模式，
+#     不视为错误（Baidu/Meta/NetEase/ByteDance 判例）；无 icon 的父品牌必须登记白名单。
+#     无登记且无 icon 的孤儿父品牌由 Brands SSOT 组以「parent_brand 不存在」拦截。
+
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
-                   'Surge JSON', 'Glossary', 'Legacy paths']
+                   'Surge JSON', 'Glossary', 'Legacy paths',
+                   'README 表格', '生态一致性']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:

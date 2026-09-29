@@ -913,6 +913,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/NHK/NHK.png"
     },
     {
+      "name": "NetEase",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/NetEase/NetEase.png"
+    },
+    {
       "name": "Netflix",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png"
@@ -1276,6 +1281,11 @@
       "name": "Bluesky",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Bluesky/Bluesky.png"
+    },
+    {
+      "name": "ByteDance",
+      "category": "Social",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/ByteDance/ByteDance.png"
     },
     {
       "name": "Douban",

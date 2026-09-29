@@ -1080,6 +1080,13 @@
       "icon_path": "icons/Media/NHK/NHK.png"
     },
     {
+      "id": "NetEase",
+      "display_name": "网易",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Media/NetEase/NetEase.png"
+    },
+    {
       "id": "Netflix",
       "display_name": "Netflix",
       "category": "Media",
@@ -1571,6 +1578,13 @@
       "icon_path": "icons/Social/Bluesky/Bluesky.png"
     },
     {
+      "id": "ByteDance",
+      "display_name": "字节跳动",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Social/ByteDance/ByteDance.png"
+    },
+    {
       "id": "Douban",
       "display_name": "豆瓣",
       "category": "Social",
@@ -1664,7 +1678,8 @@
       "display_name": "TikTok",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/TikTok/TikTok.png"
+      "icon_path": "icons/Social/TikTok/TikTok.png",
+      "parent_brand": "ByteDance"
     },
     {
       "id": "Weibo",
@@ -2016,8 +2031,5 @@
       "icon_path": "icons/Utilities/Zoom/Zoom.png"
     }
   ],
-  "parent_brands_without_icon": [
-    "ByteDance",
-    "NetEase"
-  ]
+  "parent_brands_without_icon": []
 }
