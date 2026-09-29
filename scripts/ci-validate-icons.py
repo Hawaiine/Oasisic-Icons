@@ -138,9 +138,9 @@ else:
     disk_brands = {str(bd.relative_to(ICONS)): bd.name for bd in brand_dirs}
     ssot_paths = {e['icon_path'].split('/')[1] + '/' + e['icon_path'].split('/')[2]: e['id']
                   for e in bdata}
-    for rel in sorted(disk_brands - set(ssot_paths)):
+    for rel in sorted(set(disk_brands) - set(ssot_paths)):
         fail('磁盘品牌不在 brands.json: icons/%s' % rel)
-    for rel in sorted(set(ssot_paths) - disk_brands):
+    for rel in sorted(set(ssot_paths) - set(disk_brands)):
         fail('brands.json 品牌在磁盘不存在: icons/%s' % rel)
     for e in bdata:
         if e['category'] not in {c['id'] for c in json.loads(CATS_PATH.read_text(encoding='utf-8'))['categories']}:
