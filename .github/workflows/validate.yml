@@ -17,5 +17,8 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install Pillow
+        run: pip install Pillow
+
       - name: Validate Oasisic-Icons repository
         run: python3 scripts/ci-validate-icons.py
