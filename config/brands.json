@@ -354,7 +354,7 @@
       "category": "CloudStorage",
       "entity_type": "product_brand",
       "icon_path": "icons/CloudStorage/Quark/Quark.png",
-      "parent_brand": "Baidu"
+      "parent_brand": "Alibaba"
     },
     {
       "id": "DingTalk",
@@ -396,7 +396,8 @@
       "display_name": "Messenger",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/Messenger/Messenger.png"
+      "icon_path": "icons/Communication/Messenger/Messenger.png",
+      "parent_brand": "Meta"
     },
     {
       "id": "NetEaseMail",
@@ -432,7 +433,8 @@
       "display_name": "WhatsApp",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/WhatsApp/WhatsApp.png"
+      "icon_path": "icons/Communication/WhatsApp/WhatsApp.png",
+      "parent_brand": "Meta"
     },
     {
       "id": "Argentina",
@@ -1586,22 +1588,23 @@
       "display_name": "Facebook",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Facebook/Facebook.png"
+      "icon_path": "icons/Social/Facebook/Facebook.png",
+      "parent_brand": "Meta"
     },
     {
       "id": "Instagram",
       "display_name": "Instagram",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Instagram/Instagram.png"
+      "icon_path": "icons/Social/Instagram/Instagram.png",
+      "parent_brand": "Meta"
     },
     {
       "id": "Kwai",
       "display_name": "快手",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Kwai/Kwai.png",
-      "parent_brand": "ByteDance"
+      "icon_path": "icons/Social/Kwai/Kwai.png"
     },
     {
       "id": "LinkedIn",
@@ -1643,14 +1646,16 @@
       "display_name": "Threads",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Threads/Threads.png"
+      "icon_path": "icons/Social/Threads/Threads.png",
+      "parent_brand": "Meta"
     },
     {
       "id": "Tieba",
       "display_name": "百度贴吧",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Tieba/Tieba.png"
+      "icon_path": "icons/Social/Tieba/Tieba.png",
+      "parent_brand": "Baidu"
     },
     {
       "id": "TikTok",
@@ -2008,5 +2013,9 @@
       "entity_type": "product_brand",
       "icon_path": "icons/Utilities/Zoom/Zoom.png"
     }
+  ],
+  "parent_brands_without_icon": [
+    "ByteDance",
+    "NetEase"
   ]
 }
