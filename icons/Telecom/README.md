@@ -1,6 +1,6 @@
 # 📡 Telecom / 运营商
 
-> 共 **14** 个图标，**13** 个品牌
+> 共 **15** 个图标，**14** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -11,6 +11,7 @@
 | `ChinaUnicom` | `ChinaUnicom.png` |
 | `Honor` | `Honor.png` |
 | `Huawei` | `Huawei.png` |
+| `LG` | `LG.png` |
 | `Mijia` | `Mijia.png` |
 | `OPPO` | `OPPO.png` |
 | `SONY` | `SONY.png` |
