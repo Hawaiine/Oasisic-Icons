@@ -1925,9 +1925,9 @@
     {
       "id": "Airport",
       "display_name": "Airport",
-      "category": "Transport",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Transport/Airport/Airport.png"
+      "category": "System",
+      "entity_type": "system_icon",
+      "icon_path": "icons/System/Airport/Airport.png"
     },
     {
       "id": "DiDi",

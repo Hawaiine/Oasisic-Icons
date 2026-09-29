@@ -87,7 +87,7 @@
 | QQ | Social | Tencent | `icons/Social/QQ/QQ.png` | `icons/Tencent/QQ/QQ.png` | 腾讯生态（QQ） |
 | Tencent | Social | Tencent | `icons/Social/Tencent/Tencent.png` | `icons/Tencent/Tencent/Tencent.png` | 腾讯生态 |
 | WeChat | Social | Tencent | `icons/Social/WeChat/WeChat.png` | `icons/Tencent/WeChat/WeChat.png` | 腾讯生态（微信） |
-| Airport | Tool | Transport | `icons/Tool/Airport/Airport.png` | `icons/Transport/Airport/Airport.png` | 出行/交通图标 |
+| Airport | Tool | System | `icons/Tool/Airport/Airport.png` | `icons/System/Airport/Airport.png` | 通用机场/机场规则组语义，非具体机场品牌 → System |
 | DiDi | Tool | Transport | `icons/Tool/DiDi/DiDi.png` | `icons/Transport/DiDi/DiDi.png` | 出行平台（滴滴） |
 | SF-Express | Tool | Transport | `icons/Tool/SF-Express/SF-Express.png` | `icons/Transport/SF-Express/SF-Express.png` | 快递物流 |
 | Uber | Tool | Transport | `icons/Tool/Uber/Uber.png` | `icons/Transport/Uber/Uber.png` | 出行平台 |

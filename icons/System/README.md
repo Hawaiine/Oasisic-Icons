@@ -1,10 +1,11 @@
 # ⚙️ System / 代理系统图标与通用策略
 
-> 共 **48** 个图标，**19** 个品牌
+> 共 **49** 个图标，**20** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `AD` | `AD.png AD01.png AD02.png AD03.png AD04.png AD05.png AD06.png` |
+| `Airport` | `Airport.png` |
 | `Area` | `Area.png` |
 | `Auto` | `Auto.png` |
 | `Blacklist` | `Blacklist.png` |

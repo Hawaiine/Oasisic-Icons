@@ -1508,6 +1508,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/System/AD/AD06.png"
     },
     {
+      "name": "Airport",
+      "category": "System",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/System/Airport/Airport.png"
+    },
+    {
       "name": "Area",
       "category": "System",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/System/Area/Area.png"
@@ -1771,11 +1776,6 @@
       "name": "WeTV",
       "category": "Tencent",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tencent/WeTV/WeTV.png"
-    },
-    {
-      "name": "Airport",
-      "category": "Transport",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Transport/Airport/Airport.png"
     },
     {
       "name": "DiDi",

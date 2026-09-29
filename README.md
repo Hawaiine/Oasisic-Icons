@@ -193,10 +193,10 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🛒 Shopping | 购物与电商 | 5 | 6 |
 | 👥 Social | 社交媒体与社区 | 19 | 24 |
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
-| ⚙️ System | 代理系统图标与通用策略 | 19 | 48 |
+| ⚙️ System | 代理系统图标与通用策略 | 20 | 49 |
 | 📡 Telecom | 电信运营商 | 4 | 5 |
 | 🐧 Tencent | 腾讯生态 | 7 | 7 |
-| 🚗 Transport | 出行与交通 | 4 | 4 |
+| 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | **合计** | — | **280** | **367** |
 

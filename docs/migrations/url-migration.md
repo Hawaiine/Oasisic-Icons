@@ -121,7 +121,7 @@
 
 - `icons/Tool/1Password/` → `icons/Utilities/1Password/`
 - `icons/Tool/AdGuard/` → `icons/Utilities/AdGuard/`
-- `icons/Tool/Airport/` → `icons/Transport/Airport/`
+- `icons/Tool/Airport/` → `icons/System/Airport/`
 - `icons/Tool/DJI/` → `icons/Hardware/DJI/`
 - `icons/Tool/DiDi/` → `icons/Transport/DiDi/`
 - `icons/Tool/Duolingo/` → `icons/Education/Duolingo/`

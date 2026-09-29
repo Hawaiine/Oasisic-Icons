@@ -10,7 +10,7 @@
 | DevOps | 已删除 | → 拆入 Cloud（Cloudflare/Docker/MikroTik/OpenWrt/Oracle/Synology）+ Amazon/AWS + Microsoft/Azure |
 | Drive | 已删除 | → CloudStorage（云盘）+ Alibaba/AliCloud |
 | General | 已删除 | → System（16 个系统图标）+ AI/Manus + Tencent/QQMail + Communication/NetEaseMail + Utilities/Baidu/MetaBrainz |
-| Tool | 已删除 | → Development/GitHub、Education/Duolingo+Z-Library、Hardware/DJI、Transport/Airport+DiDi+Uber+SF-Express、Media/TMDB、Health/Keep、Utilities/其余 7 个 |
+| Tool | 已删除 | → Development/GitHub、Education/Duolingo+Z-Library、Hardware/DJI、System/Airport、Transport/DiDi+Uber+SF-Express、Media/TMDB、Health/Keep、Utilities/其余 7 个 |
 | Telecom | 重组 | → 只保留 4 家运营商；8 个手机品牌 → Hardware，Aqara/Mijia → Home |
 | Media | 重组 | → 移出 PrimeVideo（Amazon）、TencentVideo/WeTV（Tencent）、Douyin（Social）、KKBOX（Music）、BBC（保留 Media） |
 | Social | 重组 | → 移出通讯类 8 个 → Communication，腾讯系 4 个 → Tencent |
