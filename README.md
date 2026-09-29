@@ -17,8 +17,8 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-363-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-276-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/icons-367-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-280-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-21-orange?style=flat-square" alt="Categories Count">
 </p>
 
@@ -26,9 +26,9 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **363** 个 PNG 图标，覆盖 **276** 个品牌，归入 **21** 个活跃分类（另有 `Education` / `Finance` / `Health` 3 个预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **367** 个 PNG 图标，覆盖 **280** 个品牌，归入 **21** 个活跃分类（另有 `Education` / `Finance` / `Health` 3 个预留空分类）。
 
-本项目为独立图标仓库，当前 363 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，当前 367 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
 > 仓库内图标按该规范维护，均为 512×512、RGBA、保留原始底色，经 `scripts/optimize-icons.py` 无损重压缩；少量历史圆角边缘遗留项待处理，明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
@@ -169,7 +169,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 | 分类 | 说明 | 品牌数 | 图标数 |
 |---|---|---|---|
-| 🤖 AI | 人工智能服务 | 11 | 11 |
+| 🤖 AI | 人工智能服务 | 15 | 15 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
@@ -193,7 +193,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
 | 📡 Telecom | 运营商 | 14 | 15 |
 | 🔩 Tool | 工具 | 17 | 17 |
-| **合计** | — | **276** | **363** |
+| **合计** | — | **280** | **367** |
 
 `Education` / `Finance` / `Health` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
 

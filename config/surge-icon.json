@@ -23,6 +23,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Doubao/Doubao.png"
     },
     {
+      "name": "GLM",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/GLM/GLM.png"
+    },
+    {
       "name": "GeneralAI",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/GeneralAI/GeneralAI.png"
@@ -31,6 +36,16 @@
       "name": "Grok",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Grok/Grok.png"
+    },
+    {
+      "name": "Kimi",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Kimi/Kimi.png"
+    },
+    {
+      "name": "MiniMax",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/MiniMax/MiniMax.png"
     },
     {
       "name": "Muse",
@@ -56,6 +71,11 @@
       "name": "Poe",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Poe/Poe.png"
+    },
+    {
+      "name": "Qwen",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Qwen/Qwen.png"
     },
     {
       "name": "AppStore",
