@@ -322,9 +322,9 @@
     {
       "id": "BaiduNetdisk",
       "display_name": "百度网盘",
-      "category": "CloudStorage",
+      "category": "Baidu",
       "entity_type": "product_brand",
-      "icon_path": "icons/CloudStorage/BaiduNetdisk/BaiduNetdisk.png",
+      "icon_path": "icons/Baidu/BaiduNetdisk/BaiduNetdisk.png",
       "parent_brand": "Baidu"
     },
     {
@@ -351,17 +351,17 @@
     {
       "id": "Quark",
       "display_name": "夸克",
-      "category": "CloudStorage",
+      "category": "Alibaba",
       "entity_type": "product_brand",
-      "icon_path": "icons/CloudStorage/Quark/Quark.png",
+      "icon_path": "icons/Alibaba/Quark/Quark.png",
       "parent_brand": "Alibaba"
     },
     {
       "id": "DingTalk",
       "display_name": "钉钉",
-      "category": "Communication",
+      "category": "Alibaba",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/DingTalk/DingTalk.png",
+      "icon_path": "icons/Alibaba/DingTalk/DingTalk.png",
       "parent_brand": "Alibaba"
     },
     {
@@ -388,25 +388,25 @@
     {
       "id": "Lark",
       "display_name": "飞书",
-      "category": "Communication",
+      "category": "ByteDance",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/Lark/Lark.png",
+      "icon_path": "icons/ByteDance/Lark/Lark.png",
       "parent_brand": "ByteDance"
     },
     {
       "id": "Messenger",
       "display_name": "Messenger",
-      "category": "Communication",
+      "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/Messenger/Messenger.png",
+      "icon_path": "icons/Meta/Messenger/Messenger.png",
       "parent_brand": "Meta"
     },
     {
       "id": "NetEaseMail",
       "display_name": "网易邮箱",
-      "category": "Communication",
+      "category": "NetEase",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/NetEaseMail/NetEaseMail.png",
+      "icon_path": "icons/NetEase/NetEaseMail/NetEaseMail.png",
       "parent_brand": "NetEase"
     },
     {
@@ -433,9 +433,9 @@
     {
       "id": "WhatsApp",
       "display_name": "WhatsApp",
-      "category": "Communication",
+      "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/WhatsApp/WhatsApp.png",
+      "icon_path": "icons/Meta/WhatsApp/WhatsApp.png",
       "parent_brand": "Meta"
     },
     {
@@ -1082,9 +1082,9 @@
     {
       "id": "NetEase",
       "display_name": "网易",
-      "category": "Media",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Media/NetEase/NetEase.png"
+      "category": "NetEase",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/NetEase/NetEase/NetEase.png"
     },
     {
       "id": "Netflix",
@@ -1418,9 +1418,9 @@
     {
       "id": "NetEaseCloudMusic",
       "display_name": "网易云音乐",
-      "category": "Music",
+      "category": "NetEase",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/NetEaseCloudMusic/NetEaseCloudMusic.png",
+      "icon_path": "icons/NetEase/NetEaseCloudMusic/NetEaseCloudMusic.png",
       "parent_brand": "NetEase"
     },
     {
@@ -1580,9 +1580,9 @@
     {
       "id": "ByteDance",
       "display_name": "字节跳动",
-      "category": "Social",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Social/ByteDance/ByteDance.png"
+      "category": "ByteDance",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/ByteDance/ByteDance/ByteDance.png"
     },
     {
       "id": "Douban",
@@ -1594,25 +1594,25 @@
     {
       "id": "Douyin",
       "display_name": "抖音",
-      "category": "Social",
+      "category": "ByteDance",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Douyin/Douyin.png",
+      "icon_path": "icons/ByteDance/Douyin/Douyin.png",
       "parent_brand": "ByteDance"
     },
     {
       "id": "Facebook",
       "display_name": "Facebook",
-      "category": "Social",
+      "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Facebook/Facebook.png",
+      "icon_path": "icons/Meta/Facebook/Facebook.png",
       "parent_brand": "Meta"
     },
     {
       "id": "Instagram",
       "display_name": "Instagram",
-      "category": "Social",
+      "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Instagram/Instagram.png",
+      "icon_path": "icons/Meta/Instagram/Instagram.png",
       "parent_brand": "Meta"
     },
     {
@@ -1632,9 +1632,9 @@
     {
       "id": "Meta",
       "display_name": "Meta",
-      "category": "Social",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Social/Meta/Meta.png"
+      "category": "Meta",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/Meta/Meta/Meta.png"
     },
     {
       "id": "Pinterest",
@@ -1660,25 +1660,25 @@
     {
       "id": "Threads",
       "display_name": "Threads",
-      "category": "Social",
+      "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Threads/Threads.png",
+      "icon_path": "icons/Meta/Threads/Threads.png",
       "parent_brand": "Meta"
     },
     {
       "id": "Tieba",
       "display_name": "百度贴吧",
-      "category": "Social",
+      "category": "Baidu",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Tieba/Tieba.png",
+      "icon_path": "icons/Baidu/Tieba/Tieba.png",
       "parent_brand": "Baidu"
     },
     {
       "id": "TikTok",
       "display_name": "TikTok",
-      "category": "Social",
+      "category": "ByteDance",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/TikTok/TikTok.png",
+      "icon_path": "icons/ByteDance/TikTok/TikTok.png",
       "parent_brand": "ByteDance"
     },
     {
@@ -1984,9 +1984,9 @@
     {
       "id": "Baidu",
       "display_name": "百度",
-      "category": "Utilities",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Utilities/Baidu/Baidu.png"
+      "category": "Baidu",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/Baidu/Baidu/Baidu.png"
     },
     {
       "id": "MetaBrainz",

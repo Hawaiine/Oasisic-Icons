@@ -37,13 +37,31 @@
       "sort_order": 3
     },
     {
+      "id": "Baidu",
+      "display_name": "Baidu",
+      "emoji": "🔍",
+      "description": "百度生态",
+      "type": "ecosystem",
+      "status": "active",
+      "sort_order": 4
+    },
+    {
+      "id": "ByteDance",
+      "display_name": "ByteDance",
+      "emoji": "▶️",
+      "description": "字节跳动生态",
+      "type": "ecosystem",
+      "status": "active",
+      "sort_order": 5
+    },
+    {
       "id": "Infrastructure",
       "display_name": "Infrastructure",
       "emoji": "🏗️",
       "description": "基础设施与运维（云平台/网络/容器/NAS）",
       "type": "functional",
       "status": "active",
-      "sort_order": 4
+      "sort_order": 6
     },
     {
       "id": "CloudStorage",
@@ -52,7 +70,7 @@
       "description": "云盘与文件存储",
       "type": "functional",
       "status": "active",
-      "sort_order": 5
+      "sort_order": 7
     },
     {
       "id": "Communication",
@@ -61,7 +79,7 @@
       "description": "即时通讯与团队协作",
       "type": "functional",
       "status": "active",
-      "sort_order": 6
+      "sort_order": 8
     },
     {
       "id": "Country",
@@ -70,7 +88,7 @@
       "description": "国家与地区旗帜",
       "type": "functional",
       "status": "active",
-      "sort_order": 7
+      "sort_order": 9
     },
     {
       "id": "Crypto",
@@ -79,7 +97,7 @@
       "description": "加密货币与区块链",
       "type": "functional",
       "status": "active",
-      "sort_order": 8
+      "sort_order": 10
     },
     {
       "id": "Development",
@@ -88,7 +106,7 @@
       "description": "开发者工具与平台",
       "type": "functional",
       "status": "active",
-      "sort_order": 9
+      "sort_order": 11
     },
     {
       "id": "Education",
@@ -97,7 +115,7 @@
       "description": "教育与学习平台",
       "type": "functional",
       "status": "active",
-      "sort_order": 10
+      "sort_order": 12
     },
     {
       "id": "Finance",
@@ -106,7 +124,16 @@
       "description": "金融理财",
       "type": "functional",
       "status": "reserved",
-      "sort_order": 11
+      "sort_order": 13
+    },
+    {
+      "id": "Meta",
+      "display_name": "Meta",
+      "emoji": "📱",
+      "description": "Meta 生态",
+      "type": "ecosystem",
+      "status": "active",
+      "sort_order": 14
     },
     {
       "id": "Game",
@@ -115,7 +142,7 @@
       "description": "游戏平台与服务",
       "type": "functional",
       "status": "active",
-      "sort_order": 12
+      "sort_order": 15
     },
     {
       "id": "Google",
@@ -124,7 +151,7 @@
       "description": "Google 服务与生态",
       "type": "ecosystem",
       "status": "active",
-      "sort_order": 13
+      "sort_order": 16
     },
     {
       "id": "Hardware",
@@ -133,7 +160,7 @@
       "description": "硬件与消费电子设备",
       "type": "functional",
       "status": "active",
-      "sort_order": 14
+      "sort_order": 17
     },
     {
       "id": "Health",
@@ -142,7 +169,16 @@
       "description": "健康与运动",
       "type": "functional",
       "status": "active",
-      "sort_order": 15
+      "sort_order": 18
+    },
+    {
+      "id": "NetEase",
+      "display_name": "NetEase",
+      "emoji": "🎧",
+      "description": "网易生态",
+      "type": "ecosystem",
+      "status": "active",
+      "sort_order": 19
     },
     {
       "id": "Home",
@@ -151,7 +187,7 @@
       "description": "智能家居与家庭设备",
       "type": "functional",
       "status": "active",
-      "sort_order": 16
+      "sort_order": 20
     },
     {
       "id": "Media",
@@ -160,7 +196,7 @@
       "description": "影音流媒体与视频",
       "type": "functional",
       "status": "active",
-      "sort_order": 17
+      "sort_order": 21
     },
     {
       "id": "Microsoft",
@@ -169,7 +205,7 @@
       "description": "微软服务与生态",
       "type": "ecosystem",
       "status": "active",
-      "sort_order": 18
+      "sort_order": 22
     },
     {
       "id": "Music",
@@ -178,7 +214,7 @@
       "description": "音乐服务",
       "type": "functional",
       "status": "active",
-      "sort_order": 19
+      "sort_order": 23
     },
     {
       "id": "News",
@@ -187,7 +223,7 @@
       "description": "新闻与资讯",
       "type": "functional",
       "status": "active",
-      "sort_order": 20
+      "sort_order": 24
     },
     {
       "id": "Payment",
@@ -196,7 +232,7 @@
       "description": "支付与金融交易",
       "type": "functional",
       "status": "active",
-      "sort_order": 21
+      "sort_order": 25
     },
     {
       "id": "Proxy",
@@ -205,7 +241,7 @@
       "description": "代理线路与协议",
       "type": "functional",
       "status": "active",
-      "sort_order": 22
+      "sort_order": 26
     },
     {
       "id": "Shopping",
@@ -214,7 +250,7 @@
       "description": "购物与电商",
       "type": "functional",
       "status": "active",
-      "sort_order": 23
+      "sort_order": 27
     },
     {
       "id": "Social",
@@ -223,7 +259,7 @@
       "description": "社交媒体与社区",
       "type": "functional",
       "status": "active",
-      "sort_order": 24
+      "sort_order": 28
     },
     {
       "id": "Surge",
@@ -232,7 +268,7 @@
       "description": "Surge 应用图标",
       "type": "functional",
       "status": "active",
-      "sort_order": 25
+      "sort_order": 29
     },
     {
       "id": "System",
@@ -241,7 +277,7 @@
       "description": "代理系统图标与通用策略",
       "type": "functional",
       "status": "active",
-      "sort_order": 26
+      "sort_order": 30
     },
     {
       "id": "Telecom",
@@ -250,7 +286,7 @@
       "description": "电信运营商",
       "type": "functional",
       "status": "active",
-      "sort_order": 27
+      "sort_order": 31
     },
     {
       "id": "Tencent",
@@ -259,7 +295,7 @@
       "description": "腾讯生态",
       "type": "ecosystem",
       "status": "active",
-      "sort_order": 28
+      "sort_order": 32
     },
     {
       "id": "Transport",
@@ -268,7 +304,7 @@
       "description": "出行与交通",
       "type": "functional",
       "status": "active",
-      "sort_order": 29
+      "sort_order": 33
     },
     {
       "id": "Utilities",
@@ -277,7 +313,7 @@
       "description": "生产力工具与实用服务",
       "type": "functional",
       "status": "active",
-      "sort_order": 30
+      "sort_order": 34
     }
   ]
 }

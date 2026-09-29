@@ -19,14 +19,14 @@
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
   <img src="https://img.shields.io/badge/icons-369-blue?style=flat-square" alt="Icons Count">
   <img src="https://img.shields.io/badge/brands-282-green?style=flat-square" alt="Brands Count">
-  <img src="https://img.shields.io/badge/categories-31-orange?style=flat-square" alt="Categories Count">
+  <img src="https://img.shields.io/badge/categories-35-orange?style=flat-square" alt="Categories Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **369** 个 PNG 图标，覆盖 **282** 个品牌，归入 **31** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **369** 个 PNG 图标，覆盖 **282** 个品牌，归入 **35** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
 
 本项目为独立图标仓库，当前 369 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
@@ -170,36 +170,40 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 分类 | 说明 | 品牌数 | 图标数 |
 |---|---|---:|---:|
 | 🤖 AI | 人工智能服务与模型 | 13 | 13 |
-| 🏢 Alibaba | 阿里巴巴生态 | 5 | 6 |
+| 🏢 Alibaba | 阿里巴巴生态 | 7 | 8 |
 | 📦 Amazon | 亚马逊生态 | 6 | 6 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
+| 🔍 Baidu | 百度生态 | 3 | 5 |
+| ▶️ ByteDance | 字节跳动生态 | 4 | 4 |
 | 🏗️ Infrastructure | 基础设施与运维（云平台/网络/容器/NAS） | 6 | 6 |
-| 💾 Cloud Storage | 云盘与文件存储 | 8 | 8 |
-| 💬 Communication | 即时通讯与团队协作 | 11 | 11 |
+| 💾 Cloud Storage | 云盘与文件存储 | 6 | 6 |
+| 💬 Communication | 即时通讯与团队协作 | 6 | 6 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
 | 💻 Development | 开发者工具与平台 | 2 | 2 |
 | 📚 Education | 教育与学习平台 | 2 | 2 |
-| 💰 Finance | 金融理财（预留空分类） | 0 | 0 |
+| 💰 Finance | 金融理财 | 0 | 0 |
+| 📱 Meta | Meta 生态 | 6 | 8 |
 | 🎮 Game | 游戏平台与服务 | 4 | 4 |
 | 🔎 Google | Google 服务与生态 | 12 | 12 |
 | 🔌 Hardware | 硬件与消费电子设备 | 9 | 9 |
 | 🏥 Health | 健康与运动 | 1 | 1 |
+| 🎧 NetEase | 网易生态 | 3 | 3 |
 | 🏠 Home | 智能家居与家庭设备 | 2 | 2 |
-| 🎬 Media | 影音流媒体与视频 | 69 | 71 |
+| 🎬 Media | 影音流媒体与视频 | 68 | 70 |
 | 🪟 Microsoft | 微软服务与生态 | 8 | 11 |
-| 🎵 Music | 音乐服务 | 12 | 12 |
+| 🎵 Music | 音乐服务 | 11 | 11 |
 | 📰 News | 新闻与资讯 | 1 | 1 |
 | 💳 Payment | 支付与金融交易 | 5 | 5 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
 | 🛒 Shopping | 购物与电商 | 5 | 6 |
-| 👥 Social | 社交媒体与社区 | 20 | 25 |
+| 👥 Social | 社交媒体与社区 | 12 | 13 |
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
 | ⚙️ System | 代理系统图标与通用策略 | 20 | 49 |
 | 📡 Telecom | 电信运营商 | 4 | 5 |
 | 🐧 Tencent | 腾讯生态 | 7 | 7 |
 | 🚗 Transport | 出行与交通 | 3 | 3 |
-| 🧰 Utilities | 生产力工具与实用服务 | 10 | 10 |
+| 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | **合计** | — | **282** | **369** |
 ### 分类体系原则（方案 C，2026-09-29）
 
@@ -212,25 +216,24 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 **分类原则**：
 
 1. **功能分类**（AI / Media / Music / …）按服务语义归类；
-2. **生态分类**（Amazon / Apple / Google / Microsoft / Alibaba / Tencent）判定规则统一如下：
-   (a) 生态内品牌数 ≥ 5 且用户认知强绑定（子品牌以「母品牌名 + 产品名」命名或官方归属明确）；
-   (b) 生态根品牌自身存在 canonical icon；
-   (c) 子品牌**功能分类语义弱于生态语义**（如 WeChat 是通讯但用户首先认知它是腾讯生态）。
-   不满足 (a)/(c) 的生态（Baidu / Meta / ByteDance / NetEase 等）：**不建一级目录**，
-   品牌留在功能分类，生态关系只写 `brands.json` 的 `parent_brand` 元数据。
-   例：Baidu 有 2 个子品牌且分属 CloudStorage/Social（功能语义强）→ 不建 `Baidu/`；
-   Meta 有 5 个子品牌但全部为通讯/社交功能分类 → 不建 `Meta/`；
-   而 Amazon/Twitch/PrimeVideo 等用户认知强绑定 Amazon → 建 `Amazon/`。
+2. **生态分类**判定规则统一如下（机械、可自动验证，CI 动态校验）：
+   > **一个 `parent_brand` 拥有 ≥ 2 个 Canonical Child Brands 时，为其建立独立一级品牌生态分类。**
+   统计口径：只计算 `brands.json` 中 `parent_brand` 指向该品牌的 Canonical Brand，不计算 aliases / 历史品牌 / 重复文件；不因 company ownership 自动增加 parent。
+   - 子品牌 ≥ 2 → 建 `icons/<Parent>/` 一级分类，子品牌统一迁入（`category = <Parent>`，**保留 `parent_brand`**）；
+   - 父品牌有 root icon → 迁入 `icons/<Parent>/<Parent>/<Parent>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**，父品牌登记 `parent_brands_without_icon`（白名单只表示无 root icon，不代表不建目录）；
+   - 子品牌 < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
+   当前生态分类：Alibaba / Amazon / Apple / Baidu / ByteDance / Google / Meta / Microsoft / NetEase / Tencent（随 brands.json 动态扩展，不写死数量）。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
-5. **公司拥有 ≠ 生态归属**：ownership 只记录在 `brands.json`，不改变品牌目录归属（如 BaiduNetdisk 归 CloudStorage 而非 Baidu）；
+5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且子品牌 ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；
 6. **category ≠ parent_brand**：category 回答「图标归哪个功能/生态分类」，parent_brand 回答「品牌属于哪个生态」，两者独立。
-   **entity_type** 回答「实体本身是什么」：`ecosystem` 只用于生态根品牌（6 个），子品牌一律 `product_brand`。
+   **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 10 个，随 brands.json 动态扩展），子品牌一律 `product_brand`。
 
 **未来判例**：
 
 - 新增 Spotify → `Music/Spotify/`
 - 新增 Amazon 服务（如 Amazon Gaming）→ `Amazon/<Brand>/`
+- 某功能品牌新增第二个同 parent 子品牌 → parent 子品牌数达到 2，**立即建立** `icons/<Parent>/` 一级生态分类并迁入（CI 动态校验）
 - 新增 Alibaba AI 产品 → `Alibaba/<Brand>/`（AI 属性写 tags）
 - 品牌被收购 → 先查**当前**官方状态，再决定生态归属；历史收购关系不等于当前归属
 - 品牌脱离母公司 → 按当前独立状态归回功能分类
