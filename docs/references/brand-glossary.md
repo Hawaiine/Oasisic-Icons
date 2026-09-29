@@ -1,21 +1,16 @@
-# 品牌中英对照 / Brand Glossary
+# 品牌术语表 / Brand Glossary
 
-> 本表为**完整对照**（由 `icons/` 目录全量生成，最后更新：2026-09-28）：`icons/<分类>/<品牌>/` 目录名 ↔ 中文显示名映射，供消费方（如 mihomo-rules）引用。
-> 命名原则：优先采用品牌官方中文译名；若官方无中文名，则保留英文原名。
+> 本文件由 `config/brands.json` 派生（CI 校验一致性）。
+> 共 **280** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
----
+## #
 
-## 使用示例
-
-```yaml
-# mihomo-rules 策略组
-proxy-groups:
-  - name: "Apple / 苹果"
-    type: select
-    proxies: [ 🍎 Apple ]
-```
-
----
+| 英文文件夹 / Folder | 中文显示名 / Display Name |
+|---------------------|--------------------------|
+| 115 | 115 |
+| 123 | 123 |
+| 189 | 189 |
+| 1Password | 1Password |
 
 ## A
 
@@ -32,6 +27,8 @@ proxy-groups:
 | AliPay | 支付宝 |
 | Alibaba | Alibaba |
 | Amazon | Amazon |
+| AmazonAlexa | Amazon Alexa |
+| AmazonMusic | Amazon Music |
 | Anthropic | Anthropic |
 | AppStore | App Store |
 | Apple | Apple |
@@ -133,6 +130,7 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | GIA | GIA |
+| GLM | GLM |
 | Game | Game |
 | GeneralAI | General AI |
 | Germany | 德国 |
@@ -194,6 +192,7 @@ proxy-groups:
 | KakaoTalk | KakaoTalk |
 | KaraokeDAM | Karaoke@DAM |
 | Keep | Keep |
+| Kimi | Kimi |
 | Korea | 韩国 |
 | Kwai | 快手 |
 
@@ -201,6 +200,7 @@ proxy-groups:
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
+| LG | LG |
 | LINE | LINE |
 | LINETV | LINE TV |
 | Lark | 飞书 |
@@ -225,6 +225,7 @@ proxy-groups:
 | Migu | 咪咕 |
 | Mijia | 米家 |
 | MikroTik | MikroTik |
+| MiniMax | MiniMax |
 | Muse | Muse |
 | MusicBrainz | MusicBrainz |
 | MusicJapan | Music Japan |
@@ -297,6 +298,7 @@ proxy-groups:
 | QQMusic | QQ音乐 |
 | Qobuz | Qobuz |
 | Quark | 夸克 |
+| Qwen | 通义千问 |
 
 ## R
 
@@ -315,10 +317,12 @@ proxy-groups:
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | SF-Express | SF-Express |
+| SONY | 索尼 |
 | SOOP | SOOP |
 | SSID | SSID |
 | STARZ | STARZ |
 | SWIFT | SWIFT |
+| Samsung | 三星 |
 | Search | Search |
 | Singapore | 新加坡 |
 | SiriAI | Siri AI |
@@ -375,6 +379,7 @@ proxy-groups:
 | VideoMarket | Video Market |
 | Vimeo | Vimeo |
 | Viu | Viu |
+| vivo | vivo |
 
 ## W
 
@@ -412,18 +417,3 @@ proxy-groups:
 | Z-Library | Z-Library |
 | Zhihu | 知乎 |
 | Zoom | Zoom |
-
-## 0-9
-
-| 英文文件夹 / Folder | 中文显示名 / Display Name |
-|---------------------|--------------------------|
-| 115 | 115 |
-| 123 | 123 |
-| 189 | 189 |
-| 1Password | 1Password |
-
-## 补充规则
-
-1. **国家/地区类**（`Country/`）采用中文全称：`China` → 中国、`Japan` → 日本、`HongKong` → 香港 等。
-2. **流媒体类**（`Media/`）采用品牌官方中文译名：`Netflix` → Netflix / 奈飞、`bilibili` → 哔哩哔哩 / B站。
-3. **策略组别名**见 `docs/references/icon-research.md` 第 3 节。
