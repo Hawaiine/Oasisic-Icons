@@ -2,7 +2,7 @@
 
 > 最后扫描：2026-09-19（圆角半径更新为 r=115 / Apple squircle）
 > 扫描方法：遍历 `icons/**/*.png`，读取 Pillow 报告的尺寸 / 色彩模式，并统计文件体积
-> 扫描范围：367 个 PNG（280 个品牌目录 / 21 个分类，含 3 个预留空分类）
+> 扫描范围：367 个 PNG（280 个品牌目录 / 31 个分类，含 1 个预留空分类）
 
 ---
 
@@ -101,20 +101,20 @@
 
 | 项目 | 结果 |
 |------|------|
-| 尺寸 | **335 / 335 = 512×512**（已全量统一） |
+| 尺寸 | **367 / 367 = 512×512**（已全量统一，2026-09-29 复验） |
 | 圆角 | 统一 r=115px（≈22.4%，Apple squircle），四角透明（`alpha=0`） |
-| 用户手动更新的图标 | 71 个已合规文件**像素未改动**（规范化脚本自动跳过） |
-| 规范化处理 | 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
+| 用户手动更新的图标 | 新增图标（Qwen / Kimi / Manus / MiniMax / GLM 等）入库前须已合规 |
+| 规范化处理 | 历史 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
 | 窄条字标 | 曾对 4 个窄条字标素材由 `scripts/normalize-strips.py` 处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
-| 体积 | 合计 ≈ 27.7 MB；平均 64KB / 中位 58KB / 最大 292KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
-| 模式分布 | RGBA 335（其余色型 0） |
+| 体积 | 合计 ≈ 21.2 MB；平均 58KB / 最大 291KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
+| 模式分布 | RGBA 367（其余色型 0） |
 
 ## 7. 需要留意
 
 - `icons/Media/VideoMarket/VideoMarket.png`：字标在白色底块上对比度偏低（原始素材即浅灰字），如介意可从上游取新素材。
 - 部分图标由小尺寸上采样得到（原 144×144 / 108×108 → 512×512），在超大尺寸下会显得偏软。
   需要超清版本时应先替换源图（放入对应品牌目录的默认文件名），再运行规范化脚本。
-- 仓库**不做有损量化**（不改变任何图标的像素内容）：当前最大单文件 292KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`），客户端按 URL 按需拉取，无实际负担。如需从源头减小体积，应替换为更小/更干净的源图后重跑 `scripts/normalize-icons.py`。
+- 仓库**不做有损量化**（不改变任何图标的像素内容）：当前最大单文件 291KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`），客户端按 URL 按需拉取，无实际负担。如需从源头减小体积，应替换为更小/更干净的源图后重跑 `scripts/normalize-icons.py`。
 
 ## 8. 工具
 

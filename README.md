@@ -19,14 +19,14 @@
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
   <img src="https://img.shields.io/badge/icons-367-blue?style=flat-square" alt="Icons Count">
   <img src="https://img.shields.io/badge/brands-280-green?style=flat-square" alt="Brands Count">
-  <img src="https://img.shields.io/badge/categories-21-orange?style=flat-square" alt="Categories Count">
+  <img src="https://img.shields.io/badge/categories-31-orange?style=flat-square" alt="Categories Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **367** 个 PNG 图标，覆盖 **280** 个品牌，归入 **21** 个活跃分类（另有 `Education` / `Finance` / `Health` 3 个预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **367** 个 PNG 图标，覆盖 **280** 个品牌，归入 **31** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
 
 本项目为独立图标仓库，当前 367 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
@@ -105,7 +105,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netfli
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Country/Japan/Japan01.png
 
 # 单文件品牌
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tool/GitHub/GitHub.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Development/GitHub/GitHub.png
 ```
 
 > 本仓库只提供 `raw.githubusercontent.com` 直链，**不使用 jsDelivr 等 CDN**。
@@ -167,35 +167,65 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 ## 📁 图标分类列表 / Categories
 
-| 分类 | 说明 | 品牌数 | 图标数 |
-|---|---|---|---|
-| 🤖 AI | 人工智能服务 | 15 | 15 |
+| 🤖 AI | 人工智能服务与模型 | 13 | 13 |
+| 🏢 Alibaba | 阿里巴巴生态 | 5 | 6 |
+| 📦 Amazon | 亚马逊生态 | 6 | 6 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
+| ☁️ Cloud | 云基础设施与运维 | 6 | 6 |
+| 💾 Cloud Storage | 云盘与文件存储 | 8 | 8 |
+| 💬 Communication | 即时通讯与团队协作 | 11 | 11 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
-| 🛠 DevOps | 开发运维与云服务 | 8 | 8 |
-| 💻 Development | 开发工具 | 2 | 2 |
-| ☁️ Drive | 云盘与存储 | 9 | 10 |
-| 🎓 Education | 教育平台（预留空分类） | 0 | 0 |
+| 💻 Development | 开发者工具与平台 | 3 | 3 |
+| 📚 Education | 教育与学习平台 | 2 | 2 |
 | 💰 Finance | 金融理财（预留空分类） | 0 | 0 |
-| 🎮 Game | 游戏平台 | 6 | 8 |
-| 🔧 General | 通用策略 | 22 | 49 |
-| 🔍 Google | Google 服务 | 12 | 12 |
-| 🏥 Health | 健康与运动（预留空分类） | 0 | 0 |
-| 🎬 Media | 影音流媒体 | 71 | 73 |
-| 🪟 Microsoft | 微软服务 | 7 | 10 |
-| 🎵 Music | 音乐服务 | 13 | 13 |
+| 🎮 Game | 游戏平台与服务 | 4 | 4 |
+| 🔎 Google | Google 服务与生态 | 12 | 12 |
+| 🔌 Hardware | 硬件与消费电子设备 | 9 | 9 |
+| 🏥 Health | 健康与运动 | 1 | 1 |
+| 🏠 Home | 智能家居与家庭设备 | 2 | 2 |
+| 🎬 Media | 影音流媒体与视频 | 68 | 70 |
+| 🪟 Microsoft | 微软服务与生态 | 8 | 11 |
+| 🎵 Music | 音乐服务 | 12 | 12 |
 | 📰 News | 新闻与资讯 | 1 | 1 |
-| 💳 Payment | 支付 | 6 | 6 |
+| 💳 Payment | 支付与金融交易 | 5 | 5 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
-| 🛒 Shopping | 购物 | 8 | 9 |
-| 👥 Social | 社交 | 32 | 37 |
+| 🛒 Shopping | 购物与电商 | 5 | 6 |
+| 👥 Social | 社交媒体与社区 | 19 | 24 |
 | ⚡ Surge | Surge 应用图标 | 1 | 15 |
-| 📡 Telecom | 运营商 | 14 | 15 |
-| 🔩 Tool | 工具 | 17 | 17 |
+| ⚙️ System | 代理系统图标与通用策略 | 19 | 48 |
+| 📡 Telecom | 电信运营商 | 4 | 5 |
+| 🐧 Tencent | 腾讯生态 | 7 | 7 |
+| 🚗 Transport | 出行与交通 | 4 | 4 |
+| 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | **合计** | — | **280** | **367** |
 
-`Education` / `Finance` / `Health` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
+`Finance` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
+
+### 分类体系原则（方案 C，2026-09-29）
+
+一级分类**扁平**：不设置 `Ecosystems / Services / Special` 等中间层，`icons/<分类>/<品牌>/` 为唯一深度。
+
+**分类定义 SSOT**：分类的 ID、emoji、显示名、描述、排序、状态唯一来源为 [`config/categories.json`](config/categories.json)；分类 README 由 `scripts/generate-category-readmes.sh` 从该文件生成，禁止在脚本中硬编码。
+
+**品牌语义 SSOT**：[`config/brands.json`](config/brands.json) 记录每个品牌的 canonical 归属（分类、实体类型、生态父品牌、显示名）。`surge-icon.json` 与 `brand-glossary.md` 均由磁盘 + SSOT 派生，CI 校验三方一致。
+
+**分类原则**：
+
+1. **功能分类**（AI / Media / Music / …）按服务语义归类；
+2. **生态分类**（Amazon / Apple / Google / Microsoft / Alibaba / Tencent）只收录用户认知中强绑定该生态的服务品牌；
+3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
+4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
+5. **公司拥有 ≠ 生态归属**：ownership 只记录在 `brands.json`，不改变品牌目录归属（如 BaiduNetdisk 归 CloudStorage 而非 Baidu）。
+
+**未来判例**：
+
+- 新增 Spotify → `Music/Spotify/`
+- 新增 Amazon 服务（如 Amazon Gaming）→ `Amazon/<Brand>/`
+- 新增 Alibaba AI 产品 → `Alibaba/<Brand>/`（AI 属性写 tags）
+- 品牌被收购 → 先查**当前**官方状态，再决定生态归属；历史收购关系不等于当前归属
+- 品牌脱离母公司 → 按当前独立状态归回功能分类
+（仅保留目录与 README），便于后续按同一规范补充图标。
 
 ---
 
