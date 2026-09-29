@@ -37,10 +37,10 @@
       "sort_order": 3
     },
     {
-      "id": "Cloud",
-      "display_name": "Cloud",
-      "emoji": "☁️",
-      "description": "云基础设施与运维",
+      "id": "Infrastructure",
+      "display_name": "Infrastructure",
+      "emoji": "🏗️",
+      "description": "基础设施与运维（云平台/网络/容器/NAS）",
       "type": "functional",
       "status": "active",
       "sort_order": 4

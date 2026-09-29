@@ -16,12 +16,12 @@
 | PrimeVideo | Media | Amazon | `icons/Media/PrimeVideo/PrimeVideo.png` | `icons/Amazon/PrimeVideo/PrimeVideo.png` | Amazon 生态（Prime 视频服务） |
 | AmazonMusic | Music | Amazon | `icons/Music/AmazonMusic/AmazonMusic.png` | `icons/Amazon/AmazonMusic/AmazonMusic.png` | Amazon 生态（流媒体） |
 | Amazon | Shopping | Amazon | `icons/Shopping/Amazon/Amazon.png` | `icons/Amazon/Amazon/Amazon.png` | Amazon 生态聚合 |
-| Cloudflare | DevOps | Cloud | `icons/DevOps/Cloudflare/Cloudflare.png` | `icons/Cloud/Cloudflare/Cloudflare.png` | 云基础设施（CDN/安全） |
-| Docker | DevOps | Cloud | `icons/DevOps/Docker/Docker.png` | `icons/Cloud/Docker/Docker.png` | 云基础设施（容器） |
-| MikroTik | DevOps | Cloud | `icons/DevOps/MikroTik/MikroTik.png` | `icons/Cloud/MikroTik/MikroTik.png` | 网络基础设施 |
-| OpenWrt | DevOps | Cloud | `icons/DevOps/OpenWrt/OpenWrt.png` | `icons/Cloud/OpenWrt/OpenWrt.png` | 网络基础设施（路由系统） |
-| Oracle | DevOps | Cloud | `icons/DevOps/Oracle/Oracle.png` | `icons/Cloud/Oracle/Oracle.png` | 云基础设施（数据库/云） |
-| Synology | DevOps | Cloud | `icons/DevOps/Synology/Synology.png` | `icons/Cloud/Synology/Synology.png` | 网络存储基础设施 |
+| Cloudflare | DevOps | Infrastructure | `icons/DevOps/Cloudflare/Cloudflare.png` | `icons/Infrastructure/Cloudflare/Cloudflare.png` | 云基础设施（CDN/安全） |
+| Docker | DevOps | Infrastructure | `icons/DevOps/Docker/Docker.png` | `icons/Infrastructure/Docker/Docker.png` | 云基础设施（容器） |
+| MikroTik | DevOps | Infrastructure | `icons/DevOps/MikroTik/MikroTik.png` | `icons/Infrastructure/MikroTik/MikroTik.png` | 网络基础设施 |
+| OpenWrt | DevOps | Infrastructure | `icons/DevOps/OpenWrt/OpenWrt.png` | `icons/Infrastructure/OpenWrt/OpenWrt.png` | 网络基础设施（路由系统） |
+| Oracle | DevOps | Infrastructure | `icons/DevOps/Oracle/Oracle.png` | `icons/Infrastructure/Oracle/Oracle.png` | 云基础设施（数据库/云） |
+| Synology | DevOps | Infrastructure | `icons/DevOps/Synology/Synology.png` | `icons/Infrastructure/Synology/Synology.png` | 网络存储基础设施 |
 | 115 | Drive | CloudStorage | `icons/Drive/115/115.png` | `icons/CloudStorage/115/115.png` | 云盘 |
 | 123 | Drive | CloudStorage | `icons/Drive/123/123.png` | `icons/CloudStorage/123/123.png` | 云盘 |
 | 189 | Drive | CloudStorage | `icons/Drive/189/189.png` | `icons/CloudStorage/189/189.png` | 云盘 |
@@ -42,6 +42,7 @@
 | WhatsApp | Social | Communication | `icons/Social/WhatsApp/WhatsApp.png` | `icons/Communication/WhatsApp/WhatsApp.png` | 即时通讯 |
 | Lark | Tool | Communication | `icons/Tool/Lark/Lark.png` | `icons/Communication/Lark/Lark.png` | 团队协作（ByteDance ownership 记录） |
 | GitHub | Tool | Development | `icons/Tool/GitHub/GitHub.png` | `icons/Development/GitHub/GitHub.png` | 开发者平台 |
+| Adobe | Development | Utilities | `icons/Development/Adobe/Adobe.png` | `icons/Utilities/Adobe/Adobe.png` | 创意软件套件，非开发工具 → Utilities |
 | Duolingo | Tool | Education | `icons/Tool/Duolingo/Duolingo.png` | `icons/Education/Duolingo/Duolingo.png` | 教育平台 |
 | Z-Library | Tool | Education | `icons/Tool/Z-Library/Z-Library.png` | `icons/Education/Z-Library/Z-Library.png` | 教育/文献资源 |
 | Honor | Telecom | Hardware | `icons/Telecom/Honor/Honor.png` | `icons/Hardware/Honor/Honor.png` | 手机品牌（Huawei 分家，独立品牌） |

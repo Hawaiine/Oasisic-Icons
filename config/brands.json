@@ -95,7 +95,7 @@
       "id": "AliCloud",
       "display_name": "阿里云",
       "category": "Alibaba",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Alibaba/AliCloud/AliCloud.png",
       "parent_brand": "Alibaba"
     },
@@ -103,7 +103,7 @@
       "id": "AliPay",
       "display_name": "支付宝",
       "category": "Alibaba",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Alibaba/AliPay/AliPay.png",
       "parent_brand": "Alibaba"
     },
@@ -118,7 +118,7 @@
       "id": "Qwen",
       "display_name": "通义千问",
       "category": "Alibaba",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Alibaba/Qwen/Qwen.png",
       "parent_brand": "Alibaba"
     },
@@ -126,7 +126,7 @@
       "id": "Taobao",
       "display_name": "淘宝",
       "category": "Alibaba",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Alibaba/Taobao/Taobao.png",
       "parent_brand": "Alibaba"
     },
@@ -134,7 +134,7 @@
       "id": "AWS",
       "display_name": "AWS",
       "category": "Amazon",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Amazon/AWS/AWS.png",
       "parent_brand": "Amazon"
     },
@@ -149,7 +149,7 @@
       "id": "AmazonAlexa",
       "display_name": "Amazon Alexa",
       "category": "Amazon",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Amazon/AmazonAlexa/AmazonAlexa.png",
       "parent_brand": "Amazon"
     },
@@ -157,7 +157,7 @@
       "id": "AmazonMusic",
       "display_name": "Amazon Music",
       "category": "Amazon",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Amazon/AmazonMusic/AmazonMusic.png",
       "parent_brand": "Amazon"
     },
@@ -165,7 +165,7 @@
       "id": "PrimeVideo",
       "display_name": "Prime Video",
       "category": "Amazon",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Amazon/PrimeVideo/PrimeVideo.png",
       "parent_brand": "Amazon"
     },
@@ -173,7 +173,7 @@
       "id": "Twitch",
       "display_name": "Twitch",
       "category": "Amazon",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Amazon/Twitch/Twitch.png",
       "parent_brand": "Amazon"
     },
@@ -181,7 +181,7 @@
       "id": "AppStore",
       "display_name": "App Store",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/AppStore/AppStore.png",
       "parent_brand": "Apple"
     },
@@ -196,7 +196,7 @@
       "id": "AppleFitnessPlus",
       "display_name": "Apple Fitness+",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/AppleFitnessPlus/AppleFitnessPlus.png",
       "parent_brand": "Apple"
     },
@@ -204,7 +204,7 @@
       "id": "AppleMusic",
       "display_name": "Apple Music",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/AppleMusic/AppleMusic.png",
       "parent_brand": "Apple"
     },
@@ -212,7 +212,7 @@
       "id": "AppleNews",
       "display_name": "Apple News",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/AppleNews/AppleNews.png",
       "parent_brand": "Apple"
     },
@@ -220,7 +220,7 @@
       "id": "AppleTV",
       "display_name": "Apple TV",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/AppleTV/AppleTV.png",
       "parent_brand": "Apple"
     },
@@ -228,7 +228,7 @@
       "id": "SiriAI",
       "display_name": "Siri AI",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/SiriAI/SiriAI.png",
       "parent_brand": "Apple"
     },
@@ -236,7 +236,7 @@
       "id": "TestFlight",
       "display_name": "TestFlight",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/TestFlight/TestFlight.png",
       "parent_brand": "Apple"
     },
@@ -244,7 +244,7 @@
       "id": "iCloud",
       "display_name": "iCloud",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/iCloud/iCloud.png",
       "parent_brand": "Apple"
     },
@@ -252,51 +252,51 @@
       "id": "iCloudPrivateRelay",
       "display_name": "iCloud Private Relay",
       "category": "Apple",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png",
       "parent_brand": "Apple"
     },
     {
       "id": "Cloudflare",
       "display_name": "Cloudflare",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/Cloudflare/Cloudflare.png"
+      "icon_path": "icons/Infrastructure/Cloudflare/Cloudflare.png"
     },
     {
       "id": "Docker",
       "display_name": "Docker",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/Docker/Docker.png"
+      "icon_path": "icons/Infrastructure/Docker/Docker.png"
     },
     {
       "id": "MikroTik",
       "display_name": "MikroTik",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/MikroTik/MikroTik.png"
+      "icon_path": "icons/Infrastructure/MikroTik/MikroTik.png"
     },
     {
       "id": "OpenWrt",
       "display_name": "OpenWrt",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/OpenWrt/OpenWrt.png"
+      "icon_path": "icons/Infrastructure/OpenWrt/OpenWrt.png"
     },
     {
       "id": "Oracle",
       "display_name": "Oracle",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/Oracle/Oracle.png"
+      "icon_path": "icons/Infrastructure/Oracle/Oracle.png"
     },
     {
       "id": "Synology",
       "display_name": "Synology",
-      "category": "Cloud",
+      "category": "Infrastructure",
       "entity_type": "product_brand",
-      "icon_path": "icons/Cloud/Synology/Synology.png"
+      "icon_path": "icons/Infrastructure/Synology/Synology.png"
     },
     {
       "id": "115",
@@ -361,7 +361,8 @@
       "display_name": "钉钉",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/DingTalk/DingTalk.png"
+      "icon_path": "icons/Communication/DingTalk/DingTalk.png",
+      "parent_brand": "Alibaba"
     },
     {
       "id": "Discord",
@@ -389,7 +390,8 @@
       "display_name": "飞书",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/Lark/Lark.png"
+      "icon_path": "icons/Communication/Lark/Lark.png",
+      "parent_brand": "ByteDance"
     },
     {
       "id": "Messenger",
@@ -593,9 +595,9 @@
     {
       "id": "Adobe",
       "display_name": "Adobe",
-      "category": "Development",
+      "category": "Utilities",
       "entity_type": "product_brand",
-      "icon_path": "icons/Development/Adobe/Adobe.png"
+      "icon_path": "icons/Utilities/Adobe/Adobe.png"
     },
     {
       "id": "Cursor",
@@ -657,7 +659,7 @@
       "id": "Gmail",
       "display_name": "Gmail",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/Gmail/Gmail.png",
       "parent_brand": "Google"
     },
@@ -672,7 +674,7 @@
       "id": "GoogleAI",
       "display_name": "Google AI",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleAI/GoogleAI.png",
       "parent_brand": "Google"
     },
@@ -680,7 +682,7 @@
       "id": "GoogleDrive",
       "display_name": "Google Drive",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleDrive/GoogleDrive.png",
       "parent_brand": "Google"
     },
@@ -688,7 +690,7 @@
       "id": "GoogleMaps",
       "display_name": "Google Maps",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleMaps/GoogleMaps.png",
       "parent_brand": "Google"
     },
@@ -696,7 +698,7 @@
       "id": "GoogleNews",
       "display_name": "Google News",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleNews/GoogleNews.png",
       "parent_brand": "Google"
     },
@@ -704,7 +706,7 @@
       "id": "GooglePhotos",
       "display_name": "Google Photos",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GooglePhotos/GooglePhotos.png",
       "parent_brand": "Google"
     },
@@ -712,7 +714,7 @@
       "id": "GooglePlay",
       "display_name": "Google Play",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GooglePlay/GooglePlay.png",
       "parent_brand": "Google"
     },
@@ -720,7 +722,7 @@
       "id": "GoogleTranslate",
       "display_name": "Google Translate",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleTranslate/GoogleTranslate.png",
       "parent_brand": "Google"
     },
@@ -728,7 +730,7 @@
       "id": "GoogleVoice",
       "display_name": "Google Voice",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/GoogleVoice/GoogleVoice.png",
       "parent_brand": "Google"
     },
@@ -736,7 +738,7 @@
       "id": "YouTube",
       "display_name": "YouTube",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/YouTube/YouTube.png",
       "parent_brand": "Google"
     },
@@ -744,7 +746,7 @@
       "id": "YouTubeMusic",
       "display_name": "YouTube Music",
       "category": "Google",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Google/YouTubeMusic/YouTubeMusic.png",
       "parent_brand": "Google"
     },
@@ -1312,7 +1314,7 @@
       "id": "Azure",
       "display_name": "Azure",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/Azure/Azure.png",
       "parent_brand": "Microsoft"
     },
@@ -1320,7 +1322,7 @@
       "id": "Bing",
       "display_name": "Bing",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/Bing/Bing.png",
       "parent_brand": "Microsoft"
     },
@@ -1328,7 +1330,7 @@
       "id": "Copilot",
       "display_name": "Copilot",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/Copilot/Copilot.png",
       "parent_brand": "Microsoft"
     },
@@ -1343,7 +1345,7 @@
       "id": "MicrosoftStore",
       "display_name": "Microsoft Store",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/MicrosoftStore/MicrosoftStore.png",
       "parent_brand": "Microsoft"
     },
@@ -1351,7 +1353,7 @@
       "id": "OneDrive",
       "display_name": "OneDrive",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/OneDrive/OneDrive.png",
       "parent_brand": "Microsoft"
     },
@@ -1359,7 +1361,7 @@
       "id": "Outlook",
       "display_name": "Outlook",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/Outlook/Outlook.png",
       "parent_brand": "Microsoft"
     },
@@ -1367,7 +1369,7 @@
       "id": "Xbox",
       "display_name": "Xbox",
       "category": "Microsoft",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Microsoft/Xbox/Xbox.png",
       "parent_brand": "Microsoft"
     },
@@ -1871,7 +1873,7 @@
       "id": "QQ",
       "display_name": "腾讯QQ",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/QQ/QQ.png",
       "parent_brand": "Tencent"
     },
@@ -1879,7 +1881,7 @@
       "id": "QQMail",
       "display_name": "QQ邮箱",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/QQMail/QQMail.png",
       "parent_brand": "Tencent"
     },
@@ -1887,7 +1889,7 @@
       "id": "QQMusic",
       "display_name": "QQ音乐",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/QQMusic/QQMusic.png",
       "parent_brand": "Tencent"
     },
@@ -1902,7 +1904,7 @@
       "id": "TencentVideo",
       "display_name": "腾讯视频",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/TencentVideo/TencentVideo.png",
       "parent_brand": "Tencent"
     },
@@ -1910,7 +1912,7 @@
       "id": "WeChat",
       "display_name": "微信",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/WeChat/WeChat.png",
       "parent_brand": "Tencent"
     },
@@ -1918,7 +1920,7 @@
       "id": "WeTV",
       "display_name": "WeTV",
       "category": "Tencent",
-      "entity_type": "ecosystem",
+      "entity_type": "product_brand",
       "icon_path": "icons/Tencent/WeTV/WeTV.png",
       "parent_brand": "Tencent"
     },

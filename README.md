@@ -171,12 +171,12 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🏢 Alibaba | 阿里巴巴生态 | 5 | 6 |
 | 📦 Amazon | 亚马逊生态 | 6 | 6 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
-| ☁️ Cloud | 云基础设施与运维 | 6 | 6 |
+| 🏗️ Infrastructure | 基础设施与运维 | 6 | 6 |
 | 💾 Cloud Storage | 云盘与文件存储 | 8 | 8 |
 | 💬 Communication | 即时通讯与团队协作 | 11 | 11 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 49 |
 | ₿ Crypto | 加密货币与区块链 | 1 | 4 |
-| 💻 Development | 开发者工具与平台 | 3 | 3 |
+| 💻 Development | 开发者工具与平台 | 2 | 2 |
 | 📚 Education | 教育与学习平台 | 2 | 2 |
 | 💰 Finance | 金融理财（预留空分类） | 0 | 0 |
 | 🎮 Game | 游戏平台与服务 | 4 | 4 |
@@ -197,7 +197,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 📡 Telecom | 电信运营商 | 4 | 5 |
 | 🐧 Tencent | 腾讯生态 | 7 | 7 |
 | 🚗 Transport | 出行与交通 | 3 | 3 |
-| 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
+| 🧰 Utilities | 生产力工具与实用服务 | 10 | 10 |
 | **合计** | — | **280** | **367** |
 
 `Finance` 目前为空分类（仅保留目录与 README），便于后续按同一规范补充图标。
@@ -213,10 +213,20 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 **分类原则**：
 
 1. **功能分类**（AI / Media / Music / …）按服务语义归类；
-2. **生态分类**（Amazon / Apple / Google / Microsoft / Alibaba / Tencent）只收录用户认知中强绑定该生态的服务品牌；
+2. **生态分类**（Amazon / Apple / Google / Microsoft / Alibaba / Tencent）判定规则统一如下：
+   (a) 生态内品牌数 ≥ 5 且用户认知强绑定（子品牌以「母品牌名 + 产品名」命名或官方归属明确）；
+   (b) 生态根品牌自身存在 canonical icon；
+   (c) 子品牌**功能分类语义弱于生态语义**（如 WeChat 是通讯但用户首先认知它是腾讯生态）。
+   不满足 (a)/(c) 的生态（Baidu / Meta / ByteDance / NetEase 等）：**不建一级目录**，
+   品牌留在功能分类，生态关系只写 `brands.json` 的 `parent_brand` 元数据。
+   例：Baidu 有 2 个子品牌且分属 CloudStorage/Social（功能语义强）→ 不建 `Baidu/`；
+   Meta 有 5 个子品牌但全部为通讯/社交功能分类 → 不建 `Meta/`；
+   而 Amazon/Twitch/PrimeVideo 等用户认知强绑定 Amazon → 建 `Amazon/`。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
-5. **公司拥有 ≠ 生态归属**：ownership 只记录在 `brands.json`，不改变品牌目录归属（如 BaiduNetdisk 归 CloudStorage 而非 Baidu）。
+5. **公司拥有 ≠ 生态归属**：ownership 只记录在 `brands.json`，不改变品牌目录归属（如 BaiduNetdisk 归 CloudStorage 而非 Baidu）；
+6. **category ≠ parent_brand**：category 回答「图标归哪个功能/生态分类」，parent_brand 回答「品牌属于哪个生态」，两者独立。
+   **entity_type** 回答「实体本身是什么」：`ecosystem` 只用于生态根品牌（6 个），子品牌一律 `product_brand`。
 
 **未来判例**：
 

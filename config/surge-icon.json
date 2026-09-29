@@ -178,36 +178,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png"
     },
     {
-      "name": "Cloudflare",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/Cloudflare/Cloudflare.png"
-    },
-    {
-      "name": "Docker",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/Docker/Docker.png"
-    },
-    {
-      "name": "MikroTik",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/MikroTik/MikroTik.png"
-    },
-    {
-      "name": "OpenWrt",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/OpenWrt/OpenWrt.png"
-    },
-    {
-      "name": "Oracle",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/Oracle/Oracle.png"
-    },
-    {
-      "name": "Synology",
-      "category": "Cloud",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Cloud/Synology/Synology.png"
-    },
-    {
       "name": "115",
       "category": "CloudStorage",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/CloudStorage/115/115.png"
@@ -568,11 +538,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Crypto/Cryptocurrency/Cryptocurrency03.png"
     },
     {
-      "name": "Adobe",
-      "category": "Development",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Development/Adobe/Adobe.png"
-    },
-    {
       "name": "Cursor",
       "category": "Development",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Development/Cursor/Cursor.png"
@@ -731,6 +696,36 @@
       "name": "Mijia",
       "category": "Home",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Home/Mijia/Mijia.png"
+    },
+    {
+      "name": "Cloudflare",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Cloudflare/Cloudflare.png"
+    },
+    {
+      "name": "Docker",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Docker/Docker.png"
+    },
+    {
+      "name": "MikroTik",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/MikroTik/MikroTik.png"
+    },
+    {
+      "name": "OpenWrt",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/OpenWrt/OpenWrt.png"
+    },
+    {
+      "name": "Oracle",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Oracle/Oracle.png"
+    },
+    {
+      "name": "Synology",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Synology/Synology.png"
     },
     {
       "name": "ABEMA",
@@ -1801,6 +1796,11 @@
       "name": "AdGuard",
       "category": "Utilities",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Utilities/AdGuard/AdGuard.png"
+    },
+    {
+      "name": "Adobe",
+      "category": "Utilities",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Utilities/Adobe/Adobe.png"
     },
     {
       "name": "Baidu",

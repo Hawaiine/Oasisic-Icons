@@ -15,12 +15,12 @@
 
 - `icons/DevOps/AWS/` → `icons/Amazon/AWS/`
 - `icons/DevOps/Azure/` → `icons/Microsoft/Azure/`
-- `icons/DevOps/Cloudflare/` → `icons/Cloud/Cloudflare/`
-- `icons/DevOps/Docker/` → `icons/Cloud/Docker/`
-- `icons/DevOps/MikroTik/` → `icons/Cloud/MikroTik/`
-- `icons/DevOps/OpenWrt/` → `icons/Cloud/OpenWrt/`
-- `icons/DevOps/Oracle/` → `icons/Cloud/Oracle/`
-- `icons/DevOps/Synology/` → `icons/Cloud/Synology/`
+- `icons/DevOps/Cloudflare/` → `icons/Infrastructure/Cloudflare/`
+- `icons/DevOps/Docker/` → `icons/Infrastructure/Docker/`
+- `icons/DevOps/MikroTik/` → `icons/Infrastructure/MikroTik/`
+- `icons/DevOps/OpenWrt/` → `icons/Infrastructure/OpenWrt/`
+- `icons/DevOps/Oracle/` → `icons/Infrastructure/Oracle/`
+- `icons/DevOps/Synology/` → `icons/Infrastructure/Synology/`
 
 ### icons/Drive/ → 
 
@@ -126,6 +126,7 @@
 - `icons/Tool/DiDi/` → `icons/Transport/DiDi/`
 - `icons/Tool/Duolingo/` → `icons/Education/Duolingo/`
 - `icons/Tool/GitHub/` → `icons/Development/GitHub/`
+- `icons/Development/Adobe/` → `icons/Utilities/Adobe/`
 - `icons/Tool/Keep/` → `icons/Health/Keep/`
 - `icons/Tool/Lark/` → `icons/Communication/Lark/`
 - `icons/Tool/Notion/` → `icons/Utilities/Notion/`
