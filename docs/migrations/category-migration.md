@@ -15,7 +15,7 @@
 | Media | 重组 | → 移出 PrimeVideo（Amazon）、TencentVideo/WeTV（Tencent）、Douyin（Social）、KKBOX（Music）、BBC（保留 Media） |
 | Social | 重组 | → 移出通讯类 8 个 → Communication，腾讯系 4 个 → Tencent |
 
-**新增分类（9）**：
+**新增分类（11）**：
 
 | 分类 | 来源 | 品牌数 |
 |---|---|---|
