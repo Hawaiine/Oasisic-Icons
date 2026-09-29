@@ -1,6 +1,6 @@
 # 👥 Social / 社交媒体与社区
 
-> 共 **13** 个图标，**12** 个品牌
+> 共 **12** 个图标，**12** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -9,7 +9,7 @@
 | `Kwai` | `Kwai.png` |
 | `LinkedIn` | `LinkedIn.png` |
 | `Pinterest` | `Pinterest.png` |
-| `Pipixia` | `Pipixia.png Pipixia01.png` |
+| `Pipixia` | `Pipixia.png` |
 | `Reddit` | `Reddit.png` |
 | `Weibo` | `Weibo.png` |
 | `X` | `X.png` |

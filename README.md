@@ -17,7 +17,7 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-369-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/icons-282-blue?style=flat-square" alt="Icons Count">
   <img src="https://img.shields.io/badge/brands-282-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-35-orange?style=flat-square" alt="Categories Count">
 </p>
@@ -26,9 +26,9 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **369** 个 PNG 图标，覆盖 **282** 个品牌，归入 **35** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **282** 个 PNG 图标，覆盖 **282** 个品牌，归入 **35** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
 
-本项目为独立图标仓库，当前 369 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，当前 282 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
 > 仓库内图标按该规范维护，均为 512×512、RGBA、保留原始底色，经 `scripts/optimize-icons.py` 无损重压缩；少量历史圆角边缘遗留项待处理，明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
@@ -45,34 +45,23 @@
 icons/
 └── <分类>/
     └── <品牌名>/
-        ├── <品牌名>.png          ← 默认图标（必须存在，无任何后缀）
-        ├── <品牌名>01.png        ← 变体 1（两位零填充，禁止使用连字符 -）
-        ├── <品牌名>02.png        ← 变体 2
-        └── ...
+        └── <品牌名>.png          ← 默认图标（必须存在，无任何后缀）
 ```
 
 ### 强制规则
 
 1. **每个品牌必须有独立文件夹**，即使目前只有一个图标。
 2. **默认图标永远命名为 `<品牌名>.png`**（无任何后缀），且必须存在。
-3. **变体必须使用两位零填充数字**：`01`、`02`、`03`…（禁止 `-1`、`-2`、`1`、`2` 等形式）。
+3. **一个品牌当前只包含一个 PNG**：多版本变体已在 2026-09-29 全库移除（待后续统一重构后再引入）；命名规范保留 `<品牌名>NN.png`（两位零填充）供未来使用。
 4. **品牌名使用 PascalCase**，尽量与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules/tree/main/ruleset) 的品牌名保持一致。
    - 例外：**官方品牌名的大小写优先**，保留官方写法的目录有 `iQIYI`、`friDayVideo`、`myTVSUPER` 等；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
 5. **特殊字符处理**：`+` → `Plus`（例如 `DisneyPlus`）。
-6. **GitHub 文件列表排序**：`<品牌名>.png` 永远排在最上方（`.` < `0`），因此默认图标天然置顶。
 
 ### 正确示例
 
 ```
 icons/Country/Japan/
-├── Japan.png            ← 默认（原始素材经 scripts/normalize-icons.py 规范化到 512×512）
-├── Japan01.png          ← 变体 1
-├── Japan02.png          ← 变体 2
-└── Japan03.png          ← 变体 3
-
-icons/Media/HBOMax/
-├── HBOMax.png            ← 默认（512×512）
-└── HBOMax01.png          ← 变体 1
+└── Japan.png            ← 默认（原始素材经 scripts/normalize-icons.py 规范化到 512×512）
 
 icons/Media/Netflix/
 └── Netflix.png          ← 只有 1 个也必须放进品牌文件夹
@@ -80,10 +69,9 @@ icons/Media/Netflix/
 
 ### 错误示例（禁止）
 
-- ❌ `Spotify-1.png` / `Spotify-2.png`（连字符变体）
-- ❌ `Spotify1.png`（没有零填充）
 - ❌ 直接把 PNG 放在分类目录下（不建品牌文件夹）
-- ❌ 只保留品牌的一个变体（多版本品牌必须全部保留）
+- ❌ 品牌文件夹缺少 `<品牌名>.png` 默认图标
+- ❌ 使用连字符/无零填充的旧式变体命名（`Spotify-1.png`、`Spotify1.png`）
 
 ---
 
@@ -100,9 +88,6 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 ```
 # 默认图标
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
-
-# 变体（两位零填充）
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Country/Japan/Japan01.png
 
 # 单文件品牌
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Development/GitHub/GitHub.png
@@ -170,41 +155,41 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 分类 | 说明 | 品牌数 | 图标数 |
 |---|---|---:|---:|
 | 🤖 AI | 人工智能服务与模型 | 13 | 13 |
-| 🏢 Alibaba | 阿里巴巴生态 | 7 | 8 |
+| 🏢 Alibaba | 阿里巴巴生态 | 7 | 7 |
 | 📦 Amazon | 亚马逊生态 | 6 | 6 |
 | 🍎 Apple | 苹果生态 | 10 | 10 |
-| 🔍 Baidu | 百度生态 | 3 | 5 |
+| 🔍 Baidu | 百度生态 | 3 | 3 |
 | ▶️ ByteDance | 字节跳动生态 | 4 | 4 |
 | 🏗️ Infrastructure | 基础设施与运维（云平台/网络/容器/NAS） | 6 | 6 |
 | 💾 Cloud Storage | 云盘与文件存储 | 6 | 6 |
 | 💬 Communication | 即时通讯与团队协作 | 6 | 6 |
-| 🌍 Country | 国家与地区旗帜 | 21 | 49 |
-| ₿ Crypto | 加密货币与区块链 | 1 | 4 |
+| 🌍 Country | 国家与地区旗帜 | 21 | 21 |
+| ₿ Crypto | 加密货币与区块链 | 1 | 1 |
 | 💻 Development | 开发者工具与平台 | 2 | 2 |
 | 📚 Education | 教育与学习平台 | 2 | 2 |
 | 💰 Finance | 金融理财 | 0 | 0 |
-| 📱 Meta | Meta 生态 | 6 | 8 |
+| 📱 Meta | Meta 生态 | 6 | 6 |
 | 🎮 Game | 游戏平台与服务 | 4 | 4 |
 | 🔎 Google | Google 服务与生态 | 12 | 12 |
 | 🔌 Hardware | 硬件与消费电子设备 | 9 | 9 |
 | 🏥 Health | 健康与运动 | 1 | 1 |
 | 🎧 NetEase | 网易生态 | 3 | 3 |
 | 🏠 Home | 智能家居与家庭设备 | 2 | 2 |
-| 🎬 Media | 影音流媒体与视频 | 68 | 70 |
-| 🪟 Microsoft | 微软服务与生态 | 8 | 11 |
+| 🎬 Media | 影音流媒体与视频 | 68 | 68 |
+| 🪟 Microsoft | 微软服务与生态 | 8 | 8 |
 | 🎵 Music | 音乐服务 | 11 | 11 |
 | 📰 News | 新闻与资讯 | 1 | 1 |
 | 💳 Payment | 支付与金融交易 | 5 | 5 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
-| 🛒 Shopping | 购物与电商 | 5 | 6 |
-| 👥 Social | 社交媒体与社区 | 12 | 13 |
-| ⚡ Surge | Surge 应用图标 | 1 | 15 |
-| ⚙️ System | 代理系统图标与通用策略 | 20 | 49 |
-| 📡 Telecom | 电信运营商 | 4 | 5 |
+| 🛒 Shopping | 购物与电商 | 5 | 5 |
+| 👥 Social | 社交媒体与社区 | 12 | 12 |
+| ⚡ Surge | Surge 应用图标 | 1 | 1 |
+| ⚙️ System | 代理系统图标与通用策略 | 20 | 20 |
+| 📡 Telecom | 电信运营商 | 4 | 4 |
 | 🐧 Tencent | 腾讯生态 | 7 | 7 |
 | 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
-| **合计** | — | **282** | **369** |
+| **合计** | — | **282** | **282** |
 ### 分类体系原则（方案 C，2026-09-29）
 
 一级分类**扁平**：不设置 `Ecosystems / Services / Special` 等中间层，`icons/<分类>/<品牌>/` 为唯一深度。
@@ -313,11 +298,10 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 
 1. 目录：`icons/<分类>/<品牌名>/`
 2. 默认图标：`<品牌名>.png`（无后缀，必须存在）
-3. 变体图标：`<品牌名>01.png`、`<品牌名>02.png`（两位零填充，按原顺序编号）
+3. 变体图标（当前全库未使用，命名规范保留）：`<品牌名>01.png`、`<品牌名>02.png`（两位零填充，按原顺序编号）
 4. 品牌名使用 PascalCase，与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) 保持一致
 5. 特殊字符：`+` → `Plus`
 6. 官方品牌名大小写优先（`iQIYI` / `friDayVideo` / `myTVSUPER` 等保留官方写法，同时是消费方引用的路径）
-7. 多版本品牌必须**全部保留**其变体，不要以“清理冗余”为由删除
 
 ### 提交流程
 

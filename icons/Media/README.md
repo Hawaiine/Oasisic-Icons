@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体与视频
 
-> 共 **70** 个图标，**68** 个品牌
+> 共 **68** 个图标，**68** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -16,11 +16,11 @@
 | `DisneyPlus` | `DisneyPlus.png` |
 | `ESPN` | `ESPN.png` |
 | `Emby` | `Emby.png` |
-| `F1TV` | `F1TV.png F1TV01.png` |
+| `F1TV` | `F1TV.png` |
 | `Fan` | `Fan.png` |
 | `Fileball` | `Fileball.png` |
 | `FujiTV` | `FujiTV.png` |
-| `HBOMax` | `HBOMax.png HBOMax01.png` |
+| `HBOMax` | `HBOMax.png` |
 | `HOYTV` | `HOYTV.png` |
 | `HamiVideo` | `HamiVideo.png` |
 | `Hanxiaoquan` | `Hanxiaoquan.png` |
