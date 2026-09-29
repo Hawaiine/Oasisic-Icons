@@ -1,11 +1,12 @@
-# 🎬 Media / 影音流媒体
+# 🎬 Media / 影音流媒体与视频
 
-> 共 **73** 个图标，**71** 个品牌
+> 共 **70** 个图标，**68** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `ABEMA` | `ABEMA.png` |
 | `AMC` | `AMC.png` |
+| `BBC` | `BBC.png` |
 | `Bahamut` | `Bahamut.png` |
 | `Bangumi` | `Bangumi.png` |
 | `CATCHPLAY` | `CATCHPLAY.png` |
@@ -13,7 +14,6 @@
 | `DAZN` | `DAZN.png` |
 | `DMMTV` | `DMMTV.png` |
 | `DisneyPlus` | `DisneyPlus.png` |
-| `Douyin` | `Douyin.png` |
 | `ESPN` | `ESPN.png` |
 | `Emby` | `Emby.png` |
 | `F1TV` | `F1TV.png F1TV01.png` |
@@ -28,7 +28,6 @@
 | `Infuse` | `Infuse.png` |
 | `Jellyfin` | `Jellyfin.png` |
 | `JioHotstar` | `JioHotstar.png` |
-| `KKBOX` | `KKBOX.png` |
 | `KKTV` | `KKTV.png` |
 | `KaraokeDAM` | `KaraokeDAM.png` |
 | `LINETV` | `LINETV.png` |
@@ -47,7 +46,6 @@
 | `PeacockTV` | `PeacockTV.png` |
 | `Plex` | `Plex.png` |
 | `Podcasts` | `Podcasts.png` |
-| `PrimeVideo` | `PrimeVideo.png` |
 | `Radiko` | `Radiko.png` |
 | `RakutenTV` | `RakutenTV.png` |
 | `ReadJapan` | `ReadJapan.png` |
@@ -57,9 +55,9 @@
 | `SlingTV` | `SlingTV.png` |
 | `StarPlus` | `StarPlus.png` |
 | `TELASA` | `TELASA.png` |
+| `TMDB` | `TMDB.png` |
 | `TVB` | `TVB.png` |
 | `TVer` | `TVer.png` |
-| `TencentVideo` | `TencentVideo.png` |
 | `Tubi` | `Tubi.png` |
 | `UNEXT` | `UNEXT.png` |
 | `VideoMarket` | `VideoMarket.png` |
@@ -67,7 +65,6 @@
 | `Viu` | `Viu.png` |
 | `WOWOW` | `WOWOW.png` |
 | `Wallpaper` | `Wallpaper.png` |
-| `WeTV` | `WeTV.png` |
 | `Youku` | `Youku.png` |
 | `bilibili` | `bilibili.png` |
 | `dAnimeStore` | `dAnimeStore.png` |

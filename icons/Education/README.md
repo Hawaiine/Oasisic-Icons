@@ -1,6 +1,8 @@
-# 📚 Education / 教育平台
+# 📚 Education / 教育与学习平台
 
-> 共 **0** 个图标，**0** 个品牌
+> 共 **2** 个图标，**2** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
+| `Duolingo` | `Duolingo.png` |
+| `Z-Library` | `Z-Library.png` |

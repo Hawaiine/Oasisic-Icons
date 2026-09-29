@@ -1,20 +1,10 @@
-# 📡 Telecom / 运营商
+# 📡 Telecom / 电信运营商
 
-> 共 **15** 个图标，**14** 个品牌
+> 共 **5** 个图标，**4** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Aqara` | `Aqara.png` |
 | `ChinaBroadnet` | `ChinaBroadnet.png` |
 | `ChinaMobile` | `ChinaMobile.png ChinaMobile01.png` |
 | `ChinaTelecom` | `ChinaTelecom.png` |
 | `ChinaUnicom` | `ChinaUnicom.png` |
-| `Honor` | `Honor.png` |
-| `Huawei` | `Huawei.png` |
-| `LG` | `LG.png` |
-| `Mijia` | `Mijia.png` |
-| `OPPO` | `OPPO.png` |
-| `SONY` | `SONY.png` |
-| `Samsung` | `Samsung.png` |
-| `Xiaomi` | `Xiaomi.png` |
-| `vivo` | `vivo.png` |

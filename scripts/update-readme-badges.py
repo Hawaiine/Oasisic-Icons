@@ -26,13 +26,13 @@ ICONS = REPO / "icons"
 def count():
     files = list(ICONS.rglob("*.png"))
     brands = Counter()
-    categories = set()
     for p in files:
         rel = p.relative_to(ICONS)
         parts = rel.parts
         if len(parts) >= 2:
-            categories.add(parts[0])
             brands[(parts[0], parts[1])] += 1
+    # 分类数 = icons/ 下目录总数（含预留空分类），不能从 PNG 推导
+    categories = {p.name for p in ICONS.iterdir() if p.is_dir()}
     return len(files), len(brands), len(categories)
 
 

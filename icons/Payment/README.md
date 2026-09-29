@@ -1,10 +1,9 @@
-# 💳 Payment / 支付
+# 💳 Payment / 支付与金融交易
 
-> 共 **6** 个图标，**6** 个品牌
+> 共 **5** 个图标，**5** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AliPay` | `AliPay.png` |
 | `Binance` | `Binance.png` |
 | `OKX` | `OKX.png` |
 | `PayPal` | `PayPal.png` |
