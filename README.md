@@ -220,11 +220,14 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 6. **category ≠ parent_brand ≠ 生态根**：category 回答「图标归哪个一级目录」，parent_brand 回答「直接属于哪个品牌」（**直接父品牌 / immediate parent**，如 Instagram → Facebook、YouTubeMusic → YouTube、iCloudPrivateRelay → iCloud），生态根回答「最终属于哪个生态」——生态根**不单独存字段**，由 `entity_type: ecosystem` 标记 + 沿 parent 链向上动态派生（`brand_relationships.resolve_ecosystem_root`），消费方零成本获得。
    **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 16 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`；**公司品牌但未构成独立生态者（如 SINA / Xiaomi / TVB / SpaceXAI）亦为 `product_brand`**，其子公司/产品经 `parent_brand` 关联，不建一级生态目录。
 
-   **关系证据闭合状态（2026-09-30）**：`config/parent-edge-evidence.json` 与
+   **关系证据闭合状态（`Snapshot HEAD = 9c62b95` / `Snapshot Date = 2026-09-30`）**：`config/parent-edge-evidence.json` 与
    [`docs/references/parent-edge-semantic-audit.md`](docs/references/parent-edge-semantic-audit.md)
-   对全部 live `parent_brand` edges 单独记录关系类型。Corporate ownership、developer/provider、
-   platform/distribution 证据不会自动升级为 Brand Hierarchy；当前仍有 open-review edges，详见该审计，
-   因此不能仅凭 CI PASS 宣布全库现实关系已完成语义闭合。
+   （均由 `scripts/gen-parent-edge-evidence.py` 生成，可重放）对全部 **115** 条 live `parent_brand` edge
+   单独记录 `relation_type` + `parent_brand_validity`。Corporate ownership、developer/provider、
+   platform/distribution 证据不会自动升级为 Brand Hierarchy：当前 `BRAND_HIERARCHY 5 / CORPORATE_OWNERSHIP 42 /
+   DEVELOPER_PROVIDER 8 / PLATFORM_INTEGRATION 0 / UNKNOWN 60`，即 **CONFIRMED 5 / OPEN_REVIEW 110 / REJECTED 0**。
+   该分级是 evidence-text triage，不是 real-world proof（115 条中 0 条记录 `source.url`），
+   因此不能仅凭 CI PASS 宣布全库现实关系已完成语义闭合。详见该审计。
 
 **归属审计（研究层）**：[`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md) 记录全库每个 Canonical Brand 的**当前现实世界母公司**判断、证据来源、状态（CONFIRMED_PARENT / NO_PARENT / AMBIGUOUS_JV / RETIRED / SPECIAL_ENTITY）与采取的动作。CI 只能验证结构一致性，**无法证明现实归属完整性**——该职责由该审计文档承担。
 

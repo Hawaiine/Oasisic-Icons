@@ -436,6 +436,13 @@ class RealRepoTests(unittest.TestCase):
             (repo / 'config' / 'categories.json').read_text(encoding='utf-8'))
         cls.ssot = {e['id']: e for e in cls.brands_doc['brands']}
 
+    @staticmethod
+    def _manifest():
+        import json
+        repo = Path(__file__).resolve().parent.parent
+        return json.loads(
+            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
+
     def test_real_repo_passes(self):
         errs = validate_relationships(self.brands_doc, self.cats_doc['categories'])
         self.assertEqual(errs, [])
@@ -488,7 +495,7 @@ class RealRepoTests(unittest.TestCase):
             self.assertNotIn('distribution_brand', entry)
 
     def test_parent_edge_evidence_covers_every_live_edge(self):
-        """每条 live parent_brand edge 都必须有独立的语义证据分类。"""
+        """每条 live parent_brand edge 都必须有独立的关系类型 + validity 记录。"""
         import json
         repo = Path(__file__).resolve().parent.parent
         manifest = json.loads(
@@ -500,41 +507,87 @@ class RealRepoTests(unittest.TestCase):
         audited = {(e['child'], e['parent']) for e in manifest['edges']}
         self.assertEqual(audited, live)
         self.assertEqual(len(audited), 115)
-        allowed = set(manifest['allowed_classifications'])
-        self.assertTrue(all(e['classification'] in allowed for e in manifest['edges']))
+        self.assertEqual(set(manifest['relation_types']),
+                         {'BRAND_HIERARCHY', 'CORPORATE_OWNERSHIP', 'DEVELOPER_PROVIDER',
+                          'PLATFORM_INTEGRATION', 'UNKNOWN'})
+        self.assertEqual(set(manifest['validity_values']),
+                         {'CONFIRMED', 'OPEN_REVIEW', 'REJECTED'})
+        for e in manifest['edges']:
+            self.assertIn(e['relation_type'], manifest['relation_types'], e['child'])
+            self.assertIn(e['parent_brand_validity'], manifest['validity_values'], e['child'])
 
     def test_corporate_ownership_alone_is_not_hierarchy_proof(self):
-        """ownership-only evidence must remain reviewable, not silently confirmed."""
-        import json
-        repo = Path(__file__).resolve().parent.parent
-        manifest = json.loads(
-            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
+        """§32：ownership-only 证据不得静默升级为 hierarchy。"""
+        manifest = self._manifest()
         by_child = {e['child']: e for e in manifest['edges']}
-        self.assertEqual(by_child['GitHub']['classification'], 'CORPORATE_OWNERSHIP_ONLY')
-        self.assertEqual(by_child['GitHub']['review_status'], 'OPEN_REVIEW')
+        self.assertEqual(by_child['LinkedIn']['relation_type'], 'CORPORATE_OWNERSHIP')
+        self.assertEqual(by_child['LinkedIn']['parent_brand_validity'], 'OPEN_REVIEW')
+
+    def test_umbrella_word_alone_is_not_hierarchy_proof(self):
+        """§70 Test A：「旗下」不得单独证明 BRAND_HIERARCHY。"""
+        manifest = self._manifest()
+        by_child = {e['child']: e for e in manifest['edges']}
+        for child in ('F1TV', 'NowE', 'NBC', 'KakaoTalk', 'Snapchat', 'Viu', 'myTVSUPER'):
+            self.assertEqual(by_child[child]['relation_type'], 'CORPORATE_OWNERSHIP',
+                             '%s 只凭「旗下」不得判为品牌层级' % child)
+            self.assertEqual(by_child[child]['parent_brand_validity'], 'OPEN_REVIEW')
+        confirmed = {e['child'] for e in manifest['edges']
+                     if e['parent_brand_validity'] == 'CONFIRMED'}
+        self.assertTrue(confirmed.isdisjoint({'F1TV', 'NowE', 'NBC', 'KakaoTalk'}))
+
+    def test_developer_or_platform_alone_is_not_parent(self):
+        """§70 Test C/D：developer-only、platform-only 不得自动成为 parent。"""
+        manifest = self._manifest()
+        by_child = {e['child']: e for e in manifest['edges']}
+        self.assertEqual(by_child['Grok']['relation_type'], 'DEVELOPER_PROVIDER')
+        self.assertEqual(by_child['Grok']['parent_brand_validity'], 'OPEN_REVIEW')
+        self.assertEqual(by_child['Kimi']['relation_type'], 'DEVELOPER_PROVIDER')
+        self.assertEqual(by_child['Kimi']['parent_brand_validity'], 'OPEN_REVIEW')
+        for e in manifest['edges']:
+            if e['relation_type'] in ('DEVELOPER_PROVIDER', 'PLATFORM_INTEGRATION'):
+                self.assertNotEqual(e['parent_brand_validity'], 'CONFIRMED',
+                                    '%s 不得因 developer/platform 证据判 CONFIRMED' % e['child'])
+
+    def test_generic_restatement_stays_unknown(self):
+        """§70 Test E：泛化复述必须 UNKNOWN / OPEN_REVIEW。"""
+        manifest = self._manifest()
+        unknown = [e for e in manifest['edges'] if e['relation_type'] == 'UNKNOWN']
+        self.assertEqual(len(unknown), 60)
+        for e in unknown:
+            self.assertEqual(e['parent_brand_validity'], 'OPEN_REVIEW', e['child'])
 
     def test_parent_edge_audit_counts_and_grok_boundary(self):
         """固定当前审计口径，避免 ownership 证据静默升级为 hierarchy。"""
-        import json
         from collections import Counter
-        repo = Path(__file__).resolve().parent.parent
-        manifest = json.loads(
-            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
-        counts = Counter(e['classification'] for e in manifest['edges'])
-        self.assertEqual(counts, Counter({
-            'AMBIGUOUS': 60,
-            'CORPORATE_OWNERSHIP_ONLY': 28,
-            'DEVELOPER_PROVIDER_ONLY': 7,
-            'BRAND_HIERARCHY_CONFIRMED': 20,
+        manifest = self._manifest()
+        self.assertEqual(Counter(e['relation_type'] for e in manifest['edges']), Counter({
+            'UNKNOWN': 60,
+            'CORPORATE_OWNERSHIP': 42,
+            'DEVELOPER_PROVIDER': 8,
+            'BRAND_HIERARCHY': 5,
+        }))
+        self.assertEqual(Counter(e['parent_brand_validity'] for e in manifest['edges']), Counter({
+            'OPEN_REVIEW': 110,
+            'CONFIRMED': 5,
         }))
         grok = next(e for e in manifest['edges'] if e['child'] == 'Grok')
         self.assertEqual(grok['parent'], 'SpaceXAI')
-        self.assertEqual(grok['classification'], 'DEVELOPER_PROVIDER_ONLY')
+        self.assertEqual(grok['relation_type'], 'DEVELOPER_PROVIDER')
         self.assertEqual(grok['review_status'], 'OPEN_REVIEW')
-        # 每个 edge 必须带证据原文与判定规则，便于人工复核可复现
+        # 每条 edge 必须带证据原文、判定规则与来源结构，便于人工复核
         for e in manifest['edges']:
             self.assertTrue(e['evidence_quote'], e['child'])
             self.assertTrue(e['decision_rule'].startswith('R'), e['child'])
+            self.assertIn('url_status', e['source'], e['child'])
+            self.assertTrue(e['rationale'], e['child'])
+
+    def test_source_urls_are_explicitly_unrecorded(self):
+        """§74：不得伪造来源。当前无 URL 时必须显式标注 NOT_RECORDED。"""
+        manifest = self._manifest()
+        for e in manifest['edges']:
+            self.assertIsNone(e['source']['url'], e['child'])
+            self.assertEqual(e['source']['url_status'], 'NOT_RECORDED', e['child'])
+        self.assertIn('0/115', manifest['self_reference_risk'])
 
     def test_parent_edge_evidence_is_deterministic(self):
         """manifest + audit 文档必须可由生成器确定性重放（0 diff）。"""

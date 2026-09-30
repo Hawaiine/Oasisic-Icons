@@ -1,13 +1,36 @@
 #!/usr/bin/env python3
-"""生成 config/parent-edge-evidence.json（确定性规则，可复现）。
+"""生成 config/parent-edge-evidence.json + docs/references/parent-edge-semantic-audit.md。
 
-规则顺序（先命中先判定，见 decision_rules）：
-  R1 泛化复述        → AMBIGUOUS
-  R2 平台集成语言    → PLATFORM_RELATION_ONLY
-  R3 含「开发」      → DEVELOPER_PROVIDER_ONLY
-  R4 品牌伞状名词    → BRAND_HIERARCHY_CONFIRMED
-  R5 股权/控制词     → CORPORATE_OWNERSHIP_ONLY
-  R6 未命中          → AMBIGUOUS
+能力边界（必须保留，不得含糊）
+------------------------------
+本脚本是 **evidence-text triage（证据文本分级）**，不是 real-world relationship proof。
+它只回答「审计文档 §7 那一行证据文字描述的是哪一类关系」，不回答「现实世界是否真的如此」。
+
+数据流（单向，禁止反向）：
+
+    primary source → structured edge evidence → human decision
+                   → brands.json → 本生成器 → audit / manifest
+
+自证循环风险（已记录，未消除）
+------------------------------
+证据文字来自 `docs/references/brand-ownership-audit.md`（人工研究摘要）。生成器**不重新取证**，
+因此无法独立验证该摘要本身。消除风险需逐边补 `source.url` 并人工复核；当前 0/115 有 URL。
+
+决策规则（按顺序，先命中先判定；信号优先级 = developer > ownership > umbrella > platform）
+--------------------------------------------------------------------------------------
+  R1 泛化复述        → UNKNOWN              / OPEN_REVIEW
+  R2 开发/推出       → DEVELOPER_PROVIDER   / OPEN_REVIEW
+  R3 股权/控制/归属  → CORPORATE_OWNERSHIP  / OPEN_REVIEW
+  R4 品牌伞状措辞    → BRAND_HIERARCHY      / CONFIRMED
+  R5 平台集成语言    → PLATFORM_INTEGRATION / OPEN_REVIEW
+  R6 未命中          → UNKNOWN              / OPEN_REVIEW
+
+为什么顺序是这样：
+- 归属/控制措辞（旗下/集团/全资）必须先于伞状措辞判定——只凭「旗下」不能证明 direct brand
+  umbrella（旧版曾据此把 F1TV → LibertyMedia、NowE → PCCW 误判为品牌层级）。
+- 开发/提供方措辞必须先于平台措辞判定——Grok 的证据同时含「开发」与「平台可访问」，
+  旧版把它整条判成 platform，掩盖了 developer 事实。
+- 平台措辞放最后：它只有在没有其它更强信号时才是对该 edge 的最佳描述。
 """
 import json
 import re
@@ -16,43 +39,84 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 MATRIX = REPO / 'docs/references/brand-ownership-audit.md'
+RETRIEVED_AT = '2026-09-30'
 
 RULES = [
-    ('R1_GENERIC_RESTATEMENT', 'AMBIGUOUS',
-     "evidence contains the generic restatement '既有 parent_brand 关系仍成立'"),
-    ('R2_PLATFORM_INTEGRATION', 'PLATFORM_RELATION_ONLY',
-     "evidence contains platform-integration language ('平台使用' / '可通过 X' / 'available on')"),
-    ('R3_DEVELOPER', 'DEVELOPER_PROVIDER_ONLY',
-     "evidence contains '开发' (developer/provider statement)"),
-    ('R4_BRAND_UMBRELLA', 'BRAND_HIERARCHY_CONFIRMED',
-     "evidence contains an umbrella noun (品牌/产品/服务/应用/电视网/流媒体/OTT/旗下)"),
-    ('R5_EQUITY_CONTROL', 'CORPORATE_OWNERSHIP_ONLY',
-     "evidence contains an equity/control term (全资/多数/控股/收购/持有/股权/子公司/归属/运营/集团)"),
-    ('R6_DEFAULT', 'AMBIGUOUS', 'no rule matched'),
+    ('R1_GENERIC_RESTATEMENT', 'UNKNOWN', 'OPEN_REVIEW',
+     "evidence is the generic restatement '既有 parent_brand 关系仍成立'"),
+    ('R2_DEVELOPER_PROVIDER', 'DEVELOPER_PROVIDER', 'OPEN_REVIEW',
+     "evidence contains developer/provider language (开发/推出)"),
+    ('R3_CORPORATE_OWNERSHIP', 'CORPORATE_OWNERSHIP', 'OPEN_REVIEW',
+     "evidence contains ownership/control language (旗下/全资/多数/控股/收购/持有/股权/子公司/归属/集团/属/运营)"),
+    ('R4_BRAND_UMBRELLA', 'BRAND_HIERARCHY', 'CONFIRMED',
+     "evidence contains brand-umbrella language (品牌/自有应用/自有产品/产品/服务) and no ownership/control or developer term"),
+    ('R5_PLATFORM_INTEGRATION', 'PLATFORM_INTEGRATION', 'OPEN_REVIEW',
+     "evidence contains platform-access language ('平台使用' / '可通过 X' / 'available on' / '平台可访问') and no other signal"),
+    ('R6_DEFAULT', 'UNKNOWN', 'OPEN_REVIEW', 'no rule matched'),
 ]
-UMBRELLA = ['品牌', '产品', '服务', '应用', '电视网', '流媒体', 'OTT', '旗下']
-EQUITY = ['全资', '多数', '控股', '收购', '持有', '股权', '子公司', '归属', '运营', '集团']
-PLATFORM = ['平台使用', '可通过 X', 'available on']
+
+GENERIC = '既有 parent_brand'
+PLATFORM = ['平台使用', '可通过 X', 'available on', '平台可访问']
+OWNERSHIP = ['旗下', '全资', '多数', '控股', '收购', '持有', '股权', '子公司', '归属', '集团', '属 ', '运营']
+DEVELOPER = ['开发', '推出']
+UMBRELLA = ['品牌', '自有应用', '自有产品', '产品', '服务']
+
+RATIONALE = {
+    'UNKNOWN': '证据文字为泛化复述或无法归类，不足以判断关系类型。',
+    'CORPORATE_OWNERSHIP': '证据文字描述归属/控制，未直接说明品牌伞状关系。',
+    'DEVELOPER_PROVIDER': '证据文字描述开发/提供方，未直接说明品牌伞状关系。',
+    'PLATFORM_INTEGRATION': '证据文字描述平台可访问/托管，不构成品牌父级。',
+    'BRAND_HIERARCHY': '证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。',
+}
+
+# 来源类型：仅从证据文字的括号注记推断组织与类型，不推断 URL。
+SOURCE_PATTERNS = [
+    ('OFFICIAL_REPORT', r'官方财报|财报|年报|投资者关系'),
+    ('OFFICIAL_SITE', r'官方'),
+    ('PUBLIC_REPORTING', r'公开报道|公开资料|第三方核对'),
+    ('SECONDARY', r'维基|百科'),
+]
 
 
 def classify(evidence):
     if not evidence:
-        return 'R6_DEFAULT', 'AMBIGUOUS'
-    if '既有 parent_brand' in evidence:
-        return 'R1_GENERIC_RESTATEMENT', 'AMBIGUOUS'
-    if any(k in evidence for k in PLATFORM):
-        return 'R2_PLATFORM_INTEGRATION', 'PLATFORM_RELATION_ONLY'
-    if '开发' in evidence:
-        return 'R3_DEVELOPER', 'DEVELOPER_PROVIDER_ONLY'
+        return 'R6_DEFAULT', 'UNKNOWN', 'OPEN_REVIEW'
+    if GENERIC in evidence:
+        return 'R1_GENERIC_RESTATEMENT', 'UNKNOWN', 'OPEN_REVIEW'
+    if any(k in evidence for k in DEVELOPER):
+        return 'R2_DEVELOPER_PROVIDER', 'DEVELOPER_PROVIDER', 'OPEN_REVIEW'
+    if any(k in evidence for k in OWNERSHIP):
+        return 'R3_CORPORATE_OWNERSHIP', 'CORPORATE_OWNERSHIP', 'OPEN_REVIEW'
     if any(k in evidence for k in UMBRELLA):
-        return 'R4_BRAND_UMBRELLA', 'BRAND_HIERARCHY_CONFIRMED'
-    if any(k in evidence for k in EQUITY):
-        return 'R5_EQUITY_CONTROL', 'CORPORATE_OWNERSHIP_ONLY'
-    return 'R6_DEFAULT', 'AMBIGUOUS'
+        return 'R4_BRAND_UMBRELLA', 'BRAND_HIERARCHY', 'CONFIRMED'
+    if any(k in evidence for k in PLATFORM):
+        return 'R5_PLATFORM_INTEGRATION', 'PLATFORM_INTEGRATION', 'OPEN_REVIEW'
+    return 'R6_DEFAULT', 'UNKNOWN', 'OPEN_REVIEW'
 
 
-def main():
-    brands = json.loads((REPO / 'config/brands.json').read_text(encoding='utf-8'))
+def source_of(evidence):
+    kind = 'UNRECORDED'
+    for name, pat in SOURCE_PATTERNS:
+        if re.search(pat, evidence):
+            kind = name
+            break
+    org = None
+    m = re.search(r'（([^（）]{2,40}?)官方', evidence)
+    if m:
+        org = m.group(1)
+    elif kind == 'OFFICIAL_REPORT':
+        org = 'company filing'
+    return {
+        'organization': org,
+        'url': None,
+        'title': None,
+        'retrieved_at': RETRIEVED_AT,
+        'kind': kind,
+        'url_status': 'NOT_RECORDED',
+    }
+
+
+def read_matrix_evidence():
     text = MATRIX.read_text(encoding='utf-8')
     evidence = {}
     for line in text.splitlines():
@@ -62,105 +126,143 @@ def main():
             r'(?:（[^|]*）)? \|', line)
         if m:
             evidence[m.group(1)] = m.group(5).strip()
+    return evidence
 
+
+def build_edges():
+    brands = json.loads((REPO / 'config/brands.json').read_text(encoding='utf-8'))
+    evidence = read_matrix_evidence()
     edges = []
     for entry in sorted(brands['brands'], key=lambda e: e['id']):
-        child = entry.get('parent_brand')
-        if not child:
+        parent = entry.get('parent_brand')
+        if not parent:
             continue
         quote = evidence.get(entry['id'], '')
-        rule, cls = classify(quote)
+        rule, relation, validity = classify(quote)
         edges.append({
             'child': entry['id'],
-            'parent': child,
-            'classification': cls,
+            'parent': parent,
+            'relation_type': relation,
+            'parent_brand_validity': validity,
             'decision_rule': rule,
             'evidence_quote': quote or '(no matching audit matrix row)',
-            'evidence_source': 'docs/references/brand-ownership-audit.md §7 全量矩阵',
+            'evidence_layer': 'docs/references/brand-ownership-audit.md §7 全量矩阵',
+            'source': source_of(quote),
+            'rationale': RATIONALE[relation],
             'review_status': ('CONFIRMED_UNDER_CURRENT_CONTRACT'
-                              if cls == 'BRAND_HIERARCHY_CONFIRMED' else 'OPEN_REVIEW'),
+                              if validity == 'CONFIRMED' else 'OPEN_REVIEW'),
         })
+    return edges
 
-    doc = {
-        'schema_version': 2,
-        'description': ('Deterministic evidence classification for every live '
-                        'config/brands.json parent_brand edge. Evidence/review layer '
-                        'only; it does not replace the brands.json SSOT.'),
-        'important_note': ('classification is a deterministic function of the literal '
-                           'evidence string in brand-ownership-audit.md §7, applied '
-                           'through the ordered decision_rules. It is a triage aid, not '
-                           'proof of real-world brand hierarchy; reviewers must read '
-                           'evidence_quote and review_status.'),
-        'allowed_classifications': ['BRAND_HIERARCHY_CONFIRMED', 'CORPORATE_OWNERSHIP_ONLY',
-                                    'DEVELOPER_PROVIDER_ONLY', 'PLATFORM_RELATION_ONLY',
-                                    'AMBIGUOUS'],
-        'decision_rules': [{'rule': r, 'classification': c, 'condition': d}
-                           for r, c, d in RULES],
+
+def build_doc(edges):
+    return {
+        'schema_version': 3,
+        'generated_by': 'scripts/gen-parent-edge-evidence.py',
+        'description': ('Structured relation-type evidence for every live config/brands.json '
+                        'parent_brand edge. Evidence/review layer only; it does not replace '
+                        'the brands.json SSOT.'),
+        'capability_boundary': ('Evidence-text triage derived from the brand-ownership-audit.md '
+                                'research summary. It is NOT real-world relationship proof and '
+                                'does not independently re-verify any primary source.'),
+        'self_reference_risk': ('Evidence quotes originate from a human research summary, so the '
+                                'classifier cannot validate that summary. Removing this risk '
+                                'requires a recorded source.url plus human review per edge; '
+                                'currently 0/%d edges carry a source URL.' % len(edges)),
+        'relation_types': ['BRAND_HIERARCHY', 'CORPORATE_OWNERSHIP', 'DEVELOPER_PROVIDER',
+                           'PLATFORM_INTEGRATION', 'UNKNOWN'],
+        'validity_values': ['CONFIRMED', 'OPEN_REVIEW', 'REJECTED'],
+        'decision_rules': [{'rule': r, 'relation_type': rt, 'parent_brand_validity': v,
+                            'condition': d} for r, rt, v, d in RULES],
         'edges': edges,
     }
-    (REPO / 'config/parent-edge-evidence.json').write_text(
-        json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
-    counts = Counter(e['classification'] for e in edges)
+
+def render_audit(doc, edges):
+    counts = Counter(e['relation_type'] for e in edges)
+    vcounts = Counter(e['parent_brand_validity'] for e in edges)
     meaning = {
-        'BRAND_HIERARCHY_CONFIRMED': 'The evidence string names the child as a brand/product/service under the parent (umbrella language).',
-        'CORPORATE_OWNERSHIP_ONLY': 'The evidence string records equity/control/operation; it does not by itself state a brand umbrella.',
-        'DEVELOPER_PROVIDER_ONLY': 'The evidence string records development/operation, not a brand umbrella.',
-        'PLATFORM_RELATION_ONLY': 'The evidence string records platform access/hosting/distribution only.',
-        'AMBIGUOUS': 'Generic restatement, organisation-unit language, or no matchable evidence.',
+        'BRAND_HIERARCHY': '证据文字以品牌伞状措辞描述子品牌/产品 → 当前契约下判 CONFIRMED。',
+        'CORPORATE_OWNERSHIP': '仅归属/控制/运营措辞 → 不足以证明 direct brand umbrella，OPEN_REVIEW。',
+        'DEVELOPER_PROVIDER': '仅开发/提供方措辞 → 不足以证明 direct brand umbrella，OPEN_REVIEW。',
+        'PLATFORM_INTEGRATION': '平台可访问/托管 → 不是 parent_brand，OPEN_REVIEW。',
+        'UNKNOWN': '泛化复述或无法归类 → OPEN_REVIEW。',
     }
     lines = [
         '# Parent Edge Semantic Evidence Audit',
         '',
         '> 本文档由 `scripts/gen-parent-edge-evidence.py` 生成，与 `config/parent-edge-evidence.json` 同源，'
-        '请勿手工编辑。它是对全部 live `parent_brand` edge 的**证据分级**，不修改 `config/brands.json`。',
+        '请勿手工编辑。它是对全部 live `parent_brand` edge 的**关系类型分级**，不修改 `config/brands.json`。',
         '',
-        '## Contract',
+        '## 能力边界 / Capability boundary',
         '',
-        '`parent_brand` is valid only when the child is presented as a sub-brand/product brand under the '
-        'immediate parent, or the parent is the direct brand umbrella. Corporate ownership, '
-        'developer/provider status, platform hosting, and distribution are **not** sufficient by themselves.',
+        '本分级是 **evidence-text triage**：只回答「审计文档 §7 那一行证据文字描述的是哪一类关系」，',
+        '**不回答**「现实世界是否真的如此」。`keyword hit ≠ relationship proof`。',
+        '',
+        '**自证循环风险（已记录，未消除）**：证据文字来自 `brand-ownership-audit.md` 这一人工研究摘要，'
+        '生成器不重新取证，无法独立验证该摘要。消除风险需逐边补 `source.url` + 人工复核；'
+        '当前 **0 / %d** 条 edge 记录了 source URL。' % len(edges),
         '',
         '## Decision rules（按顺序，先命中先判定）',
         '',
-        '| # | Rule | Classification | Condition |',
-        '|---:|---|---|---|',
+        '| # | Rule | relation_type | parent_brand_validity | Condition |',
+        '|---:|---|---|---|---|',
     ]
-    for i, (r, c, d) in enumerate(RULES, 1):
-        lines.append('| %d | `%s` | `%s` | %s |' % (i, r, c, d))
+    for i, (r, rt, v, d) in enumerate(RULES, 1):
+        lines.append('| %d | `%s` | `%s` | `%s` | %s |' % (i, r, rt, v, d))
     lines += [
         '',
-        '> **重要限制**：分级是 evidence 字符串的确定性函数，不是现实世界归属的证明；'
-        '`BRAND_HIERARCHY_CONFIRMED` 也只表示**证据文本**具备品牌伞状措辞，仍需人工按 primary source 复核。'
-        '若后续修订 §7 矩阵的证据文本，必须重跑本生成器，计数会随之变化。',
+        '> **R3 必须在 R4 之前**：只凭「旗下」「集团」等归属措辞不能证明 direct brand umbrella。',
+        '> 旧版把「旗下」当作伞状证据，曾把 `F1TV → LibertyMedia`、`NowE → PCCW` 等纯归属关系误判为品牌层级，本版已修正。',
+        '> 同理，开发/提供方措辞（R2）先于平台措辞（R5）：Grok 的证据同时含两者，旧版整条判成 platform，掩盖了 developer 事实。',
         '',
-        '## Results',
+        '## relation_type 分布',
         '',
-        '| Classification | Count | Interpretation |',
+        '| relation_type | Count | Interpretation |',
         '|---|---:|---|',
     ]
-    for c in doc['allowed_classifications']:
-        lines.append('| `%s` | %d | %s |' % (c, counts[c], meaning[c]))
+    for rt in doc['relation_types']:
+        lines.append('| `%s` | %d | %s |' % (rt, counts[rt], meaning[rt]))
     lines += [
         '| **Total** | **%d** | **All live edges extracted from `config/brands.json`.** |' % len(edges),
         '',
+        '## parent_brand_validity 分布',
+        '',
+        '| validity | Count |',
+        '|---|---:|',
+    ]
+    for v in doc['validity_values']:
+        lines.append('| `%s` | %d |' % (v, vcounts[v]))
+    lines += [
+        '| **Total** | **%d** |' % len(edges),
+        '',
+        '> `CONFIRMED` 只在 `relation_type = BRAND_HIERARCHY` 时给出，即证据文字本身已具备品牌伞状措辞。',
+        '> 这不等于 primary-source 已闭合：全部 edge 的 `source.url` 仍为 `NOT_RECORDED`。',
+        '',
         '## Architecture finding',
         '',
-        '**BLOCKER:** 旧方法论把「全资或多数控股」直接记为 `CONFIRMED_PARENT`，这只证明 corporate control，'
-        '不必然证明 Brand / Product Hierarchy。因此本 manifest 不把 ownership-only、developer/provider-only '
-        '与泛化复述的行静默升级为已闭合。',
+        '**BLOCKER A（未闭合）**：115 条 edge 的 `relation_type` 来自**证据文字**而非独立 primary source，'
+        '分类可能受关键字影响。真正闭合需逐边补 `source.url` 并人工裁决；本轮 0/115 已记录 URL。',
         '',
-        '当前 SSOT 的 115 条边**未被修改**。后续闭合必须逐边补 primary-source Brand Hierarchy 证据，'
-        '或由人工明确裁决。',
+        '**未修改 SSOT**：`config/brands.json` 的 115 条 `parent_brand` 本轮未被修改。',
         '',
     ]
-    for c in doc['allowed_classifications']:
-        vals = ['`%s → %s`' % (e['child'], e['parent']) for e in edges if e['classification'] == c]
-        lines += ['### %s' % c, '', ', '.join(vals) if vals else '*(none)*', '']
+    for rt in doc['relation_types']:
+        vals = ['`%s → %s`' % (e['child'], e['parent']) for e in edges if e['relation_type'] == rt]
+        lines += ['### %s' % rt, '', ', '.join(vals) if vals else '*(none)*', '']
+    return '\n'.join(lines).rstrip('\n') + '\n'
+
+
+def main():
+    edges = build_edges()
+    doc = build_doc(edges)
+    (REPO / 'config/parent-edge-evidence.json').write_text(
+        json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     (REPO / 'docs/references/parent-edge-semantic-audit.md').write_text(
-        '\n'.join(lines).rstrip('\n') + '\n', encoding='utf-8')
+        render_audit(doc, edges), encoding='utf-8')
     print('edges', len(edges))
-    print('classification', dict(counts))
+    print('relation_type', dict(Counter(e['relation_type'] for e in edges)))
+    print('validity', dict(Counter(e['parent_brand_validity'] for e in edges)))
     print('rules', dict(Counter(e['decision_rule'] for e in edges)))
 
 

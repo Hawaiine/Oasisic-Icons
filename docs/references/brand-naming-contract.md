@@ -20,7 +20,7 @@
 
 **关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy（如
 `Google → YouTube → YouTubeMusic`、`Meta → Facebook → Instagram`、`Apple → iCloud →
-iCloudPrivateRelay`）。Developer / Provider / Brand Owner 与 Platform Integration / Distribution 不是 `parent_brand`：例如官方资料支持「SpaceXAI 开发并控制 Grok 品牌」与「Grok 可通过 X 平台使用」。前者支持当前 `Grok.parent_brand = SpaceXAI` 的 SSOT 决策方向，但在全库 edge-evidence 中仍标为 `DEVELOPER_PROVIDER_ONLY / OPEN_REVIEW`；后者是 `Grok ↔ X` 的平台集成关系，不得倒推 `Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；除非未来出现
+iCloudPrivateRelay`）。Developer / Provider / Brand Owner 与 Platform Integration / Distribution 不是 `parent_brand`：例如官方资料支持「SpaceXAI 开发并控制 Grok 品牌」与「Grok 可通过 X 平台使用」。前者支持当前 `Grok.parent_brand = SpaceXAI` 的 SSOT 决策方向，但在全库 edge-evidence 中仍标为 `relation_type = DEVELOPER_PROVIDER` / `parent_brand_validity = OPEN_REVIEW`；后者是 `Grok ↔ X` 的平台集成关系，不得倒推 `Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；除非未来出现
 全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在证据审计层。
 
 ## 2. Technical ID 规则
