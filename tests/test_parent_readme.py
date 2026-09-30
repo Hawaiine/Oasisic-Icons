@@ -225,7 +225,7 @@ class NamingContractTests(unittest.TestCase):
 
     def test_official_casing_preserved(self):
         # §50/§52：官方 casing 保留，不机械 PascalCase
-        for bid in ('iQIYI', 'SONY', 'vivo', 'myTVSUPER', 'TIDAL', 'xAI'):
+        for bid in ('iQIYI', 'SONY', 'vivo', 'myTVSUPER', 'TIDAL', 'SpaceXAI'):
             self.assertIn(bid, self.ssot, '官方 casing 品牌 %s 缺失' % bid)
 
     def test_chinese_display_names(self):

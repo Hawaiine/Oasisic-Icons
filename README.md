@@ -195,7 +195,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | 🎞️ Warner Bros. Discovery | 华纳兄弟探索生态 | 3 | 3 |
-| 🛰️ xAI | xAI 生态 | 3 | 3 |
+| 🚀 SpaceXAI | SpaceXAI 生态 | 3 | 3 |
 | **合计** | — | **292** | **292** |
 ### 分类体系原则（方案 C，2026-09-29）
 
@@ -214,7 +214,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    - descendants ≥ 2 → 建 `icons/<Root>/` 一级分类，descendants 统一迁入（`category = <Root>`，**保留 `parent_brand`**）；
    - 生态根有 root icon → 迁入 `icons/<Root>/<Root>/<Root>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**，生态根登记 `parent_brands_without_icon`（白名单只表示无 root icon，不代表不建目录，且白名单内不得出现已有 canonical icon 的品牌）；
    - descendants < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
-   当前生态分类（17 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery / xAI。
+   当前生态分类（17 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery / SpaceXAI。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
 5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且生态根 descendants ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；

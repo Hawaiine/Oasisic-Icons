@@ -22,7 +22,7 @@
 
 - 仅 `[A-Za-z0-9]` 开头，后续允许 `[A-Za-z0-9._-]`；ASCII、无空格、无 `/`。
 - **不机械 PascalCase**：官方 casing 保留（`iQIYI`、`SONY`、`vivo`、`myTVSUPER`、
-  `TIDAL`、`xAI`）。
+  `TIDAL`、`SpaceXAI`）。
 - 数字开头 ID 是合法既有资产（`115`、`123`、`189`、`1Password`）。
 
 ## 3. Special Character Mapping

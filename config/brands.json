@@ -33,10 +33,10 @@
     {
       "id": "Grok",
       "display_name": "Grok",
-      "category": "xAI",
+      "category": "SpaceXAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/xAI/Grok/Grok.png",
-      "parent_brand": "xAI"
+      "icon_path": "icons/SpaceXAI/Grok/Grok.png",
+      "parent_brand": "SpaceXAI"
     },
     {
       "id": "Kimi",
@@ -1778,10 +1778,10 @@
     {
       "id": "X",
       "display_name": "X",
-      "category": "xAI",
+      "category": "SpaceXAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/xAI/X/X.png",
-      "parent_brand": "xAI"
+      "icon_path": "icons/SpaceXAI/X/X.png",
+      "parent_brand": "SpaceXAI"
     },
     {
       "id": "Zhihu",
@@ -2154,11 +2154,11 @@
       "icon_path": "icons/PCCW/PCCW/PCCW.png"
     },
     {
-      "id": "xAI",
-      "display_name": "xAI",
-      "category": "xAI",
+      "id": "SpaceXAI",
+      "display_name": "SpaceXAI",
+      "category": "SpaceXAI",
       "entity_type": "ecosystem",
-      "icon_path": "icons/xAI/xAI/xAI.png"
+      "icon_path": "icons/SpaceXAI/SpaceXAI/SpaceXAI.png"
     }
   ],
   "parent_brands_without_icon": [

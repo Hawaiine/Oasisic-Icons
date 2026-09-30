@@ -1218,6 +1218,21 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/rednote/rednote.png"
     },
     {
+      "name": "Grok",
+      "category": "SpaceXAI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/Grok/Grok.png"
+    },
+    {
+      "name": "SpaceXAI",
+      "category": "SpaceXAI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/SpaceXAI/SpaceXAI.png"
+    },
+    {
+      "name": "X",
+      "category": "SpaceXAI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/X/X.png"
+    },
+    {
       "name": "Surge",
       "category": "Surge",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Surge/Surge/Surge.png"
@@ -1446,21 +1461,6 @@
       "name": "discoveryPlus",
       "category": "WarnerBrosDiscovery",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png"
-    },
-    {
-      "name": "Grok",
-      "category": "xAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/xAI/Grok/Grok.png"
-    },
-    {
-      "name": "X",
-      "category": "xAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/xAI/X/X.png"
-    },
-    {
-      "name": "xAI",
-      "category": "xAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/xAI/xAI/xAI.png"
     }
   ]
 }

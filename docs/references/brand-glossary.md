@@ -338,6 +338,7 @@
 | SlingTV | Sling TV |
 | Snapchat | Snapchat |
 | SoundCloud | SoundCloud |
+| SpaceXAI | SpaceXAI |
 | Spain | 西班牙 |
 | Speedtest | Speedtest |
 | Spotify | Spotify |
@@ -411,7 +412,6 @@
 | Xbox | Xbox |
 | Xiaomi | 小米 |
 | Xiaoyuzhou | 小宇宙 |
-| xAI | xAI |
 
 ## Y
 

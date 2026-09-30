@@ -39,10 +39,16 @@
   直系子）误触发分类爆炸；中间层节点（有 SSOT 父品牌）不适用阈值，不得因此升级。
 - **ownership ≠ brand architecture**：同属一家公司不自动新增 parent_brand；一旦关系成立且 descendants ≥ 2，
   生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
-- **X / xAI / SpaceX 专项**（2026-09-30 复核）：`X.parent_brand = xAI` 维持。xAI 于 2026-02 被 SpaceX
-  收购（$250bn）、2026-07 法律实体更名 SpaceXAI——但**法律股权不压缩进品牌关系字段**：不新增
-  `icons/SpaceX/`、不设 `xAI.parent_brand = SpaceX`。xAI 仍是品牌生态根（descendants = X + Grok ≥ 2），
-  股权变动记录于 §8 边界监控。
+- **X / xAI / SpaceX 专项**（2026-09-30 复核）：`X.parent_brand = SpaceXAI`（原 xAI，2026-07 品牌标识
+  更名）。xAI 于 2026-02 被 SpaceX 收购（$250bn）、2026-07 法律实体更名 SpaceXAI——**法律股权不压缩
+  进品牌关系字段**：不新增 `icons/SpaceX/`、不设 `SpaceXAI.parent_brand = SpaceX`。SpaceXAI 仍是品牌
+  生态根（descendants = X + Grok ≥ 2），股权变动记录于 §8 边界监控。
+- **品牌标识更名 vs 股权更名**（2026-09-30 Final Closure 定稿）：官方**品牌标识**（logo / 官方页
+  `© 2026 SpaceXAI LLC` / X 账号 `@SpaceXAI`）于 2026-07 正式由 xAI 改为 SpaceXAI，属品牌身份
+  变更而非单纯股权变更——执行 `xAI` → `SpaceXAI` **品牌标识 rename**（目录 / ID / 显示名同步，
+  PNG R100 纯迁移），**不是**新增 SpaceX 品牌。SpaceX（母公司航天品牌）不设目录、不设
+  `parent_brand = SpaceX`（法律股权不压缩进品牌字段，同 §2 专项）；SpaceXAI 仍是品牌生态根
+  （descendants = X + Grok ≥ 2）。
 - **Parent README Policy**（2026-09-30 定稿）：任何拥有 ≥1 个 child brand 的物理品牌节点，
   其 icon 目录必须拥有 `README.md`（生态根 + 中间父品牌 + 更深层父品牌）；叶子品牌不强制；
   Country / System / Surge 特殊目录不套用；白名单母公司无物理目录不适用。
@@ -52,7 +58,7 @@
 
 ## 2. 来源 / Sources
 
-- 官方站点与官方公告：Disney / NBCUniversal / WBD / Sony / PCCW / xAI / Microsoft / Apple / Alibaba / Baidu / ByteDance / China Mobile / China Telecom / 中华电信 / 台灣大哥大 / 遠傳 / TVB / 有线宽频 / KKCompany / DMM / 第一興商 / Red Bull / Rakuten / 楽天 / NTT docomo / Kadokawa / U-NEXT / Quora / Kakao / Snap / Valve / Kuaishou / SiriusXM / Block / Paramount / Fox / MetaBrainz / News Corp / Xperi / JioStar / LY Corporation 等；
+- 官方站点与官方公告：Disney / NBCUniversal / WBD / Sony / PCCW / SpaceXAI（原 xAI）/ Microsoft / Apple / Alibaba / Baidu / ByteDance / China Mobile / China Telecom / 中华电信 / 台灣大哥大 / 遠傳 / TVB / 有线宽频 / KKCompany / DMM / 第一興商 / Red Bull / Rakuten / 楽天 / NTT docomo / Kadokawa / U-NEXT / Quora / Kakao / Snap / Valve / Kuaishou / SiriusXM / Block / Paramount / Fox / MetaBrainz / News Corp / Xperi / JioStar / LY Corporation 等；
 - 季度/年度财报与投资者关系页：Liberty Media（F1）、EchoStar（Sling TV / DISH）、Comcast（Peacock）、Warner Bros. Discovery、PCCW Limited；
 - 权威百科与公开报道（用于交叉验证，不单独作为重大关系的唯一依据）；[§68]
 - 现场联网检索于 2026-09-30 执行（`as-of` 即该日期）。
@@ -93,7 +99,7 @@
 
 | **Warner Bros. Discovery** | 2 | HBOMax / discoveryPlus | HBO Max 与 discovery+ 均归属 WBD（拆分仍处进行中，2026-09 复核） |
 
-| **xAI** | 2 | Grok / X | xAI 旗下：X（2025-03 收购 X Corp）与 Grok；xAI 于 2026-02 成为 SpaceX 全资子公司 |
+| **SpaceXAI** | 2 | Grok / X | SpaceXAI（原 xAI，2026-07 官方品牌标识更名）旗下：X（2025-03 收购 X Corp）与 Grok；2026-02 起为 SpaceX 全资子公司 |
 
 
 ## 5. 既有生态的补全与复核 / Existing Ecosystems Revalidated
@@ -118,7 +124,7 @@
 | SONY | 3 | 3 | — | 关系全部复核通过 |
 | Tencent | 6 | 6 | — | 关系全部复核通过 |
 | WarnerBrosDiscovery | 2 | 2 | — | 关系全部复核通过（HBOMax 2025-05 已改回 HBO Max，display_name 当前正确） |
-| xAI | 2 | 2 | — | 关系全部复核通过 |
+| SpaceXAI | 2 | 2 | rename xAI → SpaceXAI（2026-07 官方品牌标识更名） | 关系全部复核通过 |
 
 **中间层品牌（直接父品牌语义新增，2026-09-30）**：`Facebook`（直系 4 子：Instagram / Messenger / Threads / WhatsApp，生态根 Meta）、`YouTube`（直系 1 子：YouTubeMusic，生态根 Google）、`iCloud`（直系 1 子：iCloudPrivateRelay，生态根 Apple）。中间层不建一级目录（阈值看生态根 descendants），仅承担 `parent_brand` 直接父关系。
 
@@ -343,7 +349,7 @@
 
 | `GoogleVoice` | Google | Google | Google | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
-| `Grok` | AI | — | xAI | Grok 由 xAI 开发，xAI 于 2026-02 成为 SpaceX 全资子公司（xAI 官方「xAI joins SpaceX」）· 2026-09 | CONFIRMED_PARENT | 迁移 AI → xAI |
+| `Grok` | AI | — | SpaceXAI | Grok 由 SpaceXAI（原 xAI）开发，2026-07 官方品牌标识更名（官方「xAI joins SpaceX」2026-02 / © 2026 SpaceXAI LLC）· 2026-09 | CONFIRMED_PARENT | 迁移 AI → xAI；xAI → SpaceXAI rename |
 
 | `HBOMax` | Media | — | WarnerBrosDiscovery | HBO Max 归属 Warner Bros. Discovery（WBD 官方/2026-08 第三方核对）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → WarnerBrosDiscovery |
 
@@ -671,7 +677,7 @@
 
 | `Wikipedia` | Utilities | — | — | 由维基媒体基金会（非营利）运营，无商业母公司 · 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `X` | Social | — | xAI | X Corp. 为 xAI 子公司（2025-03 xAI 全股票收购 X Corp）· 2026-09 | CONFIRMED_PARENT | 迁移 Social → xAI |
+| `X` | Social | — | SpaceXAI | X Corp. 为 SpaceXAI（原 xAI）子公司（2025-03 xAI 全股票收购 X Corp；2026-07 品牌标识更名 SpaceXAI）· 2026-09 | CONFIRMED_PARENT | 迁移 Social → xAI；xAI → SpaceXAI rename |
 
 | `Xbox` | Microsoft | Microsoft | Microsoft | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
@@ -716,14 +722,14 @@
 
 | `vivo` | Hardware | — | — | 独立实体（无控股母公司）· 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `xAI` | —(新增生态根) | — | —（生态根品牌） | 生态根品牌（entity_type=ecosystem），自身无母公司 | NO_PARENT | 迁移 —(新增生态根) → xAI（新生态根品牌） |
+| `SpaceXAI` | —(新增生态根) | — | —（生态根品牌） | 生态根品牌（entity_type=ecosystem），自身无母公司；2026-07 由 xAI 官方品牌标识更名而来 | NO_PARENT | 迁移 —(新增生态根) → xAI（新生态根品牌）；xAI → SpaceXAI rename |
 
 
 ## 8. 边界与后续监控 / Boundaries & Follow-ups
 
 - **CI 能力边界**：CI 只能验证 `brands.json` ↔ 磁盘 ↔ `categories.json` ↔ `surge-icon.json` 的结构一致性，**无法证明现实世界归属的完整性**；现实归属由本文件承担（研究层）。[§64 §96 §97]
 - **本轮发现的高价值漏项**：`Hulu → Disney`、`ESPN → Disney`、`LinkedIn/GitHub → Microsoft`、`Youku → Alibaba`、`iQIYI → Baidu`、`Doubao/Pipixia → ByteDance`、`Podcasts → Apple`、`mora → Sony` 等，均在 PR 分支真实缺失，属本轮发现并修复。
-- **易变关系**：`X / Grok → xAI`（xAI 与 SpaceX 股权关系处于变动期，2026-02 起为 SpaceX 全资子公司——品牌生态根仍记 xAI）、`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）——后续需按 §95 重新验证。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
+- **易变关系**：`X / Grok → SpaceXAI`（原 xAI，2026-07 官方品牌标识更名完成；与 SpaceX 股权关系 2026-02 起为全资子公司——品牌生态根现记 SpaceXAI）、`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）——后续需按 §95 重新验证。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
 - **退役品牌**：`Skype`（2025-05 停运）、`KKTV`（2025-12-31 停运并入 LINE TV）保留图标并标记退役，不参与生态归属。
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
 ## 9. mihomo-rules 对照 / mihomo-rules Compatibility Matrix
@@ -754,7 +760,7 @@
 | GooglePhotos | Google | Google | Google | MATCH |
 | GooglePlay | Google | Google | Google | MATCH |
 | GoogleVoice | Google | Google | Google | MATCH |
-| Grok | xAI | X | xAI | AMBIGUOUS（需 CURRENT OWNERSHIP REVIEW）：mihomo 直接父=X（平台品牌），Oasisic=xAI 生态根；祖先链一致，本轮**不自动修改 mihomo** |
+| Grok | xAI（现 SpaceXAI） | X | xAI（现 SpaceXAI） | AMBIGUOUS（需 CURRENT OWNERSHIP REVIEW）：mihomo 直接父=X（平台品牌），Oasisic=SpaceXAI（原 xAI，2026-07 品牌标识更名）生态根；祖先链一致，本轮**不自动修改 mihomo**；mihomo 侧后续 rename 时同步 `icons/xAI/Grok/` → `icons/SpaceXAI/Grok/`（icon URL 为 main 路径，PR #9 合并后生效） |
 | Hotstar | —（现为 JioHotstar） | Disney | — | STALE（mihomo 侧）+ NOT_CONSUMED：Oasisic canonical=JioHotstar（2025 Hotstar×JioCinema 合并后现名，属 JioStar 合资，AMBIGUOUS_JV），**不属 Disney 生态**；建议 mihomo 后续更新 |
 | Hulu | Disney | Disney | Disney | MATCH |
 | Instagram | Facebook | Facebook | Meta | MATCH |
@@ -771,7 +777,7 @@
 | iCloud | Apple | Apple | Apple | MATCH |
 | iCloudPrivateRelay | iCloud | iCloud | Apple | MATCH |
 
-**结论**：34 对中 **32 对 MATCH / 语义 MATCH**（含 1 对 alias 改名后的 MATCH）；1 对 `AMBIGUOUS`（`Grok`：mihomo 直接父 X vs Oasisic xAI，祖先链一致，需人工 CURRENT OWNERSHIP REVIEW，本轮不改 mihomo）；1 对 `STALE`（`Hotstar→Disney`，现名 JioHotstar 属 JioStar 合资、不属 Disney）。
+**结论**：34 对中 **32 对 MATCH / 语义 MATCH**（含 1 对 alias 改名后的 MATCH）；1 对 `AMBIGUOUS`（`Grok`：mihomo 直接父 X vs Oasisic SpaceXAI（原 xAI），祖先链一致，需人工 CURRENT OWNERSHIP REVIEW，本轮不改 mihomo）；1 对 `STALE`（`Hotstar→Disney`，现名 JioHotstar 属 JioStar 合资、不属 Disney）。
 
 **状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另含祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
 **长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。
