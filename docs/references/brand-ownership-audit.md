@@ -13,8 +13,10 @@
 2. 主动检索现实世界的**当前**控股关系（官方站点 / 官方公告 / 财报 / 公司登记信息 / 权威百科），不依赖历史 metadata；[§92 §93 §95]
 3. 判断控股口径：**全资或多数控股**记为 `CONFIRMED_PARENT`；少数股权与合资公司一律不设母公司；[§102]
 4. 不得仅凭品牌名推断归属（如 `DisneyPlus`、`ChinaMobileDisk` 均需证据）；
-5. 对每个生态根统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，不含 root 本身），套用硬规则：**descendants ≥ 2 → 必须存在一级生态分类**；
-   descendants < 2 → `parent_brand` 照记，子品牌保留在功能分类，不新建生态分类。[§83 §84 §85]
+5. 对每个 graph root 统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，
+   不含 root 本身，仅 `entity_type=product_brand` 计入），套用**双向**硬规则：**descendants ≥ 2 →
+   必须存在一级生态分类且 root 为 ecosystem；descendants < 2 → 不要求生态分类**，`parent_brand`
+   照记，子品牌保留在功能分类，不新建生态分类。[§83 §84 §85]
    用 descendants 而非 direct children，否则中间层品牌（如 Facebook 直系 4 子）会误触发分类爆炸。
 
 **五类状态**（每个品牌必须落入其一，不允许「未审查」）：`CONFIRMED_PARENT` / `NO_PARENT` / `AMBIGUOUS_JV` / `RETIRED` / `SPECIAL_ENTITY`。[§91]
@@ -23,12 +25,18 @@
 
 - **`parent_brand` = 直接父品牌（immediate parent）**，不表示公司股权结构、不表示历史所有者。
   例：`Instagram → Facebook`、`YouTubeMusic → YouTube`、`iCloudPrivateRelay → iCloud`。
-- **生态根（ecosystem root）= 关系图顶端品牌**，由 `entity_type: ecosystem` 标记，
-  **不单独存字段**——消费方沿 `parent_brand` 链向上动态派生（`brand_relationships.resolve_ecosystem_root`）。
+- **graph root ≠ ecosystem root**（2026-09-30 语义拆分，`brand_relationships`）：
+  - **graph root** = 沿 `parent_brand` 链向上走到的最高节点（`resolve_graph_root`）。
+  - **ecosystem root** = graph root 且 `entity_type: ecosystem`（`resolve_ecosystem_root`）。
+  例：`Meta` graph root = ecosystem root = Meta；`Mijia → Xiaomi`：graph root = Xiaomi，
+  但 Xiaomi 当前不构成独立生态（descendants = 1 < 2），ecosystem root = None。
+  **不单独存字段**——消费方沿 `parent_brand` 链向上动态派生。
 - **`category` ≠ `parent_brand` ≠ 生态根**：category 决定图标一级目录；parent_brand 决定直接归属；
-  生态根由链动态解析（`Mijia`: category=Home, parent_brand=Xiaomi, 生态根=Xiaomi）。
-- **生态阈值**：顶层 root 的 **canonical descendants（直系子+孙+…，不含 root 本身）≥ 2** 才建一级生态分类；
-  用 descendants 而非 direct children，避免中间层（Facebook 有 4 直系子）误触发分类爆炸。
+  生态根由链动态解析（`Mijia`: category=Home, parent_brand=Xiaomi, graph root=Xiaomi, 无生态根）。
+- **生态阈值（双向）**：有 SSOT 条目的 graph root 的 **canonical descendants（直系子+孙+…，不含 root
+  本身，仅 product_brand）≥ 2** 必须为 ecosystem（反向门禁，CI 第 12 组）；entity_type=ecosystem
+  必须 descendants ≥ 2（正向）。用 descendants 而非 direct children，避免中间层（Facebook 有 4
+  直系子）误触发分类爆炸；中间层节点（有 SSOT 父品牌）不适用阈值，不得因此升级。
 - **ownership ≠ brand architecture**：同属一家公司不自动新增 parent_brand；一旦关系成立且 descendants ≥ 2，
   生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
 - **X / xAI / SpaceX 专项**（2026-09-30 复核）：`X.parent_brand = xAI` 维持。xAI 于 2026-02 被 SpaceX
@@ -38,7 +46,7 @@
 - **Parent README Policy**（2026-09-30 定稿）：任何拥有 ≥1 个 child brand 的物理品牌节点，
   其 icon 目录必须拥有 `README.md`（生态根 + 中间父品牌 + 更深层父品牌）；叶子品牌不强制；
   Country / System / Surge 特殊目录不套用；白名单母公司无物理目录不适用。
-  生成器 `scripts/generate-category-readmes.sh`（父品牌段），CI 第 13 组「README 父节点」门禁。
+  生成器 `scripts/generate-category-readmes.sh`（父品牌段），CI 第 14 组「README 父节点」门禁。
   完整契约见 `docs/references/brand-naming-contract.md`（ID / display_name / directory / filename /
   特殊字符映射 / 同步矩阵）。
 

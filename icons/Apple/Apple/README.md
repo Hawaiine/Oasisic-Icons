@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# Apple / Apple 生态中的根品牌
+# Apple / Apple 生态根品牌
 
 ```text
 Brand:        Apple
 Display Name: Apple
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Apple
+Ecosystem Root: Apple
 Ancestor Chain: Apple
 Direct Children: 11
-Ecosystem Root: Apple
 ```
 
 | Child | Display Name |

@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# 小米 / 小米 生态中的父品牌
+# 小米 父品牌（Graph Root）
 
 ```text
 Brand:        Xiaomi
 Display Name: 小米
-Role:         Intermediate Parent Brand
+Role:         Graph Root Parent
 Parent:       —
+Graph Root:   Xiaomi
+Ecosystem Root: —
 Ancestor Chain: Xiaomi
 Direct Children: 1
-Ecosystem Root: —
 ```
 
 | Child | Display Name |

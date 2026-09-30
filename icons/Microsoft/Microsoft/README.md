@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# Microsoft / Microsoft 生态中的根品牌
+# Microsoft / Microsoft 生态根品牌
 
 ```text
 Brand:        Microsoft
 Display Name: Microsoft
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Microsoft
+Ecosystem Root: Microsoft
 Ancestor Chain: Microsoft
 Direct Children: 9
-Ecosystem Root: Microsoft
 ```
 
 | Child | Display Name |

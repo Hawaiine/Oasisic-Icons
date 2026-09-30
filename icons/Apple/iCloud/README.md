@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# iCloud / Apple 生态中的父品牌
+# iCloud / Apple 生态父品牌
 
 ```text
 Brand:        iCloud
 Display Name: iCloud
 Role:         Intermediate Parent Brand
 Parent:       Apple
+Graph Root:   Apple
+Ecosystem Root: Apple
 Ancestor Chain: iCloud → Apple
 Direct Children: 1
-Ecosystem Root: Apple
 ```
 
 | Child | Display Name |

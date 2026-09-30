@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# NBCUniversal / NBCUniversal 生态中的根品牌
+# NBCUniversal / NBCUniversal 生态根品牌
 
 ```text
 Brand:        NBCUniversal
 Display Name: NBCUniversal
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   NBCUniversal
+Ecosystem Root: NBCUniversal
 Ancestor Chain: NBCUniversal
 Direct Children: 2
-Ecosystem Root: NBCUniversal
 ```
 
 | Child | Display Name |

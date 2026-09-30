@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# Warner Bros. Discovery / WarnerBrosDiscovery 生态中的根品牌
+# Warner Bros. Discovery / Warner Bros. Discovery 生态根品牌
 
 ```text
 Brand:        WarnerBrosDiscovery
 Display Name: Warner Bros. Discovery
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   WarnerBrosDiscovery
+Ecosystem Root: WarnerBrosDiscovery
 Ancestor Chain: WarnerBrosDiscovery
 Direct Children: 2
-Ecosystem Root: WarnerBrosDiscovery
 ```
 
 | Child | Display Name |

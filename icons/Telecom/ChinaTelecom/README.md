@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# ChinaTelecom / ChinaTelecom 生态中的父品牌
+# ChinaTelecom 父品牌（Graph Root）
 
 ```text
 Brand:        ChinaTelecom
 Display Name: ChinaTelecom
-Role:         Intermediate Parent Brand
+Role:         Graph Root Parent
 Parent:       —
+Graph Root:   ChinaTelecom
+Ecosystem Root: —
 Ancestor Chain: ChinaTelecom
 Direct Children: 1
-Ecosystem Root: —
 ```
 
 | Child | Display Name |

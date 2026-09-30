@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# Alibaba / Alibaba 生态中的根品牌
+# Alibaba / Alibaba 生态根品牌
 
 ```text
 Brand:        Alibaba
 Display Name: Alibaba
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Alibaba
+Ecosystem Root: Alibaba
 Ancestor Chain: Alibaba
 Direct Children: 7
-Ecosystem Root: Alibaba
 ```
 
 | Child | Display Name |

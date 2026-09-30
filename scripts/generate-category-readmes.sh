@@ -75,69 +75,25 @@ echo "全部分类 README 生成完毕"
 # 不覆盖（§36）。
 python3 <<'PY'
 import json
+import sys
 from pathlib import Path
 
-ICONS = Path('icons')
-MARKER = '<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->'
+sys.path.insert(0, str(Path('scripts').resolve()))
+from brand_relationships import (PARENT_README_MARKER, expected_parent_readme,
+                                 physical_parent_nodes)
+
 brands_doc = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))
-brands = brands_doc.get('brands', [])
-ssot = {b['id']: b for b in brands}
-
-children = {}
-for b in brands:
-    p = b.get('parent_brand')
-    if p:
-        children.setdefault(p, []).append(b['id'])
-
-def ancestors(bid):
-    """沿 parent_brand 向上（含直接父），断在白名单外/环。"""
-    out, seen, cur = [], {bid}, ssot.get(bid, {}).get('parent_brand')
-    while cur:
-        if cur in seen:
-            break
-        out.append(cur)
-        seen.add(cur)
-        cur = ssot.get(cur, {}).get('parent_brand')
-    return out
-
-def root_of(bid):
-    a = ancestors(bid)
-    return a[-1] if a else None
+ssot = {b['id']: b for b in brands_doc.get('brands', [])}
+parents = physical_parent_nodes(brands_doc)
 
 created, skipped_manual, kept = 0, 0, 0
-for bid, kids in sorted(children.items()):
-    if bid not in ssot:
-        continue  # 白名单母公司：无物理目录，不适用目录级 README
+for bid in sorted(parents):
     d = Path(ssot[bid]['icon_path']).parent
     rd = d / 'README.md'
-    dn = ssot[bid]['display_name']
-    parent = ssot[bid].get('parent_brand')
-    root = root_of(bid)
-    role = 'Ecosystem Root' if ssot[bid].get('entity_type') == 'ecosystem' else 'Intermediate Parent Brand'
-    if root is None:
-        root = bid if role == 'Ecosystem Root' else None
-    lines = [
-        MARKER,
-        '',
-        '# %s / %s 生态中的%s' % (dn, root or dn, '根品牌' if role == 'Ecosystem Root' else '父品牌'),
-        '',
-        '```text',
-        'Brand:        %s' % bid,
-        'Display Name: %s' % dn,
-        'Role:         %s' % role,
-        'Parent:       %s' % (parent or '—'),
-    ]
-    chain = [bid] + ancestors(bid)
-    lines.append('Ancestor Chain: %s' % ' → '.join(chain))
-    lines.extend(['Direct Children: %d' % len(kids), 'Ecosystem Root: %s' % (root or '—'), '```', '',
-                  '| Child | Display Name |', '|:---|:---|'])
-    for k in sorted(kids):
-        lines.append('| `%s` | %s |' % (k, ssot[k]['display_name']))
-    lines.append('')
-    content = '\n'.join(lines)
+    content = expected_parent_readme(bid, ssot)
     if rd.exists():
         first = rd.read_text(encoding='utf-8').splitlines()[0] if rd.read_text(encoding='utf-8') else ''
-        if first.strip() == MARKER:
+        if first.strip() == PARENT_README_MARKER:
             rd.write_text(content, encoding='utf-8')
             kept += 1
             print('  ↻ %s/README.md（重新生成）' % d)

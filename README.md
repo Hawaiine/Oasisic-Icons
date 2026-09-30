@@ -26,7 +26,7 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **292** 个 PNG 图标，覆盖 **292** 个品牌，归入 **42** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **292** 个 PNG 图标，覆盖 **292** 个品牌，归入 **42** 个一级分类（其中 41 个活跃，`Finance` 为预留空分类）。
 
 本项目为独立图标仓库，当前 292 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 

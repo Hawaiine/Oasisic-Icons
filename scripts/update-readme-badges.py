@@ -86,6 +86,15 @@ def update_readme(n_png, n_brands, n_cats, cats):
         s,
     )
 
+    # 活跃分类数（「其中 N 个活跃」）—— 2026-09-30 补：此前写死，Finance 等预留
+    # 空分类增减后正文数字失同步。活跃 = 目录存在且有 ≥1 个 PNG 的分类。
+    active = sum(1 for b, i in cats.values() if i > 0)
+    s, n1b = re.subn(
+        r'（其中 \d+ 个活跃',
+        f'（其中 {active} 个活跃',
+        s,
+    )
+
     # 全量规范化句
     s, n2 = re.subn(
         r'\*\*\d+ 个图标全部经过统一规范化处理\*\*',
@@ -143,9 +152,9 @@ def update_readme(n_png, n_brands, n_cats, cats):
         readme.write_text(s)
 
     print(f"✓ README 已更新：{n_png} 图标 / {n_brands} 品牌 / {n_cats} 分类")
-    print(f"    命中：统计句 {n1} / 规范化句 {n2} / 独立仓库句 {n3} / 规范化完成句 {n4} "
-          f"/ 分类表行 {n5} / 合计行 {n6}")
-    for name, hits in (("统计句", n1), ("分类表", n5), ("合计行", n6)):
+    print(f"    命中：统计句 {n1} / 活跃分类句 {n1b} / 规范化句 {n2} / 独立仓库句 {n3} "
+          f"/ 规范化完成句 {n4} / 分类表行 {n5} / 合计行 {n6}")
+    for name, hits in (("统计句", n1), ("活跃分类句", n1b), ("分类表", n5), ("合计行", n6)):
         if hits == 0:
             print(f"    ⚠ {name}未命中 —— README 措辞/格式可能已改，请同步修正本脚本正则")
 

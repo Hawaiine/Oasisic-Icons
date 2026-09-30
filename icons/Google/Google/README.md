@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# Google / Google 生态中的根品牌
+# Google / Google 生态根品牌
 
 ```text
 Brand:        Google
 Display Name: Google
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Google
+Ecosystem Root: Google
 Ancestor Chain: Google
 Direct Children: 10
-Ecosystem Root: Google
 ```
 
 | Child | Display Name |

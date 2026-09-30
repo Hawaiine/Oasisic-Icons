@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# 百度 / Baidu 生态中的根品牌
+# 百度 / 百度 生态根品牌
 
 ```text
 Brand:        Baidu
 Display Name: 百度
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Baidu
+Ecosystem Root: Baidu
 Ancestor Chain: Baidu
 Direct Children: 3
-Ecosystem Root: Baidu
 ```
 
 | Child | Display Name |

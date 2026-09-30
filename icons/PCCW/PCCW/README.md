@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# PCCW / PCCW 生态中的根品牌
+# PCCW / PCCW 生态根品牌
 
 ```text
 Brand:        PCCW
 Display Name: PCCW
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   PCCW
+Ecosystem Root: PCCW
 Ancestor Chain: PCCW
 Direct Children: 2
-Ecosystem Root: PCCW
 ```
 
 | Child | Display Name |

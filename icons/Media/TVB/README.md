@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# TVB / TVB 生态中的父品牌
+# TVB 父品牌（Graph Root）
 
 ```text
 Brand:        TVB
 Display Name: TVB
-Role:         Intermediate Parent Brand
+Role:         Graph Root Parent
 Parent:       —
+Graph Root:   TVB
+Ecosystem Root: —
 Ancestor Chain: TVB
 Direct Children: 1
-Ecosystem Root: —
 ```
 
 | Child | Display Name |

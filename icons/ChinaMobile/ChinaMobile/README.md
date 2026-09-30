@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# ChinaMobile / ChinaMobile 生态中的根品牌
+# ChinaMobile / ChinaMobile 生态根品牌
 
 ```text
 Brand:        ChinaMobile
 Display Name: ChinaMobile
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   ChinaMobile
+Ecosystem Root: ChinaMobile
 Ancestor Chain: ChinaMobile
 Direct Children: 2
-Ecosystem Root: ChinaMobile
 ```
 
 | Child | Display Name |

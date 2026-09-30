@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# 腾讯 / Tencent 生态中的根品牌
+# 腾讯 / 腾讯 生态根品牌
 
 ```text
 Brand:        Tencent
 Display Name: 腾讯
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   Tencent
+Ecosystem Root: Tencent
 Ancestor Chain: Tencent
 Direct Children: 6
-Ecosystem Root: Tencent
 ```
 
 | Child | Display Name |

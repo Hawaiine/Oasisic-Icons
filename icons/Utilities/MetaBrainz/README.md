@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# MetaBrainz / MetaBrainz 生态中的父品牌
+# MetaBrainz 父品牌（Graph Root）
 
 ```text
 Brand:        MetaBrainz
 Display Name: MetaBrainz
-Role:         Intermediate Parent Brand
+Role:         Graph Root Parent
 Parent:       —
+Graph Root:   MetaBrainz
+Ecosystem Root: —
 Ancestor Chain: MetaBrainz
 Direct Children: 1
-Ecosystem Root: —
 ```
 
 | Child | Display Name |

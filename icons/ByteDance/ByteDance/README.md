@@ -1,15 +1,16 @@
-<!-- generated: parent-brand-readme (scripts/generate-parent-readmes.py) -->
+<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# 字节跳动 / ByteDance 生态中的根品牌
+# 字节跳动 / 字节跳动 生态根品牌
 
 ```text
 Brand:        ByteDance
 Display Name: 字节跳动
 Role:         Ecosystem Root
 Parent:       —
+Graph Root:   ByteDance
+Ecosystem Root: ByteDance
 Ancestor Chain: ByteDance
 Direct Children: 5
-Ecosystem Root: ByteDance
 ```
 
 | Child | Display Name |

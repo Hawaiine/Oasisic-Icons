@@ -35,6 +35,11 @@
 映射表只收录仓库中**实际存在**的案例，不凭空扩大（`&` 等暂无实例，出现时再按
 「ID 去符号 + display_name 保留官方拼写」的原则个案评估）。
 
+**符号归一化必须经过 collision check**：新增/重命名 ID 前，按本表归一化规则推演
+（`+`→`Plus`、`@`→省略），与全库现有 ID 比对——若归一化后撞车（例：未来同时出现
+`A@B` 与 `AB`，去符号后均为 `AB`），不得静默择一，必须报告并在有官方依据的前提下
+个案处理（如保留一个符号拼写变体 `At` 后缀）。
+
 ## 4. Display Name 规则
 
 - 以**官方当前品牌**为准；中文 display_name 合法（`SINA` → `新浪`、`Weibo` → `微博`）。
@@ -56,10 +61,13 @@
 > 叶子品牌不强制。Country / System / Surge 特殊目录不套用。
 
 - 数据全部来自 brands.json + 动态关系解析（不在 README 手工维护计数）。
+- Role 三态：`Ecosystem Root`（graph root + 独立生态）/ `Graph Root Parent`
+  （graph root + 有子 + 无独立生态，如 SINA/Xiaomi）/ `Intermediate Parent Brand`
+  （有父有子，如 Facebook）。
 - 生成器：`scripts/generate-category-readmes.sh`（父品牌段）；带
-  `<!-- generated: parent-brand-readme -->` marker 的文件可重复生成，
-  无 marker 的视为人工文档不覆盖。
-- CI 门禁：`ci-validate-icons.py` 第 13 组「README 父节点」。
+  `<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->`
+  marker 的文件可重复生成，无 marker 的视为人工文档不覆盖。
+- CI 门禁：`ci-validate-icons.py` 第 14 组「README 父节点」（存在 + 内容逐字节一致）。
 - 白名单母公司（`parent_brands_without_icon`）无物理目录，不适用目录级 README。
 
 ## 7. 生态 README vs 父品牌 README
