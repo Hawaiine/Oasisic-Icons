@@ -16,7 +16,8 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
-from brand_relationships import (  # noqa: E402
+from brand_relationships import (
+    ecosystem_category_ids,  # noqa: E402
     PARENT_README_MARKER,
     _root_of,
     expected_parent_readme,
@@ -109,6 +110,8 @@ class ParentReadmeTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.brands_doc, cls.cats_doc, cls.ssot = _load()
+        cls.aliases = set(cls.brands_doc.get('parent_brands_without_icon', []))
+        cls.eco_cat_ids = ecosystem_category_ids(cls.cats_doc.get('categories', []))
 
     def test_all_physical_parents_have_readme(self):
         self.assertEqual(parent_readme_missing(self.ssot), [],
@@ -157,12 +160,23 @@ class ParentReadmeTests(unittest.TestCase):
             self.assertTrue(rd.exists(), '%s 缺 README' % p)
             text = rd.read_text(encoding='utf-8')
             if text.splitlines() and text.splitlines()[0].strip() == PARENT_README_MARKER:
-                expected = expected_parent_readme(p, self.ssot)
+                # §13/§15：生成器与 CI 同口径（需传白名单 + 生态分类，才能得到
+                # 逻辑生态根；否则 xAI 会被误判成 Graph Root Parent）
+                expected = expected_parent_readme(p, self.ssot, self.aliases, self.eco_cat_ids)
                 self.assertEqual(text, expected,
                                  '%s README 内容与 expected 不一致（应运行 '
                                  'scripts/generate-category-readmes.sh 重新生成）' % p)
                 checked += 1
         self.assertGreater(checked, 0, '未校验到任何 generated 父品牌 README')
+
+    def test_xai_readme_is_intermediate_parent_with_logical_eco_root(self):
+        # §15：xAI 有父（SpaceXAI 白名单母公司）+ 有子（Grok）→ Intermediate Parent
+        # Brand；Ecosystem Root 必须是逻辑生态根 SpaceXAI（不得是「—」/ Graph Root Parent）
+        text = (REPO / Path(self.ssot['xAI']['icon_path']).parent / 'README.md').read_text(encoding='utf-8')
+        self.assertIn('Role:         Intermediate Parent Brand', text)
+        self.assertIn('Ecosystem Root: SpaceXAI', text)
+        self.assertNotIn('Graph Root Parent', text)
+        self.assertIn('Ancestor Chain: xAI → SpaceXAI', text)
 
     def test_graph_root_parent_role(self):
         # §26-§28：SINA / Xiaomi 是 graph root 但 descendants=1 → 非 ecosystem，

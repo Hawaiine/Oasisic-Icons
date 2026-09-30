@@ -158,7 +158,7 @@ class ValidateBrandTests(unittest.TestCase):
     def test_rejects_wrong_icon_path_and_missing_file(self):
         e = self._entry(icon_path='icons/Music/WrongName/WrongName.png')
         res = VB.validate_brand(e, self.brands_doc, self.cats_doc, self.tmp)
-        self.assertTrue(any('icon_path 与命名契约不一致' in x for x in res['errors']), res['errors'])
+        self.assertTrue(any('icon_path 与路径规则不一致' in x for x in res['errors']), res['errors'])
         e2 = self._entry()
         e2['icon_path'] = 'icons/Music/TestBrand/TestBrand.png'
         res2 = VB.validate_brand(e2, self.brands_doc, self.cats_doc, self.tmp)
@@ -212,7 +212,7 @@ class RelationshipExportTests(unittest.TestCase):
     def setUpClass(cls):
         cls.doc = json.loads(
             (ROOT / 'config' / 'brand-relationships.json').read_text(encoding='utf-8'))
-        cls.expected = EXPORT.build(REAL_BRANDS)
+        cls.expected = EXPORT.build(REAL_BRANDS, REAL_CATS['categories'])
 
     def test_marked_as_generated_derivative(self):
         self.assertIs(self.doc['generated'], True)
@@ -228,6 +228,19 @@ class RelationshipExportTests(unittest.TestCase):
         self.assertEqual(by['Grok']['parent'], 'xAI')
         self.assertEqual(by['Grok']['ancestor_chain'], ['xAI', 'SpaceXAI'])
         self.assertEqual(by['Grok']['graph_root'], 'SpaceXAI')
+
+    def test_rows_carry_physical_path(self):
+        # §32：导出必须包含 physical_path（由统一解析器生成），且与 SSOT 一致
+        sys.path.insert(0, str(ROOT / 'scripts'))
+        from brand_relationships import expected_icon_path
+        ssot = {b['id']: b for b in REAL_BRANDS['brands']}
+        for r in self.doc['brands']:
+            self.assertEqual(r['physical_path'], expected_icon_path(r['child'], ssot), r['child'])
+            self.assertEqual(r['physical_path'], ssot[r['child']]['icon_path'], r['child'])
+        deep = [r['child'] for r in self.doc['brands']
+                if len(r['physical_path'].split('/')) >= 5]
+        self.assertIn('Grok', deep)
+        self.assertIn('Instagram', deep)
 
     def test_export_is_deterministic(self):
         p = ROOT / 'config' / 'brand-relationships.json'
