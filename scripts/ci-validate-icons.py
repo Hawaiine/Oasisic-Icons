@@ -17,6 +17,10 @@
   9. Glossary             brand-glossary.md 与 brands.json 双向一致
  10. Legacy paths         README/docs/scripts/.github/config 禁止引用已删除的 legacy 路径
                           （docs/migrations/ 内的历史记录性引用除外）
+ 11. README 表格          主 README 分类清单：结构、全量覆盖、顺序与计数
+ 12. 生态一致性           关系图门禁（scripts/brand_relationships.py）
+ 13. README 父节点        任何拥有 ≥1 child brand 的物理品牌节点，其 icon 目录
+                          必须有 README.md（生态根 + 中间父品牌）；叶子品牌不强制
 
 全部组 PASS 输出 'Validation Groups: N / All groups: PASS' 并以 exit 0 结束；
 任一组失败输出全部问题并以 exit 1 结束。
@@ -352,11 +356,29 @@ brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8')) if BRANDS_PATH.
 for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
     fail('生态一致性', _rel_err)
 
+# ---------- 13. README 父节点（Parent README Policy） ----------
+# 规则（docs/references/brand-naming-contract.md）：
+#   任何拥有 ≥1 个 child brand 的物理品牌节点，其 icon 目录必须有 README.md
+#   （一级生态根 + 中间父品牌 + 更深层父品牌）；叶子品牌不强制。
+#   Country / System / Surge 特殊目录不套用（当前库中它们无父节点，天然排除）。
+# 反向：叶子品牌即使没有 README 也不报错。
+_child_map = defaultdict(list)
+for _bid, _e in ssot.items():
+    _p = _e.get('parent_brand')
+    if _p:
+        _child_map[_p].append(_bid)
+for _p, _kids in sorted(_child_map.items()):
+    if _p not in ssot:
+        continue  # 白名单母公司（无自身图标/目录）：关系级引用，不适用目录级 README
+    _d = Path(ssot[_p]['icon_path']).parent
+    if not (_d / 'README.md').exists():
+        fail('README 父节点', '父品牌缺 README: %s（children: %s）' % (_p, ', '.join(sorted(_kids))))
+
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
                    'Surge JSON', 'Glossary', 'Legacy paths',
-                   'README 表格', '生态一致性']
+                   'README 表格', '生态一致性', 'README 父节点']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:
