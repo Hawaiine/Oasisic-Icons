@@ -224,9 +224,19 @@ class NamingContractTests(unittest.TestCase):
             self.assertNotIn('@', bid, 'ID 含 @: %s' % bid)
 
     def test_official_casing_preserved(self):
-        # §50/§52：官方 casing 保留，不机械 PascalCase
-        for bid in ('iQIYI', 'SONY', 'vivo', 'myTVSUPER', 'TIDAL', 'SpaceXAI'):
+        # §50/§52：官方 casing 保留，不机械 PascalCase（含小写 xAI）
+        for bid in ('iQIYI', 'SONY', 'vivo', 'myTVSUPER', 'TIDAL', 'xAI'):
             self.assertIn(bid, self.ssot, '官方 casing 品牌 %s 缺失' % bid)
+
+    def test_spacexai_official_casing_in_ecosystem_category(self):
+        # §23/§68：SpaceXAI 升级为顶层生态后不再有 brands.json 条目（根图标待官方标志），
+        # 其官方 casing 必须由生态分类 display_name 承担，且不得被写成 SpaceXAi / Spacexai。
+        import json
+        repo = Path(__file__).resolve().parent.parent
+        cats = json.loads((repo / 'config' / 'categories.json').read_text(encoding='utf-8'))['categories']
+        entry = next(c for c in cats if c['id'] == 'SpaceXAI')
+        self.assertEqual(entry['display_name'], 'SpaceXAI')
+        self.assertEqual(entry['type'], 'ecosystem')
 
     def test_chinese_display_names(self):
         # §37/§48：中文 display_name 合法（ID 仍为 ASCII，ID ≠ display_name）

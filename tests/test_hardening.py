@@ -143,17 +143,46 @@ class EngineDeepChainTests(unittest.TestCase):
 
 
 class LegacyMapTests(unittest.TestCase):
-    """§64-§67：legacy 旧名必须来自单一来源（scripts/legacy_map.py），不散落硬编码。"""
+    """§64-§67：legacy 旧名必须来自单一来源（scripts/legacy_map.py），不散落硬编码。
+
+    §34（2026-10-01）修订：`xAI` 已恢复为当前 canonical 品牌，不得再出现在
+    legacy ID 表中；旧 `icons/xAI/` 目录改用完整前缀模式登记，避免与 canonical
+    路径 `icons/SpaceXAI/xAI/xAI.png` 冲突。
+    """
 
     def test_legacy_map_is_single_source(self):
-        from legacy_map import legacy_ids, legacy_path_segments, legacy_scan_patterns
+        from legacy_map import (legacy_ids, legacy_path_segments,
+                                legacy_scan_patterns)
         segs = set(legacy_path_segments())
         for s in ('DevOps', 'Drive', 'General', 'Tool'):
             self.assertIn(s, segs, '历史分类目录必须在 legacy map 中')
-        for s in ('PeacockTV', 'Podcasts', 'xAI', 'Twitter'):
+        for s in ('PeacockTV', 'Podcasts', 'Twitter'):
             self.assertIn(s, segs, '历史品牌 ID 必须在 legacy map 中')
-        self.assertEqual(set(legacy_scan_patterns()), {'/%s/' % s for s in segs})
-        self.assertEqual(legacy_ids(), {'PeacockTV', 'Podcasts', 'xAI', 'Twitter'})
+        self.assertNotIn('xAI', segs, 'xAI 已是当前 canonical ID，不得登记为 legacy 名')
+        pats = set(legacy_scan_patterns())
+        self.assertIn('icons/xAI/', pats, '旧 xAI 目录必须以完整前缀登记')
+        self.assertNotIn('/xAI/', pats, '/xAI/ 段在 canonical 路径中合法，不得作为模式')
+        self.assertEqual(legacy_ids(), {'PeacockTV', 'Podcasts', 'Twitter'})
+
+    def test_canonical_id_is_not_legacy(self):
+        """§34：current canonical ID 绝不与 legacy ID 重叠。"""
+        import json
+        from legacy_map import legacy_ids
+        repo = Path(__file__).resolve().parent.parent
+        bd = json.loads((repo / 'config' / 'brands.json').read_text(encoding='utf-8'))
+        legit = {e['id'] for e in bd['brands']} & legacy_ids()
+        self.assertEqual(legit, set(), 'canonical ID 与 legacy ID 重叠: %s' % sorted(legit))
+
+    def test_legacy_patterns_do_not_match_canonical_paths(self):
+        """§34：legacy 模式不得命中任何当前 canonical icon 路径。"""
+        import json
+        from legacy_map import legacy_scan_patterns
+        repo = Path(__file__).resolve().parent.parent
+        bd = json.loads((repo / 'config' / 'brands.json').read_text(encoding='utf-8'))
+        pats = legacy_scan_patterns()
+        hits = [e['icon_path'] for e in bd['brands']
+                if any(p in e['icon_path'] for p in pats)]
+        self.assertEqual(hits, [], 'legacy 模式命中当前 canonical 路径: %s' % hits)
 
     def test_repo_ssot_has_no_legacy_ids(self):
         import json

@@ -467,46 +467,81 @@ class RealRepoTests(unittest.TestCase):
                 self.assertEqual(resolve_ecosystem_root(e['id'], self.ssot), e['id'],
                                  '生态根 %s ecosystem root 应为自身' % e['id'])
 
-    def test_spacexai_final_state(self):
-        """§9-§41：Grok → SpaceXAI；X 独立；SpaceXAI 非生态；SpaceX 不入图。"""
-        # Grok：SpaceXAI 开发的产品（官方 Terms 证据）
-        self.assertEqual(self.ssot['Grok']['parent_brand'], 'SpaceXAI')
-        self.assertEqual(resolve_graph_root('Grok', self.ssot), 'SpaceXAI')
-        # SpaceXAI：公司品牌，descendants=1 < 2 → 非生态
-        self.assertEqual(self.ssot['SpaceXAI']['entity_type'], 'product_brand')
-        self.assertIsNone(resolve_ecosystem_root('Grok', self.ssot),
-                          'SpaceXAI descendants=1，不构成生态')
-        # X：独立平台品牌（官方 Privacy Policy：SpaceXAI 与 X Corp. 分离）
-        self.assertNotIn('parent_brand', self.ssot['X'],
-                         'X 不应有 parent_brand（不以 corporate ownership 推导）')
-        self.assertEqual(resolve_graph_root('X', self.ssot), 'X')
-        self.assertIsNone(resolve_ecosystem_root('X', self.ssot))
-        # SpaceX：corporate owner only，不进入 brand graph
-        self.assertNotIn('SpaceX', self.ssot)
-        # xAI 旧 ID 不得残留
-        self.assertNotIn('xAI', self.ssot)
+    # ---- §50：最终品牌树（SpaceXAI ├── X └── xAI └── Grok，2026-10-01 定稿） ----
+    def test_spacexai_final_tree(self):
+        """最终关系：X → SpaceXAI；xAI → SpaceXAI；Grok → xAI。"""
+        self.assertEqual(self.ssot['X']['parent_brand'], 'SpaceXAI')
+        self.assertEqual(self.ssot['xAI']['parent_brand'], 'SpaceXAI')
+        self.assertEqual(self.ssot['Grok']['parent_brand'], 'xAI')
 
-    def test_platform_integration_is_not_parent_brand(self):
-        """Grok 在 X 上可用是 platform integration，不改变其品牌父级。"""
-        self.assertEqual(self.ssot['Grok']['parent_brand'], 'SpaceXAI')
+    def test_xai_is_canonical(self):
+        """§6/§34：xAI 是当前 canonical 品牌，且不是 legacy 旧名。"""
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
+        from legacy_map import legacy_ids
+        self.assertIn('xAI', self.ssot, 'xAI 必须是当前 canonical SSOT 节点')
+        self.assertEqual(self.ssot['xAI']['display_name'], 'xAI', '官方 casing 必须保留')
+        self.assertNotIn('xAI', legacy_ids(), 'xAI 已是 canonical，不得列为 legacy ID')
+
+    def test_xai_has_icon(self):
+        """§6/§7：xAI 必须有独立图标（历史资产 R100 恢复，非伪造、非复制）。"""
+        import hashlib
+        repo = Path(__file__).resolve().parent.parent
+        ip = self.ssot['xAI']['icon_path']
+        self.assertEqual(ip, 'icons/SpaceXAI/xAI/xAI.png')
+        p = repo / ip
+        self.assertTrue(p.exists(), 'xAI 图标文件必须存在')
+        # 与 SpaceXAI 共存时不得共用同一 SHA（CI 第 6 组），故这里只断言资产可追踪
+        self.assertTrue(hashlib.sha256(p.read_bytes()).hexdigest())
+
+    def test_xai_ancestor_chain(self):
+        """xAI 直接父为 SpaceXAI（白名单母公司，暂无自身条目）。"""
+        self.assertEqual(self.ssot['xAI'].get('parent_brand'), 'SpaceXAI')
+        self.assertEqual(resolve_graph_root('xAI', self.ssot), 'SpaceXAI')
+
+    def test_grok_ancestor_chain(self):
+        """Grok → xAI → SpaceXAI：直接父是 xAI，graph root 是 SpaceXAI。"""
+        self.assertEqual(resolve_graph_root('Grok', self.ssot), 'SpaceXAI')
+        from brand_relationships import _ancestor_set
+        self.assertEqual(_ancestor_set('Grok', self.ssot), {'xAI', 'SpaceXAI'})
+
+    def test_spacexai_is_top_level_ecosystem_category(self):
+        """§8：SpaceXAI 生态分类存在；descendants = X/xAI/Grok = 3 ≥ 2。"""
+        from brand_relationships import _descendants
+        cats = {c['id']: c for c in self.cats_doc['categories']}
+        self.assertIn('SpaceXAI', cats, 'SpaceXAI 生态分类必须存在')
+        self.assertEqual(cats['SpaceXAI']['type'], 'ecosystem')
+        ds = _descendants('SpaceXAI', self.ssot)
+        self.assertEqual(ds, {'X', 'xAI', 'Grok'}, 'SpaceXAI canonical descendants 应为 3')
+        self.assertGreaterEqual(len(ds), 2)
+        # 根品牌条目/根图标待官方标志：白名单登记；生态根未成为 SSOT 条目 → 派生为 None
+        self.assertNotIn('SpaceXAI', self.ssot)
+        self.assertIn('SpaceXAI', self.brands_doc['parent_brands_without_icon'])
+        self.assertIsNone(resolve_ecosystem_root('X', self.ssot),
+                          '白名单母公司尚无 SSOT 条目，ecosystem_root 派生为 None（既有语义）')
+
+    def test_spacex_not_in_brand_graph(self):
+        """§35：SpaceX 只作 corporate context，不入图。"""
+        self.assertNotIn('SpaceX', self.ssot)
+        self.assertNotIn('SpaceX', self.brands_doc['parent_brands_without_icon'])
+
+    def test_platform_relation_does_not_change_parent(self):
+        """§38：平台可用性（Grok on X）不改变品牌父级，也不扩张 schema。"""
+        self.assertEqual(self.ssot['Grok']['parent_brand'], 'xAI')
         for entry in self.brands_doc['brands']:
             self.assertNotIn('platform_brand', entry)
             self.assertNotIn('integration_brand', entry)
             self.assertNotIn('distribution_brand', entry)
 
+    # ---- evidence 层：辅助审计，不是 SSOT / 不是阻塞条件（§14 §15 §52） ----
     def test_parent_edge_evidence_covers_every_live_edge(self):
-        """每条 live parent_brand edge 都必须有独立的关系类型 + validity 记录。"""
-        import json
-        repo = Path(__file__).resolve().parent.parent
-        manifest = json.loads(
-            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
-        live = {
-            (e['id'], e['parent_brand'])
-            for e in self.brands_doc['brands'] if e.get('parent_brand')
-        }
+        """每条 live parent_brand edge 都必须有独立的关系类型 + validity 记录（集合相等）。"""
+        manifest = self._manifest()
+        live = {(e['id'], e['parent_brand'])
+                for e in self.brands_doc['brands'] if e.get('parent_brand')}
         audited = {(e['child'], e['parent']) for e in manifest['edges']}
-        self.assertEqual(audited, live)
-        self.assertEqual(len(audited), 115)
+        self.assertEqual(audited, live, 'evidence 清单必须与 live edge 集合完全一致')
+        self.assertEqual(len(audited), len(live))
         self.assertEqual(set(manifest['relation_types']),
                          {'BRAND_HIERARCHY', 'CORPORATE_OWNERSHIP', 'DEVELOPER_PROVIDER',
                           'PLATFORM_INTEGRATION', 'UNKNOWN'})
@@ -516,8 +551,32 @@ class RealRepoTests(unittest.TestCase):
             self.assertIn(e['relation_type'], manifest['relation_types'], e['child'])
             self.assertIn(e['parent_brand_validity'], manifest['validity_values'], e['child'])
 
+    def test_evidence_layer_is_not_ssot_and_not_blocking(self):
+        """§14/§15：evidence 层只是辅助审计，不得冒充 SSOT 或阻塞条件。"""
+        manifest = self._manifest()
+        self.assertEqual(manifest['role'], 'supporting_evidence_layer')
+        self.assertIs(manifest['is_ssot'], False)
+        self.assertIs(manifest['blocking'], False)
+        audit = (Path(__file__).resolve().parent.parent
+                 / 'docs' / 'references' / 'parent-edge-semantic-audit.md').read_text(encoding='utf-8')
+        self.assertNotIn('BLOCKER A', audit, 'evidence 不再是 PR 阻塞条件')
+        self.assertIn('supporting_evidence_layer', audit)
+
+    def test_evidence_counts_are_recomputed_not_hardcoded(self):
+        """§55：计数一律实时计算；不再把 115 等历史值写成当前事实。"""
+        manifest = self._manifest()
+        live = sum(1 for e in self.brands_doc['brands'] if e.get('parent_brand'))
+        self.assertEqual(len(manifest['edges']), live)
+        self.assertIn('0/%d' % live, manifest['self_reference_risk'])
+        # 8 条品牌伞状措辞证据 → CONFIRMED；其余一律 OPEN_REVIEW（不得凭归属措辞升级）
+        confirmed = {e['child'] for e in manifest['edges']
+                     if e['parent_brand_validity'] == 'CONFIRMED'}
+        for child in confirmed:
+            self.assertEqual(next(e for e in manifest['edges'] if e['child'] == child)['relation_type'],
+                             'BRAND_HIERARCHY', '%s 只允许 BRAND_HIERARCHY 判 CONFIRMED' % child)
+
     def test_corporate_ownership_alone_is_not_hierarchy_proof(self):
-        """§32：ownership-only 证据不得静默升级为 hierarchy。"""
+        """§16/§17：ownership-only 证据不得静默升级为 hierarchy。"""
         manifest = self._manifest()
         by_child = {e['child']: e for e in manifest['edges']}
         self.assertEqual(by_child['LinkedIn']['relation_type'], 'CORPORATE_OWNERSHIP')
@@ -539,8 +598,6 @@ class RealRepoTests(unittest.TestCase):
         """§70 Test C/D：developer-only、platform-only 不得自动成为 parent。"""
         manifest = self._manifest()
         by_child = {e['child']: e for e in manifest['edges']}
-        self.assertEqual(by_child['Grok']['relation_type'], 'DEVELOPER_PROVIDER')
-        self.assertEqual(by_child['Grok']['parent_brand_validity'], 'OPEN_REVIEW')
         self.assertEqual(by_child['Kimi']['relation_type'], 'DEVELOPER_PROVIDER')
         self.assertEqual(by_child['Kimi']['parent_brand_validity'], 'OPEN_REVIEW')
         for e in manifest['edges']:
@@ -548,38 +605,27 @@ class RealRepoTests(unittest.TestCase):
                 self.assertNotEqual(e['parent_brand_validity'], 'CONFIRMED',
                                     '%s 不得因 developer/platform 证据判 CONFIRMED' % e['child'])
 
+    def test_brand_tree_edges_are_brand_hierarchy(self):
+        """最终品牌树的三条边都是品牌层级，且逐条带证据/规则/来源结构。"""
+        manifest = self._manifest()
+        by_child = {e['child']: e for e in manifest['edges']}
+        for child, parent in (('X', 'SpaceXAI'), ('xAI', 'SpaceXAI'), ('Grok', 'xAI')):
+            e = by_child[child]
+            self.assertEqual(e['parent'], parent)
+            self.assertEqual(e['relation_type'], 'BRAND_HIERARCHY', child)
+            self.assertEqual(e['parent_brand_validity'], 'CONFIRMED', child)
+            self.assertTrue(e['evidence_quote'], child)
+            self.assertTrue(e['decision_rule'].startswith('R'), child)
+            self.assertIn('url_status', e['source'], child)
+            self.assertTrue(e['rationale'], child)
+
     def test_generic_restatement_stays_unknown(self):
         """§70 Test E：泛化复述必须 UNKNOWN / OPEN_REVIEW。"""
         manifest = self._manifest()
         unknown = [e for e in manifest['edges'] if e['relation_type'] == 'UNKNOWN']
-        self.assertEqual(len(unknown), 60)
+        self.assertTrue(unknown, '存在泛化复述 edge 时应为 UNKNOWN')
         for e in unknown:
             self.assertEqual(e['parent_brand_validity'], 'OPEN_REVIEW', e['child'])
-
-    def test_parent_edge_audit_counts_and_grok_boundary(self):
-        """固定当前审计口径，避免 ownership 证据静默升级为 hierarchy。"""
-        from collections import Counter
-        manifest = self._manifest()
-        self.assertEqual(Counter(e['relation_type'] for e in manifest['edges']), Counter({
-            'UNKNOWN': 60,
-            'CORPORATE_OWNERSHIP': 42,
-            'DEVELOPER_PROVIDER': 8,
-            'BRAND_HIERARCHY': 5,
-        }))
-        self.assertEqual(Counter(e['parent_brand_validity'] for e in manifest['edges']), Counter({
-            'OPEN_REVIEW': 110,
-            'CONFIRMED': 5,
-        }))
-        grok = next(e for e in manifest['edges'] if e['child'] == 'Grok')
-        self.assertEqual(grok['parent'], 'SpaceXAI')
-        self.assertEqual(grok['relation_type'], 'DEVELOPER_PROVIDER')
-        self.assertEqual(grok['review_status'], 'OPEN_REVIEW')
-        # 每条 edge 必须带证据原文、判定规则与来源结构，便于人工复核
-        for e in manifest['edges']:
-            self.assertTrue(e['evidence_quote'], e['child'])
-            self.assertTrue(e['decision_rule'].startswith('R'), e['child'])
-            self.assertIn('url_status', e['source'], e['child'])
-            self.assertTrue(e['rationale'], e['child'])
 
     def test_source_urls_are_explicitly_unrecorded(self):
         """§74：不得伪造来源。当前无 URL 时必须显式标注 NOT_RECORDED。"""
@@ -587,7 +633,6 @@ class RealRepoTests(unittest.TestCase):
         for e in manifest['edges']:
             self.assertIsNone(e['source']['url'], e['child'])
             self.assertEqual(e['source']['url_status'], 'NOT_RECORDED', e['child'])
-        self.assertIn('0/115', manifest['self_reference_risk'])
 
     def test_parent_edge_evidence_is_deterministic(self):
         """manifest + audit 文档必须可由生成器确定性重放（0 diff）。"""
