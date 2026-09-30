@@ -2,16 +2,17 @@
 """品牌关系图负测（python -m unittest 或 pytest 均可）。
 
 验证 scripts/brand_relationships.py 的校验规则在异常输入下确实 FAIL：
-  - parent_brand 循环（A→B→A）
-  - parent_brand 自指（A→A）
-  - parent_brand 指向不存在的品牌（链末端缺失 / 直接缺失）
+  - parent_brand 循环（A→B→A）/ 自指 / 指向不存在（链末端/直接）
   - 生态分类无对应品牌条目 / 根 entity_type 非 ecosystem
-  - 生态根 canonical descendants < 2（阈值负测：0 与 1）
+  - 生态根 canonical descendants < 2（正向阈值负测：0 与 1）
   - 阈值正测：descendants = 2 / 3 / 嵌套 2（孙代）→ 通过
+  - **反向阈值**：graph root descendants ≥ 2 但 entity_type 非 ecosystem → FAIL
+  - **中间层不得升级**：Facebook descendants=2 但非 graph root → 不要求 ecosystem
+  - **canonical 过滤**：country / system_icon / tool_app 不计入 descendants
   - 位于生态分类内但祖先链未经过根（错放分类）
   - 白名单混入已有 icon 的品牌
   - 生态根 icon 不在生态目录 / 无 icon 未登记白名单
-  - resolve_ecosystem_root 动态派生正确性（含中间层）
+  - resolve_graph_root / resolve_ecosystem_root 语义分离（Mijia→Xiaomi vs Instagram→Meta）
 """
 import sys
 import unittest
@@ -20,8 +21,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 from brand_relationships import (  # noqa: E402
     _descendants,
-    _root_of,
+    is_canonical_brand,
     resolve_ecosystem_root,
+    resolve_graph_root,
     validate_relationships,
 )
 
@@ -45,6 +47,10 @@ def eco_doc(brands, eco_cats, whitelist=()):
 
 def eco_cats(names):
     return [{'id': n, 'type': 'ecosystem'} for n in names]
+
+
+def _ssot(doc):
+    return {e['id']: e for e in doc['brands']}
 
 
 class RelationshipTests(unittest.TestCase):
@@ -226,21 +232,28 @@ class RelationshipTests(unittest.TestCase):
         errs = self._errs(doc, eco_cats(['Meta']))
         self.assertTrue(any('无对应品牌条目且未登记白名单' in e for e in errs))
 
-    # ---- 派生 API ----
+    # ---- 派生 API：graph root ≠ ecosystem root ----
     def test_resolve_root_middle_layer(self):
         doc = eco_doc([
             ('Google', None, 'ecosystem', 'Google'),
             ('YouTube', 'Google', 'product_brand', 'Google'),
             ('YouTubeMusic', 'YouTube', 'product_brand', 'Google'),
         ], ['Google'])
-        ssot = {e['id']: e for e in doc['brands']}
+        ssot = _ssot(doc)
+        # graph root 都是 Google
+        self.assertEqual(resolve_graph_root('YouTubeMusic', ssot), 'Google')
+        self.assertEqual(resolve_graph_root('YouTube', ssot), 'Google')
+        # ecosystem root 也解析为 Google（Google 是 ecosystem）
         self.assertEqual(resolve_ecosystem_root('YouTubeMusic', ssot), 'Google')
         self.assertEqual(resolve_ecosystem_root('YouTube', ssot), 'Google')
 
     def test_resolve_root_no_parent(self):
         doc = eco_doc([('Netflix', None, 'product_brand', 'Media')], [])
-        ssot = {e['id']: e for e in doc['brands']}
-        self.assertEqual(resolve_ecosystem_root('Netflix', ssot), 'Netflix')
+        ssot = _ssot(doc)
+        # graph root = 自身（无父）
+        self.assertEqual(resolve_graph_root('Netflix', ssot), 'Netflix')
+        # 非 ecosystem → ecosystem root = None
+        self.assertIsNone(resolve_ecosystem_root('Netflix', ssot))
 
     def test_descendants_excludes_root_and_non_canonical(self):
         doc = eco_doc([
@@ -249,11 +262,102 @@ class RelationshipTests(unittest.TestCase):
             ('Instagram', 'Facebook', 'product_brand', 'Meta'),
             ('WhatsApp', 'Facebook', 'product_brand', 'Meta'),
         ], ['Meta'])
-        ssot = {e['id']: e for e in doc['brands']}
+        ssot = _ssot(doc)
         ds = _descendants('Meta', ssot)
         self.assertEqual(ds, {'Facebook', 'Instagram', 'WhatsApp'},
                          'descendants 不含 root 本身')
         self.assertEqual(len(_descendants('Facebook', ssot)), 2)
+
+
+class ReverseThresholdTests(unittest.TestCase):
+    """§4-§11：反向生态阈值 —— graph root descendants ≥ 2 → 必须 ecosystem。"""
+
+    def test_reverse_root_not_ecosystem_fails(self):
+        # Root 有 2 个 product_brand 子，但 Root.entity_type=product_brand → 必须 FAIL
+        doc = eco_doc([
+            ('Root', None, 'product_brand', 'Functional'),
+            ('A', 'Root', 'product_brand', 'Functional'),
+            ('B', 'Root', 'product_brand', 'Functional'),
+        ], [])
+        errs = validate_relationships(doc, [])
+        self.assertTrue(any('canonical descendants ≥ 2' in e for e in errs),
+                        'graph root descendants=2 非 ecosystem 必须 FAIL: %s' % errs)
+
+    def test_reverse_root_zero_one_no_fail(self):
+        # descendants=1：不要求 ecosystem（阈值仅 ≥2 触发）
+        doc = eco_doc([
+            ('Root', None, 'product_brand', 'Functional'),
+            ('A', 'Root', 'product_brand', 'Functional'),
+        ], [])
+        self.assertEqual(validate_relationships(doc, []), [],
+                         'graph root descendants=1 不应被要求 ecosystem')
+
+    def test_intermediate_with_two_children_not_promoted(self):
+        # Meta → Facebook → {Instagram, Messenger}：
+        # Facebook descendants=2 但它是中间层（有 SSOT 父 Meta）→ 不得被要求升级 ecosystem
+        doc = eco_doc([
+            ('Meta', None, 'ecosystem', 'Meta'),
+            ('Facebook', 'Meta', 'product_brand', 'Meta'),
+            ('Instagram', 'Facebook', 'product_brand', 'Meta'),
+            ('Messenger', 'Facebook', 'product_brand', 'Meta'),
+        ], ['Meta'])
+        errs = validate_relationships(doc, eco_cats(['Meta']))
+        self.assertFalse(
+            any('Facebook' in e and 'descendants ≥ 2' in e for e in errs),
+            '中间层 Facebook 不得因 descendants≥2 被要求升级 ecosystem: %s' % errs)
+        # Meta 是合法 ecosystem root，整体应通过
+        self.assertEqual(errs, [])
+
+
+class CanonicalFilterTests(unittest.TestCase):
+    """§12-§17：canonical descendant 实体过滤 —— 只计 product_brand。"""
+
+    def test_country_not_counted(self):
+        # Root → {ProductA, ProductB, CountryX}：CountryX 非 product_brand，不计入
+        doc = eco_doc([
+            ('Root', None, 'ecosystem', 'Root'),
+            ('ProductA', 'Root', 'product_brand', 'Root'),
+            ('ProductB', 'Root', 'product_brand', 'Root'),
+            ('CountryX', 'Root', 'country', 'Root'),
+        ], ['Root'])
+        ssot = _ssot(doc)
+        ds = _descendants('Root', ssot)
+        self.assertNotIn('CountryX', ds)
+        self.assertEqual(ds, {'ProductA', 'ProductB'},
+                         'country 实体不得计入 canonical descendants')
+
+    def test_system_icon_and_tool_app_not_counted(self):
+        doc = eco_doc([
+            ('Root', None, 'ecosystem', 'Root'),
+            ('ProductA', 'Root', 'product_brand', 'Root'),
+            ('ProductB', 'Root', 'product_brand', 'Root'),
+            ('SysIcon', 'Root', 'system_icon', 'Root'),
+            ('ToolX', 'Root', 'tool_app', 'Root'),
+        ], ['Root'])
+        ssot = _ssot(doc)
+        ds = _descendants('Root', ssot)
+        self.assertEqual(ds, {'ProductA', 'ProductB'},
+                         'system_icon / tool_app 不得计入 canonical descendants')
+
+    def test_is_canonical_brand_predicate(self):
+        # predicate 单一来源：只有 product_brand 为 True
+        self.assertTrue(is_canonical_brand({'entity_type': 'product_brand'}))
+        self.assertFalse(is_canonical_brand({'entity_type': 'ecosystem'}))
+        self.assertFalse(is_canonical_brand({'entity_type': 'country'}))
+        self.assertFalse(is_canonical_brand({'entity_type': 'system_icon'}))
+        self.assertFalse(is_canonical_brand({'entity_type': 'tool_app'}))
+
+    def test_filter_does_not_flip_threshold(self):
+        # Root 有 2 product + 2 非 canonical → canonical=2，仍满足生态阈值（PASS）
+        doc = eco_doc([
+            ('Root', None, 'ecosystem', 'Root'),
+            ('ProductA', 'Root', 'product_brand', 'Root'),
+            ('ProductB', 'Root', 'product_brand', 'Root'),
+            ('CountryX', 'Root', 'country', 'Root'),
+            ('SysIcon', 'Root', 'system_icon', 'Root'),
+        ], ['Root'])
+        self.assertEqual(validate_relationships(doc, eco_cats(['Root'])), [],
+                         '非 canonical 实体不应压低 canonical descendants 计数')
 
 
 class RealRepoTests(unittest.TestCase):
@@ -274,16 +378,24 @@ class RealRepoTests(unittest.TestCase):
         self.assertEqual(errs, [])
 
     def test_real_repo_spot_checks(self):
+        # 生态图内品牌 → ecosystem root 为生态根
         self.assertEqual(resolve_ecosystem_root('Instagram', self.ssot), 'Meta')
         self.assertEqual(resolve_ecosystem_root('YouTubeMusic', self.ssot), 'Google')
         self.assertEqual(resolve_ecosystem_root('iCloudPrivateRelay', self.ssot), 'Apple')
-        self.assertEqual(resolve_ecosystem_root('Mijia', self.ssot), 'Xiaomi')
-        self.assertEqual(resolve_ecosystem_root('Weibo', self.ssot), 'SINA')
-        # 17 个生态根全部派生为自身
+        # graph root ≠ ecosystem root：Mijia → Xiaomi（非生态）→ ecosystem root = None
+        self.assertEqual(resolve_graph_root('Mijia', self.ssot), 'Xiaomi')
+        self.assertIsNone(resolve_ecosystem_root('Mijia', self.ssot),
+                          'Xiaomi 非 ecosystem，Mijia 的 ecosystem root 应为 None')
+        self.assertEqual(resolve_graph_root('Weibo', self.ssot), 'SINA')
+        self.assertIsNone(resolve_ecosystem_root('Weibo', self.ssot),
+                          'SINA 非 ecosystem，Weibo 的 ecosystem root 应为 None')
+        # 17 个生态根：graph root = 自身，且 ecosystem root 也派生为自身
         for e in self.brands_doc['brands']:
             if e.get('entity_type') == 'ecosystem':
+                self.assertEqual(resolve_graph_root(e['id'], self.ssot), e['id'],
+                                 '生态根 %s graph root 应为自身' % e['id'])
                 self.assertEqual(resolve_ecosystem_root(e['id'], self.ssot), e['id'],
-                                 '生态根 %s 派生应为自身' % e['id'])
+                                 '生态根 %s ecosystem root 应为自身' % e['id'])
 
 
 if __name__ == '__main__':
