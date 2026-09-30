@@ -133,6 +133,10 @@ def validate_relationships(brands_doc, cats_list):
         ds = _descendants(root, ssot)
         if len(ds) < 2:
             fail('生态根 %s 的 canonical descendants < 2（%d 个）' % (root, len(ds)))
+        p = e.get('parent_brand')
+        if p:
+            fail('entity_type=ecosystem 的 %s 不应再有 parent_brand（生态根必须是关系图顶端；'
+                 '中间层品牌一律 product_brand）: %s' % (root, p))
         ipath = e.get('icon_path', '')
         if not ipath:
             fail('生态根 %s 无 icon（brands.json 条目必须带 canonical icon；'
@@ -176,4 +180,5 @@ if __name__ == '__main__':
         sys.exit(1)
     print('Relationship graph: PASS (%d brands, %d ecosystem roots)'
           % (len(brands_doc.get('brands', [])),
-             len({b for b in brands_doc.get('brands', []) if b.get('entity_type') == 'ecosystem'})))
+             len({b['id'] for b in brands_doc.get('brands', [])
+                  if b.get('entity_type') == 'ecosystem'})))

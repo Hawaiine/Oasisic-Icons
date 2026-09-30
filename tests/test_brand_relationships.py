@@ -178,6 +178,17 @@ class RelationshipTests(unittest.TestCase):
         errs = self._errs(doc, eco_cats(['Meta']))
         self.assertTrue(any('含已有 icon' in e for e in errs))
 
+    def test_eco_root_with_parent_fails(self):
+        # §87：生态根不得再声明 parent_brand（必须是关系图顶端；中间层一律 product_brand）
+        doc = eco_doc([
+            ('Umbrella', None, 'product_brand', 'X'),
+            ('Meta', 'Umbrella', 'ecosystem', 'Meta'),
+            ('Instagram', 'Meta', 'product_brand', 'Meta'),
+            ('WhatsApp', 'Meta', 'product_brand', 'Meta'),
+        ], ['Meta'])
+        errs = self._errs(doc, eco_cats(['Meta']))
+        self.assertTrue(any('不应再有 parent_brand' in e for e in errs), errs)
+
     def test_eco_root_icon_outside_eco_dir_fails(self):
         doc = eco_doc([
             ('Meta', None, 'ecosystem', 'Meta'),
