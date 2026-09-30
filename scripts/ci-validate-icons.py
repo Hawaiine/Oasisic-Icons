@@ -24,6 +24,11 @@
  13. README 统计          主 README badge + intro 汇总数 vs SSOT/文件系统（防硬编码漂移）
  14. README 父节点        任何拥有 ≥1 child brand 的物理品牌节点必须有 README.md，且
                           生成 README 内容与 expected_parent_readme() 逐字节一致
+ 15. 关系派生导出         config/brand-relationships.json 必须与 brands.json + 关系引擎
+                          逐项一致（parent / ancestor_chain / graph_root / ecosystem_root），
+                          且标 generated: true + source=config/brands.json（不是第二个 SSOT）
+ 16. Review Queue         config/brand-review-queue.json 结构合法：状态 ∈ {OPEN, RESOLVED}，
+                          issue_kind 合法，引用真实品牌 ID；不得用队列覆盖 SSOT
 
 全部组 PASS 输出 'Validation Groups: N / All groups: PASS' 并以 exit 0 结束；
 任一组失败输出全部问题并以 exit 1 结束。
@@ -219,7 +224,9 @@ else:
             seen.add(cur)
             chain.append(cur)
         else:
-            if cur not in ssot:
+            # 链末端允许是白名单母公司（parent_brands_without_icon，如官方标志待补的
+            # SpaceXAI）：白名单表示「无自身图标」，不代表关系缺失（与关系引擎同口径）。
+            if cur not in ssot and cur not in aliases:
                 fail('Brands SSOT', 'parent_brand 链末端不存在: %s' % ' -> '.join(chain + [cur]))
     disk_brands = {str(bd.relative_to(ICONS)) for bd in brand_dirs}
     ssot_rel = {Path(e['icon_path']).parent.relative_to('icons').as_posix() for e in bdata}
@@ -481,11 +488,82 @@ for _p in sorted(physical_parent_nodes(brands_doc)):
         if not re.search(r'Ancestor Chain|Direct Children|Parent:', _text):
             fail('README 父节点', '人工 README 缺关系结构: %s' % _p)
 
+# ---------- 15. 关系派生导出（downstream artifact，禁止成为第二 SSOT） ----------
+# config/brand-relationships.json 由 scripts/export-brand-relationships.py 从
+# brands.json + brand_relationships.py 生成；本组逐项重算并比对，防止手工修改或漂移。
+REL_PATH = Path('config/brand-relationships.json')
+if not REL_PATH.exists():
+    fail('关系派生导出', '缺少 %s（运行 scripts/export-brand-relationships.py）' % REL_PATH)
+else:
+    import subprocess as _sp
+    _rel = json.loads(REL_PATH.read_text(encoding='utf-8'))
+    if _rel.get('generated') is not True or _rel.get('source') != 'config/brands.json':
+        fail('关系派生导出', '缺少 generated: true / source=config/brands.json 标注'
+             '（派生文件必须标出来源，避免被当成第二个 SSOT）')
+    _build_rel = None
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location(
+            'export_brand_relationships', Path('scripts/export-brand-relationships.py'))
+        _mod = _ilu.module_from_spec(_spec)
+        _spec.loader.exec_module(_mod)  # type: ignore[union-attr]
+        _build_rel = _mod.build
+    except Exception as _exc:  # noqa: BLE001
+        fail('关系派生导出', '无法加载 scripts/export-brand-relationships.py: %s' % str(_exc)[:80])
+    if _build_rel is not None:
+        _expected = _build_rel(brands_doc)
+        _rows = {r['child']: r for r in _rel.get('brands', [])}
+        _exp_rows = {r['child']: r for r in _expected['brands']}
+        for _b in sorted(set(_exp_rows) - set(_rows)):
+            fail('关系派生导出', '派生导出缺失品牌: %s' % _b)
+        for _b in sorted(set(_rows) - set(_exp_rows)):
+            fail('关系派生导出', '派生导出多余品牌（SSOT 无）: %s' % _b)
+        for _b in sorted(set(_rows) & set(_exp_rows)):
+            if _rows[_b] != _exp_rows[_b]:
+                fail('关系派生导出', '派生导出与 SSOT/关系引擎不一致: %s（实=%s 期望=%s）'
+                     % (_b, _rows[_b], _exp_rows[_b]))
+        if _rel.get('whitelist_parents_without_icon') != _expected['whitelist_parents_without_icon']:
+            fail('关系派生导出', '白名单母公司列表与 SSOT 不一致')
+
+# ---------- 16. Review Queue（人工裁决队列，不得覆盖 SSOT） ----------
+RQ_PATH = Path('config/brand-review-queue.json')
+if not RQ_PATH.exists():
+    fail('Review Queue', '缺少 %s' % RQ_PATH)
+else:
+    _rq = json.loads(RQ_PATH.read_text(encoding='utf-8'))
+    _allowed_status = set(_rq.get('status_values') or [])
+    _allowed_kinds = set(_rq.get('issue_kinds') or [])
+    if _rq.get('is_ssot') is not False:
+        fail('Review Queue', '必须显式声明 is_ssot: false（关系 SSOT 只能是 config/brands.json）')
+    if _allowed_status != {'OPEN', 'RESOLVED'}:
+        fail('Review Queue', 'status_values 必须恰为 {OPEN, RESOLVED}: %s' % sorted(_allowed_status))
+    _seen = set()
+    for _it in _rq.get('items', []):
+        _iid = _it.get('id', '')
+        if not _iid:
+            fail('Review Queue', '条目缺少 id')
+        if _iid in _seen:
+            fail('Review Queue', '条目 id 重复: %s' % _iid)
+        _seen.add(_iid)
+        if _it.get('status') not in _allowed_status:
+            fail('Review Queue', '状态非法: %s (%r)' % (_iid, _it.get('status')))
+        if _it.get('issue_kind') not in _allowed_kinds:
+            fail('Review Queue', 'issue_kind 非法: %s (%r)' % (_iid, _it.get('issue_kind')))
+        _ch = _it.get('child')
+        if _ch and _ch not in ssot and _ch not in aliases:
+            fail('Review Queue', 'child 既不在 SSOT 也不在白名单: %s (%s)' % (_iid, _ch))
+        _cp = _it.get('candidate_parent')
+        if _cp and _cp not in ssot and _cp not in aliases:
+            fail('Review Queue', 'candidate_parent 既不在 SSOT 也不在白名单: %s (%s)' % (_iid, _cp))
+        if _it.get('status') == 'RESOLVED' and not _it.get('resolved_note'):
+            fail('Review Queue', 'RESOLVED 条目必须带 resolved_note（记录裁决结论）: %s' % _iid)
+
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
                    'Surge JSON', 'Glossary', 'Legacy paths',
-                   'README 表格', '生态一致性', 'README 统计', 'README 父节点']
+                   'README 表格', '生态一致性', 'README 统计', 'README 父节点',
+                   '关系派生导出', 'Review Queue']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:

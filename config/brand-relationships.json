@@ -1,0 +1,3800 @@
+{
+  "schema_version": 1,
+  "generated": true,
+  "source": "config/brands.json",
+  "generated_by": "scripts/export-brand-relationships.py",
+  "note": "派生导出（下游消费用），不是第二个 SSOT：关系事实只存于 config/brands.json，手工修改本文件会被 CI 第 15 组拒绝。parent 为直接父品牌（immediate parent）；ecosystem_root 为沿 parent 链动态派生，未构成独立生态时为 null；白名单母公司（parent_brands_without_icon，如官方标志待补的 SpaceXAI）尚无 SSOT 条目，因此其子品牌的 ecosystem_root 当前为 null——这是白名单机制的既有语义，待根条目建立后自动恢复。",
+  "relation_semantics": {
+    "parent": "immediate brand parent (Brand / Product Hierarchy only)",
+    "excluded": [
+      "corporate_ownership",
+      "developer_provider",
+      "platform_integration",
+      "distribution"
+    ],
+    "generated_roots": [
+      "graph_root",
+      "ecosystem_root"
+    ]
+  },
+  "whitelist_parents_without_icon": [
+    "Block",
+    "ButterflyEffect",
+    "ChunghwaTelecom",
+    "DMM",
+    "Daiichikosho",
+    "EchoStar",
+    "FarEasTone",
+    "Fox",
+    "KKCompany",
+    "Kadokawa",
+    "Kakao",
+    "Kuaishou",
+    "LibertyMedia",
+    "MangoSuperMedia",
+    "MoonshotAI",
+    "NTTDocomo",
+    "NewsCorp",
+    "PLAY",
+    "Paramount",
+    "Quora",
+    "Rakuten",
+    "RedBull",
+    "SiriusXM",
+    "Snap",
+    "SpaceXAI",
+    "TaiwanMobile",
+    "UNEXTHoldings",
+    "Valve",
+    "Xperi",
+    "ZhipuAI",
+    "iCABLE"
+  ],
+  "brands": [
+    {
+      "child": "115",
+      "display_name": "115",
+      "category": "CloudStorage",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "115",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "123",
+      "display_name": "123",
+      "category": "CloudStorage",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "123",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "189",
+      "display_name": "189",
+      "category": "CloudStorage",
+      "entity_type": "product_brand",
+      "parent": "ChinaTelecom",
+      "ancestor_chain": [
+        "ChinaTelecom"
+      ],
+      "graph_root": "ChinaTelecom",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "1Password",
+      "display_name": "1Password",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "1Password",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ABEMA",
+      "display_name": "ABEMA",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ABEMA",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AD",
+      "display_name": "AD",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "AD",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AMC",
+      "display_name": "AMC",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "AMC",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AWS",
+      "display_name": "AWS",
+      "category": "Amazon",
+      "entity_type": "product_brand",
+      "parent": "Amazon",
+      "ancestor_chain": [
+        "Amazon"
+      ],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AdGuard",
+      "display_name": "AdGuard",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "AdGuard",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Adobe",
+      "display_name": "Adobe",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Adobe",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Airport",
+      "display_name": "Airport",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Airport",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AliCloud",
+      "display_name": "阿里云",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AliPay",
+      "display_name": "支付宝",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Alibaba",
+      "display_name": "Alibaba",
+      "category": "Alibaba",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "Amazon",
+      "display_name": "Amazon",
+      "category": "Amazon",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "AmazonAlexa",
+      "display_name": "Amazon Alexa",
+      "category": "Amazon",
+      "entity_type": "product_brand",
+      "parent": "Amazon",
+      "ancestor_chain": [
+        "Amazon"
+      ],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AmazonMusic",
+      "display_name": "Amazon Music",
+      "category": "Amazon",
+      "entity_type": "product_brand",
+      "parent": "Amazon",
+      "ancestor_chain": [
+        "Amazon"
+      ],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Anthropic",
+      "display_name": "Anthropic",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Anthropic",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppStore",
+      "display_name": "App Store",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Apple",
+      "display_name": "Apple",
+      "category": "Apple",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "AppleArcade",
+      "display_name": "Apple Arcade",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppleBooks",
+      "display_name": "Apple Books",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppleFitnessPlus",
+      "display_name": "Apple Fitness+",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppleMusic",
+      "display_name": "Apple Music",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppleNewsPlus",
+      "display_name": "Apple News+",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ApplePodcasts",
+      "display_name": "Apple Podcasts",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "AppleTV",
+      "display_name": "Apple TV",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Aqara",
+      "display_name": "Aqara",
+      "category": "Home",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Aqara",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Area",
+      "display_name": "Area",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Area",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Argentina",
+      "display_name": "阿根廷",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Argentina",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Australia",
+      "display_name": "澳大利亚",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Australia",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Auto",
+      "display_name": "Auto",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Auto",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Azure",
+      "display_name": "Azure",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "BBC",
+      "display_name": "BBC",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "BBC",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "BGP",
+      "display_name": "BGP",
+      "category": "Proxy",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "BGP",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Bahamut",
+      "display_name": "Bahamut",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Bahamut",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Baidu",
+      "display_name": "百度",
+      "category": "Baidu",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Baidu",
+      "ecosystem_root": "Baidu",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "BaiduNetdisk",
+      "display_name": "百度网盘",
+      "category": "Baidu",
+      "entity_type": "product_brand",
+      "parent": "Baidu",
+      "ancestor_chain": [
+        "Baidu"
+      ],
+      "graph_root": "Baidu",
+      "ecosystem_root": "Baidu",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Bangumi",
+      "display_name": "Bangumi",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Bangumi",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "BestBuy",
+      "display_name": "Best Buy",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "BestBuy",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Binance",
+      "display_name": "Binance",
+      "category": "Payment",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Binance",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Bing",
+      "display_name": "Bing",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Blacklist",
+      "display_name": "Blacklist",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Blacklist",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Bluesky",
+      "display_name": "Bluesky",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Bluesky",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Bot",
+      "display_name": "Bot",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Bot",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ByteDance",
+      "display_name": "字节跳动",
+      "category": "ByteDance",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "CATCHPLAYPlus",
+      "display_name": "CATCHPLAY+",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "CATCHPLAYPlus",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "CN-Taiwan",
+      "display_name": "中国台湾",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "CN-Taiwan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Canada",
+      "display_name": "加拿大",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Canada",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "China",
+      "display_name": "中国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "China",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ChinaBroadnet",
+      "display_name": "ChinaBroadnet",
+      "category": "Telecom",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ChinaBroadnet",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ChinaMobile",
+      "display_name": "ChinaMobile",
+      "category": "ChinaMobile",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ChinaMobile",
+      "ecosystem_root": "ChinaMobile",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "ChinaMobileDisk",
+      "display_name": "中国移动云盘",
+      "category": "ChinaMobile",
+      "entity_type": "product_brand",
+      "parent": "ChinaMobile",
+      "ancestor_chain": [
+        "ChinaMobile"
+      ],
+      "graph_root": "ChinaMobile",
+      "ecosystem_root": "ChinaMobile",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ChinaTelecom",
+      "display_name": "ChinaTelecom",
+      "category": "Telecom",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ChinaTelecom",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ChinaUnicom",
+      "display_name": "ChinaUnicom",
+      "category": "Telecom",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ChinaUnicom",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Cloudflare",
+      "display_name": "Cloudflare",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Cloudflare",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Copilot",
+      "display_name": "Copilot",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Crunchyroll",
+      "display_name": "Crunchyroll",
+      "category": "SONY",
+      "entity_type": "product_brand",
+      "parent": "SONY",
+      "ancestor_chain": [
+        "SONY"
+      ],
+      "graph_root": "SONY",
+      "ecosystem_root": "SONY",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Cryptocurrency",
+      "display_name": "Cryptocurrency",
+      "category": "Crypto",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Cryptocurrency",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Cursor",
+      "display_name": "Cursor",
+      "category": "Development",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Cursor",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DAZN",
+      "display_name": "DAZN",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "DAZN",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DJI",
+      "display_name": "大疆创新",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "DJI",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DMMTV",
+      "display_name": "DMM TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "DMM",
+      "ancestor_chain": [
+        "DMM"
+      ],
+      "graph_root": "DMM",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DeepSeek",
+      "display_name": "DeepSeek",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "DeepSeek",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Deezer",
+      "display_name": "Deezer",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Deezer",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DiDi",
+      "display_name": "滴滴",
+      "category": "Transport",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "DiDi",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "DingTalk",
+      "display_name": "钉钉",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Direct",
+      "display_name": "Direct",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Direct",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Discord",
+      "display_name": "Discord",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Discord",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Disney",
+      "display_name": "Disney",
+      "category": "Disney",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Disney",
+      "ecosystem_root": "Disney",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "DisneyPlus",
+      "display_name": "Disney+",
+      "category": "Disney",
+      "entity_type": "product_brand",
+      "parent": "Disney",
+      "ancestor_chain": [
+        "Disney"
+      ],
+      "graph_root": "Disney",
+      "ecosystem_root": "Disney",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Docker",
+      "display_name": "Docker",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Docker",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Douban",
+      "display_name": "豆瓣",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Douban",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Doubao",
+      "display_name": "豆包",
+      "category": "ByteDance",
+      "entity_type": "product_brand",
+      "parent": "ByteDance",
+      "ancestor_chain": [
+        "ByteDance"
+      ],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Douyin",
+      "display_name": "抖音",
+      "category": "ByteDance",
+      "entity_type": "product_brand",
+      "parent": "ByteDance",
+      "ancestor_chain": [
+        "ByteDance"
+      ],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Dropbox",
+      "display_name": "Dropbox",
+      "category": "CloudStorage",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Dropbox",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Duolingo",
+      "display_name": "Duolingo",
+      "category": "Education",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Duolingo",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ESPN",
+      "display_name": "ESPN",
+      "category": "Disney",
+      "entity_type": "product_brand",
+      "parent": "Disney",
+      "ancestor_chain": [
+        "Disney"
+      ],
+      "graph_root": "Disney",
+      "ecosystem_root": "Disney",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Egypt",
+      "display_name": "埃及",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Egypt",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Emby",
+      "display_name": "Emby",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Emby",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "EpicGames",
+      "display_name": "Epic Games",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "EpicGames",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "F1TV",
+      "display_name": "F1 TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "LibertyMedia",
+      "ancestor_chain": [
+        "LibertyMedia"
+      ],
+      "graph_root": "LibertyMedia",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Facebook",
+      "display_name": "Facebook",
+      "category": "Meta",
+      "entity_type": "product_brand",
+      "parent": "Meta",
+      "ancestor_chain": [
+        "Meta"
+      ],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Fan",
+      "display_name": "Fan",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Fan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Fileball",
+      "display_name": "Fileball",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Fileball",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Final",
+      "display_name": "Final",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Final",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "FujiTV",
+      "display_name": "Fuji TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "FujiTV",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GIA",
+      "display_name": "GIA",
+      "category": "Proxy",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "GIA",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GLM",
+      "display_name": "GLM",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": "ZhipuAI",
+      "ancestor_chain": [
+        "ZhipuAI"
+      ],
+      "graph_root": "ZhipuAI",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Game",
+      "display_name": "Game",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Game",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GeneralAI",
+      "display_name": "General AI",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "GeneralAI",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Germany",
+      "display_name": "德国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Germany",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GitHub",
+      "display_name": "GitHub",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Global",
+      "display_name": "Global",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Global",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Gmail",
+      "display_name": "Gmail",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Google",
+      "display_name": "Google",
+      "category": "Google",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "GoogleAI",
+      "display_name": "Google AI",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GoogleDrive",
+      "display_name": "Google Drive",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GoogleMaps",
+      "display_name": "Google Maps",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GoogleNews",
+      "display_name": "Google News",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GooglePhotos",
+      "display_name": "Google Photos",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GooglePlay",
+      "display_name": "Google Play",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GoogleTranslate",
+      "display_name": "Google Translate",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "GoogleVoice",
+      "display_name": "Google Voice",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Grok",
+      "display_name": "Grok",
+      "category": "SpaceXAI",
+      "entity_type": "product_brand",
+      "parent": "xAI",
+      "ancestor_chain": [
+        "xAI",
+        "SpaceXAI"
+      ],
+      "graph_root": "SpaceXAI",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "HBOMax",
+      "display_name": "HBO Max",
+      "category": "WarnerBrosDiscovery",
+      "entity_type": "product_brand",
+      "parent": "WarnerBrosDiscovery",
+      "ancestor_chain": [
+        "WarnerBrosDiscovery"
+      ],
+      "graph_root": "WarnerBrosDiscovery",
+      "ecosystem_root": "WarnerBrosDiscovery",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "HOYTV",
+      "display_name": "HOY TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "iCABLE",
+      "ancestor_chain": [
+        "iCABLE"
+      ],
+      "graph_root": "iCABLE",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "HamiVideo",
+      "display_name": "Hami Video",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "ChunghwaTelecom",
+      "ancestor_chain": [
+        "ChunghwaTelecom"
+      ],
+      "graph_root": "ChunghwaTelecom",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Hanxiaoquan",
+      "display_name": "韩小圈",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Hanxiaoquan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "HongKong",
+      "display_name": "香港",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "HongKong",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Honor",
+      "display_name": "荣耀",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Honor",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Huawei",
+      "display_name": "华为",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Huawei",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Hulu",
+      "display_name": "Hulu",
+      "category": "Disney",
+      "entity_type": "product_brand",
+      "parent": "Disney",
+      "ancestor_chain": [
+        "Disney"
+      ],
+      "graph_root": "Disney",
+      "ecosystem_root": "Disney",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "IEPL",
+      "display_name": "IEPL",
+      "category": "Proxy",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "IEPL",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "IPLC",
+      "display_name": "IPLC",
+      "category": "Proxy",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "IPLC",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "India",
+      "display_name": "印度",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "India",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Infuse",
+      "display_name": "Infuse",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Infuse",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Instagram",
+      "display_name": "Instagram",
+      "category": "Meta",
+      "entity_type": "product_brand",
+      "parent": "Facebook",
+      "ancestor_chain": [
+        "Facebook",
+        "Meta"
+      ],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "JD",
+      "display_name": "京东",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "JD",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Japan",
+      "display_name": "日本",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Japan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Jellyfin",
+      "display_name": "Jellyfin",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Jellyfin",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "JioHotstar",
+      "display_name": "JioHotstar",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "JioHotstar",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "KKBOX",
+      "display_name": "KKBOX",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": "KKCompany",
+      "ancestor_chain": [
+        "KKCompany"
+      ],
+      "graph_root": "KKCompany",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "KKTV",
+      "display_name": "KKTV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "KKTV",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "KakaoTalk",
+      "display_name": "KakaoTalk",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": "Kakao",
+      "ancestor_chain": [
+        "Kakao"
+      ],
+      "graph_root": "Kakao",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "KaraokeDAM",
+      "display_name": "Karaoke@DAM",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Daiichikosho",
+      "ancestor_chain": [
+        "Daiichikosho"
+      ],
+      "graph_root": "Daiichikosho",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Keep",
+      "display_name": "Keep",
+      "category": "Health",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Keep",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Kimi",
+      "display_name": "Kimi",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": "MoonshotAI",
+      "ancestor_chain": [
+        "MoonshotAI"
+      ],
+      "graph_root": "MoonshotAI",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Korea",
+      "display_name": "韩国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Korea",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Kwai",
+      "display_name": "快手",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": "Kuaishou",
+      "ancestor_chain": [
+        "Kuaishou"
+      ],
+      "graph_root": "Kuaishou",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "LG",
+      "display_name": "LG",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "LG",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "LINE",
+      "display_name": "LINE",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "LINE",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "LINETV",
+      "display_name": "LINE TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "LINETV",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Lark",
+      "display_name": "飞书",
+      "category": "ByteDance",
+      "entity_type": "product_brand",
+      "parent": "ByteDance",
+      "ancestor_chain": [
+        "ByteDance"
+      ],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Lemino",
+      "display_name": "Lemino",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Lemino",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "LiTV",
+      "display_name": "LiTV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "LiTV",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Lightning",
+      "display_name": "Lightning",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Lightning",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "LinkedIn",
+      "display_name": "LinkedIn",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Mail",
+      "display_name": "Mail",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Mail",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MangoTV",
+      "display_name": "芒果TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "MangoSuperMedia",
+      "ancestor_chain": [
+        "MangoSuperMedia"
+      ],
+      "graph_root": "MangoSuperMedia",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Manus",
+      "display_name": "Manus",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": "ButterflyEffect",
+      "ancestor_chain": [
+        "ButterflyEffect"
+      ],
+      "graph_root": "ButterflyEffect",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Meituan",
+      "display_name": "美团",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Meituan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Messenger",
+      "display_name": "Messenger",
+      "category": "Meta",
+      "entity_type": "product_brand",
+      "parent": "Facebook",
+      "ancestor_chain": [
+        "Facebook",
+        "Meta"
+      ],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Meta",
+      "display_name": "Meta",
+      "category": "Meta",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "MetaBrainz",
+      "display_name": "MetaBrainz",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "MetaBrainz",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Microsoft",
+      "display_name": "Microsoft",
+      "category": "Microsoft",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "MicrosoftStore",
+      "display_name": "Microsoft Store",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Migu",
+      "display_name": "咪咕",
+      "category": "ChinaMobile",
+      "entity_type": "product_brand",
+      "parent": "ChinaMobile",
+      "ancestor_chain": [
+        "ChinaMobile"
+      ],
+      "graph_root": "ChinaMobile",
+      "ecosystem_root": "ChinaMobile",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Mijia",
+      "display_name": "米家",
+      "category": "Home",
+      "entity_type": "product_brand",
+      "parent": "Xiaomi",
+      "ancestor_chain": [
+        "Xiaomi"
+      ],
+      "graph_root": "Xiaomi",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MikroTik",
+      "display_name": "MikroTik",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "MikroTik",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MiniMax",
+      "display_name": "MiniMax",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "MiniMax",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Muse",
+      "display_name": "Muse",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Muse",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MusicBrainz",
+      "display_name": "MusicBrainz",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": "MetaBrainz",
+      "ancestor_chain": [
+        "MetaBrainz"
+      ],
+      "graph_root": "MetaBrainz",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MusicJapan",
+      "display_name": "Music Japan",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "MusicJapan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Musixmatch",
+      "display_name": "Musixmatch",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Musixmatch",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "MyVideo",
+      "display_name": "MyVideo",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "TaiwanMobile",
+      "ancestor_chain": [
+        "TaiwanMobile"
+      ],
+      "graph_root": "TaiwanMobile",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NBA",
+      "display_name": "NBA",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NBA",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NBC",
+      "display_name": "NBC",
+      "category": "NBCUniversal",
+      "entity_type": "product_brand",
+      "parent": "NBCUniversal",
+      "ancestor_chain": [
+        "NBCUniversal"
+      ],
+      "graph_root": "NBCUniversal",
+      "ecosystem_root": "NBCUniversal",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NBCUniversal",
+      "display_name": "NBCUniversal",
+      "category": "NBCUniversal",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NBCUniversal",
+      "ecosystem_root": "NBCUniversal",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "NHK",
+      "display_name": "NHK",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NHK",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NetEase",
+      "display_name": "网易",
+      "category": "NetEase",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NetEase",
+      "ecosystem_root": "NetEase",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "NetEaseCloudMusic",
+      "display_name": "网易云音乐",
+      "category": "NetEase",
+      "entity_type": "product_brand",
+      "parent": "NetEase",
+      "ancestor_chain": [
+        "NetEase"
+      ],
+      "graph_root": "NetEase",
+      "ecosystem_root": "NetEase",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NetEaseMail",
+      "display_name": "网易邮箱",
+      "category": "NetEase",
+      "entity_type": "product_brand",
+      "parent": "NetEase",
+      "ancestor_chain": [
+        "NetEase"
+      ],
+      "graph_root": "NetEase",
+      "ecosystem_root": "NetEase",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Netflix",
+      "display_name": "Netflix",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Netflix",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Netherlands",
+      "display_name": "荷兰",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Netherlands",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Niconico",
+      "display_name": "Niconico",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Kadokawa",
+      "ancestor_chain": [
+        "Kadokawa"
+      ],
+      "graph_root": "Kadokawa",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Nigeria",
+      "display_name": "尼日利亚",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Nigeria",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Nintendo",
+      "display_name": "Nintendo",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Nintendo",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NorthKorea",
+      "display_name": "朝鲜",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NorthKorea",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Notion",
+      "display_name": "Notion",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Notion",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NousResearch",
+      "display_name": "Nous Research",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "NousResearch",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "NowE",
+      "display_name": "Now E",
+      "category": "PCCW",
+      "entity_type": "product_brand",
+      "parent": "PCCW",
+      "ancestor_chain": [
+        "PCCW"
+      ],
+      "graph_root": "PCCW",
+      "ecosystem_root": "PCCW",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "OKX",
+      "display_name": "OKX",
+      "category": "Payment",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "OKX",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "OPPO",
+      "display_name": "OPPO",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "OPPO",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Obsidian",
+      "display_name": "Obsidian",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Obsidian",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "OneDrive",
+      "display_name": "OneDrive",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "OpenAI",
+      "display_name": "OpenAI",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "OpenAI",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "OpenWrt",
+      "display_name": "OpenWrt",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "OpenWrt",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Oracle",
+      "display_name": "Oracle",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Oracle",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Outlook",
+      "display_name": "Outlook",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "PCCW",
+      "display_name": "PCCW",
+      "category": "PCCW",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "PCCW",
+      "ecosystem_root": "PCCW",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "Pandora",
+      "display_name": "Pandora",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": "SiriusXM",
+      "ancestor_chain": [
+        "SiriusXM"
+      ],
+      "graph_root": "SiriusXM",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ParamountPlus",
+      "display_name": "Paramount+",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Paramount",
+      "ancestor_chain": [
+        "Paramount"
+      ],
+      "graph_root": "Paramount",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "PayPal",
+      "display_name": "PayPal",
+      "category": "Payment",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "PayPal",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Peacock",
+      "display_name": "Peacock",
+      "category": "NBCUniversal",
+      "entity_type": "product_brand",
+      "parent": "NBCUniversal",
+      "ancestor_chain": [
+        "NBCUniversal"
+      ],
+      "graph_root": "NBCUniversal",
+      "ecosystem_root": "NBCUniversal",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Perplexity",
+      "display_name": "Perplexity",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Perplexity",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "PikPak",
+      "display_name": "PikPak",
+      "category": "CloudStorage",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "PikPak",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Pinduoduo",
+      "display_name": "拼多多",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Pinduoduo",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Pinterest",
+      "display_name": "Pinterest",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Pinterest",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Pipixia",
+      "display_name": "皮皮虾",
+      "category": "ByteDance",
+      "entity_type": "product_brand",
+      "parent": "ByteDance",
+      "ancestor_chain": [
+        "ByteDance"
+      ],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Play",
+      "display_name": "Play",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Play",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "PlayStation",
+      "display_name": "PlayStation",
+      "category": "SONY",
+      "entity_type": "product_brand",
+      "parent": "SONY",
+      "ancestor_chain": [
+        "SONY"
+      ],
+      "graph_root": "SONY",
+      "ecosystem_root": "SONY",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Plex",
+      "display_name": "Plex",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Plex",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Poe",
+      "display_name": "Poe",
+      "category": "AI",
+      "entity_type": "product_brand",
+      "parent": "Quora",
+      "ancestor_chain": [
+        "Quora"
+      ],
+      "graph_root": "Quora",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Poland",
+      "display_name": "波兰",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Poland",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "PrimeVideo",
+      "display_name": "Prime Video",
+      "category": "Amazon",
+      "entity_type": "product_brand",
+      "parent": "Amazon",
+      "ancestor_chain": [
+        "Amazon"
+      ],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Proxmox",
+      "display_name": "Proxmox",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Proxmox",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Proxy",
+      "display_name": "Proxy",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Proxy",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "QQ",
+      "display_name": "腾讯QQ",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "QQMail",
+      "display_name": "QQ邮箱",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "QQMusic",
+      "display_name": "QQ音乐",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Qobuz",
+      "display_name": "Qobuz",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Qobuz",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Quark",
+      "display_name": "夸克",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Qwen",
+      "display_name": "通义千问",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Radiko",
+      "display_name": "Radiko",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Radiko",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "RakutenTV",
+      "display_name": "Rakuten TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Rakuten",
+      "ancestor_chain": [
+        "Rakuten"
+      ],
+      "graph_root": "Rakuten",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "ReadJapan",
+      "display_name": "Read Japan",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "ReadJapan",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "RedBullTV",
+      "display_name": "Red Bull TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "RedBull",
+      "ancestor_chain": [
+        "RedBull"
+      ],
+      "graph_root": "RedBull",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Reddit",
+      "display_name": "Reddit",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Reddit",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Reject",
+      "display_name": "Reject",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Reject",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SF-Express",
+      "display_name": "SF-Express",
+      "category": "Transport",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SF-Express",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SINA",
+      "display_name": "新浪",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SINA",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SONY",
+      "display_name": "索尼",
+      "category": "SONY",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SONY",
+      "ecosystem_root": "SONY",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "SOOP",
+      "display_name": "SOOP",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SOOP",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SSID",
+      "display_name": "SSID",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SSID",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "STARZ",
+      "display_name": "STARZ",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "STARZ",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SWIFT",
+      "display_name": "SWIFT",
+      "category": "Payment",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SWIFT",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Samsung",
+      "display_name": "三星",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Samsung",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Search",
+      "display_name": "Search",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Search",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Singapore",
+      "display_name": "新加坡",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Singapore",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SiriAI",
+      "display_name": "Siri AI",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Skype",
+      "display_name": "Skype",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Skype",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SlingTV",
+      "display_name": "Sling TV",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "EchoStar",
+      "ancestor_chain": [
+        "EchoStar"
+      ],
+      "graph_root": "EchoStar",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Snapchat",
+      "display_name": "Snapchat",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": "Snap",
+      "ancestor_chain": [
+        "Snap"
+      ],
+      "graph_root": "Snap",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "SoundCloud",
+      "display_name": "SoundCloud",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "SoundCloud",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Spain",
+      "display_name": "西班牙",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Spain",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Speedtest",
+      "display_name": "Speedtest",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Speedtest",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Spotify",
+      "display_name": "Spotify",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Spotify",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "StarPlus",
+      "display_name": "StarPlus",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "StarPlus",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Steam",
+      "display_name": "Steam",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "parent": "Valve",
+      "ancestor_chain": [
+        "Valve"
+      ],
+      "graph_root": "Valve",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Surge",
+      "display_name": "Surge",
+      "category": "Surge",
+      "entity_type": "tool_app",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Surge",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Synology",
+      "display_name": "Synology",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Synology",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TELASA",
+      "display_name": "TELASA",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "TELASA",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TIDAL",
+      "display_name": "TIDAL",
+      "category": "Music",
+      "entity_type": "product_brand",
+      "parent": "Block",
+      "ancestor_chain": [
+        "Block"
+      ],
+      "graph_root": "Block",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TMDB",
+      "display_name": "TMDB",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Xperi",
+      "ancestor_chain": [
+        "Xperi"
+      ],
+      "graph_root": "Xperi",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TVB",
+      "display_name": "TVB",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "TVB",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TVer",
+      "display_name": "TVer",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "TVer",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Taobao",
+      "display_name": "淘宝",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Telegram",
+      "display_name": "Telegram",
+      "category": "Communication",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Telegram",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Tencent",
+      "display_name": "腾讯",
+      "category": "Tencent",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "TencentVideo",
+      "display_name": "腾讯视频",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TestFlight",
+      "display_name": "TestFlight",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Thailand",
+      "display_name": "泰国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Thailand",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Threads",
+      "display_name": "Threads",
+      "category": "Meta",
+      "entity_type": "product_brand",
+      "parent": "Facebook",
+      "ancestor_chain": [
+        "Facebook",
+        "Meta"
+      ],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Tieba",
+      "display_name": "百度贴吧",
+      "category": "Baidu",
+      "entity_type": "product_brand",
+      "parent": "Baidu",
+      "ancestor_chain": [
+        "Baidu"
+      ],
+      "graph_root": "Baidu",
+      "ecosystem_root": "Baidu",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "TikTok",
+      "display_name": "TikTok",
+      "category": "ByteDance",
+      "entity_type": "product_brand",
+      "parent": "ByteDance",
+      "ancestor_chain": [
+        "ByteDance"
+      ],
+      "graph_root": "ByteDance",
+      "ecosystem_root": "ByteDance",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Traffic",
+      "display_name": "Traffic",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Traffic",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Tubi",
+      "display_name": "Tubi",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "Fox",
+      "ancestor_chain": [
+        "Fox"
+      ],
+      "graph_root": "Fox",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Turkey",
+      "display_name": "土耳其",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Turkey",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Twitch",
+      "display_name": "Twitch",
+      "category": "Amazon",
+      "entity_type": "product_brand",
+      "parent": "Amazon",
+      "ancestor_chain": [
+        "Amazon"
+      ],
+      "graph_root": "Amazon",
+      "ecosystem_root": "Amazon",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "UK",
+      "display_name": "英国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "UK",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "UNEXT",
+      "display_name": "U-NEXT",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "UNEXTHoldings",
+      "ancestor_chain": [
+        "UNEXTHoldings"
+      ],
+      "graph_root": "UNEXTHoldings",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "URL",
+      "display_name": "URL",
+      "category": "System",
+      "entity_type": "system_icon",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "URL",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "US",
+      "display_name": "美国",
+      "category": "Country",
+      "entity_type": "country",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "US",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Uber",
+      "display_name": "Uber",
+      "category": "Transport",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Uber",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "UnionPay",
+      "display_name": "银联",
+      "category": "Payment",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "UnionPay",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "VideoMarket",
+      "display_name": "Video Market",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "PLAY",
+      "ancestor_chain": [
+        "PLAY"
+      ],
+      "graph_root": "PLAY",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Vimeo",
+      "display_name": "Vimeo",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Vimeo",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Viu",
+      "display_name": "Viu",
+      "category": "PCCW",
+      "entity_type": "product_brand",
+      "parent": "PCCW",
+      "ancestor_chain": [
+        "PCCW"
+      ],
+      "graph_root": "PCCW",
+      "ecosystem_root": "PCCW",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "WOWOW",
+      "display_name": "WOWOW",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "WOWOW",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "WSJ",
+      "display_name": "WSJ",
+      "category": "News",
+      "entity_type": "product_brand",
+      "parent": "NewsCorp",
+      "ancestor_chain": [
+        "NewsCorp"
+      ],
+      "graph_root": "NewsCorp",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Wallpaper",
+      "display_name": "Wallpaper",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Wallpaper",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "WarnerBrosDiscovery",
+      "display_name": "Warner Bros. Discovery",
+      "category": "WarnerBrosDiscovery",
+      "entity_type": "ecosystem",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "WarnerBrosDiscovery",
+      "ecosystem_root": "WarnerBrosDiscovery",
+      "is_graph_root": true,
+      "is_ecosystem_root": true
+    },
+    {
+      "child": "WeChat",
+      "display_name": "微信",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "WeTV",
+      "display_name": "WeTV",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "parent": "Tencent",
+      "ancestor_chain": [
+        "Tencent"
+      ],
+      "graph_root": "Tencent",
+      "ecosystem_root": "Tencent",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Weibo",
+      "display_name": "微博",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": "SINA",
+      "ancestor_chain": [
+        "SINA"
+      ],
+      "graph_root": "SINA",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "WhatsApp",
+      "display_name": "WhatsApp",
+      "category": "Meta",
+      "entity_type": "product_brand",
+      "parent": "Facebook",
+      "ancestor_chain": [
+        "Facebook",
+        "Meta"
+      ],
+      "graph_root": "Meta",
+      "ecosystem_root": "Meta",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Wikipedia",
+      "display_name": "Wikipedia",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Wikipedia",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "X",
+      "display_name": "X",
+      "category": "SpaceXAI",
+      "entity_type": "product_brand",
+      "parent": "SpaceXAI",
+      "ancestor_chain": [
+        "SpaceXAI"
+      ],
+      "graph_root": "SpaceXAI",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Xbox",
+      "display_name": "Xbox",
+      "category": "Microsoft",
+      "entity_type": "product_brand",
+      "parent": "Microsoft",
+      "ancestor_chain": [
+        "Microsoft"
+      ],
+      "graph_root": "Microsoft",
+      "ecosystem_root": "Microsoft",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Xiaomi",
+      "display_name": "小米",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Xiaomi",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Xiaoyuzhou",
+      "display_name": "小宇宙",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Xiaoyuzhou",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "YouTube",
+      "display_name": "YouTube",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "Google",
+      "ancestor_chain": [
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "YouTubeMusic",
+      "display_name": "YouTube Music",
+      "category": "Google",
+      "entity_type": "product_brand",
+      "parent": "YouTube",
+      "ancestor_chain": [
+        "YouTube",
+        "Google"
+      ],
+      "graph_root": "Google",
+      "ecosystem_root": "Google",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Youku",
+      "display_name": "优酷",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Z-Library",
+      "display_name": "Z-Library",
+      "category": "Education",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Z-Library",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Zhihu",
+      "display_name": "知乎",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Zhihu",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "Zoom",
+      "display_name": "Zoom",
+      "category": "Utilities",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Zoom",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "bilibili",
+      "display_name": "bilibili",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "bilibili",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "dAnimeStore",
+      "display_name": "d Anime Store",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "NTTDocomo",
+      "ancestor_chain": [
+        "NTTDocomo"
+      ],
+      "graph_root": "NTTDocomo",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "discoveryPlus",
+      "display_name": "discovery+",
+      "category": "WarnerBrosDiscovery",
+      "entity_type": "product_brand",
+      "parent": "WarnerBrosDiscovery",
+      "ancestor_chain": [
+        "WarnerBrosDiscovery"
+      ],
+      "graph_root": "WarnerBrosDiscovery",
+      "ecosystem_root": "WarnerBrosDiscovery",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "eBay",
+      "display_name": "eBay",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "eBay",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "friDayVideo",
+      "display_name": "friDay影音",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "FarEasTone",
+      "ancestor_chain": [
+        "FarEasTone"
+      ],
+      "graph_root": "FarEasTone",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "iCloud",
+      "display_name": "iCloud",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "Apple",
+      "ancestor_chain": [
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "iCloudPrivateRelay",
+      "display_name": "iCloud Private Relay",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "parent": "iCloud",
+      "ancestor_chain": [
+        "iCloud",
+        "Apple"
+      ],
+      "graph_root": "Apple",
+      "ecosystem_root": "Apple",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "iQIYI",
+      "display_name": "爱奇艺",
+      "category": "Baidu",
+      "entity_type": "product_brand",
+      "parent": "Baidu",
+      "ancestor_chain": [
+        "Baidu"
+      ],
+      "graph_root": "Baidu",
+      "ecosystem_root": "Baidu",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "mora",
+      "display_name": "mora",
+      "category": "SONY",
+      "entity_type": "product_brand",
+      "parent": "SONY",
+      "ancestor_chain": [
+        "SONY"
+      ],
+      "graph_root": "SONY",
+      "ecosystem_root": "SONY",
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "myTVSUPER",
+      "display_name": "myTV SUPER",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "parent": "TVB",
+      "ancestor_chain": [
+        "TVB"
+      ],
+      "graph_root": "TVB",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "pixiv",
+      "display_name": "pixiv",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "pixiv",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "rednote",
+      "display_name": "小红书",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "rednote",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "vivo",
+      "display_name": "vivo",
+      "category": "Hardware",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "vivo",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false
+    },
+    {
+      "child": "xAI",
+      "display_name": "xAI",
+      "category": "SpaceXAI",
+      "entity_type": "product_brand",
+      "parent": "SpaceXAI",
+      "ancestor_chain": [
+        "SpaceXAI"
+      ],
+      "graph_root": "SpaceXAI",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false
+    }
+  ]
+}

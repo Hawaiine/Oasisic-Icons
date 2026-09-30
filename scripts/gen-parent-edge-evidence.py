@@ -6,15 +6,26 @@
 本脚本是 **evidence-text triage（证据文本分级）**，不是 real-world relationship proof。
 它只回答「审计文档 §7 那一行证据文字描述的是哪一类关系」，不回答「现实世界是否真的如此」。
 
+架构定位（2026-10-01 明确）
+--------------------------
+本脚本输出是**辅助审计 / supporting evidence layer**，不是 SSOT、不是 parent_brand 决策器、
+也不是 PR 阻塞条件：
+
+    primary source → 人工/规则判定品牌关系 → config/brands.json（SSOT）
+                   → scripts/brand_relationships.py（关系引擎）
+                   → 派生 artifacts；本生成器只是把「审计文字属于哪类关系」记录成可复核清单。
+
 数据流（单向，禁止反向）：
 
     primary source → structured edge evidence → human decision
                    → brands.json → 本生成器 → audit / manifest
+                   （生成器输出绝不回流去改写 brands.json）
 
 自证循环风险（已记录，未消除）
 ------------------------------
 证据文字来自 `docs/references/brand-ownership-audit.md`（人工研究摘要）。生成器**不重新取证**，
-因此无法独立验证该摘要本身。消除风险需逐边补 `source.url` 并人工复核；当前 0/115 有 URL。
+因此无法独立验证该摘要本身。消除风险需逐边补 `source.url` 并人工复核；当前 0 条记录 URL（数量由生成器实时计算）。**该风险属 evidence 层的完善度问题，不是 SSOT 正确性前提**：
+关系事实由 brands.json 承担，本清单只做支持性说明与 review context。
 
 决策规则（按顺序，先命中先判定；信号优先级 = developer > ownership > umbrella > platform）
 --------------------------------------------------------------------------------------
@@ -159,9 +170,12 @@ def build_doc(edges):
     return {
         'schema_version': 3,
         'generated_by': 'scripts/gen-parent-edge-evidence.py',
+        'role': 'supporting_evidence_layer',
+        'is_ssot': False,
+        'blocking': False,
         'description': ('Structured relation-type evidence for every live config/brands.json '
-                        'parent_brand edge. Evidence/review layer only; it does not replace '
-                        'the brands.json SSOT.'),
+                        'parent_brand edge. Supporting audit/review context only: it is not an '
+                        'SSOT, does not decide parent_brand, and is not a merge blocker.'),
         'capability_boundary': ('Evidence-text triage derived from the brand-ownership-audit.md '
                                 'research summary. It is NOT real-world relationship proof and '
                                 'does not independently re-verify any primary source.'),
@@ -214,7 +228,8 @@ def render_audit(doc, edges):
         '',
         '> **R3 必须在 R4 之前**：只凭「旗下」「集团」等归属措辞不能证明 direct brand umbrella。',
         '> 旧版把「旗下」当作伞状证据，曾把 `F1TV → LibertyMedia`、`NowE → PCCW` 等纯归属关系误判为品牌层级，本版已修正。',
-        '> 同理，开发/提供方措辞（R2）先于平台措辞（R5）：Grok 的证据同时含两者，旧版整条判成 platform，掩盖了 developer 事实。',
+        '> 同理，开发/提供方措辞（R2）先于平台措辞（R5）：一条证据同时含两者时，旧版整条判成 platform，'
+        '掩盖了 developer 事实。',
         '',
         '## relation_type 分布',
         '',
@@ -239,12 +254,18 @@ def render_audit(doc, edges):
         '> `CONFIRMED` 只在 `relation_type = BRAND_HIERARCHY` 时给出，即证据文字本身已具备品牌伞状措辞。',
         '> 这不等于 primary-source 已闭合：全部 edge 的 `source.url` 仍为 `NOT_RECORDED`。',
         '',
-        '## Architecture finding',
+        '## Architecture role',
         '',
-        '**BLOCKER A（未闭合）**：115 条 edge 的 `relation_type` 来自**证据文字**而非独立 primary source，'
-        '分类可能受关键字影响。真正闭合需逐边补 `source.url` 并人工裁决；本轮 0/115 已记录 URL。',
+        '**本清单的角色 = 辅助审计 / review context**（`role: supporting_evidence_layer`，'
+        '`is_ssot: false`，`blocking: false`）：',
         '',
-        '**未修改 SSOT**：`config/brands.json` 的 115 条 `parent_brand` 本轮未被修改。',
+        '- 关系事实与判定由 `config/brands.json`（SSOT）+ `scripts/brand_relationships.py`（关系引擎）承担；'
+        '本清单**不决定** `parent_brand`，也不被 CI 用作合并阻塞条件；',
+        '- 全部 **%d** 条 live edge 的 `relation_type` 来自证据文字分级，**不等于** primary-source 闭合；'
+        '当前 0 / %d 条记录 `source.url`，逐边补来源属**后续完善项**，不是本 PR 的完成前提；'
+        % (len(edges), len(edges)),
+        '- 真正有现实世界歧义的关系（收购/持股/合资/开发者/平台/授权/历史品牌/多父候选）进 '
+        '`config/brand-review-queue.json`，由人工决定后再写回 `brands.json`。',
         '',
     ]
     for rt in doc['relation_types']:
