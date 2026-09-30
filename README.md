@@ -216,7 +216,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    当前生态分类（16 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
-5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且生态根 descendants ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；
+5. **ownership evidence ≠ Brand Graph**：`brands.json` 是 canonical Brand / Icon / Relationship SSOT；现实世界的 corporate ownership 证据、来源与研究判断只记录在 [`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md)，不因「同属一家公司」自动新增 `parent_brand`；只有经 Brand / Product Hierarchy 语义确认的关系才进入关系图。
 6. **category ≠ parent_brand ≠ 生态根**：category 回答「图标归哪个一级目录」，parent_brand 回答「直接属于哪个品牌」（**直接父品牌 / immediate parent**，如 Instagram → Facebook、YouTubeMusic → YouTube、iCloudPrivateRelay → iCloud），生态根回答「最终属于哪个生态」——生态根**不单独存字段**，由 `entity_type: ecosystem` 标记 + 沿 parent 链向上动态派生（`brand_relationships.resolve_ecosystem_root`），消费方零成本获得。
    **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 16 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`；**公司品牌但未构成独立生态者（如 SINA / Xiaomi / TVB / SpaceXAI）亦为 `product_brand`**，其子公司/产品经 `parent_brand` 关联，不建一级生态目录。
 

@@ -2,12 +2,12 @@
 """Oasisic ↔ mihomo-rules 关系对照语义测试（§24 / §99 / §100）。
 
 覆盖状态：MATCH / OASISIC_MORE_PRECISE / MIHOMO_MORE_PRECISE / STALE /
-NOT_CONSUMED / MISSING / AMBIGUOUS，以及 §68 的 OASISIC_ONLY。
+NOT_CONSUMED / MISSING / MISMATCH / AMBIGUOUS，以及 §68 的 OASISIC_ONLY。
 
 §99 兼容性测试：Oasisic 表达更深祖先链（YouTubeMusic → YouTube → Google）而
 mihomo 只给直接父（YouTubeMusic → YouTube）时必须判 **MATCH**，不得判 mismatch。
-§100 stale 测试：直接父冲突（Grok: Oasisic→SpaceXAI vs mihomo→X）必须标记为需人工复核
-（AMBIGUOUS / STALE），且对照函数**绝不修改**输入（尤其不得改 mihomo 侧）。
+§100 直接父冲突测试：Grok（Oasisic→SpaceXAI vs mihomo→X）必须判 **MISMATCH**；
+两边 SUB_PARENT / parent_brand 都是直接父语义，不能用 platform integration 解释成 AMBIGUOUS。
 """
 import json
 import sys
@@ -63,8 +63,9 @@ class MihomoCompareTests(unittest.TestCase):
         # X 在 Oasisic 中无品牌父级（官方证据：SpaceXAI 与 X Corp. 分离）
         oas = ssot(('SpaceXAI', None), ('X', None), ('Grok', 'SpaceXAI'))
         rows = compare(oas, {'Grok': 'X'})
-        self.assertEqual(rows[0]['status'], 'AMBIGUOUS')
-        self.assertIn(rows[0]['status'], ('AMBIGUOUS', 'STALE'))
+        self.assertEqual(rows[0]['status'], 'MISMATCH')
+        self.assertEqual(rows[0]['oasisic_parent'], 'SpaceXAI')
+        self.assertEqual(rows[0]['mihomo_parent'], 'X')
 
     def test_stale_via_override(self):
         oas = ssot(('JioStar', None))

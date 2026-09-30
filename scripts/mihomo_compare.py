@@ -17,7 +17,8 @@ mihomo 通常只表达直接父，Oasisic 可能同时表达直接父 + 祖先�
   STALE                 mihomo 使用历史/失效直接父（改名或并购后仍留旧映射）
   NOT_CONSUMED          仅 mihomo 有该品牌（Oasisic 不消费，非错误）
   OASISIC_ONLY          仅 Oasisic 有该品牌（mihomo 不消费，非错误）
-  AMBIGUOUS             双方都有但直接父冲突且无法判定包含关系 → 需人工 CURRENT OWNERSHIP REVIEW
+  MISMATCH              双方字段都表示直接父，但直接父不同 → 真实语义冲突，需人工 CURRENT OWNERSHIP REVIEW
+  AMBIGUOUS             双方关系定义不同或证据不足，无法判定是否可比 → 需人工 CURRENT OWNERSHIP REVIEW
   MISSING               双方都有该品牌，但一方缺 parent 关系
 
 设计约束
@@ -98,7 +99,7 @@ def compare(oasisic_ssot, mihomo_map, aliases=None, overrides=None):
         elif opar in _mm_ancestors(mpar, mihomo_map):
             st = 'MIHOMO_MORE_PRECISE'
         else:
-            st = 'AMBIGUOUS'
+            st = 'MISMATCH'
         rows.append(_row(mid, oid, opar, mpar, root, st))
     return rows
 

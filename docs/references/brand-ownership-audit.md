@@ -1,6 +1,6 @@
 # 品牌归属审计报告 / Brand Ownership Audit
 
-> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 5 个生态根品牌 + 3 个 2026-09-30 会话新增品牌）
+> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 **16 个 ecosystem root** + 3 个 2026-09-30 会话新增品牌）
 
 > 本文件是 **研究/证据层**：记录每个品牌当前（现实世界）母公司判断与依据。
 > SSOT 仍为 `config/brands.json`（`parent_brand` / `category` / `entity_type`）——本文件不替代 SSOT。[§65 §66 §97]
@@ -756,8 +756,8 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
 ## 9. mihomo-rules 对照 / mihomo-rules Compatibility Matrix
 
-> 对照源：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT`（**34 对**，2026-09-30 只读审计，未修改 mihomo-rules；旧文写 33 对为笔误）。
-> 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义后，与 mihomo 的直接父语义天然对齐。
+> **对照源语义**：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT` 是**直接父品牌映射**，并由 mihomo 的祖先链解析、父子规则剥离和「子品牌先于父品牌」排序直接消费；本审计不把它解释为 platform/distribution 字段。共 **34 对**，2026-09-30 只读审计，未修改 mihomo-rules。
+> 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义，因此 Grok 的 `mihomo: X` vs `Oasisic: SpaceXAI` 是真实直接父冲突，状态为 `MISMATCH`，不自动同步。
 > Peacock 注记：Peacock 不在 SUB_PARENT 中（34 对无 Peacock），2026-09-30 技术 ID 由旧名（PeacockTV）
 > 迁移为 `Peacock`，对 mihomo 对照**零影响**；mihomo 4 个 config 中 Peacock 的**旧技术 ID 图标 URL**
 > 属既有 stale 引用（早于 NBCUniversal 生态迁移），不在本仓修改范围。
@@ -782,7 +782,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 | GooglePhotos | Google | Google | Google | MATCH |
 | GooglePlay | Google | Google | Google | MATCH |
 | GoogleVoice | Google | Google | Google | MATCH |
-| Grok | SpaceXAI | X | —（X 现无品牌父级） | AMBIGUOUS（需 CURRENT OWNERSHIP REVIEW）：mihomo 直接父=X（平台品牌），Oasisic=`Grok → SpaceXAI`（AI 公司品牌），祖先链不一致（X 已无父级）；本轮**不自动修改 mihomo**；mihomo 侧 icon URL 仍指向旧 **xAI 目录**（main 路径），PR #9 合并后应同步为 `icons/SpaceXAI/Grok/` 实际路径（现为 `icons/AI/Grok/`） |
+| Grok | SpaceXAI | X | —（X 现无品牌父级） | **MISMATCH**：mihomo `SUB_PARENT` 与 Oasisic `parent_brand` 都是直接父语义；mihomo= X，Oasisic=SpaceXAI。X 平台集成事实不能把该冲突改写为 platform relation / AMBIGUOUS；本轮不自动修改 mihomo |
 | Hotstar | —（现为 JioHotstar） | Disney | — | STALE（mihomo 侧）+ NOT_CONSUMED：Oasisic canonical=JioHotstar（2025 Hotstar×JioCinema 合并后现名，属 JioStar 合资，AMBIGUOUS_JV），**不属 Disney 生态**；建议 mihomo 后续更新 |
 | Hulu | Disney | Disney | Disney | MATCH |
 | Instagram | Facebook | Facebook | Meta | MATCH |
@@ -799,7 +799,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 | iCloud | Apple | Apple | Apple | MATCH |
 | iCloudPrivateRelay | iCloud | iCloud | Apple | MATCH |
 
-**结论**：34 对中 **32 对 MATCH / 语义 MATCH**（含 1 对 alias 改名后的 MATCH）；1 对 `AMBIGUOUS`（`Grok`：mihomo 直接父 = X vs Oasisic = SpaceXAI，祖先链已不一致（X 无父级）；需人工 CURRENT OWNERSHIP REVIEW，本轮不改 mihomo）；1 对 `STALE`（`Hotstar→Disney`，现名 JioHotstar 属 JioStar 合资、不属 Disney）。
+**结论**：34 对中 **31 对 MATCH / 1 对 MISMATCH（Grok）/ 2 对 NOT_CONSUMED**（AppleNews / Hotstar）；`Grok` 的两边字段都表示直接父品牌，mihomo=`X`、Oasisic=`SpaceXAI`，是需要人工决定的真实语义冲突；不能用 X 平台集成事实伪造 MATCH 或 AMBIGUOUS。`Hotstar→Disney` 为 downstream stale，现名 JioHotstar 属 JioStar 合资、不属 Disney。
 
-**状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另含祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
+**状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `MISMATCH` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另有更深祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）；双方直接父都已明确但值不同则判 `MISMATCH`。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
 **长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。
