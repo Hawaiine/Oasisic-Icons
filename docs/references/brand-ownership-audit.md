@@ -27,12 +27,11 @@
 - **`parent_brand` = 直接父品牌（immediate parent）**，不表示公司股权结构、不表示历史所有者。
   例：`Instagram → Facebook`、`YouTubeMusic → YouTube`、`iCloudPrivateRelay → iCloud`。
 - **关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy；Developer /
-  Provider / Brand Owner 与 Platform Integration / Distribution 不写入该字段。当前官方证据支持
-  「SpaceXAI 开发并控制 Grok 品牌」与「Grok 可通过 X 平台使用」；这些事实分别进入
-  `DEVELOPER_PROVIDER_ONLY` 与 platform evidence 层。它们支持当前 `Grok → SpaceXAI` 的 Oasisic
-  决策方向，但尚未单独形成全库统一格式的 direct-brand-umbrella 证据，因此该 edge 在
-  `config/parent-edge-evidence.json` 中保持 `OPEN_REVIEW`；后者绝不证明 `Grok → X`。仓库当前没有
-  通用 platform/integration schema，本轮不为单一案例扩张 SSOT；平台关系留在审计证据层。
+  Provider / Brand Owner 与 Platform Integration / Distribution 不写入该字段。官方证据支持
+  「SpaceXAI 品牌体系持有 Grok 品牌权利」与「Grok 可通过 X 平台使用」；前者对应当前
+  `Grok → xAI → SpaceXAI` 的品牌层级，后者是 platform integration/distribution，**绝不**证明
+  `Grok → X`。仓库当前没有通用 platform/integration schema，不为单一案例扩张 SSOT；
+  平台关系留在审计证据层。
 - **graph root ≠ ecosystem root**（2026-09-30 语义拆分，`brand_relationships`）：
   - **graph root** = 沿 `parent_brand` 链向上走到的最高节点（`resolve_graph_root`）。
   - **ecosystem root** = graph root 且 `entity_type: ecosystem`（`resolve_ecosystem_root`）。
@@ -47,17 +46,31 @@
   直系子）误触发分类爆炸；中间层节点（有 SSOT 父品牌）不适用阈值，不得因此升级。
 - **ownership ≠ brand architecture**：同属一家公司不自动新增 parent_brand；一旦关系成立且 descendants ≥ 2，
   生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
-- **X / Grok / xAI / SpaceXAI / SpaceX 专项**（2026-09-30 Final Seal Review 复核）：五者身份分离——
-  - `xAI` → `SpaceXAI`：**品牌身份 rename**（官方品牌标识 2026-07-06 更名完成，见下条），非新增品牌；
-  - `Grok`：当前 SSOT 保留 `parent_brand = SpaceXAI`，但 edge-evidence 为 `relation_type = DEVELOPER_PROVIDER` / `parent_brand_validity = OPEN_REVIEW`：SpaceXAI 官方资料证明开发者与品牌控制，尚未以全库统一的 direct-brand-umbrella 证据格式完成闭合；**同时**，X 官方 Help Center 将 Grok 描述为「available to X users / on the X platform」，这是 Platform Integration / Distribution 关系，不是品牌父级；
-  - `X`：**独立平台品牌**，`parent_brand = null` —— 官方 Privacy Policy 明确「**SpaceXAI is a
-    separate company from X Corp.**」，且「X 的使用（含 X 平台上的 Grok）由 X 的条款管辖，**不适用**
-    SpaceXAI 政策」；SpaceXAI 官方产品清单仅 Grok / Grokipedia，**不含 X**。`parent_brand` 回答
-    「直接品牌父级」，**不以 corporate ownership 或 platform integration 推导**（§13）；
-  - `SpaceXAI`：canonical brand，但 **canonical descendants = 1（仅 Grok）< 2 → 不构成独立生态**，
-    故 `entity_type = product_brand`（公司品牌），目录 `icons/AI/SpaceXAI/`；
+- **X / Grok / xAI / SpaceXAI / SpaceX 专项**（2026-10-01 最终品牌树定稿，取代 2026-09-30 结论）：
+  最终品牌树（用户确认）
+
+      SpaceXAI
+      ├── X
+      └── xAI
+          └── Grok
+
+  - `SpaceXAI`：**顶层生态根**。canonical descendants = `X` + `xAI` + `Grok` = **3 ≥ 2** →
+    成立一级生态分类 `icons/SpaceXAI/`（`categories.json` `type=ecosystem`）。
+    **根品牌条目与根图标暂缺**：仓库历史中唯一存在的资产是 xAI 字标（见下条），官方 SpaceXAI
+    新标志尚未取得，**不得伪造、也不得把 xAI 图标复制为 SpaceXAI 图标**（CI 第 6 组同时禁止
+    两个品牌共用同一 SHA 图标）。故 `SpaceXAI` 登记 `parent_brands_without_icon` 白名单，
+    并在 `config/brand-review-queue.json` 记录「官方标志待补」为 OPEN 项——白名单只表示
+    「暂无自身图标」，不代表不建目录。
+  - `xAI`：**当前 canonical 品牌**（独立 `id` / `display_name` / 图标 / `parent_brand`）。
+    图标为历史 xAI 字标资产（blob `2f53aa6…`）**R100 迁回**，SHA-256 不变；
+    `xAI → SpaceXAI` 是品牌体系内的直接父级。**`xAI` 不是 legacy ID**（见 `scripts/legacy_map.py` §34）。
+  - `Grok`：`parent_brand = xAI`（**直接父品牌**）。故 `Grok → xAI → SpaceXAI`，
+    graph root = `SpaceXAI`。此前 `Grok → SpaceXAI` 的扁平写法已被取代。
+  - `X`：`parent_brand = SpaceXAI`（用户确认的最终品牌树）；`X` 同时是 Grok 的
+    platform/distribution 载体，但平台集成事实**不**改变品牌父级（§13）。
   - `SpaceX`：**Corporate Owner only**，不进入 Oasisic Brand Graph（不建 `icons/SpaceX/`、
-    不设 `parent_brand = SpaceX`）。
+    不设 `parent_brand = SpaceX`）。公司控制结构（SpaceX 与 X Corp. / X.AI 的关系）只存在于
+    本审计的 corporate context 层，**不写入** `parent_brand`。
   **证据链接（primary source）**：SpaceXAI [Privacy Policy](https://x.ai/legal/privacy-policy)（effective 2026-08-24）、
   [Consumer Terms](https://x.ai/legal/terms-of-service)（updated 2026-09-11）、[Consumer FAQ](https://x.ai/legal/faq)、
   [Brand Guidelines](https://x.ai/legal/brand-guidelines)；X [About Grok Help Center](https://help.x.com/en/using-x/about-grok)。
@@ -85,23 +98,29 @@
 
 | 状态 | 品牌数 |
 |---|---:|
-| CONFIRMED_PARENT（ownership/evidence 状态；不等同于 Brand Hierarchy closure） | 115 |
-| NO_PARENT（无母公司/独立实体/生态根） | 118 |
+| CONFIRMED_PARENT（ownership/evidence 状态；不等同于 Brand Hierarchy closure） | 117 |
+| NO_PARENT（无母公司/独立实体/生态根） | 116 |
 | AMBIGUOUS_JV（合资/股权分散，不设母公司） | 10 |
 | RETIRED（已退役，保留图标） | 2 |
 | SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 47 |
 
-> **计数口径**：上表由 `docs/references/brand-ownership-audit.md` §7 全量矩阵（292 行）逐行统计，与 `config/brands.json` 的 live `parent_brand` 数（115）一致。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，不代表该 edge 已达到 Brand Hierarchy closure。
+> **计数口径**：上表由 §7 全量矩阵（292 行）逐行统计，与 `config/brands.json` 的 live `parent_brand` 数（117）一致。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，不代表该 edge 已达到 Brand Hierarchy closure。
+> 2026-10-01 修正后：`X` 由 NO_PARENT 改为 CONFIRMED_PARENT（用户确认的最终品牌树），`xAI` 恢复为 canonical 节点且与 `SpaceXAI` 建立直接父级，`SpaceXAI` 行由品牌行改为生态根白名单登记（该行不再计入本表，其根图标待官方标志）。
 
-> **Architecture closure status**（`Snapshot HEAD = 9c62b95`，`Snapshot Date = 2026-09-30`）：
-> live `parent_brand` edge 的独立关系类型证据见 [`config/parent-edge-evidence.json`](../../config/parent-edge-evidence.json)
-> 与 [`parent-edge-semantic-audit.md`](parent-edge-semantic-audit.md)（两者均由 `scripts/gen-parent-edge-evidence.py` 生成）。
-> 当前 115 条 edge 的 `relation_type` 分布为 **BRAND_HIERARCHY 5 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 8 /
-> PLATFORM_INTEGRATION 0 / UNKNOWN 60**；`parent_brand_validity` 为 **CONFIRMED 5 / OPEN_REVIEW 110 / REJECTED 0**。
-> 即 **OPEN = 110**（42 + 8 + 0 + 60）。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，**不等同于**
-> `parent_brand_validity = CONFIRMED`；ownership audit 与 Brand Graph closure 必须分开。
-> 该分级是 **evidence-text triage**，不是 real-world proof：115 条中 **0 条** 记录了 `source.url`，
-> 逐边 primary-source 闭合仍待下一轮人工治理。
+> **证据层角色（2026-10-01 起）：辅助审计 / review context，非 SSOT、非阻塞条件**
+> （manifest 内 `role: supporting_evidence_layer` / `is_ssot: false` / `blocking: false`）。
+> live `parent_brand` edge 的关系类型证据见 [`config/parent-edge-evidence.json`](../../config/parent-edge-evidence.json)
+> 与 [`parent-edge-semantic-audit.md`](parent-edge-semantic-audit.md)（两者均由 `scripts/gen-parent-edge-evidence.py` 生成、可重放）。
+> 当前 **117** 条 edge 的 `relation_type` 分布为 **BRAND_HIERARCHY 8 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 7 /
+> PLATFORM_INTEGRATION 0 / UNKNOWN 60**；`parent_brand_validity` 为 **CONFIRMED 8 / OPEN_REVIEW 109 / REJECTED 0**。
+> `CONFIRMED_PARENT` 是 **ownership/evidence 状态**，**不等同于** `parent_brand_validity = CONFIRMED`；
+> ownership audit 与 Brand Graph closure 必须分开。
+> 该分级是 **evidence-text triage**，不是 real-world proof：117 条中 **0 条** 记录了 `source.url`；
+> 逐边补来源属**后续完善项**，**不再作为 PR 合并的阻塞条件**（§14/§15）。
+>
+> * Historical snapshot（仅作对照，不得当作当前值）：`Snapshot HEAD = 9c62b95` / `Snapshot Date = 2026-09-30`，
+>   当时为 115 条 edge、`BRAND_HIERARCHY 5 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 8 / UNKNOWN 60`、
+>   `CONFIRMED 5 / OPEN_REVIEW 110`。
 
 | **合计** | **292** |
 
@@ -114,8 +133,9 @@
 | 无图标母公司白名单条目 | 0 | 30 |
 
 > **快照口径**：上表为 **historical snapshot**——`Snapshot HEAD = 009d994`、`Snapshot Date = 2026-09-30`。
-> 其中「已记录 parent_brand = 116」是**当时**的数字；当前 HEAD（`9c62b95` 之后）live `parent_brand`
-> 为 **115**（见 §3 摘要表，以代码统计为准）。两处差异属正常历史演进，不得混用。
+> 其中「已记录 parent_brand = 116」与「生态分类数 17」是**当时**的数字（后经 2026-09-30 复核与
+> 2026-10-01 修正两轮演进）；当前值一律以代码统计为准：live `parent_brand` = **117**、
+> 生态分类 = **17**（见 §3 摘要表）。历史数字与当前值不得混用。
 
 ## 4. 本轮新发现并新建的生态 / Newly Discovered Ecosystems
 
@@ -134,10 +154,10 @@
 
 | **Warner Bros. Discovery** | 2 | HBOMax / discoveryPlus | HBO Max 与 discovery+ 均归属 WBD（拆分仍处进行中，2026-09 复核） |
 
-（`SpaceXAI` 原列于生态清单，2026-09-30 Final Seal Review 复核后**移出**：官方证据表明 `X` 非
-SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXAI` canonical descendants = 1
-（仅 `Grok`）< 2，不构成独立生态 → `entity_type=product_brand`，`parent_brand` 仅保留
-`Grok → SpaceXAI`。）
+| **SpaceXAI** | 2 | X / xAI | 2026-10-01 最终品牌树：`SpaceXAI ├── X └── xAI └── Grok`，descendants = 3 ≥ 2 → 顶层生态成立；根图标待官方标志到位（白名单 + Review Queue） |
+
+> `SpaceXAI` 于 2026-09-30 曾被移出生态清单（当时 descendants = 1），2026-10-01 按用户确认的
+> 最终品牌树恢复为顶层生态（descendants = 3）；恢复过程**不重写历史提交**，只追加修正提交。
 
 
 ## 5. 既有生态的补全与复核 / Existing Ecosystems Revalidated
@@ -162,8 +182,11 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 | SONY | 3 | 3 | — | 关系全部复核通过 |
 | Tencent | 6 | 6 | — | 关系全部复核通过 |
 | WarnerBrosDiscovery | 2 | 2 | — | 关系全部复核通过（HBOMax 2025-05 已改回 HBO Max，display_name 当前正确） |
-（`SpaceXAI` 复核后**移出生态表**：descendants = 1（仅 Grok）< 2；`rename xAI → SpaceXAI` 为
-2026-07-06 官方品牌标识更名，详见 §2 专项。）
+| SpaceXAI | 2 | 3 | 新增（2026-10-01）：X / xAI 直系；Grok 经 xAI 为孙代 | 生态成立（descendants = 3 ≥ 2）；根条目/根图标待官方标志，登记白名单 |
+
+> `SpaceXAI` 生态根**当前无自身 icon 条目**（官方新标志未取得）：`icons/SpaceXAI/` 一级目录已建，
+> 三个品牌（X / xAI / Grok）已迁入；根品牌条目与根图标在官方标志到位后建立，届时应移出
+> `parent_brands_without_icon` 白名单并关闭 Review Queue 对应项。
 
 **中间层品牌（直接父品牌语义新增，2026-09-30）**：`Facebook`（直系 4 子：Instagram / Messenger / Threads / WhatsApp，生态根 Meta）、`YouTube`（直系 1 子：YouTubeMusic，生态根 Google）、`iCloud`（直系 1 子：iCloudPrivateRelay，生态根 Apple）。中间层不建一级目录（阈值看生态根 descendants），仅承担 `parent_brand` 直接父关系。
 
@@ -388,7 +411,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 | `GoogleVoice` | Google | Google | Google | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
-| `Grok` | AI | — | SpaceXAI | SpaceXAI 官方资料（Consumer Terms / Brand Guidelines）记录 SpaceXAI 开发 Grok 并持有 Grok 品牌权利；X 平台可访问 Grok 属平台集成 · 2026-09-30 | CONFIRMED_PARENT（SSOT 决策保留；语义闭合仍待 review） | 分类回到 AI（SpaceXAI 非生态）；`parent_brand = SpaceXAI`；品牌标识 2026-07-06 rename |
+| `Grok` | SpaceXAI | xAI | xAI | Grok 为 xAI 品牌体系中的 AI 产品（官方 Brand Guidelines 记录 SpaceXAI 品牌权利及 Grok 使用条款）；X 平台可访问，即平台集成关系，不改变品牌父级 · 2026-10-01 最终品牌树 · 品牌层级 | CONFIRMED_PARENT | 直接父品牌改为 `xAI`（原扁平 `SpaceXAI`）；category → SpaceXAI 生态 |
 
 | `HBOMax` | Media | — | WarnerBrosDiscovery | HBO Max 归属 Warner Bros. Discovery（WBD 官方/2026-08 第三方核对）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → WarnerBrosDiscovery |
 
@@ -716,7 +739,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 | `Wikipedia` | Utilities | — | — | 由维基媒体基金会（非营利）运营，无商业母公司 · 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `X` | Social | — | —（无品牌父级） | X Corp. 与 SpaceXAI 为**独立公司**（SpaceXAI 官方 Privacy Policy 明确「SpaceXAI is a separate company from X Corp.」；X 的使用（含 X 上的 Grok）由 X 条款管辖）· 2026-09-30 | NO_PARENT | **移除** `parent_brand`（原 xAI——不以 corporate ownership 推导品牌父级）；category 回到 Social |
+| `X` | SpaceXAI | — | SpaceXAI | X 为 SpaceXAI 品牌体系中的社交产品线（2026-10-01 用户确认的最终品牌树）· 品牌层级；X Corp. 与 SpaceXAI 的公司控制事实另列 corporate context 证据层，不参与品牌父级推导 | CONFIRMED_PARENT | `parent_brand = SpaceXAI`（2026-10-01 最终品牌树，取代 2026-09-30 的 NO_PARENT 结论）；category → SpaceXAI 生态 |
 
 | `Xbox` | Microsoft | Microsoft | Microsoft | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
@@ -761,21 +784,25 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 | `vivo` | Hardware | — | — | 独立实体（无控股母公司）· 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `SpaceXAI` | —(公司品牌) | — | —（公司品牌，无品牌父级） | 公司品牌（`entity_type=product_brand`）；canonical descendants = 1（仅 Grok）< 2 → **不构成独立生态**；2026-07-06 由 xAI 官方品牌标识更名而来 | NO_PARENT | 迁移 新生态根(xAI) → SpaceXAI（**降为 product_brand**，目录 icons/AI/SpaceXAI/） |
+| `xAI` | SpaceXAI | — | SpaceXAI | xAI 为 SpaceXAI 品牌体系中的 AI 品牌（2026-10-01 用户确认的最终品牌树）· 品牌层级；2026-07-06 官方品牌标识更名后，xAI 仍作为独立 canonical 品牌与独立图标存在（非 legacy ID） | CONFIRMED_PARENT | **恢复** canonical 节点（独立 id / display_name / 图标）；`parent_brand = SpaceXAI`；category → SpaceXAI 生态 |
 
 
 ## 8. 边界与后续监控 / Boundaries & Follow-ups
 
 - **CI 能力边界**：CI 只能验证 `brands.json` ↔ 磁盘 ↔ `categories.json` ↔ `surge-icon.json` 的结构一致性，**无法证明现实世界归属的完整性**；现实归属由本文件承担（研究层）。[§64 §96 §97]
 - **本轮发现的高价值漏项**：`Hulu → Disney`、`ESPN → Disney`、`LinkedIn/GitHub → Microsoft`、`Youku → Alibaba`、`iQIYI → Baidu`、`Doubao/Pipixia → ByteDance`、`Podcasts → Apple`、`mora → Sony` 等，均在 PR 分支真实缺失，属本轮发现并修复。
-- **本轮厘清的关系（Final Seal Review 定稿）**：`Grok → SpaceXAI`（当前 Oasisic SSOT 决策；edge-evidence 为 `DEVELOPER_PROVIDER / OPEN_REVIEW`，不可宣称全库 direct-brand-umbrella 证据已闭合）；`X` **无品牌父级**（官方 Privacy Policy 明确 SpaceXAI 与 X Corp. 为独立公司，不以 corporate ownership 推导 `parent_brand`）；`SpaceX` = corporate owner only，不进入 Brand Graph。
+- **最终品牌树（2026-10-01 定稿，取代 2026-09-30 结论）**：`SpaceXAI ├── X └── xAI └── Grok`；直接父品牌为 `X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**（非 legacy），`SpaceXAI` 为顶层生态（descendants = 3 ≥ 2，根图标待官方标志，登记白名单 + Review Queue）；`SpaceX` = corporate owner only，不进入 Brand Graph。2026-09-30 的「X 无品牌父级 / xAI 为历史名 / Grok 直接挂 SpaceXAI」为**历史结论**，仅保留在迁移历史区，不再是当前状态。
 - **仍易变关系（后续需按 §95 复验）**：`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
 - **退役品牌**：`Skype`（2025-05 停运）、`KKTV`（2025-12-31 停运并入 LINE TV）保留图标并标记退役，不参与生态归属。
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
 ## 9. mihomo-rules 对照 / mihomo-rules Compatibility Matrix
 
 > **对照源语义**：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT` 是**直接父品牌映射**，并由 mihomo 的祖先链解析、父子规则剥离和「子品牌先于父品牌」排序直接消费；本审计不把它解释为 platform/distribution 字段。共 **34 对**，2026-09-30 只读审计，未修改 mihomo-rules。
-> 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义，因此 Grok 的 `mihomo: X` vs `Oasisic: SpaceXAI` 是真实直接父冲突，状态为 `MISMATCH`，不自动同步。
+> 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义。mihomo 侧 `Grok → X` 相对 Oasisic
+> 当前状态（`Grok → xAI → SpaceXAI`）属 **DOWNSTREAM_MISMATCH / STALE**：mihomo 仍是旧关系数据，
+> 按本仓契约属**下游同步项**，不是 Oasisic SSOT 错误，也不构成本 PR 的阻塞条件；本轮
+> **不修改** mihomo-rules（§20）。同期，Oasisic 已准备机器可读关系导出
+> （`config/brand-relationships.json`，见 §10）供下游消费。
 > Peacock 注记：Peacock 不在 SUB_PARENT 中（34 对无 Peacock），2026-09-30 技术 ID 由旧名（PeacockTV）
 > 迁移为 `Peacock`，对 mihomo 对照**零影响**；mihomo 4 个 config 中 Peacock 的**旧技术 ID 图标 URL**
 > 属既有 stale 引用（早于 NBCUniversal 生态迁移），不在本仓修改范围。
@@ -800,7 +827,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 | GooglePhotos | Google | Google | Google | MATCH |
 | GooglePlay | Google | Google | Google | MATCH |
 | GoogleVoice | Google | Google | Google | MATCH |
-| Grok | SpaceXAI | X | —（X 现无品牌父级） | **MISMATCH**：mihomo `SUB_PARENT` 与 Oasisic `parent_brand` 都是直接父语义；mihomo= X，Oasisic=SpaceXAI。X 平台集成事实不能把该冲突改写为 platform relation / AMBIGUOUS；本轮不自动修改 mihomo |
+| Grok | xAI | X | SpaceXAI | **DOWNSTREAM_MISMATCH / STALE**：mihomo `SUB_PARENT` 仍是旧关系（`Grok → X`），Oasisic 当前为 `Grok → xAI → SpaceXAI`；mihomo 数据未随品牌树更新，属下游同步项，**不阻塞** Oasisic SSOT；本轮不修改 mihomo-rules |
 | Hotstar | —（现为 JioHotstar） | Disney | — | STALE（mihomo 侧）+ NOT_CONSUMED：Oasisic canonical=JioHotstar（2025 Hotstar×JioCinema 合并后现名，属 JioStar 合资，AMBIGUOUS_JV），**不属 Disney 生态**；建议 mihomo 后续更新 |
 | Hulu | Disney | Disney | Disney | MATCH |
 | Instagram | Facebook | Facebook | Meta | MATCH |
@@ -817,7 +844,20 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 | iCloud | Apple | Apple | Apple | MATCH |
 | iCloudPrivateRelay | iCloud | iCloud | Apple | MATCH |
 
-**结论**：34 对中 **31 对 MATCH / 1 对 MISMATCH（Grok）/ 2 对 NOT_CONSUMED**（AppleNews / Hotstar）；`Grok` 的两边字段都表示直接父品牌，mihomo=`X`、Oasisic=`SpaceXAI`，是需要人工决定的真实语义冲突；不能用 X 平台集成事实伪造 MATCH 或 AMBIGUOUS。`Hotstar→Disney` 为 downstream stale，现名 JioHotstar 属 JioStar 合资、不属 Disney。
+**结论**：34 对中 **31 对 MATCH / 1 对 DOWNSTREAM_MISMATCH-STALE（Grok）/ 2 对 NOT_CONSUMED**（AppleNews / Hotstar）。`Grok` 的差异源于 mihomo 侧仍是旧关系数据（`Grok → X`）而 Oasisic 当前为 `Grok → xAI → SpaceXAI`，属**下游同步项**，不阻塞本 PR，也不因此改写 Oasisic SSOT；X 平台集成事实不能把该差异伪装成 MATCH 或 AMBIGUOUS。`Hotstar→Disney` 同为 downstream stale，现名 JioHotstar 属 JioStar 合资、不属 Disney。
+
+## 10. 下游同步接口 / Downstream Sync Interface
+
+Oasisic 是品牌关系 SSOT，mihomo-rules 是下游消费者。为免下游反推 SSOT，关系事实只存于
+`config/brands.json`，并由此派生一份**机器可读导出**供下游读取：
+
+- `config/brand-relationships.json` —— 由 `scripts/export-brand-relationships.py` 从
+  `config/brands.json` + `scripts/brand_relationships.py` 生成（文件内含 `generated: true` 与
+  `source: config/brands.json` 标注），逐品牌提供
+  `child` / `parent` / `display_name` / `category` / `entity_type` / `ancestor_chain` /
+  `graph_root` / `ecosystem_root`。
+- **它不是第二个 SSOT**：CI（第 15 组）要求它与 SSOT + 关系引擎逐项一致且可确定性重放（0 diff）；
+  任何手工修改都会被拦截。mihomo-rules 未来可直接消费该文件生成 `SUB_PARENT`。
 
 **状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `MISMATCH` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另有更深祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）；双方直接父都已明确但值不同则判 `MISMATCH`。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
 **长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。

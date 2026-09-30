@@ -20,8 +20,26 @@
 
 **关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy（如
 `Google → YouTube → YouTubeMusic`、`Meta → Facebook → Instagram`、`Apple → iCloud →
-iCloudPrivateRelay`）。Developer / Provider / Brand Owner 与 Platform Integration / Distribution 不是 `parent_brand`：例如官方资料支持「SpaceXAI 开发并控制 Grok 品牌」与「Grok 可通过 X 平台使用」。前者支持当前 `Grok.parent_brand = SpaceXAI` 的 SSOT 决策方向，但在全库 edge-evidence 中仍标为 `relation_type = DEVELOPER_PROVIDER` / `parent_brand_validity = OPEN_REVIEW`；后者是 `Grok ↔ X` 的平台集成关系，不得倒推 `Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；除非未来出现
-全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在证据审计层。
+iCloudPrivateRelay`，以及最终品牌树 `SpaceXAI → xAI → Grok`）。Developer / Provider / Brand Owner 与
+Platform Integration / Distribution **不是** `parent_brand`：官方资料既支持「SpaceXAI 品牌体系持有
+Grok 品牌权利」，也支持「Grok 可通过 X 平台使用」；后者是 `Grok ↔ X` 的平台集成关系，
+**不得**倒推 `Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；
+除非未来出现全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在证据审计层（辅助审计，
+非 SSOT、非阻塞条件）。
+
+**最终品牌树（2026-10-01 用户确认）**：
+
+```text
+SpaceXAI
+├── X
+└── xAI
+    └── Grok
+```
+
+直接父品牌：`X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**
+（独立 ID / display_name / 图标），**不是 legacy 旧名**（见 `scripts/legacy_map.py` 与
+`tests/test_hardening.py`）；`SpaceXAI` 为顶层生态（descendants = 3 ≥ 2），其根品牌条目与根图标
+待官方标志（登记 `parent_brands_without_icon` + `config/brand-review-queue.json`），不得伪造。
 
 ## 2. Technical ID 规则
 
@@ -82,3 +100,32 @@ iCloudPrivateRelay`）。Developer / Provider / Brand Owner 与 Platform Integra
 - 父品牌 README（品牌目录级）：列该节点的 Role / Parent / Ancestor Chain /
   Direct Children / Ecosystem Root。
 - 两者不混用；父品牌 README 不参与分类品牌数统计。
+
+## 8. Legacy 单一来源与「canonical ≠ legacy」
+
+- 旧分类目录 / 旧品牌 ID 只登记在 `scripts/legacy_map.py`（CI 第 10 组与测试共用），
+  不得散落在脚本或测试里。
+- **当前 canonical ID 绝不与 legacy ID 重叠**（`tests/test_hardening.py::test_canonical_id_is_not_legacy`）；
+  `xAI` 恢复为 canonical 后必须从 legacy 表移除。
+- 旧目录名与当前 canonical 段名同形时（历史 xAI 生态一级目录 vs 当前 canonical 路径
+  `icons/SpaceXAI/xAI/xAI.png`），用**完整旧目录前缀**模式登记（前缀字面量见 `scripts/legacy_map.py`），
+  而不用 `/段/` 通配，避免当前合法路径被误判为旧路径
+  （`tests/test_hardening.py::test_legacy_patterns_do_not_match_canonical_paths`）。
+
+## 9. 新增品牌自动化入口（§39-§43 §71）
+
+| 能力 | 入口 | CI 门禁 |
+|:---|:---|:---|
+| 命名 / 分类 / 关系 / 文件 / 图标校验 | `python3 scripts/validate-brand.py --id … --display-name … --category … --entity-type … [--parent-brand …] [--png …]` | 复用关系引擎（`brand_relationships.validate_relationships`） |
+| 关系机器可读导出（下游消费） | `python3 scripts/export-brand-relationships.py` → `config/brand-relationships.json` | 第 15 组「关系派生导出」（逐项一致 + `generated: true`） |
+| 无法机器判定的现实关系 | `config/brand-review-queue.json`（人工裁决队列，`is_ssot: false`） | 第 16 组「Review Queue」（结构 + 引用真实性） |
+
+规则：
+
+- `validate-brand.py` **只做确定性检查**：不猜 `parent_brand`。父品牌无法确定时输出 warning
+  并指向 review queue；决定后写回 `brands.json`（唯一关系 SSOT），再把队列项置 `RESOLVED`。
+- `config/brand-relationships.json` **不是第二个 SSOT**：它必须标 `generated: true` 且
+  `source: config/brands.json`；手工修改会被第 15 组拒绝。
+- 官方 casing 不机械 PascalCase：`iQIYI` / `SONY` / `vivo` / `myTVSUPER` / `TIDAL` / `xAI` /
+  `SpaceXAI` 按官方拼写保留；`validate-brand.py` 对 ID 与 display_name 归一化不一致的候选给出
+  warning 供人工确认。

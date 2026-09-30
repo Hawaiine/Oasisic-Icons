@@ -194,3 +194,23 @@
 
 - `icons/Telecom/ChinaMobile/` → `icons/ChinaMobile/ChinaMobile/`
 
+## 修正增量（2026-10-01）：SpaceXAI 生态目录重建
+
+> 全部为 `git mv` R100 纯迁移，SHA-256 不变。历史段落中的旧路径仅作记录。
+
+### icons/AI/ →
+
+- `icons/AI/Grok/` → `icons/SpaceXAI/Grok/`
+- `icons/AI/SpaceXAI/` → 该目录下的 xAI 字标资产迁回 `icons/SpaceXAI/xAI/xAI.png`（目录不再保留）
+
+### icons/Social/ →
+
+- `icons/Social/X/` → `icons/SpaceXAI/X/`
+
+### 新增目录 →
+
+- `icons/SpaceXAI/`（一级生态分类，含 X / xAI / Grok 三个品牌目录 + 分类 README）
+- `icons/SpaceXAI/xAI/`（xAI 品牌目录，含 `xAI.png` 与父品牌 README）
+
+> 下游（mihomo-rules 等）消费的图标 URL 仍指向旧路径，属**下游同步项**：
+> 建议改用 `config/brand-relationships.json` 派生 URL，本仓不改动 mihomo-rules。

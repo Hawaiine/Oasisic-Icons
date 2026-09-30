@@ -53,3 +53,12 @@
 | `SONY` | Sony | Crunchyroll, PlayStation, mora |
 | `PCCW` | PCCW | NowE, Viu |
 | `xAI` | xAI | Grok, X |
+
+## 修正增量（2026-10-01）：恢复 SpaceXAI 生态分类
+
+> 2026-09-30 曾依当时结论移除 `SpaceXAI` 生态分类（42 → 41）；2026-10-01 按用户确认的最终品牌树
+> 恢复（41 → 42 分类，生态 16 → 17）。
+
+| 新分类 | 显示名 | 依据（≥2 canonical descendants） | 根图标状态 |
+|---|---|---|---|
+| `SpaceXAI` | SpaceXAI | X / xAI / Grok = 3 ≥ 2 | **待官方标志**：根条目与根图标未建，登记白名单 + Review Queue，不得伪造 |

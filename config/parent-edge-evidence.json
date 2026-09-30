@@ -1,9 +1,12 @@
 {
   "schema_version": 3,
   "generated_by": "scripts/gen-parent-edge-evidence.py",
-  "description": "Structured relation-type evidence for every live config/brands.json parent_brand edge. Evidence/review layer only; it does not replace the brands.json SSOT.",
+  "role": "supporting_evidence_layer",
+  "is_ssot": false,
+  "blocking": false,
+  "description": "Structured relation-type evidence for every live config/brands.json parent_brand edge. Supporting audit/review context only: it is not an SSOT, does not decide parent_brand, and is not a merge blocker.",
   "capability_boundary": "Evidence-text triage derived from the brand-ownership-audit.md research summary. It is NOT real-world relationship proof and does not independently re-verify any primary source.",
-  "self_reference_risk": "Evidence quotes originate from a human research summary, so the classifier cannot validate that summary. Removing this risk requires a recorded source.url plus human review per edge; currently 0/115 edges carry a source URL.",
+  "self_reference_risk": "Evidence quotes originate from a human research summary, so the classifier cannot validate that summary. Removing this risk requires a recorded source.url plus human review per edge; currently 0/117 edges carry a source URL.",
   "relation_types": [
     "BRAND_HIERARCHY",
     "CORPORATE_OWNERSHIP",
@@ -798,11 +801,11 @@
     },
     {
       "child": "Grok",
-      "parent": "SpaceXAI",
-      "relation_type": "DEVELOPER_PROVIDER",
-      "parent_brand_validity": "OPEN_REVIEW",
-      "decision_rule": "R2_DEVELOPER_PROVIDER",
-      "evidence_quote": "SpaceXAI 官方资料（Consumer Terms / Brand Guidelines）记录 SpaceXAI 开发 Grok 并持有 Grok 品牌权利；X 平台可访问 Grok 属平台集成 · 2026-09-30",
+      "parent": "xAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "Grok 为 xAI 品牌体系中的 AI 产品（官方 Brand Guidelines 记录 SpaceXAI 品牌权利及 Grok 使用条款）；X 平台可访问，即平台集成关系，不改变品牌父级 · 2026-10-01 最终品牌树 · 品牌层级",
       "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
       "source": {
         "organization": null,
@@ -812,8 +815,8 @@
         "kind": "OFFICIAL_SITE",
         "url_status": "NOT_RECORDED"
       },
-      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
-      "review_status": "OPEN_REVIEW"
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
     },
     {
       "child": "HBOMax",
@@ -2013,6 +2016,25 @@
       "review_status": "OPEN_REVIEW"
     },
     {
+      "child": "X",
+      "parent": "SpaceXAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "X 为 SpaceXAI 品牌体系中的社交产品线（2026-10-01 用户确认的最终品牌树）· 品牌层级；X Corp. 与 SpaceXAI 的公司控制事实另列 corporate context 证据层，不参与品牌父级推导",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
       "child": "Xbox",
       "parent": "Microsoft",
       "relation_type": "UNKNOWN",
@@ -2239,6 +2261,25 @@
       },
       "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
       "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "xAI",
+      "parent": "SpaceXAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "xAI 为 SpaceXAI 品牌体系中的 AI 品牌（2026-10-01 用户确认的最终品牌树）· 品牌层级；2026-07-06 官方品牌标识更名后，xAI 仍作为独立 canonical 品牌与独立图标存在（非 legacy ID）",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
     }
   ]
 }

@@ -172,3 +172,25 @@
 `@SpaceXAI` 账号发布「We are now @SpaceXAI」+ 新 logo + 官方页标题/页脚（Business Insider /
 Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记层面未获正式文件证据，本文件不作此断言**；
 官方 Terms 仅证明当前实体名为「SpaceXAI LLC」（Nevada），不足以推出更名日期。
+
+## 修正增量（2026-10-01）：恢复最终品牌树 SpaceXAI ├── X └── xAI └── Grok
+
+> 本节取代上节（Final Seal Review，2026-09-30）的结论；上节内容仅作**历史记录**保留，不再是当前状态。
+> 本轮为 **append-only 修正提交**：不改写既有 commit 历史、不动 `main`、不动 mihomo-rules。
+> 三个 PNG 全部为 `git mv` **R100 纯迁移，SHA-256 不变**（其中 xAI 图标为历史资产迁回）。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| X | Social | SpaceXAI | `icons/Social/X/X.png` | `icons/SpaceXAI/X/X.png` | 用户确认的最终品牌树：`X → SpaceXAI`（取代 2026-09-30 的「移除 parent_brand」结论） |
+| Grok | AI | SpaceXAI | `icons/AI/Grok/Grok.png` | `icons/SpaceXAI/Grok/Grok.png` | 直接父品牌由扁平 `SpaceXAI` 改为 `xAI`（`Grok → xAI → SpaceXAI`） |
+| xAI | —（2026-09-30 曾被当作历史名） | SpaceXAI | 历史 `icons/xAI/xAI/xAI.png`（SHA-256 前缀 `2f53aa6…`） | `icons/SpaceXAI/xAI/xAI.png` | **恢复为 canonical 品牌**：独立 ID / display_name / 图标 / `parent_brand = SpaceXAI`；同时从 legacy 表中移除 |
+| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 待官方标志：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png`（未建立） | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**官方新标志未取得，不得伪造、不得与 xAI 共用同一 SHA 图标** → 根条目/根图标暂缺，登记 `parent_brands_without_icon` + `config/brand-review-queue.json` |
+
+**图标口径（重要）**：仓库历史中唯一存在的相关资产只有一张 xAI 字标（blob `2f53aa6…`），
+`f219392`（xAI → SpaceXAI 更名）与 `aa6fe42`（目录迁移）均为 R100 改名，**图像内容从未更换**。
+因此按「不伪造、可追溯」原则把该资产恢复为 xAI 品牌图标；SpaceXAI 的官方新标志待补，
+期间不使用任何占位图。
+
+**关系与派生**：`config/brands.json`（SSOT）→ `scripts/brand_relationships.py`（关系引擎）→
+`config/brand-relationships.json`（下游导出，`generated: true`）+ `config/parent-edge-evidence.json`
+（辅助审计层）。mihomo 侧仍为旧关系（`Grok → X`），属**下游同步项**，本仓不修改 mihomo-rules。
