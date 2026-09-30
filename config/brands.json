@@ -1169,11 +1169,11 @@
       "parent_brand": "Paramount"
     },
     {
-      "id": "PeacockTV",
+      "id": "Peacock",
       "display_name": "Peacock",
       "category": "NBCUniversal",
       "entity_type": "product_brand",
-      "icon_path": "icons/NBCUniversal/PeacockTV/PeacockTV.png",
+      "icon_path": "icons/NBCUniversal/Peacock/Peacock.png",
       "parent_brand": "NBCUniversal"
     },
     {

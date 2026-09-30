@@ -280,7 +280,7 @@
 | Pandora | Pandora |
 | ParamountPlus | Paramount+ |
 | PayPal | PayPal |
-| PeacockTV | Peacock |
+| Peacock | Peacock |
 | Perplexity | Perplexity |
 | PikPak | PikPak |
 | Pinduoduo | 拼多多 |

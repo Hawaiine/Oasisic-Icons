@@ -6,4 +6,4 @@
 |:---|:---|
 | `NBC` | `NBC.png` |
 | `NBCUniversal` | `NBCUniversal.png` |
-| `PeacockTV` | `PeacockTV.png` |
+| `Peacock` | `Peacock.png` |

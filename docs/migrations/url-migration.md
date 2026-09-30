@@ -173,7 +173,7 @@
 - `icons/Media/Migu/` → `icons/ChinaMobile/Migu/`
 - `icons/Media/NBC/` → `icons/NBCUniversal/NBC/`
 - `icons/Media/NowE/` → `icons/PCCW/NowE/`
-- `icons/Media/PeacockTV/` → `icons/NBCUniversal/PeacockTV/`
+- `icons/Media/PeacockTV/` → `icons/NBCUniversal/Peacock/`（2026-09-30 技术 ID PeacockTV → Peacock，目录/文件名同步）
 - `icons/Media/Podcasts/` → `icons/Apple/ApplePodcasts/`（2026-09-30 重命名 Podcasts → ApplePodcasts）
 - `icons/Media/Viu/` → `icons/PCCW/Viu/`
 - `icons/Media/Youku/` → `icons/Alibaba/Youku/`

@@ -126,7 +126,7 @@
 | mora | Music | SONY | `icons/Music/mora/mora.png` | `icons/SONY/mora/mora.png` | Sony Music Solutions（索尼音乐娱乐日本）；SONY 生态 |
 | NBC | Media | NBCUniversal | `icons/Media/NBC/NBC.png` | `icons/NBCUniversal/NBC/NBC.png` | NBCUniversal 旗下电视网；新建 NBCUniversal 生态（2 children） |
 | NowE | Media | PCCW | `icons/Media/NowE/NowE.png` | `icons/PCCW/NowE/NowE.png` | PCCW / HKT 旗下；新建 PCCW 生态 |
-| PeacockTV | Media | NBCUniversal | `icons/Media/PeacockTV/PeacockTV.png` | `icons/NBCUniversal/PeacockTV/PeacockTV.png` | NBCUniversal（Comcast）流媒体；新建 NBCUniversal 生态 |
+| Peacock | Media | NBCUniversal | `icons/Media/PeacockTV/PeacockTV.png` | `icons/NBCUniversal/Peacock/Peacock.png` | NBCUniversal（Comcast）流媒体；新建 NBCUniversal 生态。2026-09-30 技术 ID `PeacockTV` → `Peacock`（目录/文件名同步，纯迁移 SHA 不变） |
 | Pipixia | Social | ByteDance | `icons/Social/Pipixia/Pipixia.png` | `icons/ByteDance/Pipixia/Pipixia.png` | 字节跳动旗下短视频社区；ByteDance 生态 |
 | PlayStation | Game | SONY | `icons/Game/PlayStation/PlayStation.png` | `icons/SONY/PlayStation/PlayStation.png` | Sony Interactive Entertainment（索尼全资）；SONY 生态 |
 | ApplePodcasts | Media | Apple | `icons/Media/Podcasts/Podcasts.png` | `icons/Apple/ApplePodcasts/ApplePodcasts.png` | Apple Podcasts（Apple 自有应用）；Apple 生态。2026-09-30 会话按 Apple 子品牌命名规范重命名 Podcasts → ApplePodcasts |

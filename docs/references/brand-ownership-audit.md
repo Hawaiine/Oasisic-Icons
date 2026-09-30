@@ -67,7 +67,7 @@
 
 | **Disney** | 3 | DisneyPlus / ESPN / Hulu | Disney 全资：Disney+/Hulu（2025 收购 Comcast 剩余股份）/ESPN（80%） |
 
-| **NBCUniversal** | 2 | NBC / PeacockTV | NBC 为 NBCUniversal 电视网；Peacock 为 NBCUniversal 流媒体（Comcast） |
+| **NBCUniversal** | 2 | NBC / Peacock | NBC 为 NBCUniversal 电视网；Peacock 为 NBCUniversal 流媒体（Comcast） |
 
 | **PCCW** | 2 | NowE / Viu | Viu 与 Now E 同属 PCCW Media Group / HKT |
 
@@ -485,7 +485,7 @@
 
 | `PayPal` | Payment | — | — | 独立实体（无控股母公司）· 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `PeacockTV` | Media | — | NBCUniversal | Peacock 为 NBCUniversal（Comcast）流媒体服务（NBCUniversal 官方财报）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → NBCUniversal |
+| `Peacock` | Media | — | NBCUniversal | Peacock 为 NBCUniversal（Comcast）流媒体服务（NBCUniversal 官方财报）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → NBCUniversal；2026-09-30 display_name「Peacock TV」→「Peacock」+ 技术 ID `PeacockTV`→`Peacock`（目录/文件名同步，纯迁移） |
 
 | `Perplexity` | AI | — | — | 独立实体（无控股母公司）· 2026-09 | NO_PARENT | 无变更（复核通过） |
 
