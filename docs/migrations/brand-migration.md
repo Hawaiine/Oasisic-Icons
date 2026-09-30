@@ -1,6 +1,11 @@
 # 品牌迁移记录 / Brand Migration
 
 > 完整逐项迁移表（Old → New），含 Canonical 决策理由。URL 变化 = 路径变化，见「URL 迁移表」。
+>
+> **历史措辞说明**：本表早期行的「（X 仅记录 ownership）」是 2026-09 旧口径的残留描述，当时把
+> corporate ownership 直接当作归属依据。2026-09-30 起 `parent_brand` 已收紧为**直接父品牌**
+> 语义，实际归属一律以 `config/brands.json` 的 `parent_brand` 与
+> `docs/references/brand-ownership-audit.md` 为准；本表该措辞仅为历史记录，不构成现状结论。
 
 | Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
 |---|---|---|---|---|---|
@@ -106,6 +111,10 @@
 ## 本轮增量：全库生态归属审计（2026-09-30）
 
 > 25 个 Canonical 迁移，全部为 pure move（git R100，SHA-256 不变）。
+>
+> **历史记录**：本表记录**当时**状态。其中 `X` 行（`xAI 子公司`）已被同文件下节
+> 「Final Seal Review 增量」修订——`X` 现为独立平台品牌（无 `parent_brand`），`SpaceXAI`
+> 亦由生态降为 `product_brand`。现状一律以 `config/brands.json` 为准。
 
 | Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
 |---|---|---|---|---|---|

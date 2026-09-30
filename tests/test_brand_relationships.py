@@ -522,15 +522,33 @@ class RealRepoTests(unittest.TestCase):
             (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
         counts = Counter(e['classification'] for e in manifest['edges'])
         self.assertEqual(counts, Counter({
-            'AMBIGUOUS': 58,
-            'CORPORATE_OWNERSHIP_ONLY': 41,
-            'DEVELOPER_PROVIDER_ONLY': 8,
-            'BRAND_HIERARCHY_CONFIRMED': 8,
+            'AMBIGUOUS': 60,
+            'CORPORATE_OWNERSHIP_ONLY': 28,
+            'DEVELOPER_PROVIDER_ONLY': 7,
+            'BRAND_HIERARCHY_CONFIRMED': 20,
         }))
         grok = next(e for e in manifest['edges'] if e['child'] == 'Grok')
         self.assertEqual(grok['parent'], 'SpaceXAI')
         self.assertEqual(grok['classification'], 'DEVELOPER_PROVIDER_ONLY')
         self.assertEqual(grok['review_status'], 'OPEN_REVIEW')
+        # 每个 edge 必须带证据原文与判定规则，便于人工复核可复现
+        for e in manifest['edges']:
+            self.assertTrue(e['evidence_quote'], e['child'])
+            self.assertTrue(e['decision_rule'].startswith('R'), e['child'])
+
+    def test_parent_edge_evidence_is_deterministic(self):
+        """manifest + audit 文档必须可由生成器确定性重放（0 diff）。"""
+        import subprocess
+        import sys
+        repo = Path(__file__).resolve().parent.parent
+        gen = repo / 'scripts' / 'gen-parent-edge-evidence.py'
+        json_path = repo / 'config' / 'parent-edge-evidence.json'
+        md_path = repo / 'docs' / 'references' / 'parent-edge-semantic-audit.md'
+        before = (json_path.read_text(encoding='utf-8'), md_path.read_text(encoding='utf-8'))
+        subprocess.run([sys.executable, str(gen)], cwd=str(repo), check=True,
+                       capture_output=True)
+        after = (json_path.read_text(encoding='utf-8'), md_path.read_text(encoding='utf-8'))
+        self.assertEqual(before, after, 'parent edge evidence 生成器不幂等')
 
 
 if __name__ == '__main__':

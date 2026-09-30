@@ -85,13 +85,16 @@
 
 | 状态 | 品牌数 |
 |---|---:|
-| CONFIRMED_PARENT（ownership/evidence 状态；不等同于 Brand Hierarchy closure） | 117 |
-| NO_PARENT（无母公司/独立实体/生态根） | 115 |
+| CONFIRMED_PARENT（ownership/evidence 状态；不等同于 Brand Hierarchy closure） | 115 |
+| NO_PARENT（无母公司/独立实体/生态根） | 118 |
 | AMBIGUOUS_JV（合资/股权分散，不设母公司） | 10 |
 | RETIRED（已退役，保留图标） | 2 |
-| SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 48 |
+| SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 47 |
+
+> **计数口径**：上表由 `docs/references/brand-ownership-audit.md` §7 全量矩阵（292 行）逐行统计，与 `config/brands.json` 的 live `parent_brand` 数（115）一致。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，不代表该 edge 已达到 Brand Hierarchy closure。
 
 > **Architecture closure status**：live `parent_brand` edge 的独立语义证据见 [`config/parent-edge-evidence.json`](../../config/parent-edge-evidence.json) 与 [`parent-edge-semantic-audit.md`](parent-edge-semantic-audit.md)。当前不是所有 `CONFIRMED_PARENT` ownership 状态都已达到 `BRAND_HIERARCHY_CONFIRMED`；ownership audit 与 Brand Graph closure 必须分开。
+
 | **合计** | **292** |
 
 | 指标 | 审计前 | 审计后 |
@@ -373,7 +376,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 | `GoogleVoice` | Google | Google | Google | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
-| `Grok` | AI | — | SpaceXAI | SpaceXAI 官方资料证明 developer/provider 与品牌控制；按当前 edge-evidence 分类为 `DEVELOPER_PROVIDER_ONLY / OPEN_REVIEW`，尚未形成统一 direct-brand-umbrella 证据 · 2026-09-30 | CONFIRMED_PARENT（SSOT 决策保留；语义闭合仍待 review） | 分类回到 AI（SpaceXAI 非生态）；`parent_brand = SpaceXAI`；品牌标识 2026-07-06 rename |
+| `Grok` | AI | — | SpaceXAI | SpaceXAI 官方资料（Consumer Terms / Brand Guidelines）记录 SpaceXAI 开发 Grok 并持有 Grok 品牌权利；X 平台可访问 Grok 属平台集成 · 2026-09-30 | CONFIRMED_PARENT（SSOT 决策保留；语义闭合仍待 review） | 分类回到 AI（SpaceXAI 非生态）；`parent_brand = SpaceXAI`；品牌标识 2026-07-06 rename |
 
 | `HBOMax` | Media | — | WarnerBrosDiscovery | HBO Max 归属 Warner Bros. Discovery（WBD 官方/2026-08 第三方核对）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → WarnerBrosDiscovery |
 
