@@ -134,16 +134,19 @@ def resolve_ecosystem_root(bid, ssot):
 
 
 def physical_parent_nodes(brands_doc):
-    """全部物理父节点：拥有 ≥1 个 child brand 的 SSOT 节点。
+    """全部物理父节点：拥有 ≥1 个 **canonical child brand** 的 SSOT 节点。
 
+    只有 canonical product_brand 子节点才使父节点成为物理父节点：
+    system_icon / tool_app / country 等非品牌子节点不计入——否则会出现
+    「仅因某个 SystemIcon 挂在 Parent 下，Parent 就必须有父 README」的误判。
     白名单母公司（parent_brands_without_icon）无自身图标/目录，不属物理节点。
-    这是 Parent README Policy 的作用域（CI 第 13 组 / 生成器 / 测试共用）。
+    这是 Parent README Policy 的作用域（CI 第 14 组 / 生成器 / 测试共用）。
     """
     ssot = {e['id']: e for e in brands_doc.get('brands', []) if e.get('id')}
     child_map = {}
     for e in brands_doc.get('brands', []):
         p = e.get('parent_brand')
-        if p:
+        if p and is_canonical_brand(e):
             child_map.setdefault(p, []).append(e['id'])
     return {p for p in child_map if p in ssot}
 
@@ -182,7 +185,8 @@ def expected_parent_readme(bid, ssot):
     gr = _root_of(bid, ssot)
     er = gr if (gr in ssot and ssot[gr].get('entity_type') == 'ecosystem') else '—'
     chain = [bid] + list(_ancestor_set_ordered(bid, ssot))
-    kids = sorted(x['id'] for x in ssot.values() if x.get('parent_brand') == bid)
+    kids = sorted(x['id'] for x in ssot.values()
+                  if x.get('parent_brand') == bid and is_canonical_brand(x))
     if role == 'Ecosystem Root':
         title = '# %s / %s 生态根品牌' % (dn, dn)
     elif role == 'Graph Root Parent':
@@ -285,6 +289,19 @@ def validate_relationships(brands_doc, cats_list):
     for a in aliases:
         if a in ssot:
             fail('parent_brands_without_icon 含已有 icon 的品牌: %s' % a)
+
+    # ---- 2b. 父节点类型合法性（§49-§53）：父品牌只能是 product_brand / ecosystem ----
+    # country / system_icon / tool_app 不是品牌节点，不得作为 parent_brand
+    # （否则会凭空制造「品牌挂在国家/系统图标下」的关系）。
+    ALLOWED_PARENT_TYPES = {'product_brand', 'ecosystem'}
+    for bid, e in sorted(ssot.items()):
+        p = e.get('parent_brand')
+        if not p or p not in ssot:
+            continue
+        pt = ssot[p].get('entity_type')
+        if pt not in ALLOWED_PARENT_TYPES:
+            fail('parent_brand 类型非法: %s -> %s（父 entity_type=%s，仅允许 %s）'
+                 % (bid, p, pt, sorted(ALLOWED_PARENT_TYPES)))
 
     # ---- 3. 正向：entity_type=ecosystem 品牌 → category=自身 + 对应生态分类 + descendants≥2 + root icon ----
     eco_roots = {bid for bid, e in ssot.items() if e.get('entity_type') == 'ecosystem'}

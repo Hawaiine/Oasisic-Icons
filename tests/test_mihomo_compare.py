@@ -6,7 +6,7 @@ NOT_CONSUMED / MISSING / AMBIGUOUS，以及 §68 的 OASISIC_ONLY。
 
 §99 兼容性测试：Oasisic 表达更深祖先链（YouTubeMusic → YouTube → Google）而
 mihomo 只给直接父（YouTubeMusic → YouTube）时必须判 **MATCH**，不得判 mismatch。
-§100 stale 测试：直接父冲突（Grok: Oasisic→xAI vs mihomo→X）必须标记为需人工复核
+§100 stale 测试：直接父冲突（Grok: Oasisic→SpaceXAI vs mihomo→X）必须标记为需人工复核
 （AMBIGUOUS / STALE），且对照函数**绝不修改**输入（尤其不得改 mihomo 侧）。
 """
 import json
@@ -59,8 +59,9 @@ class MihomoCompareTests(unittest.TestCase):
 
     # ---- §100：冲突 → 需人工复核，绝不自动修改 ----
     def test_conflicting_parent_requires_review(self):
-        # Grok 情形：Oasisic Grok -> xAI；mihomo Grok -> X（X 为 xAI 的子品牌，非父）
-        oas = ssot(('xAI', None), ('X', 'xAI'), ('Grok', 'xAI'))
+        # Grok 情形：Oasisic Grok -> SpaceXAI（AI 公司品牌）；mihomo Grok -> X（平台品牌）
+        # X 在 Oasisic 中无品牌父级（官方证据：SpaceXAI 与 X Corp. 分离）
+        oas = ssot(('SpaceXAI', None), ('X', None), ('Grok', 'SpaceXAI'))
         rows = compare(oas, {'Grok': 'X'})
         self.assertEqual(rows[0]['status'], 'AMBIGUOUS')
         self.assertIn(rows[0]['status'], ('AMBIGUOUS', 'STALE'))
@@ -74,7 +75,7 @@ class MihomoCompareTests(unittest.TestCase):
         self.assertEqual(rows[0]['oasisic_parent'], 'JioStar')
 
     def test_compare_never_mutates_inputs(self):
-        oas = ssot(('xAI', None), ('Grok', 'xAI'))
+        oas = ssot(('SpaceXAI', None), ('Grok', 'SpaceXAI'))
         mmap = {'Grok': 'X'}
         oas_snapshot = json.dumps(oas, sort_keys=True)
         mmap_snapshot = json.dumps(mmap, sort_keys=True)

@@ -27,20 +27,21 @@ mihomo 通常只表达直接父，Oasisic 可能同时表达直接父 + 祖先�
 - `STALE` / `*_MORE_PRECISE` 无法纯机械判定时，由调用方用 `overrides` 显式标注
   （需官方证据），机械可判定的情形自动归类。
 - 函数永不写文件、永不修改 mihomo；mihomo-rules 只读。
+- **关系遍历单一来源（2026-09-30 收口）**：root / ancestor 解析不得在本模块
+  自行实现，必须复用 `brand_relationships` 的 resolver（`resolve_graph_root`
+  / `_ancestor_set`），否则会出现「两套关系解析器结论不一致」的架构缺陷。
 """
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from brand_relationships import resolve_graph_root, _ancestor_set  # noqa: E402
 
 
 def _oas_ancestors(bid, ssot):
-    """Oasisic 侧祖先集合（沿 parent_brand 向上，断在缺失父/白名单外）。"""
-    seen, cur = set(), ssot.get(bid, {}).get('parent_brand')
-    while cur:
-        if cur in seen:
-            break
-        seen.add(cur)
-        if cur not in ssot:
-            break
-        cur = ssot[cur].get('parent_brand')
-    return seen
+    """Oasisic 侧祖先集合 —— 委托给 brand_relationships._ancestor_set（单一来源）。"""
+    return _ancestor_set(bid, ssot)
 
 
 def _mm_ancestors(bid, mihomo_map):
@@ -84,17 +85,8 @@ def compare(oasisic_ssot, mihomo_map, aliases=None, overrides=None):
             rows.append(_row(mid, None, None, mpar, None, 'NOT_CONSUMED'))
             continue
         opar = e.get('parent_brand')
-        root = oid
-        cur = opar
-        seen = {oid}
-        while cur:
-            if cur in seen:
-                break
-            seen.add(cur)
-            root = cur
-            if cur not in oasisic_ssot:
-                break
-            cur = oasisic_ssot[cur].get('parent_brand')
+        # graph root 解析复用 brand_relationships（单一来源，见模块 docstring）
+        root = resolve_graph_root(oid, oasisic_ssot)
         if mid in overrides:
             st = overrides[mid]
         elif not opar or not mpar:

@@ -360,6 +360,69 @@ class CanonicalFilterTests(unittest.TestCase):
                          '非 canonical 实体不应压低 canonical descendants 计数')
 
 
+class ParentTypeTests(unittest.TestCase):
+    """§49-§53：parent_brand 的父节点类型合法性。
+
+    父品牌只能是 product_brand / ecosystem；country / system_icon / tool_app
+    不是品牌节点，作为 parent_brand 必须 FAIL（否则会凭空制造
+    「品牌挂在国家/系统图标下」的关系）。
+    """
+
+    def test_product_brand_parent_allowed(self):
+        doc = eco_doc([('A', None, 'product_brand', 'Svc'),
+                       ('B', 'A', 'product_brand', 'Svc')], [])
+        self.assertEqual(validate_relationships(doc, []), [])
+
+    def test_ecosystem_parent_allowed(self):
+        doc = eco_doc([('E', None, 'ecosystem', 'E'),
+                       ('C', 'E', 'product_brand', 'E'),
+                       ('D', 'E', 'product_brand', 'E')], [])
+        self.assertEqual(validate_relationships(doc, eco_cats(['E'])), [])
+
+    def test_forbidden_parent_types_fail(self):
+        for pt in ('country', 'system_icon', 'tool_app'):
+            doc = eco_doc([('P', None, pt, 'System'),
+                           ('C', 'P', 'product_brand', 'Svc')], [])
+            errs = validate_relationships(doc, [])
+            self.assertTrue(any('parent_brand 类型非法' in e for e in errs),
+                            '%s 作为 parent_brand 必须 FAIL，实际: %s' % (pt, errs))
+
+    def test_ecosystem_with_parent_fails(self):
+        """§53：生态根不得再有 parent_brand。"""
+        doc = eco_doc([('Top', None, 'product_brand', 'Top'),
+                       ('E', 'Top', 'ecosystem', 'E'),
+                       ('C', 'E', 'product_brand', 'E'),
+                       ('D', 'E', 'product_brand', 'E')], [])
+        errs = validate_relationships(doc, eco_cats(['E']))
+        self.assertTrue(any('不应再有 parent_brand' in e for e in errs), errs)
+
+
+class PhysicalParentScopeTests(unittest.TestCase):
+    """§54-§55：只有 canonical product_brand 子节点才使父节点成为物理父节点。
+
+    Parent README Policy 的作用域不得被非品牌子节点（system_icon 等）撑大。
+    """
+
+    def _doc(self, child_type):
+        return {'brands': [
+            {'id': 'Parent', 'display_name': 'Parent', 'category': 'Svc',
+             'entity_type': 'product_brand', 'icon_path': 'icons/Svc/Parent/Parent.png'},
+            {'id': 'Child', 'display_name': 'Child', 'category': 'Svc',
+             'entity_type': child_type, 'icon_path': 'icons/Svc/Child/Child.png',
+             'parent_brand': 'Parent'},
+        ]}
+
+    def test_non_canonical_child_does_not_require_readme(self):
+        from brand_relationships import physical_parent_nodes
+        for ct in ('system_icon', 'tool_app', 'country'):
+            self.assertEqual(physical_parent_nodes(self._doc(ct)), set(),
+                             '%s 子节点不应使 Parent 成为物理父节点' % ct)
+
+    def test_canonical_child_requires_readme(self):
+        from brand_relationships import physical_parent_nodes
+        self.assertEqual(physical_parent_nodes(self._doc('product_brand')), {'Parent'})
+
+
 class RealRepoTests(unittest.TestCase):
     """对当前真实 brands.json 跑关系校验 + 生态根派生抽查。"""
 
@@ -389,13 +452,32 @@ class RealRepoTests(unittest.TestCase):
         self.assertEqual(resolve_graph_root('Weibo', self.ssot), 'SINA')
         self.assertIsNone(resolve_ecosystem_root('Weibo', self.ssot),
                           'SINA 非 ecosystem，Weibo 的 ecosystem root 应为 None')
-        # 17 个生态根：graph root = 自身，且 ecosystem root 也派生为自身
+        # 生态根：graph root = 自身，且 ecosystem root 也派生为自身
         for e in self.brands_doc['brands']:
             if e.get('entity_type') == 'ecosystem':
                 self.assertEqual(resolve_graph_root(e['id'], self.ssot), e['id'],
                                  '生态根 %s graph root 应为自身' % e['id'])
                 self.assertEqual(resolve_ecosystem_root(e['id'], self.ssot), e['id'],
                                  '生态根 %s ecosystem root 应为自身' % e['id'])
+
+    def test_spacexai_final_state(self):
+        """§9-§41：Grok → SpaceXAI；X 独立；SpaceXAI 非生态；SpaceX 不入图。"""
+        # Grok：SpaceXAI 开发的产品（官方 Terms 证据）
+        self.assertEqual(self.ssot['Grok']['parent_brand'], 'SpaceXAI')
+        self.assertEqual(resolve_graph_root('Grok', self.ssot), 'SpaceXAI')
+        # SpaceXAI：公司品牌，descendants=1 < 2 → 非生态
+        self.assertEqual(self.ssot['SpaceXAI']['entity_type'], 'product_brand')
+        self.assertIsNone(resolve_ecosystem_root('Grok', self.ssot),
+                          'SpaceXAI descendants=1，不构成生态')
+        # X：独立平台品牌（官方 Privacy Policy：SpaceXAI 与 X Corp. 分离）
+        self.assertNotIn('parent_brand', self.ssot['X'],
+                         'X 不应有 parent_brand（不以 corporate ownership 推导）')
+        self.assertEqual(resolve_graph_root('X', self.ssot), 'X')
+        self.assertIsNone(resolve_ecosystem_root('X', self.ssot))
+        # SpaceX：corporate owner only，不进入 brand graph
+        self.assertNotIn('SpaceX', self.ssot)
+        # xAI 旧 ID 不得残留
+        self.assertNotIn('xAI', self.ssot)
 
 
 if __name__ == '__main__':

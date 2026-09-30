@@ -142,5 +142,56 @@ class EngineDeepChainTests(unittest.TestCase):
         self.assertEqual(len(_ancestor_set('C000', ssot)), n - 1)
 
 
+class LegacyMapTests(unittest.TestCase):
+    """§64-§67：legacy 旧名必须来自单一来源（scripts/legacy_map.py），不散落硬编码。"""
+
+    def test_legacy_map_is_single_source(self):
+        from legacy_map import legacy_ids, legacy_path_segments, legacy_scan_patterns
+        segs = set(legacy_path_segments())
+        for s in ('DevOps', 'Drive', 'General', 'Tool'):
+            self.assertIn(s, segs, '历史分类目录必须在 legacy map 中')
+        for s in ('PeacockTV', 'Podcasts', 'xAI', 'Twitter'):
+            self.assertIn(s, segs, '历史品牌 ID 必须在 legacy map 中')
+        self.assertEqual(set(legacy_scan_patterns()), {'/%s/' % s for s in segs})
+        self.assertEqual(legacy_ids(), {'PeacockTV', 'Podcasts', 'xAI', 'Twitter'})
+
+    def test_repo_ssot_has_no_legacy_ids(self):
+        import json
+        from legacy_map import legacy_ids
+        repo = Path(__file__).resolve().parent.parent
+        bd = json.loads((repo / 'config' / 'brands.json').read_text(encoding='utf-8'))
+        cd = json.loads((repo / 'config' / 'categories.json').read_text(encoding='utf-8'))
+        legacy = legacy_ids()
+        for e in bd['brands']:
+            self.assertNotIn(e['id'], legacy, 'brands.json 不应残留旧 ID: %s' % e['id'])
+        for c in cd['categories']:
+            self.assertNotIn(c['id'], legacy, 'categories.json 不应残留旧 ID: %s' % c['id'])
+
+    def test_repo_docs_have_no_legacy_path_refs(self):
+        """非迁移文档不得再引用旧路径段（/xAI/、/PeacockTV/ …）。"""
+        from legacy_map import legacy_scan_patterns
+        repo = Path(__file__).resolve().parent.parent
+        pats = legacy_scan_patterns()
+        exempt = {'scripts/legacy_map.py'}
+        offenders = []
+        for rel in ('README.md', 'docs', 'scripts', '.github', 'config'):
+            root = repo / rel
+            if not root.exists():
+                continue
+            files = [root] if root.is_file() else [f for f in root.rglob('*') if f.is_file()]
+            for f in files:
+                r = f.relative_to(repo).as_posix()
+                if r in exempt or r.startswith('docs/migrations/'):
+                    continue
+                try:
+                    text = f.read_text(encoding='utf-8', errors='ignore')
+                except Exception:
+                    continue
+                for p in pats:
+                    if p in text:
+                        offenders.append('%s: %s' % (r, p))
+        self.assertEqual(offenders, [], '存在 legacy 路径段引用: %s' % offenders)
+
+
 if __name__ == '__main__':
     unittest.main()

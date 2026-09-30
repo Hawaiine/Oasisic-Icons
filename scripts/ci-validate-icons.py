@@ -126,8 +126,21 @@ else:
     for c in sorted(disk_cats - cat_ids):
         fail('Category', '分类不在 SSOT 白名单中（icons/%s）: 请更新 config/categories.json' % c)
     for c in cats:
-        if c.get('status', 'active') == 'active' and c['id'] not in disk_cats:
-            fail('Category', 'SSOT 声明的 active 分类在磁盘不存在: %s' % c['id'])
+        cid = c['id']
+        status = c.get('status', 'active')
+        cdir = ICONS / cid
+        cbrands = {d.name for d in cdir.iterdir() if d.is_dir()} if cdir.is_dir() else set()
+        cpngs = list(cdir.rglob('*.png')) if cdir.is_dir() else []
+        if status == 'active' and cid not in disk_cats:
+            fail('Category', 'SSOT 声明的 active 分类在磁盘不存在: %s' % cid)
+        elif status == 'reserved':
+            # §78 预留分类语义：reserved = 已声明但尚无品牌 → 必须 0 品牌 0 PNG。
+            if cbrands or cpngs:
+                fail('Category', 'reserved 分类 %s 必须为空（0 品牌 0 PNG），实际 %d 品牌 %d PNG'
+                     % (cid, len(cbrands), len(cpngs)))
+        elif status == 'active' and not cpngs:
+            # active = 有实际图标；空目录应显式标 reserved（防止「看起来活跃但空」漂移）。
+            fail('Category', 'active 分类 %s 无任何 PNG（应改为 status=reserved 或补图标）' % cid)
 
 # ---------- 5. Canonical Brand 唯一 ----------
 brand_to_cats = defaultdict(set)
@@ -289,9 +302,11 @@ else:
             fail('Glossary', 'display_name 不符: %s glossary=%r ssot=%r' % (bid, gloss[bid], exp_dn))
 
 # ---------- 10. Legacy paths（历史引用仅允许在 docs/migrations/） ----------
-# 用拼接构造模式串，避免 CI 脚本被自身扫描命中
-LEGACY_PATTERNS = ['icons/%s/' % name for name in
-                   ('Dev' + 'Ops', 'Dri' + 've', 'Gene' + 'ral', 'Too' + 'l')]
+# 旧名（历史分类目录 + 已重命名品牌 ID）统一登记在 scripts/legacy_map.py（单一来源），
+# 不在本脚本硬编码；legacy_map.py 自身是唯一允许出现旧名的位置，扫描时豁免。
+from legacy_map import legacy_scan_patterns, legacy_ids  # noqa: E402
+LEGACY_PATTERNS = legacy_scan_patterns()
+LEGACY_EXEMPT = {'scripts/legacy_map.py', 'docs/migrations'}
 scan_dirs = ['README.md', 'docs', 'scripts', '.github', 'config']
 for d in scan_dirs:
     root = Path(d)
@@ -299,17 +314,27 @@ for d in scan_dirs:
         continue
     targets = [root] if root.is_file() else [f for f in root.rglob('*') if f.is_file()]
     for f in targets:
+        rel = f.as_posix()
+        if rel in LEGACY_EXEMPT or rel.startswith('docs/migrations/'):
+            continue  # 迁移文档 / legacy 映射源自身的旧名引用允许
         try:
             text = f.read_text(encoding='utf-8', errors='ignore')
         except Exception:
             continue
-        rel = str(f)
-        if rel.startswith('docs/migrations/'):
-            continue  # 迁移文档的历史性引用允许
         for pat in LEGACY_PATTERNS:
             for m in re.finditer(re.escape(pat), text):
                 line_no = text.count('\n', 0, m.start()) + 1
-                fail('Legacy paths', '%s:%d 引用 legacy 路径 %s' % (rel, line_no, pat))
+                fail('Legacy paths', '%s:%d 引用 legacy 路径段 %s' % (rel, line_no, pat))
+
+# 10b. 值级：config 的 id / 分类 id 不得仍是旧 ID（防「改名漏改 SSOT」）
+_legacy = legacy_ids()
+if bdata:
+    for e in bdata:
+        if e.get('id') in _legacy:
+            fail('Legacy paths', 'brands.json 仍有旧品牌 ID: %s（应为迁移后的 canonical ID）' % e['id'])
+for c in cats:
+    if c.get('id') in _legacy:
+        fail('Legacy paths', 'categories.json 仍有旧分类 ID: %s' % c['id'])
 
 # ---------- 11. README 分类表结构 ----------
 # header / separator / 全量覆盖 / 无重复 / 顺序 / 计数
