@@ -143,6 +143,16 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/Apple/Apple.png"
     },
     {
+      "name": "AppleArcade",
+      "category": "Apple",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/AppleArcade/AppleArcade.png"
+    },
+    {
+      "name": "AppleBooks",
+      "category": "Apple",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/AppleBooks/AppleBooks.png"
+    },
+    {
       "name": "AppleFitnessPlus",
       "category": "Apple",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/AppleFitnessPlus/AppleFitnessPlus.png"

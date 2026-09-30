@@ -193,6 +193,22 @@
       "icon_path": "icons/Apple/Apple/Apple.png"
     },
     {
+      "id": "AppleArcade",
+      "display_name": "Apple Arcade",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Apple/AppleArcade/AppleArcade.png",
+      "parent_brand": "Apple"
+    },
+    {
+      "id": "AppleBooks",
+      "display_name": "Apple Books",
+      "category": "Apple",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Apple/AppleBooks/AppleBooks.png",
+      "parent_brand": "Apple"
+    },
+    {
       "id": "AppleFitnessPlus",
       "display_name": "Apple Fitness+",
       "category": "Apple",

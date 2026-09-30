@@ -17,8 +17,8 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-282-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-282-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/icons-284-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-284-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-35-orange?style=flat-square" alt="Categories Count">
 </p>
 
@@ -26,9 +26,9 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **282** 个 PNG 图标，覆盖 **282** 个品牌，归入 **35** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **284** 个 PNG 图标，覆盖 **284** 个品牌，归入 **35** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
 
-本项目为独立图标仓库，当前 282 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，当前 284 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
 > 仓库内图标按该规范维护，均为 512×512、RGBA、保留原始底色，经 `scripts/optimize-icons.py` 无损重压缩；少量历史圆角边缘遗留项待处理，明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
@@ -157,7 +157,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🤖 AI | 人工智能服务与模型 | 13 | 13 |
 | 🏢 Alibaba | 阿里巴巴生态 | 7 | 7 |
 | 📦 Amazon | 亚马逊生态 | 6 | 6 |
-| 🍎 Apple | 苹果生态 | 10 | 10 |
+| 🍎 Apple | 苹果生态 | 12 | 12 |
 | 🔍 Baidu | 百度生态 | 3 | 3 |
 | ▶️ ByteDance | 字节跳动生态 | 4 | 4 |
 | 🏗️ Infrastructure | 基础设施与运维（云平台/网络/容器/NAS） | 6 | 6 |
@@ -189,7 +189,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🐧 Tencent | 腾讯生态 | 7 | 7 |
 | 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
-| **合计** | — | **282** | **282** |
+| **合计** | — | **284** | **284** |
 ### 分类体系原则（方案 C，2026-09-29）
 
 一级分类**扁平**：不设置 `Ecosystems / Services / Special` 等中间层，`icons/<分类>/<品牌>/` 为唯一深度。

@@ -1,11 +1,13 @@
 # 🍎 Apple / 苹果生态
 
-> 共 **10** 个图标，**10** 个品牌
+> 共 **12** 个图标，**12** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `AppStore` | `AppStore.png` |
 | `Apple` | `Apple.png` |
+| `AppleArcade` | `AppleArcade.png` |
+| `AppleBooks` | `AppleBooks.png` |
 | `AppleFitnessPlus` | `AppleFitnessPlus.png` |
 | `AppleMusic` | `AppleMusic.png` |
 | `AppleNews` | `AppleNews.png` |
