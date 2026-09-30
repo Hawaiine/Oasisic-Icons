@@ -212,6 +212,9 @@ class LegacyMapTests(unittest.TestCase):
                 r = f.relative_to(repo).as_posix()
                 if r in exempt or r.startswith('docs/migrations/'):
                     continue
+                # 字节码缓存 / 二进制资产跳过（否则扫描器会命中自身模式表的 .pyc）
+                if '__pycache__' in r.split('/') or r.endswith(('.pyc', '.pyo', '.so', '.png')):
+                    continue
                 try:
                     text = f.read_text(encoding='utf-8', errors='ignore')
                 except Exception:

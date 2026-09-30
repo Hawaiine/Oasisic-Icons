@@ -314,6 +314,22 @@ else:
 from legacy_map import legacy_scan_patterns, legacy_ids  # noqa: E402
 LEGACY_PATTERNS = legacy_scan_patterns()
 LEGACY_EXEMPT = {'scripts/legacy_map.py', 'docs/migrations'}
+# 自命中防护（2026-10-01 CI 修复）：解释器在 import 时会把本模块（含模式表字面量）
+# 编译进 __pycache__/*.pyc，而 .pyc 是二进制但含可读字符串——若被当作文本扫描，
+# 扫描器会命中自己的模式表。二进制 / 字节码缓存一律跳过。
+LEGACY_BINARY_SUFFIXES = ('.pyc', '.pyo', '.so', '.dylib', '.dll', '.exe', '.zip',
+                          '.gz', '.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico',
+                          '.pdf', '.woff', '.woff2')
+
+
+def _legacy_scan_skip(rel):
+    if rel in LEGACY_EXEMPT or rel.startswith('docs/migrations/'):
+        return True  # 迁移文档 / legacy 映射源自身的旧名引用允许
+    if '__pycache__' in rel.split('/') or rel.endswith(LEGACY_BINARY_SUFFIXES):
+        return True  # 字节码缓存 / 二进制资产
+    return False
+
+
 scan_dirs = ['README.md', 'docs', 'scripts', '.github', 'config']
 for d in scan_dirs:
     root = Path(d)
@@ -322,10 +338,13 @@ for d in scan_dirs:
     targets = [root] if root.is_file() else [f for f in root.rglob('*') if f.is_file()]
     for f in targets:
         rel = f.as_posix()
-        if rel in LEGACY_EXEMPT or rel.startswith('docs/migrations/'):
-            continue  # 迁移文档 / legacy 映射源自身的旧名引用允许
+        if _legacy_scan_skip(rel):
+            continue
         try:
-            text = f.read_text(encoding='utf-8', errors='ignore')
+            raw = f.read_bytes()
+            if b'\x00' in raw[:1024]:
+                continue  # 二进制内容（防未来新增未知后缀时再次自命中）
+            text = raw.decode('utf-8', errors='ignore')
         except Exception:
             continue
         for pat in LEGACY_PATTERNS:
