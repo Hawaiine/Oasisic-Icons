@@ -10,10 +10,11 @@
 对全库每一个 Canonical Brand（不是抽样、不是只扫已有 `parent_brand`）逐一执行：
 
 1. 取 `brands.json` 中的 `id / category / entity_type / parent_brand` 与磁盘 PNG 实际主体；
-2. 主动检索现实世界的**当前**控股关系（官方站点 / 官方公告 / 财报 / 公司登记信息 / 权威百科），不依赖历史 metadata；[§92 §93 §95]
-3. 判断控股口径：**全资或多数控股**记为 `CONFIRMED_PARENT`；少数股权与合资公司一律不设母公司；[§102]
+2. 主动检索现实世界的**当前** ownership / brand architecture / developer / provider / platform 关系（官方站点 / 官方公告 / 财报 / 公司登记信息 / 权威百科），不依赖历史 metadata；[§92 §93 §95]
+3. **先分类关系类型，再决定 SSOT**：`CORPORATE_OWNERSHIP_ONLY`、`DEVELOPER_PROVIDER_ONLY`、`PLATFORM_RELATION_ONLY` 不能单独证明 `parent_brand`；只有明确的 Brand / Product Hierarchy 或 direct brand umbrella 证据才可记为 `BRAND_HIERARCHY_CONFIRMED`。全资或多数控股只证明 corporate control，不自动证明 Brand Parent；[§102]
 4. 不得仅凭品牌名推断归属（如 `DisneyPlus`、`ChinaMobileDisk` 均需证据）；
-5. 对每个 graph root 统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，
+5. 每条 live `parent_brand` edge 必须在 `config/parent-edge-evidence.json` 中有一条独立分类记录；该文件是研究/复核层，不替代 `config/brands.json` SSOT。
+6. 对每个 graph root 统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，
    不含 root 本身，仅 `entity_type=product_brand` 计入），套用**双向**硬规则：**descendants ≥ 2 →
    必须存在一级生态分类且 root 为 ecosystem；descendants < 2 → 不要求生态分类**，`parent_brand`
    照记，子品牌保留在功能分类，不新建生态分类。[§83 §84 §85]
@@ -26,10 +27,12 @@
 - **`parent_brand` = 直接父品牌（immediate parent）**，不表示公司股权结构、不表示历史所有者。
   例：`Instagram → Facebook`、`YouTubeMusic → YouTube`、`iCloudPrivateRelay → iCloud`。
 - **关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy；Developer /
-  Provider / Brand Owner 与 Platform Integration / Distribution 不写入该字段。当前官方证据同时支持
-  「SpaceXAI 开发 Grok」与「Grok 可通过 X 平台使用」：前者决定 `Grok → SpaceXAI`，后者是
-  `Grok ↔ X` 的平台集成关系，**不**证明 `Grok → X`。仓库当前没有通用 platform/integration
-  schema，本轮不为单一案例扩张 SSOT；平台关系留在审计证据层。
+  Provider / Brand Owner 与 Platform Integration / Distribution 不写入该字段。当前官方证据支持
+  「SpaceXAI 开发并控制 Grok 品牌」与「Grok 可通过 X 平台使用」；这些事实分别进入
+  `DEVELOPER_PROVIDER_ONLY` 与 platform evidence 层。它们支持当前 `Grok → SpaceXAI` 的 Oasisic
+  决策方向，但尚未单独形成全库统一格式的 direct-brand-umbrella 证据，因此该 edge 在
+  `config/parent-edge-evidence.json` 中保持 `OPEN_REVIEW`；后者绝不证明 `Grok → X`。仓库当前没有
+  通用 platform/integration schema，本轮不为单一案例扩张 SSOT；平台关系留在审计证据层。
 - **graph root ≠ ecosystem root**（2026-09-30 语义拆分，`brand_relationships`）：
   - **graph root** = 沿 `parent_brand` 链向上走到的最高节点（`resolve_graph_root`）。
   - **ecosystem root** = graph root 且 `entity_type: ecosystem`（`resolve_ecosystem_root`）。
@@ -46,9 +49,7 @@
   生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
 - **X / Grok / xAI / SpaceXAI / SpaceX 专项**（2026-09-30 Final Seal Review 复核）：五者身份分离——
   - `xAI` → `SpaceXAI`：**品牌身份 rename**（官方品牌标识 2026-07-06 更名完成，见下条），非新增品牌；
-  - `Grok`：SpaceXAI 开发的 AI 产品 → `parent_brand = SpaceXAI`（官方 Terms / Privacy Policy 明确
-    「Grok，由 SpaceXAI 的大语言模型驱动」）；**同时**，X 官方 Help Center 将 Grok 描述为「available
-    to X users / on the X platform」，这是 Platform Integration / Distribution 关系，不是品牌父级；
+  - `Grok`：当前 SSOT 保留 `parent_brand = SpaceXAI`，但 edge-evidence 分类为 `DEVELOPER_PROVIDER_ONLY / OPEN_REVIEW`：SpaceXAI 官方资料证明开发者与品牌控制，尚未以全库统一的 direct-brand-umbrella 证据格式完成闭合；**同时**，X 官方 Help Center 将 Grok 描述为「available to X users / on the X platform」，这是 Platform Integration / Distribution 关系，不是品牌父级；
   - `X`：**独立平台品牌**，`parent_brand = null` —— 官方 Privacy Policy 明确「**SpaceXAI is a
     separate company from X Corp.**」，且「X 的使用（含 X 平台上的 Grok）由 X 的条款管辖，**不适用**
     SpaceXAI 政策」；SpaceXAI 官方产品清单仅 Grok / Grokipedia，**不含 X**。`parent_brand` 回答
@@ -84,11 +85,13 @@
 
 | 状态 | 品牌数 |
 |---|---:|
-| CONFIRMED_PARENT（已确认母公司） | 117 |
+| CONFIRMED_PARENT（ownership/evidence 状态；不等同于 Brand Hierarchy closure） | 117 |
 | NO_PARENT（无母公司/独立实体/生态根） | 115 |
 | AMBIGUOUS_JV（合资/股权分散，不设母公司） | 10 |
 | RETIRED（已退役，保留图标） | 2 |
 | SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 48 |
+
+> **Architecture closure status**：live `parent_brand` edge 的独立语义证据见 [`config/parent-edge-evidence.json`](../../config/parent-edge-evidence.json) 与 [`parent-edge-semantic-audit.md`](parent-edge-semantic-audit.md)。当前不是所有 `CONFIRMED_PARENT` ownership 状态都已达到 `BRAND_HIERARCHY_CONFIRMED`；ownership audit 与 Brand Graph closure 必须分开。
 | **合计** | **292** |
 
 | 指标 | 审计前 | 审计后 |
@@ -370,7 +373,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 | `GoogleVoice` | Google | Google | Google | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
-| `Grok` | AI | — | SpaceXAI | Grok 由 SpaceXAI 开发（官方 Terms / Privacy Policy 明确「SpaceXAI 开发、由其大语言模型驱动」）· 2026-09-30 | CONFIRMED_PARENT | 分类回到 AI（SpaceXAI 非生态）；`parent_brand = SpaceXAI`；品牌标识 2026-07-06 rename |
+| `Grok` | AI | — | SpaceXAI | SpaceXAI 官方资料证明 developer/provider 与品牌控制；按当前 edge-evidence 分类为 `DEVELOPER_PROVIDER_ONLY / OPEN_REVIEW`，尚未形成统一 direct-brand-umbrella 证据 · 2026-09-30 | CONFIRMED_PARENT（SSOT 决策保留；语义闭合仍待 review） | 分类回到 AI（SpaceXAI 非生态）；`parent_brand = SpaceXAI`；品牌标识 2026-07-06 rename |
 
 | `HBOMax` | Media | — | WarnerBrosDiscovery | HBO Max 归属 Warner Bros. Discovery（WBD 官方/2026-08 第三方核对）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → WarnerBrosDiscovery |
 
@@ -750,7 +753,7 @@ SpaceXAI 的品牌子级（Privacy Policy 明确与 X Corp. 分离），`SpaceXA
 
 - **CI 能力边界**：CI 只能验证 `brands.json` ↔ 磁盘 ↔ `categories.json` ↔ `surge-icon.json` 的结构一致性，**无法证明现实世界归属的完整性**；现实归属由本文件承担（研究层）。[§64 §96 §97]
 - **本轮发现的高价值漏项**：`Hulu → Disney`、`ESPN → Disney`、`LinkedIn/GitHub → Microsoft`、`Youku → Alibaba`、`iQIYI → Baidu`、`Doubao/Pipixia → ByteDance`、`Podcasts → Apple`、`mora → Sony` 等，均在 PR 分支真实缺失，属本轮发现并修复。
-- **本轮厘清的关系（Final Seal Review 定稿）**：`Grok → SpaceXAI`（产品关系，官方 Terms 证据）；`X` **无品牌父级**（官方 Privacy Policy 明确 SpaceXAI 与 X Corp. 为独立公司，不以 corporate ownership 推导 `parent_brand`）；`SpaceX` = corporate owner only，不进入 Brand Graph。
+- **本轮厘清的关系（Final Seal Review 定稿）**：`Grok → SpaceXAI`（当前 Oasisic SSOT 决策；edge-evidence 仍为 `DEVELOPER_PROVIDER_ONLY / OPEN_REVIEW`，不可宣称全库 direct-brand-umbrella 证据已闭合）；`X` **无品牌父级**（官方 Privacy Policy 明确 SpaceXAI 与 X Corp. 为独立公司，不以 corporate ownership 推导 `parent_brand`）；`SpaceX` = corporate owner only，不进入 Brand Graph。
 - **仍易变关系（后续需按 §95 复验）**：`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
 - **退役品牌**：`Skype`（2025-05 停运）、`KKTV`（2025-12-31 停运并入 LINE TV）保留图标并标记退役，不参与生态归属。
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]

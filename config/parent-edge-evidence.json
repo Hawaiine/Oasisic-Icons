@@ -1,0 +1,933 @@
+{
+  "schema_version": 1,
+  "description": "Conservative semantic evidence classification for every live config/brands.json parent_brand edge. This is an evidence/review layer, not a replacement SSOT.",
+  "allowed_classifications": [
+    "BRAND_HIERARCHY_CONFIRMED",
+    "CORPORATE_OWNERSHIP_ONLY",
+    "DEVELOPER_PROVIDER_ONLY",
+    "PLATFORM_RELATION_ONLY",
+    "AMBIGUOUS"
+  ],
+  "edges": [
+    {
+      "child": "189",
+      "parent": "ChinaTelecom",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AWS",
+      "parent": "Amazon",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AliCloud",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AliPay",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AmazonAlexa",
+      "parent": "Amazon",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AmazonMusic",
+      "parent": "Amazon",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppStore",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleArcade",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleBooks",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleFitnessPlus",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleMusic",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleNewsPlus",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ApplePodcasts",
+      "parent": "Apple",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "AppleTV",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Azure",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "BaiduNetdisk",
+      "parent": "Baidu",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Bing",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ChinaMobileDisk",
+      "parent": "ChinaMobile",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Copilot",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Crunchyroll",
+      "parent": "SONY",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DMMTV",
+      "parent": "DMM",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DingTalk",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DisneyPlus",
+      "parent": "Disney",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Doubao",
+      "parent": "ByteDance",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Douyin",
+      "parent": "ByteDance",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ESPN",
+      "parent": "Disney",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "F1TV",
+      "parent": "LibertyMedia",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Facebook",
+      "parent": "Meta",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GLM",
+      "parent": "ZhipuAI",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GitHub",
+      "parent": "Microsoft",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Gmail",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleAI",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleDrive",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleMaps",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleNews",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GooglePhotos",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GooglePlay",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleTranslate",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleVoice",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Grok",
+      "parent": "SpaceXAI",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "HBOMax",
+      "parent": "WarnerBrosDiscovery",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "HOYTV",
+      "parent": "iCABLE",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "HamiVideo",
+      "parent": "ChunghwaTelecom",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Hulu",
+      "parent": "Disney",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Instagram",
+      "parent": "Facebook",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KKBOX",
+      "parent": "KKCompany",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KakaoTalk",
+      "parent": "Kakao",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KaraokeDAM",
+      "parent": "Daiichikosho",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Kimi",
+      "parent": "MoonshotAI",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Kwai",
+      "parent": "Kuaishou",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Lark",
+      "parent": "ByteDance",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "LinkedIn",
+      "parent": "Microsoft",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "MangoTV",
+      "parent": "MangoSuperMedia",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Manus",
+      "parent": "ButterflyEffect",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Messenger",
+      "parent": "Facebook",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "MicrosoftStore",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Migu",
+      "parent": "ChinaMobile",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Mijia",
+      "parent": "Xiaomi",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "MusicBrainz",
+      "parent": "MetaBrainz",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "MyVideo",
+      "parent": "TaiwanMobile",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NBC",
+      "parent": "NBCUniversal",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NetEaseCloudMusic",
+      "parent": "NetEase",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NetEaseMail",
+      "parent": "NetEase",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Niconico",
+      "parent": "Kadokawa",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NowE",
+      "parent": "PCCW",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "OneDrive",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Outlook",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Pandora",
+      "parent": "SiriusXM",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ParamountPlus",
+      "parent": "Paramount",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Peacock",
+      "parent": "NBCUniversal",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Pipixia",
+      "parent": "ByteDance",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "PlayStation",
+      "parent": "SONY",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Poe",
+      "parent": "Quora",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "PrimeVideo",
+      "parent": "Amazon",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQ",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQMail",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQMusic",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Quark",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Qwen",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "RakutenTV",
+      "parent": "Rakuten",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "RedBullTV",
+      "parent": "RedBull",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "SiriAI",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "SlingTV",
+      "parent": "EchoStar",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Snapchat",
+      "parent": "Snap",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Steam",
+      "parent": "Valve",
+      "classification": "DEVELOPER_PROVIDER_ONLY",
+      "evidence_basis": "Evidence establishes developer/provider/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TIDAL",
+      "parent": "Block",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TMDB",
+      "parent": "Xperi",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Taobao",
+      "parent": "Alibaba",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TencentVideo",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TestFlight",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Threads",
+      "parent": "Facebook",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Tieba",
+      "parent": "Baidu",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TikTok",
+      "parent": "ByteDance",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Tubi",
+      "parent": "Fox",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Twitch",
+      "parent": "Amazon",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "UNEXT",
+      "parent": "UNEXTHoldings",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "VideoMarket",
+      "parent": "PLAY",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Viu",
+      "parent": "PCCW",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WSJ",
+      "parent": "NewsCorp",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WeChat",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WeTV",
+      "parent": "Tencent",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Weibo",
+      "parent": "SINA",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WhatsApp",
+      "parent": "Facebook",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Xbox",
+      "parent": "Microsoft",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "YouTube",
+      "parent": "Google",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "YouTubeMusic",
+      "parent": "YouTube",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Youku",
+      "parent": "Alibaba",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "dAnimeStore",
+      "parent": "NTTDocomo",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "discoveryPlus",
+      "parent": "WarnerBrosDiscovery",
+      "classification": "BRAND_HIERARCHY_CONFIRMED",
+      "evidence_basis": "Evidence presents the child as a named brand/product/service under the parent brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "friDayVideo",
+      "parent": "FarEasTone",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iCloud",
+      "parent": "Apple",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iCloudPrivateRelay",
+      "parent": "iCloud",
+      "classification": "AMBIGUOUS",
+      "evidence_basis": "Current matrix only says the existing parent_brand remains; no edge-specific semantic evidence is recorded.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iQIYI",
+      "parent": "Baidu",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "mora",
+      "parent": "SONY",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "myTVSUPER",
+      "parent": "TVB",
+      "classification": "CORPORATE_OWNERSHIP_ONLY",
+      "evidence_basis": "Evidence establishes ownership/control/subsidiary/operation, not explicitly a direct brand umbrella.",
+      "source": "docs/references/brand-ownership-audit.md",
+      "review_status": "OPEN_REVIEW"
+    }
+  ]
+}

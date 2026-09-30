@@ -487,6 +487,51 @@ class RealRepoTests(unittest.TestCase):
             self.assertNotIn('integration_brand', entry)
             self.assertNotIn('distribution_brand', entry)
 
+    def test_parent_edge_evidence_covers_every_live_edge(self):
+        """每条 live parent_brand edge 都必须有独立的语义证据分类。"""
+        import json
+        repo = Path(__file__).resolve().parent.parent
+        manifest = json.loads(
+            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
+        live = {
+            (e['id'], e['parent_brand'])
+            for e in self.brands_doc['brands'] if e.get('parent_brand')
+        }
+        audited = {(e['child'], e['parent']) for e in manifest['edges']}
+        self.assertEqual(audited, live)
+        self.assertEqual(len(audited), 115)
+        allowed = set(manifest['allowed_classifications'])
+        self.assertTrue(all(e['classification'] in allowed for e in manifest['edges']))
+
+    def test_corporate_ownership_alone_is_not_hierarchy_proof(self):
+        """ownership-only evidence must remain reviewable, not silently confirmed."""
+        import json
+        repo = Path(__file__).resolve().parent.parent
+        manifest = json.loads(
+            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
+        by_child = {e['child']: e for e in manifest['edges']}
+        self.assertEqual(by_child['GitHub']['classification'], 'CORPORATE_OWNERSHIP_ONLY')
+        self.assertEqual(by_child['GitHub']['review_status'], 'OPEN_REVIEW')
+
+    def test_parent_edge_audit_counts_and_grok_boundary(self):
+        """固定当前审计口径，避免 ownership 证据静默升级为 hierarchy。"""
+        import json
+        from collections import Counter
+        repo = Path(__file__).resolve().parent.parent
+        manifest = json.loads(
+            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
+        counts = Counter(e['classification'] for e in manifest['edges'])
+        self.assertEqual(counts, Counter({
+            'AMBIGUOUS': 58,
+            'CORPORATE_OWNERSHIP_ONLY': 41,
+            'DEVELOPER_PROVIDER_ONLY': 8,
+            'BRAND_HIERARCHY_CONFIRMED': 8,
+        }))
+        grok = next(e for e in manifest['edges'] if e['child'] == 'Grok')
+        self.assertEqual(grok['parent'], 'SpaceXAI')
+        self.assertEqual(grok['classification'], 'DEVELOPER_PROVIDER_ONLY')
+        self.assertEqual(grok['review_status'], 'OPEN_REVIEW')
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
