@@ -137,3 +137,60 @@
 - `icons/Tool/Uber/` → `icons/Transport/Uber/`
 - `icons/Tool/Z-Library/` → `icons/Education/Z-Library/`
 - `icons/Tool/Zoom/` → `icons/Utilities/Zoom/`
+
+## 本轮增量：生态归属审计（2026-09-30）
+
+> 同一批 25 个迁移的路径映射（旧 → 新）。旧直链失效，下游按需同步。
+
+### icons/AI/ →
+
+- `icons/AI/Doubao/` → `icons/ByteDance/Doubao/`
+- `icons/AI/Grok/` → `icons/xAI/Grok/`
+
+### icons/CloudStorage/ →
+
+- `icons/CloudStorage/ChinaMobileDisk/` → `icons/ChinaMobile/ChinaMobileDisk/`
+
+### icons/Development/ →
+
+- `icons/Development/GitHub/` → `icons/Microsoft/GitHub/`
+
+### icons/Game/ →
+
+- `icons/Game/PlayStation/` → `icons/SONY/PlayStation/`
+
+### icons/Hardware/ →
+
+- `icons/Hardware/SONY/` → `icons/SONY/SONY/`
+
+### icons/Media/ →
+
+- `icons/Media/Crunchyroll/` → `icons/SONY/Crunchyroll/`
+- `icons/Media/DisneyPlus/` → `icons/Disney/DisneyPlus/`
+- `icons/Media/ESPN/` → `icons/Disney/ESPN/`
+- `icons/Media/HBOMax/` → `icons/WarnerBrosDiscovery/HBOMax/`
+- `icons/Media/Hulu/` → `icons/Disney/Hulu/`
+- `icons/Media/Migu/` → `icons/ChinaMobile/Migu/`
+- `icons/Media/NBC/` → `icons/NBCUniversal/NBC/`
+- `icons/Media/NowE/` → `icons/PCCW/NowE/`
+- `icons/Media/PeacockTV/` → `icons/NBCUniversal/PeacockTV/`
+- `icons/Media/Podcasts/` → `icons/Apple/Podcasts/`
+- `icons/Media/Viu/` → `icons/PCCW/Viu/`
+- `icons/Media/Youku/` → `icons/Alibaba/Youku/`
+- `icons/Media/discoveryPlus/` → `icons/WarnerBrosDiscovery/discoveryPlus/`
+- `icons/Media/iQIYI/` → `icons/Baidu/iQIYI/`
+
+### icons/Music/ →
+
+- `icons/Music/mora/` → `icons/SONY/mora/`
+
+### icons/Social/ →
+
+- `icons/Social/LinkedIn/` → `icons/Microsoft/LinkedIn/`
+- `icons/Social/Pipixia/` → `icons/ByteDance/Pipixia/`
+- `icons/Social/X/` → `icons/xAI/X/`
+
+### icons/Telecom/ →
+
+- `icons/Telecom/ChinaMobile/` → `icons/ChinaMobile/ChinaMobile/`
+

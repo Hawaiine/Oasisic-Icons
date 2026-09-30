@@ -39,3 +39,17 @@
 | Airport: Transport → System | 通用机场规则组语义，非具体机场品牌 |
 | Adobe: Development → Utilities | 创意软件套件，非开发者工具 |
 | Health: reserved → active | Keep 已存在，reserved 与 SSOT 矛盾 |
+
+## 本轮增量：生态归属审计新增生态（2026-09-30）
+
+> 依据「parent_brand ≥2 children → 必须一级生态分类」硬规则，本轮由全库归属审计新发现并建立 7 个生态分类（35 → 42 分类，10 → 17 生态）。
+
+| 新分类 | 显示名 | 依据（≥2 confirmed children） |
+|---|---|---|
+| `Disney` | Disney | DisneyPlus, ESPN, Hulu |
+| `NBCUniversal` | NBCUniversal | NBC, PeacockTV |
+| `WarnerBrosDiscovery` | Warner Bros. Discovery | HBOMax, discoveryPlus |
+| `ChinaMobile` | ChinaMobile | ChinaMobileDisk, Migu |
+| `SONY` | Sony | Crunchyroll, PlayStation, mora |
+| `PCCW` | PCCW | NowE, Viu |
+| `xAI` | xAI | Grok, X |

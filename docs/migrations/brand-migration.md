@@ -103,3 +103,34 @@
 | Zoom | Tool | Utilities | `icons/Tool/Zoom/Zoom.png` | `icons/Utilities/Zoom/Zoom.png` | 视频会议工具 |
 
 共 **96** 个品牌迁移（另有未列出的品牌分类未变）。
+## 本轮增量：全库生态归属审计（2026-09-30）
+
+> 25 个 Canonical 迁移，全部为 pure move（git R100，SHA-256 不变）。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| ChinaMobile | Telecom | ChinaMobile | `icons/Telecom/ChinaMobile/ChinaMobile.png` | `icons/ChinaMobile/ChinaMobile/ChinaMobile.png` | 中国移动生态根品牌（ChinaMobileDisk + 咪咕 ≥2） |
+| ChinaMobileDisk | CloudStorage | ChinaMobile | `icons/CloudStorage/ChinaMobileDisk/ChinaMobileDisk.png` | `icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png` | 中国移动自有云盘；ChinaMobile 生态 |
+| Crunchyroll | Media | SONY | `icons/Media/Crunchyroll/Crunchyroll.png` | `icons/SONY/Crunchyroll/Crunchyroll.png` | Sony Pictures / Aniplex 全资；SONY 生态 |
+| discoveryPlus | Media | WarnerBrosDiscovery | `icons/Media/discoveryPlus/discoveryPlus.png` | `icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png` | WBD「Discovery Global」业务；新建 WarnerBrosDiscovery 生态 |
+| DisneyPlus | Media | Disney | `icons/Media/DisneyPlus/DisneyPlus.png` | `icons/Disney/DisneyPlus/DisneyPlus.png` | Disney 全资流媒体；新建 Disney 生态（3 children） |
+| Doubao | AI | ByteDance | `icons/AI/Doubao/Doubao.png` | `icons/ByteDance/Doubao/Doubao.png` | 字节跳动 AI 助手；ByteDance 生态 |
+| ESPN | Media | Disney | `icons/Media/ESPN/ESPN.png` | `icons/Disney/ESPN/ESPN.png` | Disney 持 80%（Hearst 20%）；新建 Disney 生态 |
+| GitHub | Development | Microsoft | `icons/Development/GitHub/GitHub.png` | `icons/Microsoft/GitHub/GitHub.png` | Microsoft 全资子公司（2018 收购）；child ≥2 归入 Microsoft 生态 |
+| Grok | AI | xAI | `icons/AI/Grok/Grok.png` | `icons/xAI/Grok/Grok.png` | xAI 开发（xAI 2026-02 起为 SpaceX 全资子公司）；新建 xAI 生态 |
+| HBOMax | Media | WarnerBrosDiscovery | `icons/Media/HBOMax/HBOMax.png` | `icons/WarnerBrosDiscovery/HBOMax/HBOMax.png` | Warner Bros. Discovery 流媒体；新建 WarnerBrosDiscovery 生态（2 children） |
+| Hulu | Media | Disney | `icons/Media/Hulu/Hulu.png` | `icons/Disney/Hulu/Hulu.png` | Disney 100% 持股（2025 收购 Comcast 剩余股份）；新建 Disney 生态 |
+| iQIYI | Media | Baidu | `icons/Media/iQIYI/iQIYI.png` | `icons/Baidu/iQIYI/iQIYI.png` | 百度控股（多数投票权）；Baidu 生态 |
+| LinkedIn | Social | Microsoft | `icons/Social/LinkedIn/LinkedIn.png` | `icons/Microsoft/LinkedIn/LinkedIn.png` | Microsoft 全资子公司（2016 收购）；child ≥2 归入 Microsoft 生态 |
+| Migu | Media | ChinaMobile | `icons/Media/Migu/Migu.png` | `icons/ChinaMobile/Migu/Migu.png` | 咪咕文化科技为中国移动全资子公司；ChinaMobile 生态 |
+| mora | Music | SONY | `icons/Music/mora/mora.png` | `icons/SONY/mora/mora.png` | Sony Music Solutions（索尼音乐娱乐日本）；SONY 生态 |
+| NBC | Media | NBCUniversal | `icons/Media/NBC/NBC.png` | `icons/NBCUniversal/NBC/NBC.png` | NBCUniversal 旗下电视网；新建 NBCUniversal 生态（2 children） |
+| NowE | Media | PCCW | `icons/Media/NowE/NowE.png` | `icons/PCCW/NowE/NowE.png` | PCCW / HKT 旗下；新建 PCCW 生态 |
+| PeacockTV | Media | NBCUniversal | `icons/Media/PeacockTV/PeacockTV.png` | `icons/NBCUniversal/PeacockTV/PeacockTV.png` | NBCUniversal（Comcast）流媒体；新建 NBCUniversal 生态 |
+| Pipixia | Social | ByteDance | `icons/Social/Pipixia/Pipixia.png` | `icons/ByteDance/Pipixia/Pipixia.png` | 字节跳动旗下短视频社区；ByteDance 生态 |
+| PlayStation | Game | SONY | `icons/Game/PlayStation/PlayStation.png` | `icons/SONY/PlayStation/PlayStation.png` | Sony Interactive Entertainment（索尼全资）；SONY 生态 |
+| Podcasts | Media | Apple | `icons/Media/Podcasts/Podcasts.png` | `icons/Apple/Podcasts/Podcasts.png` | Apple Podcasts（Apple 自有应用）；Apple 生态 |
+| SONY | Hardware | SONY | `icons/Hardware/SONY/SONY.png` | `icons/SONY/SONY/SONY.png` | 索尼生态根品牌（PlayStation + Crunchyroll + mora ≥2）；id 保持 `SONY`，分类显示名规范为 Sony |
+| Viu | Media | PCCW | `icons/Media/Viu/Viu.png` | `icons/PCCW/Viu/Viu.png` | PCCW Media Group 旗下 OTT；新建 PCCW 生态（2 children） |
+| X | Social | xAI | `icons/Social/X/X.png` | `icons/xAI/X/X.png` | xAI 子公司（2025-03 xAI 收购 X Corp）；新建 xAI 生态（2 children） |
+| Youku | Media | Alibaba | `icons/Media/Youku/Youku.png` | `icons/Alibaba/Youku/Youku.png` | 阿里巴巴集团在线视频平台；Alibaba 生态 |

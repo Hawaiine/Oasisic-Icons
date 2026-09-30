@@ -80,7 +80,8 @@
 | 2026-09-19 | 确立本仓库为独立最高上游；删除 `config/icon-mapping.json`、`scripts/sync-upstream.sh`、`.github/workflows/daily-sync.yml` | **停止自动同步** |
 | 2026-09-19 | 圆角半径从 r=99 更新为 r=115（Apple squircle ≈22.4%），对齐 iOS 图标视觉曲线 | 规范细化 |
 | 2026-09-19 | 规范文档全面升级：新增「强制输出规范」「像素保真红线」「禁止清单」「自检流程」 | 规范文档化 |
-| 2026-09-19 | README「自动化同步说明」改为「发布与使用」；新增 `docs/references/upstream-history.md` 和 `docs/references/brand-glossary.md` | 文档独立化 |
+| 2026-09-19 | README「自动化同步说明」改为「发布与使用」；新增 `docs/references/upstream-history.md` 和 `docs/references/brand-glossary.md` | 文档独立化 || 2026-09-30 | 全库 289 品牌归属审计：新建 7 个生态分类（Disney / NBCUniversal / WarnerBrosDiscovery / ChinaMobile / SONY / PCCW / xAI），25 个 Canonical 迁移（R100），新建 5 个生态根图标，补全 58 项 parent_brand 关系，新增 `docs/references/brand-ownership-audit.md` | 归属完整性 |
+
 
 ---
 
@@ -119,10 +120,11 @@
 - `docs/references/icon-quality-notes.md` — 画质规范、规范化结果、遗留项说明
 - `docs/references/icon-research.md` — 品牌分类体系、策略组命名、常见图标来源（中英对照）
 - `docs/references/brand-glossary.md` — 品牌文件夹名 ↔ 中文显示名对照表
+- `docs/references/brand-ownership-audit.md` — 全库品牌归属审计（母公司/合资/退役/特殊实体 + 证据）
 - `scripts/normalize-icons.py` — 规范化脚本（512×512 / RGBA / r=115）
 - `scripts/optimize-icons.py` — 无损重压缩脚本（不降色型）
 
 ---
 
-**最后更新**：2026-09-19  
+**最后更新**：2026-09-30  
 **维护者**：Hawaiine / Oasisic-Icons Contributors
