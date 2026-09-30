@@ -50,18 +50,23 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 PARENT_README_MARKER = '<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->'
 
 
-def _ancestor_set(bid, ssot, depth=100):
-    """返回 bid 的全部祖先品牌集合（不含自身）。链断在：无 parent / parent 不在 SSOT。"""
+def _ancestor_set(bid, ssot):
+    """返回 bid 的全部祖先品牌集合（不含自身）。
+
+    终止条件（无 arbitrary depth 上限）：
+    - 环：cur 已在 seen → break（循环检测负责终止）；
+    - 链断：cur 不在 SSOT（白名单母公司）→ break。
+    深链（A1→…→A101→Root）由 seen 去重自然收敛，不设 magic number。
+    """
     seen = set()
     cur = ssot.get(bid, {}).get('parent_brand')
-    while cur and depth > 0:
+    while cur:
         if cur in seen:
             break
         seen.add(cur)
         if cur not in ssot:
             break
         cur = ssot.get(cur, {}).get('parent_brand')
-        depth -= 1
     return seen
 
 
@@ -84,16 +89,17 @@ def _descendants(root, ssot):
             if bid != root and is_canonical_brand(e) and root in _ancestor_set(bid, ssot)}
 
 
-def _root_of(bid, ssot, depth=100):
+def _root_of(bid, ssot):
     """沿 parent_brand 链向上，返回 graph root（关系图最高节点）。
 
-    链断在：无 parent / parent 不在 SSOT（白名单母公司）/ 环。
+    无 arbitrary depth 上限：终止靠 seen 环检测 + 链断（无 parent / parent 不
+    在 SSOT 白名单母公司）。深链（A1→…→A101→Root）自然收敛，不设 magic number。
     注意：graph root ≠ ecosystem root（见 resolve_ecosystem_root）。
     """
     seen = {bid}
     last = bid
     cur = ssot.get(bid, {}).get('parent_brand')
-    while cur and depth > 0:
+    while cur:
         if cur in seen:
             break
         seen.add(cur)
@@ -101,7 +107,6 @@ def _root_of(bid, ssot, depth=100):
         if cur not in ssot:
             break
         cur = ssot.get(cur, {}).get('parent_brand')
-        depth -= 1
     return last
 
 
@@ -209,12 +214,15 @@ def expected_parent_readme(bid, ssot):
     return '\n'.join(lines)
 
 
-def _ancestor_set_ordered(bid, ssot, depth=100):
-    """返回按 直接父 → … → graph root 顺序排列的祖先链（不含自身）。"""
+def _ancestor_set_ordered(bid, ssot):
+    """返回按 直接父 → … → graph root 顺序排列的祖先链（不含自身）。
+
+    无 arbitrary depth 上限：终止靠 seen 环检测 + 链断，深链自然收敛。
+    """
     out = []
     seen = {bid}
     cur = ssot.get(bid, {}).get('parent_brand')
-    while cur and depth > 0:
+    while cur:
         if cur in seen:
             break
         out.append(cur)
@@ -222,7 +230,6 @@ def _ancestor_set_ordered(bid, ssot, depth=100):
         if cur not in ssot:
             break
         cur = ssot.get(cur, {}).get('parent_brand')
-        depth -= 1
     return out
 
 
