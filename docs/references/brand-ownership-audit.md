@@ -19,6 +19,19 @@
 
 **五类状态**（每个品牌必须落入其一，不允许「未审查」）：`CONFIRMED_PARENT` / `NO_PARENT` / `AMBIGUOUS_JV` / `RETIRED` / `SPECIAL_ENTITY`。[§91]
 
+### 关系模型 / Relationship Model（2026-09 定稿）
+
+- **`parent_brand` = 直接父品牌（immediate parent）**，不表示公司股权结构、不表示历史所有者。
+  例：`Instagram → Facebook`、`YouTubeMusic → YouTube`、`iCloudPrivateRelay → iCloud`。
+- **生态根（ecosystem root）= 关系图顶端品牌**，由 `entity_type: ecosystem` 标记，
+  **不单独存字段**——消费方沿 `parent_brand` 链向上动态派生（`brand_relationships.resolve_ecosystem_root`）。
+- **`category` ≠ `parent_brand` ≠ 生态根**：category 决定图标一级目录；parent_brand 决定直接归属；
+  生态根由链动态解析（`Mijia`: category=Home, parent_brand=Xiaomi, 生态根=Xiaomi）。
+- **生态阈值**：顶层 root 的 **canonical descendants（直系子+孙+…，不含 root 本身）≥ 2** 才建一级生态分类；
+  用 descendants 而非 direct children，避免中间层（Facebook 有 4 直系子）误触发分类爆炸。
+- **ownership ≠ brand architecture**：同属一家公司不自动新增 parent_brand；一旦关系成立且 descendants ≥ 2，
+  生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
+
 ## 2. 来源 / Sources
 
 - 官方站点与官方公告：Disney / NBCUniversal / WBD / Sony / PCCW / xAI / Microsoft / Apple / Alibaba / Baidu / ByteDance / China Mobile / China Telecom / 中华电信 / 台灣大哥大 / 遠傳 / TVB / 有线宽频 / KKCompany / DMM / 第一興商 / Red Bull / Rakuten / 楽天 / NTT docomo / Kadokawa / U-NEXT / Quora / Kakao / Snap / Valve / Kuaishou / SiriusXM / Block / Paramount / Fox / MetaBrainz / News Corp / Xperi / JioStar / LY Corporation 等；
@@ -697,7 +710,7 @@
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
 ## 9. mihomo-rules 对照 / mihomo-rules Compatibility Matrix
 
-> 对照源：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT`（33 对，2026-09-30 只读审计，未修改 mihomo-rules）。
+> 对照源：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT`（**34 对**，2026-09-30 只读审计，未修改 mihomo-rules；旧文写 33 对为笔误）。
 > 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义后，与 mihomo 的直接父语义天然对齐。
 
 | 品牌 | Oasisic parent_brand | mihomo SUB_PARENT | Oasisic 生态根（派生） | 结论 |
@@ -706,7 +719,7 @@
 | AppStore | Apple | Apple | Apple | MATCH |
 | AppleFitnessPlus | Apple | Apple | Apple | MATCH |
 | AppleMusic | Apple | Apple | Apple | MATCH |
-| AppleNews | — | Apple | — | NOT_CONSUMED：mihomo 有此映射，Oasisic 暂无此 canonical 品牌（非错误） |
+| AppleNews | —（现为 AppleNewsPlus） | Apple | — | NOT_CONSUMED（ID 改名）：Oasisic canonical=AppleNewsPlus（Apple News+）；经 alias 对照后直接父双方均为 Apple → 语义 MATCH |
 | AppleTV | Apple | Apple | Apple | MATCH |
 | Azure | Microsoft | Microsoft | Microsoft | MATCH |
 | Bing | Microsoft | Microsoft | Microsoft | MATCH |
@@ -720,8 +733,8 @@
 | GooglePhotos | Google | Google | Google | MATCH |
 | GooglePlay | Google | Google | Google | MATCH |
 | GoogleVoice | Google | Google | Google | MATCH |
-| Grok | xAI | X | xAI | 已知差异：mihomo 直接父=X（平台），Oasisic 直接父=xAI（生态根，X 为其品牌之一）；祖先链 xAI 一致，非错误 |
-| Hotstar | —（现为 JioHotstar） | Disney | — | ID 差异：Oasisic canonical ID=JioHotstar（2025 合并后现名，JioStar 旗下）；mihomo 的 Hotstar→Disney 为 stale 映射（JioHotstar 不属 Disney 生态）。建议 mihomo 侧后续更新 |
+| Grok | xAI | X | xAI | AMBIGUOUS（需 CURRENT OWNERSHIP REVIEW）：mihomo 直接父=X（平台品牌），Oasisic=xAI 生态根；祖先链一致，本轮**不自动修改 mihomo** |
+| Hotstar | —（现为 JioHotstar） | Disney | — | STALE（mihomo 侧）+ NOT_CONSUMED：Oasisic canonical=JioHotstar（2025 Hotstar×JioCinema 合并后现名，属 JioStar 合资，AMBIGUOUS_JV），**不属 Disney 生态**；建议 mihomo 后续更新 |
 | Hulu | Disney | Disney | Disney | MATCH |
 | Instagram | Facebook | Facebook | Meta | MATCH |
 | Messenger | Facebook | Facebook | Meta | MATCH |
@@ -737,5 +750,7 @@
 | iCloud | Apple | Apple | Apple | MATCH |
 | iCloudPrivateRelay | iCloud | iCloud | Apple | MATCH |
 
-**结论**：33 对中 31 对完全 MATCH；2 对为 ID 层面差异（`Grok` 的直接父 X vs xAI 属生态根选择差异，祖先链一致；`Hotstar→Disney` 为 mihomo stale，现名 JioHotstar 不属 Disney）；1 对 NOT_CONSUMED（AppleNews 未在 Oasisic）。
+**结论**：34 对中 **32 对 MATCH / 语义 MATCH**（含 1 对 alias 改名后的 MATCH）；1 对 `AMBIGUOUS`（`Grok`：mihomo 直接父 X vs Oasisic xAI，祖先链一致，需人工 CURRENT OWNERSHIP REVIEW，本轮不改 mihomo）；1 对 `STALE`（`Hotstar→Disney`，现名 JioHotstar 属 JioStar 合资、不属 Disney）。
+
+**状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另含祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
 **长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。
