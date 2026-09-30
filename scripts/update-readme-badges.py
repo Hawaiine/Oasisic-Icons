@@ -46,6 +46,16 @@ def per_category():
     return cats
 
 
+def display_to_id():
+    """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。"""
+    import json
+    try:
+        cs = json.loads((REPO / 'config/categories.json').read_text(encoding='utf-8'))['categories']
+    except Exception:
+        return {}
+    return {c['display_name']: c['id'] for c in cs}
+
+
 def update_readme(n_png, n_brands, n_cats, cats):
     readme = REPO / "README.md"
     s = readme.read_text()
@@ -100,9 +110,11 @@ def update_readme(n_png, n_brands, n_cats, cats):
     # 分类表逐行 —— 本次新增覆盖：| <emoji> Name | 说明 | 品牌数 | 图标数 |
     # 行首允许 emoji / 符号前缀；分类名取纯 ASCII 标识（与目录名一致）；
     # 说明列用 [^|]* 惰性匹配，避免贪婪吞并后续列。
+    d2i = display_to_id()
+
     def fix_row(m):
         prefix, name, gap, desc, sep = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)
-        actual = cats.get(name)
+        actual = cats.get(d2i.get(name, name))
         if actual is None:
             return m.group(0)          # 表里有、目录里没有 → 保持原样，不臆改
         b_real, i_real = actual
@@ -112,8 +124,9 @@ def update_readme(n_png, n_brands, n_cats, cats):
 
     # 行内空白一律 [ \t]（禁用 \s）：\s*$ 会把表格后的换行/空行一并吞进匹配，
     # 重建后空行丢失（已在 2026-09-29 测试中复现）。
+    # 分类名允许内部空格（Cloud Storage / Warner Bros. Discovery / Sony 等）
     s, n5 = re.subn(
-        r'^(\|[ \t]*(?:[^\w\s|]+[ \t]*)?)([A-Za-z][\w.]*)([ \t]*\|[ \t]*)([^|]*?)([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*$',
+        r'^(\|[ \t]*(?:[^\w\s|]+[ \t]*)?)([A-Za-z][\w.]*(?:[ \t]+[A-Za-z][\w.]*)*)([ \t]*\|[ \t]*)([^|]*?)([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*$',
         fix_row,
         s,
         flags=re.M,

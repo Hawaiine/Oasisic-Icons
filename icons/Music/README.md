@@ -1,6 +1,6 @@
 # 🎵 Music / 音乐服务
 
-> 共 **11** 个图标，**11** 个品牌
+> 共 **10** 个图标，**10** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -14,4 +14,3 @@
 | `SoundCloud` | `SoundCloud.png` |
 | `Spotify` | `Spotify.png` |
 | `TIDAL` | `TIDAL.png` |
-| `mora` | `mora.png` |

@@ -1,6 +1,6 @@
 # 🏢 Alibaba / 阿里巴巴生态
 
-> 共 **7** 个图标，**7** 个品牌
+> 共 **8** 个图标，**8** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -11,3 +11,4 @@
 | `Quark` | `Quark.png` |
 | `Qwen` | `Qwen.png` |
 | `Taobao` | `Taobao.png` |
+| `Youku` | `Youku.png` |

@@ -17,37 +17,42 @@
     {
       "id": "Doubao",
       "display_name": "豆包",
-      "category": "AI",
+      "category": "ByteDance",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Doubao/Doubao.png"
+      "icon_path": "icons/ByteDance/Doubao/Doubao.png",
+      "parent_brand": "ByteDance"
     },
     {
       "id": "GLM",
       "display_name": "GLM",
       "category": "AI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/GLM/GLM.png"
+      "icon_path": "icons/AI/GLM/GLM.png",
+      "parent_brand": "ZhipuAI"
     },
     {
       "id": "Grok",
       "display_name": "Grok",
-      "category": "AI",
+      "category": "xAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Grok/Grok.png"
+      "icon_path": "icons/xAI/Grok/Grok.png",
+      "parent_brand": "xAI"
     },
     {
       "id": "Kimi",
       "display_name": "Kimi",
       "category": "AI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Kimi/Kimi.png"
+      "icon_path": "icons/AI/Kimi/Kimi.png",
+      "parent_brand": "MoonshotAI"
     },
     {
       "id": "Manus",
       "display_name": "Manus",
       "category": "AI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Manus/Manus.png"
+      "icon_path": "icons/AI/Manus/Manus.png",
+      "parent_brand": "ButterflyEffect"
     },
     {
       "id": "MiniMax",
@@ -89,7 +94,8 @@
       "display_name": "Poe",
       "category": "AI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Poe/Poe.png"
+      "icon_path": "icons/AI/Poe/Poe.png",
+      "parent_brand": "Quora"
     },
     {
       "id": "AliCloud",
@@ -333,7 +339,8 @@
       "display_name": "189",
       "category": "CloudStorage",
       "entity_type": "product_brand",
-      "icon_path": "icons/CloudStorage/189/189.png"
+      "icon_path": "icons/CloudStorage/189/189.png",
+      "parent_brand": "ChinaTelecom"
     },
     {
       "id": "BaiduNetdisk",
@@ -346,9 +353,10 @@
     {
       "id": "ChinaMobileDisk",
       "display_name": "中国移动云盘",
-      "category": "CloudStorage",
+      "category": "ChinaMobile",
       "entity_type": "product_brand",
-      "icon_path": "icons/CloudStorage/ChinaMobileDisk/ChinaMobileDisk.png"
+      "icon_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "parent_brand": "ChinaMobile"
     },
     {
       "id": "Dropbox",
@@ -392,7 +400,8 @@
       "display_name": "KakaoTalk",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/KakaoTalk/KakaoTalk.png"
+      "icon_path": "icons/Communication/KakaoTalk/KakaoTalk.png",
+      "parent_brand": "Kakao"
     },
     {
       "id": "LINE",
@@ -437,7 +446,8 @@
       "display_name": "Snapchat",
       "category": "Communication",
       "entity_type": "product_brand",
-      "icon_path": "icons/Communication/Snapchat/Snapchat.png"
+      "icon_path": "icons/Communication/Snapchat/Snapchat.png",
+      "parent_brand": "Snap"
     },
     {
       "id": "Telegram",
@@ -625,9 +635,10 @@
     {
       "id": "GitHub",
       "display_name": "GitHub",
-      "category": "Development",
+      "category": "Microsoft",
       "entity_type": "product_brand",
-      "icon_path": "icons/Development/GitHub/GitHub.png"
+      "icon_path": "icons/Microsoft/GitHub/GitHub.png",
+      "parent_brand": "Microsoft"
     },
     {
       "id": "Duolingo",
@@ -660,16 +671,18 @@
     {
       "id": "PlayStation",
       "display_name": "PlayStation",
-      "category": "Game",
+      "category": "SONY",
       "entity_type": "product_brand",
-      "icon_path": "icons/Game/PlayStation/PlayStation.png"
+      "icon_path": "icons/SONY/PlayStation/PlayStation.png",
+      "parent_brand": "SONY"
     },
     {
       "id": "Steam",
       "display_name": "Steam",
       "category": "Game",
       "entity_type": "product_brand",
-      "icon_path": "icons/Game/Steam/Steam.png"
+      "icon_path": "icons/Game/Steam/Steam.png",
+      "parent_brand": "Valve"
     },
     {
       "id": "Gmail",
@@ -804,9 +817,9 @@
     {
       "id": "SONY",
       "display_name": "索尼",
-      "category": "Hardware",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Hardware/SONY/SONY.png"
+      "category": "SONY",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/SONY/SONY/SONY.png"
     },
     {
       "id": "Samsung",
@@ -848,7 +861,8 @@
       "display_name": "米家",
       "category": "Home",
       "entity_type": "product_brand",
-      "icon_path": "icons/Home/Mijia/Mijia.png"
+      "icon_path": "icons/Home/Mijia/Mijia.png",
+      "parent_brand": "Xiaomi"
     },
     {
       "id": "ABEMA",
@@ -895,9 +909,10 @@
     {
       "id": "Crunchyroll",
       "display_name": "Crunchyroll",
-      "category": "Media",
+      "category": "SONY",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Crunchyroll/Crunchyroll.png"
+      "icon_path": "icons/SONY/Crunchyroll/Crunchyroll.png",
+      "parent_brand": "SONY"
     },
     {
       "id": "DAZN",
@@ -911,21 +926,24 @@
       "display_name": "DMM TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/DMMTV/DMMTV.png"
+      "icon_path": "icons/Media/DMMTV/DMMTV.png",
+      "parent_brand": "DMM"
     },
     {
       "id": "DisneyPlus",
       "display_name": "Disney+",
-      "category": "Media",
+      "category": "Disney",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/DisneyPlus/DisneyPlus.png"
+      "icon_path": "icons/Disney/DisneyPlus/DisneyPlus.png",
+      "parent_brand": "Disney"
     },
     {
       "id": "ESPN",
       "display_name": "ESPN",
-      "category": "Media",
+      "category": "Disney",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/ESPN/ESPN.png"
+      "icon_path": "icons/Disney/ESPN/ESPN.png",
+      "parent_brand": "Disney"
     },
     {
       "id": "Emby",
@@ -939,7 +957,8 @@
       "display_name": "F1 TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/F1TV/F1TV.png"
+      "icon_path": "icons/Media/F1TV/F1TV.png",
+      "parent_brand": "LibertyMedia"
     },
     {
       "id": "Fan",
@@ -965,23 +984,26 @@
     {
       "id": "HBOMax",
       "display_name": "HBO Max",
-      "category": "Media",
+      "category": "WarnerBrosDiscovery",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/HBOMax/HBOMax.png"
+      "icon_path": "icons/WarnerBrosDiscovery/HBOMax/HBOMax.png",
+      "parent_brand": "WarnerBrosDiscovery"
     },
     {
       "id": "HOYTV",
       "display_name": "HOY TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/HOYTV/HOYTV.png"
+      "icon_path": "icons/Media/HOYTV/HOYTV.png",
+      "parent_brand": "iCABLE"
     },
     {
       "id": "HamiVideo",
       "display_name": "Hami Video",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/HamiVideo/HamiVideo.png"
+      "icon_path": "icons/Media/HamiVideo/HamiVideo.png",
+      "parent_brand": "ChunghwaTelecom"
     },
     {
       "id": "Hanxiaoquan",
@@ -993,9 +1015,10 @@
     {
       "id": "Hulu",
       "display_name": "Hulu",
-      "category": "Media",
+      "category": "Disney",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Hulu/Hulu.png"
+      "icon_path": "icons/Disney/Hulu/Hulu.png",
+      "parent_brand": "Disney"
     },
     {
       "id": "Infuse",
@@ -1030,7 +1053,8 @@
       "display_name": "Karaoke@DAM",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/KaraokeDAM/KaraokeDAM.png"
+      "icon_path": "icons/Media/KaraokeDAM/KaraokeDAM.png",
+      "parent_brand": "Daiichikosho"
     },
     {
       "id": "LINETV",
@@ -1058,21 +1082,24 @@
       "display_name": "芒果TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/MangoTV/MangoTV.png"
+      "icon_path": "icons/Media/MangoTV/MangoTV.png",
+      "parent_brand": "MangoSuperMedia"
     },
     {
       "id": "Migu",
       "display_name": "咪咕",
-      "category": "Media",
+      "category": "ChinaMobile",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Migu/Migu.png"
+      "icon_path": "icons/ChinaMobile/Migu/Migu.png",
+      "parent_brand": "ChinaMobile"
     },
     {
       "id": "MyVideo",
       "display_name": "MyVideo",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/MyVideo/MyVideo.png"
+      "icon_path": "icons/Media/MyVideo/MyVideo.png",
+      "parent_brand": "TaiwanMobile"
     },
     {
       "id": "NBA",
@@ -1084,9 +1111,10 @@
     {
       "id": "NBC",
       "display_name": "NBC",
-      "category": "Media",
+      "category": "NBCUniversal",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/NBC/NBC.png"
+      "icon_path": "icons/NBCUniversal/NBC/NBC.png",
+      "parent_brand": "NBCUniversal"
     },
     {
       "id": "NHK",
@@ -1114,28 +1142,32 @@
       "display_name": "Niconico",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Niconico/Niconico.png"
+      "icon_path": "icons/Media/Niconico/Niconico.png",
+      "parent_brand": "Kadokawa"
     },
     {
       "id": "NowE",
       "display_name": "Now E",
-      "category": "Media",
+      "category": "PCCW",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/NowE/NowE.png"
+      "icon_path": "icons/PCCW/NowE/NowE.png",
+      "parent_brand": "PCCW"
     },
     {
       "id": "ParamountPlus",
       "display_name": "Paramount+",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/ParamountPlus/ParamountPlus.png"
+      "icon_path": "icons/Media/ParamountPlus/ParamountPlus.png",
+      "parent_brand": "Paramount"
     },
     {
       "id": "PeacockTV",
       "display_name": "Peacock TV",
-      "category": "Media",
+      "category": "NBCUniversal",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/PeacockTV/PeacockTV.png"
+      "icon_path": "icons/NBCUniversal/PeacockTV/PeacockTV.png",
+      "parent_brand": "NBCUniversal"
     },
     {
       "id": "Plex",
@@ -1147,9 +1179,10 @@
     {
       "id": "Podcasts",
       "display_name": "Podcasts",
-      "category": "Media",
+      "category": "Apple",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Podcasts/Podcasts.png"
+      "icon_path": "icons/Apple/Podcasts/Podcasts.png",
+      "parent_brand": "Apple"
     },
     {
       "id": "Radiko",
@@ -1163,7 +1196,8 @@
       "display_name": "Rakuten TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/RakutenTV/RakutenTV.png"
+      "icon_path": "icons/Media/RakutenTV/RakutenTV.png",
+      "parent_brand": "Rakuten"
     },
     {
       "id": "ReadJapan",
@@ -1177,7 +1211,8 @@
       "display_name": "Red Bull TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/RedBullTV/RedBullTV.png"
+      "icon_path": "icons/Media/RedBullTV/RedBullTV.png",
+      "parent_brand": "RedBull"
     },
     {
       "id": "SOOP",
@@ -1198,7 +1233,8 @@
       "display_name": "Sling TV",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/SlingTV/SlingTV.png"
+      "icon_path": "icons/Media/SlingTV/SlingTV.png",
+      "parent_brand": "EchoStar"
     },
     {
       "id": "StarPlus",
@@ -1219,7 +1255,8 @@
       "display_name": "TMDB",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/TMDB/TMDB.png"
+      "icon_path": "icons/Media/TMDB/TMDB.png",
+      "parent_brand": "Xperi"
     },
     {
       "id": "TVB",
@@ -1240,21 +1277,24 @@
       "display_name": "Tubi",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Tubi/Tubi.png"
+      "icon_path": "icons/Media/Tubi/Tubi.png",
+      "parent_brand": "Fox"
     },
     {
       "id": "UNEXT",
       "display_name": "U-NEXT",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/UNEXT/UNEXT.png"
+      "icon_path": "icons/Media/UNEXT/UNEXT.png",
+      "parent_brand": "UNEXTHoldings"
     },
     {
       "id": "VideoMarket",
       "display_name": "Video Market",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/VideoMarket/VideoMarket.png"
+      "icon_path": "icons/Media/VideoMarket/VideoMarket.png",
+      "parent_brand": "PLAY"
     },
     {
       "id": "Vimeo",
@@ -1266,9 +1306,10 @@
     {
       "id": "Viu",
       "display_name": "Viu",
-      "category": "Media",
+      "category": "PCCW",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Viu/Viu.png"
+      "icon_path": "icons/PCCW/Viu/Viu.png",
+      "parent_brand": "PCCW"
     },
     {
       "id": "WOWOW",
@@ -1287,9 +1328,10 @@
     {
       "id": "Youku",
       "display_name": "优酷",
-      "category": "Media",
+      "category": "Alibaba",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/Youku/Youku.png"
+      "icon_path": "icons/Alibaba/Youku/Youku.png",
+      "parent_brand": "Alibaba"
     },
     {
       "id": "bilibili",
@@ -1303,35 +1345,40 @@
       "display_name": "d Anime Store",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/dAnimeStore/dAnimeStore.png"
+      "icon_path": "icons/Media/dAnimeStore/dAnimeStore.png",
+      "parent_brand": "NTTDocomo"
     },
     {
       "id": "discoveryPlus",
       "display_name": "discovery+",
-      "category": "Media",
+      "category": "WarnerBrosDiscovery",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/discoveryPlus/discoveryPlus.png"
+      "icon_path": "icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png",
+      "parent_brand": "WarnerBrosDiscovery"
     },
     {
       "id": "friDayVideo",
       "display_name": "friDay影音",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/friDayVideo/friDayVideo.png"
+      "icon_path": "icons/Media/friDayVideo/friDayVideo.png",
+      "parent_brand": "FarEasTone"
     },
     {
       "id": "iQIYI",
       "display_name": "爱奇艺",
-      "category": "Media",
+      "category": "Baidu",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/iQIYI/iQIYI.png"
+      "icon_path": "icons/Baidu/iQIYI/iQIYI.png",
+      "parent_brand": "Baidu"
     },
     {
       "id": "myTVSUPER",
       "display_name": "myTV SUPER",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/myTVSUPER/myTVSUPER.png"
+      "icon_path": "icons/Media/myTVSUPER/myTVSUPER.png",
+      "parent_brand": "TVB"
     },
     {
       "id": "Azure",
@@ -1408,14 +1455,16 @@
       "display_name": "KKBOX",
       "category": "Music",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/KKBOX/KKBOX.png"
+      "icon_path": "icons/Music/KKBOX/KKBOX.png",
+      "parent_brand": "KKCompany"
     },
     {
       "id": "MusicBrainz",
       "display_name": "MusicBrainz",
       "category": "Music",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/MusicBrainz/MusicBrainz.png"
+      "icon_path": "icons/Music/MusicBrainz/MusicBrainz.png",
+      "parent_brand": "MetaBrainz"
     },
     {
       "id": "MusicJapan",
@@ -1444,7 +1493,8 @@
       "display_name": "Pandora",
       "category": "Music",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/Pandora/Pandora.png"
+      "icon_path": "icons/Music/Pandora/Pandora.png",
+      "parent_brand": "SiriusXM"
     },
     {
       "id": "Qobuz",
@@ -1472,21 +1522,24 @@
       "display_name": "TIDAL",
       "category": "Music",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/TIDAL/TIDAL.png"
+      "icon_path": "icons/Music/TIDAL/TIDAL.png",
+      "parent_brand": "Block"
     },
     {
       "id": "mora",
       "display_name": "mora",
-      "category": "Music",
+      "category": "SONY",
       "entity_type": "product_brand",
-      "icon_path": "icons/Music/mora/mora.png"
+      "icon_path": "icons/SONY/mora/mora.png",
+      "parent_brand": "SONY"
     },
     {
       "id": "WSJ",
       "display_name": "WSJ",
       "category": "News",
       "entity_type": "product_brand",
-      "icon_path": "icons/News/WSJ/WSJ.png"
+      "icon_path": "icons/News/WSJ/WSJ.png",
+      "parent_brand": "NewsCorp"
     },
     {
       "id": "Binance",
@@ -1636,14 +1689,16 @@
       "display_name": "快手",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Kwai/Kwai.png"
+      "icon_path": "icons/Social/Kwai/Kwai.png",
+      "parent_brand": "Kuaishou"
     },
     {
       "id": "LinkedIn",
       "display_name": "LinkedIn",
-      "category": "Social",
+      "category": "Microsoft",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/LinkedIn/LinkedIn.png"
+      "icon_path": "icons/Microsoft/LinkedIn/LinkedIn.png",
+      "parent_brand": "Microsoft"
     },
     {
       "id": "Meta",
@@ -1662,9 +1717,10 @@
     {
       "id": "Pipixia",
       "display_name": "皮皮虾",
-      "category": "Social",
+      "category": "ByteDance",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Pipixia/Pipixia.png"
+      "icon_path": "icons/ByteDance/Pipixia/Pipixia.png",
+      "parent_brand": "ByteDance"
     },
     {
       "id": "Reddit",
@@ -1702,14 +1758,16 @@
       "display_name": "微博",
       "category": "Social",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/Weibo/Weibo.png"
+      "icon_path": "icons/Social/Weibo/Weibo.png",
+      "parent_brand": "Sina"
     },
     {
       "id": "X",
       "display_name": "X",
-      "category": "Social",
+      "category": "xAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/X/X.png"
+      "icon_path": "icons/xAI/X/X.png",
+      "parent_brand": "xAI"
     },
     {
       "id": "Zhihu",
@@ -1882,9 +1940,9 @@
     {
       "id": "ChinaMobile",
       "display_name": "ChinaMobile",
-      "category": "Telecom",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Telecom/ChinaMobile/ChinaMobile.png"
+      "category": "ChinaMobile",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/ChinaMobile/ChinaMobile/ChinaMobile.png"
     },
     {
       "id": "ChinaTelecom",
@@ -2045,7 +2103,74 @@
       "category": "Utilities",
       "entity_type": "product_brand",
       "icon_path": "icons/Utilities/Zoom/Zoom.png"
+    },
+    {
+      "id": "Disney",
+      "display_name": "Disney",
+      "category": "Disney",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/Disney/Disney/Disney.png"
+    },
+    {
+      "id": "NBCUniversal",
+      "display_name": "NBCUniversal",
+      "category": "NBCUniversal",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/NBCUniversal/NBCUniversal/NBCUniversal.png"
+    },
+    {
+      "id": "WarnerBrosDiscovery",
+      "display_name": "Warner Bros. Discovery",
+      "category": "WarnerBrosDiscovery",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/WarnerBrosDiscovery/WarnerBrosDiscovery/WarnerBrosDiscovery.png"
+    },
+    {
+      "id": "PCCW",
+      "display_name": "PCCW",
+      "category": "PCCW",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/PCCW/PCCW/PCCW.png"
+    },
+    {
+      "id": "xAI",
+      "display_name": "xAI",
+      "category": "xAI",
+      "entity_type": "ecosystem",
+      "icon_path": "icons/xAI/xAI/xAI.png"
     }
   ],
-  "parent_brands_without_icon": []
+  "parent_brands_without_icon": [
+    "Block",
+    "ButterflyEffect",
+    "ChunghwaTelecom",
+    "DMM",
+    "Daiichikosho",
+    "EchoStar",
+    "FarEasTone",
+    "Fox",
+    "KKCompany",
+    "Kadokawa",
+    "Kakao",
+    "Kuaishou",
+    "LibertyMedia",
+    "MangoSuperMedia",
+    "MoonshotAI",
+    "NTTDocomo",
+    "NewsCorp",
+    "PLAY",
+    "Paramount",
+    "Quora",
+    "Rakuten",
+    "RedBull",
+    "Sina",
+    "SiriusXM",
+    "Snap",
+    "TaiwanMobile",
+    "UNEXTHoldings",
+    "Valve",
+    "Xperi",
+    "ZhipuAI",
+    "iCABLE"
+  ]
 }

@@ -1,7 +1,6 @@
 # 品牌术语表 / Brand Glossary
-
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **282** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **289** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -60,8 +59,8 @@
 | Bing | Bing |
 | Blacklist | Blacklist |
 | Bluesky | Bluesky |
-| ByteDance | 字节跳动 |
 | Bot | Bot |
+| ByteDance | 字节跳动 |
 | bilibili | bilibili |
 
 ## C
@@ -96,6 +95,7 @@
 | DingTalk | 钉钉 |
 | Direct | Direct |
 | Discord | Discord |
+| Disney | Disney |
 | DisneyPlus | Disney+ |
 | Docker | Docker |
 | Douban | 豆瓣 |
@@ -243,6 +243,7 @@
 |---------------------|--------------------------|
 | NBA | NBA |
 | NBC | NBC |
+| NBCUniversal | NBCUniversal |
 | NHK | NHK |
 | NetEase | 网易 |
 | NetEaseCloudMusic | 网易云音乐 |
@@ -274,6 +275,7 @@
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
+| PCCW | PCCW |
 | Pandora | Pandora |
 | ParamountPlus | Paramount+ |
 | PayPal | PayPal |
@@ -392,6 +394,7 @@
 | WOWOW | WOWOW |
 | WSJ | WSJ |
 | Wallpaper | Wallpaper |
+| WarnerBrosDiscovery | Warner Bros. Discovery |
 | WeChat | 微信 |
 | WeTV | WeTV |
 | Weibo | 微博 |
@@ -405,6 +408,7 @@
 | X | X |
 | Xbox | Xbox |
 | Xiaomi | 小米 |
+| xAI | xAI |
 
 ## Y
 
