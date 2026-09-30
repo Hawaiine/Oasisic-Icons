@@ -39,14 +39,30 @@
 
 ### 文件夹结构
 
-所有图标统一采用以下结构：
+所有图标统一采用以下结构（多层物理层级，2026-10-01 定稿）：
 
 ```
 icons/
 └── <分类>/
     └── <品牌名>/
-        └── <品牌名>.png          ← 默认图标（必须存在，无任何后缀）
+        └── <品牌名>.png                    ← 默认图标（必须存在，无任何后缀）
 ```
+
+**同类中间父品牌下的深层子品牌**物理嵌套在父品牌目录内：
+
+```
+icons/
+└── Meta/
+    └── Facebook/
+        ├── Facebook.png
+        ├── README.md
+        └── Instagram/
+            └── Instagram.png               ← Instagram → Facebook → Meta
+```
+
+路径由 `scripts/brand_relationships.py::expected_icon_path()` 统一推导
+（`brands.json.icon_path` 必须等于其输出，CI 第 7/17 组校验），全库矩阵见
+[`docs/references/physical-hierarchy-audit.md`](docs/references/physical-hierarchy-audit.md)。
 
 ### 强制规则
 
@@ -80,7 +96,7 @@ icons/Media/Netflix/
 ### 1. 通用直链格式
 
 ```
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<品牌>/<文件名>.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/[<中间父…>/]<品牌>/<文件名>.png
 ```
 
 示例：
@@ -199,7 +215,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | **合计** | — | **292** | **292** |
 ### 分类体系原则（方案 C，2026-09-29）
 
-一级分类**扁平**：不设置 `Ecosystems / Services / Special` 等中间层，`icons/<分类>/<品牌>/` 为唯一深度。
+一级分类**不设中间层**：不设置 `Ecosystems / Services / Special` 等分类之上的中间层；分类之下的深度只由**真实父子层级**决定——直接父品牌是 category 根时保持 `icons/<分类>/<品牌>/`，直接父品牌本身也是中间品牌（同类且有自身图标）时嵌套为 `icons/<分类>/<中间父>/<品牌>/`。
 
 **分类定义 SSOT**：分类的 ID、emoji、显示名、描述、排序、状态唯一来源为 [`config/categories.json`](config/categories.json)；分类 README 由 `scripts/generate-category-readmes.sh` 从该文件生成，禁止在脚本中硬编码。
 
@@ -245,7 +261,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 - 新增 Spotify → `Music/Spotify/`
 - 新增 Amazon 服务（如 Amazon Gaming）→ `Amazon/<Brand>/`
 - 某生态根新增第二个 descendant（直系或孙代均可）→ 生态根 descendants 达到 2，**立即建立** `icons/<Root>/` 一级生态分类并迁入（CI 动态校验）
-- 新增中间层产品（如 YouTube 下新增 YouTube Shorts 类服务）→ 写直接父品牌（parent_brand = YouTube），**不**要求为中间层建一级目录（阈值看生态根 descendants，防止分类爆炸）
+- 新增中间层产品（如 YouTube 下新增 YouTube Shorts 类服务）→ 写直接父品牌（`parent_brand = YouTube`），物理路径随之嵌套到 `icons/Google/YouTube/<新品牌>/`；**不**为中间层另建一级分类（阈值看生态根 descendants，防止分类爆炸）
 - 新增 Alibaba AI 产品 → `Alibaba/<Brand>/`（AI 属性写 tags）
 - 品牌被收购 → 先查**当前**官方状态，再决定生态归属；历史收购关系不等于当前归属
 - 品牌脱离母公司 → 按当前独立状态归回功能分类
@@ -323,7 +339,7 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 
 ### 命名规范
 
-1. 目录：`icons/<分类>/<品牌名>/`
+1. 目录：`icons/<分类>/<品牌名>/`（若直接父品牌本身也是中间品牌，则为 `icons/<分类>/<中间父>/<品牌名>/`，见上）
 2. 默认图标：`<品牌名>.png`（无后缀，必须存在）
 3. 变体图标（当前全库未使用，命名规范保留）：`<品牌名>01.png`、`<品牌名>02.png`（两位零填充，按原顺序编号）
 4. 品牌名使用 PascalCase，与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) 保持一致
@@ -333,7 +349,7 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 ### 提交流程
 
 1. Fork 本仓库
-2. 按规范把图标放入 `icons/<分类>/<品牌名>/`
+2. 按规范把图标放入 `icons/<分类>/<品牌名>/`（深层子品牌放入父品牌目录，路径以 `scripts/validate-brand.py` 的推导结果为准）
 3. 本地运行 `python3 scripts/ci-validate-icons.py` 确保通过
 4. 提交 Pull Request
 

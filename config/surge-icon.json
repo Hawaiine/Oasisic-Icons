@@ -190,7 +190,7 @@
     {
       "name": "iCloudPrivateRelay",
       "category": "Apple",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png"
     },
     {
       "name": "Baidu",
@@ -530,7 +530,7 @@
     {
       "name": "YouTubeMusic",
       "category": "Google",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/YouTubeMusic/YouTubeMusic.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png"
     },
     {
       "name": "DJI",
@@ -905,12 +905,12 @@
     {
       "name": "Instagram",
       "category": "Meta",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Instagram/Instagram.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Facebook/Instagram/Instagram.png"
     },
     {
       "name": "Messenger",
       "category": "Meta",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Messenger/Messenger.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Facebook/Messenger/Messenger.png"
     },
     {
       "name": "Meta",
@@ -920,12 +920,12 @@
     {
       "name": "Threads",
       "category": "Meta",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Threads/Threads.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Facebook/Threads/Threads.png"
     },
     {
       "name": "WhatsApp",
       "category": "Meta",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/WhatsApp/WhatsApp.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Meta/Facebook/WhatsApp/WhatsApp.png"
     },
     {
       "name": "Azure",
@@ -1220,7 +1220,7 @@
     {
       "name": "Grok",
       "category": "SpaceXAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/Grok/Grok.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/xAI/Grok/Grok.png"
     },
     {
       "name": "X",

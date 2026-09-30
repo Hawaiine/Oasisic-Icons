@@ -214,3 +214,24 @@
 
 > 下游（mihomo-rules 等）消费的图标 URL 仍指向旧路径，属**下游同步项**：
 > 建议改用 `config/brand-relationships.json` 派生 URL，本仓不改动 mihomo-rules。
+
+---
+
+## 2026-10-01 物理层级统一（physical restructure，§5/§17）
+
+多层关系（`child.parent_brand = P` 且 `P.parent_brand != null`）的深层子品牌迁移到
+父品牌目录之下。全部 `git mv`（R100，SHA-256 逐字节不变），**不是 rename**：ID 与
+display_name 均未改变，仅物理路径 restructure。
+
+| 品牌 | 旧路径 | 新路径 |
+|:---|:---|:---|
+| `Instagram` | `icons/Meta/Instagram/Instagram.png` | `icons/Meta/Facebook/Instagram/Instagram.png` |
+| `Messenger` | `icons/Meta/Messenger/Messenger.png` | `icons/Meta/Facebook/Messenger/Messenger.png` |
+| `WhatsApp` | `icons/Meta/WhatsApp/WhatsApp.png` | `icons/Meta/Facebook/WhatsApp/WhatsApp.png` |
+| `Threads` | `icons/Meta/Threads/Threads.png` | `icons/Meta/Facebook/Threads/Threads.png` |
+| `YouTubeMusic` | `icons/Google/YouTubeMusic/YouTubeMusic.png` | `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` |
+| `iCloudPrivateRelay` | `icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png` | `icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png` |
+| `Grok` | `icons/SpaceXAI/Grok/Grok.png` | `icons/SpaceXAI/xAI/Grok/Grok.png` |
+
+下游影响：`config/surge-icon.json`（URL）、`docs/references/brand-glossary.md`、
+分类/父品牌 README 均重新生成；旧 URL 不得保留（CI 第 8/9 组校验双向一致）。

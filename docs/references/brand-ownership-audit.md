@@ -861,3 +861,25 @@ Oasisic 是品牌关系 SSOT，mihomo-rules 是下游消费者。为免下游反
 
 **状态口径**（与 `scripts/mihomo_compare.py` 一致）：`MATCH` / `OASISIC_MORE_PRECISE` / `MIHOMO_MORE_PRECISE` / `MISMATCH` / `STALE` / `NOT_CONSUMED` / `OASISIC_ONLY` / `AMBIGUOUS` / `MISSING`。对照以**语义层级**为准而非字符串相等：mihomo 只表达直接父、Oasisic 另有更深祖先链时仍判 `MATCH`（如 `YouTubeMusic → YouTube` vs `YouTubeMusic → YouTube → Google`）；双方直接父都已明确但值不同则判 `MISMATCH`。机械可判定项由 `compare()` 自动归类，`STALE` / `*_MORE_PRECISE` 由带证据的 `overrides` 标注。
 **长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。
+
+---
+
+## 11. 物理层级与全库深层关系（2026-10-01）
+
+关系树与物理目录的对齐由统一路径解析器负责，明细矩阵（多层关系 / cross-category /
+无图标母公司 / 生态）见 [`physical-hierarchy-audit.md`](physical-hierarchy-audit.md)
+（generated，CI 第 17 组逐字节校验）：
+
+- **多层关系 7 条**（`child.parent_brand = P` 且 `P.parent_brand != null`）：
+  `Instagram / Messenger / Threads / WhatsApp → Facebook → Meta`、
+  `YouTubeMusic → YouTube → Google`、`iCloudPrivateRelay → iCloud → Apple`、
+  `Grok → xAI → SpaceXAI`；全部物理嵌套（`git mv` R100，SHA-256 不变）。
+- **cross-category 3 条**（`189 → ChinaTelecom`、`Mijia → Xiaomi`、
+  `MusicBrainz → MetaBrainz`）：保持平铺，不机械迁移。
+- **无图标母公司 31 个**（`parent_brands_without_icon`）：无目录可嵌套，子品牌保持平铺，
+  禁止制造伪目录（含 `SpaceXAI`，其逻辑生态根身份见 §10）。
+- **逻辑生态根**：`SpaceXAI` 无 SSOT 条目但为 `type=ecosystem` 分类，因此
+  `X` / `xAI` / `Grok` 的 `ecosystem_root = SpaceXAI`（不再是 `null`）。
+
+本轮**未改动任何直接父关系**，也未修改 `mihomo-rules`（下游同步项：mihomo 的
+`Grok → X` 相对本仓 `Grok → xAI → SpaceXAI` 为 DOWNSTREAM_MISMATCH / STALE）。

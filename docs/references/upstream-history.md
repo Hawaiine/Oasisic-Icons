@@ -104,6 +104,7 @@
 | simple-icons | 矢量图标补充 | 矢量图转 PNG 后规范化 |
 | 用户贡献 PR | 社区素材 | 直接提交到本仓库 |
 | 2026-10-01 | 修正最终品牌树：恢复 `SpaceXAI ├── X └── xAI └── Grok`（xAI 恢复 canonical + 历史图标 R100 迁回、Grok 直接父改 xAI、X 归 SpaceXAI）；SpaceXAI 恢复顶层生态（根图标待官方标志，白名单 + Review Queue）；legacy map 重设计（canonical ≠ legacy）；evidence 层降级为辅助审计；新增 `validate-brand.py`、`export-brand-relationships.py` → `config/brand-relationships.json`、`config/brand-review-queue.json`；CI 14 → 16 组 | 关系 SSOT 收口与自动化 |
+| 2026-10-01 | 物理层级统一：新增统一路径解析器 `expected_icon_path()`（多层嵌套 `icons/<category>/<中间父…>/<id>/<id>.png`），7 条多层关系 `git mv` R100 迁移；逻辑生态根（SpaceXAI 无图标仍为 ecosystem，`resolve_ecosystem_root` 支持白名单+生态分类）；CI 17 组（Naming 递归扫描 + 新增「物理路径」组）；生成器改为 SSOT 驱动（surge / README 统计 / 分类与父品牌 README 不再按一级目录遍历）；新增 `scripts/gen-physical-hierarchy-audit.py` → `docs/references/physical-hierarchy-audit.md` | 物理层级与路径派生 |
 
 ### 4.3 不再维护的映射关系
 

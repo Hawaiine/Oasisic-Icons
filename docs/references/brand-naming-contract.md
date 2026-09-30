@@ -12,8 +12,42 @@
 |:---|:---|:---|
 | `id` | 机器稳定技术标识（路径安全、ASCII、无空格） | 只迁移不修改 |
 | `display_name` | 用户可见官方品牌名（保留官方 casing 与符号） | 随官方改名 |
-| `directory` | `icons/<category>/<id>/`（与 id 一致） | 随 id 迁移 |
+| `directory` | `icons/<category>/[<中间父…>/]<id>/`（末级与 id 一致，多层见 §1.1） | 随 id 迁移 |
 | `filename` | `<id>.png` / `<id>NN.png`（与 id 一致） | 随 id 迁移 |
+
+### 1.1 物理路径模型（多层嵌套，2026-10-01 定稿）
+
+三个概念必须分开：
+
+```text
+category      = 图标属于哪个一级分类（恒为一级目录，不因关系改变）
+parent_brand  = 品牌的直接父品牌（关系 SSOT）
+physical path = category + 可表达的物理父层级
+```
+
+路径规则：
+
+```text
+icons/<category>/<id>/<id>.png                     一级 direct child（category root 的直系子）
+icons/<category>/<中间父…>/<id>/<id>.png           同类中间父品牌下的深层子品牌（可多层）
+```
+
+判定（`scripts/brand_relationships.py::expected_icon_path`，唯一推导入口）：
+
+| 情形 | 物理路径 | 例 |
+|:---|:---|:---|
+| 直接父品牌 = category 根（graph root） | 平铺 `icons/<cat>/<id>/` | `AppleMusic → Apple`：`icons/Apple/AppleMusic/AppleMusic.png` |
+| 直接父品牌本身**也有**父品牌（同类中间父） | 嵌套 `icons/<cat>/<父>/<id>/` | `Instagram → Facebook → Meta`：`icons/Meta/Facebook/Instagram/Instagram.png` |
+| 直接父品牌属**其它 category** | 平铺（cross-category，不迁移） | `Mijia → Xiaomi`：`icons/Home/Mijia/Mijia.png` |
+| 直接父品牌**无自身图标**（白名单母公司） | 平铺（无目录可嵌套） | `Kimi → MoonshotAI`：`icons/AI/Kimi/Kimi.png` |
+
+- `brands.json.icon_path` 必须等于该解析器的输出（CI 第 7/17 组拦截手写路径），
+  Surge / Glossary / README / 生成器全部跟随，不得另写第二套路径规则；
+- 多层嵌套可继续加深（`icons/R/A/B/C/C.png`），不设层数上限；
+- 物理路径变化**不是** brand rename（§22）：`icons/Google/YouTubeMusic/…` →
+  `icons/Google/YouTube/YouTubeMusic/…` 属 physical restructure，ID / display_name 不变；
+- 全库矩阵（多层关系 / cross-category / 无图标母公司 / 生态）见
+  [`physical-hierarchy-audit.md`](physical-hierarchy-audit.md)（generated，CI 第 17 组校验）。
 
 `parent_brand` = **直接父品牌**（immediate parent）。祖先链与生态根一律动态派生
 （`scripts/brand_relationships.py` 的 `resolve_ecosystem_root`），不存字段。

@@ -194,3 +194,24 @@ Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记
 **关系与派生**：`config/brands.json`（SSOT）→ `scripts/brand_relationships.py`（关系引擎）→
 `config/brand-relationships.json`（下游导出，`generated: true`）+ `config/parent-edge-evidence.json`
 （辅助审计层）。mihomo 侧仍为旧关系（`Grok → X`），属**下游同步项**，本仓不修改 mihomo-rules。
+
+---
+
+## 2026-10-01 物理层级统一与逻辑生态根（append-only 修正）
+
+本轮不重写历史、不 rename 品牌，只做两类修正：
+
+1. **physical restructure（路径层级）**：多层父子关系的深层子品牌迁入父品牌目录
+   （7 条，全部 `git mv` R100、SHA-256 不变）。这**不是** rename：
+   `icons/Google/YouTubeMusic/YouTubeMusic.png` →
+   `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` 的 ID / display_name 未变。
+   明细见 [`url-migration.md`](url-migration.md)。
+2. **逻辑生态根**：`SpaceXAI` 无 `brands.json` 条目（官方标志待补，登记
+   `parent_brands_without_icon`），但 `categories.json` 有 `type=ecosystem` 分类。
+   `resolve_ecosystem_root()` 因此返回该逻辑生态根，使 `xAI` / `Grok` /
+   `X` 的 ecosystem root = `SpaceXAI`（此前为 null）。「无图标」≠「不是生态」：
+   ecosystem identity = YES，icon availability = PENDING。
+
+本轮**未**改变任何直接父关系（`SpaceXAI → X`、`SpaceXAI → xAI`、`xAI → Grok`
+均为上轮已定稿值）；`X` 曾被误列为「无品牌父级」、`xAI` 曾被当作 legacy 历史名，
+这些错误中间态仅保留在历史 commit 中，当前 HEAD 不再出现。
