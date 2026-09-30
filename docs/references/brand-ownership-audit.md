@@ -1,6 +1,6 @@
 # 品牌归属审计报告 / Brand Ownership Audit
 
-> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **289** 个 Canonical Brand（含 5 个本轮新增生态根品牌）
+> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 5 个生态根品牌 + 3 个 2026-09-30 会话新增品牌）
 
 > 本文件是 **研究/证据层**：记录每个品牌当前（现实世界）母公司判断与依据。
 > SSOT 仍为 `config/brands.json`（`parent_brand` / `category` / `entity_type`）——本文件不替代 SSOT。[§65 §66 §97]
@@ -29,20 +29,20 @@
 
 | 状态 | 品牌数 |
 |---|---:|
-| CONFIRMED_PARENT（已确认母公司） | 116 |
-| NO_PARENT（无母公司/独立实体/生态根） | 114 |
+| CONFIRMED_PARENT（已确认母公司） | 117 |
+| NO_PARENT（无母公司/独立实体/生态根） | 115 |
 | AMBIGUOUS_JV（合资/股权分散，不设母公司） | 10 |
 | RETIRED（已退役，保留图标） | 2 |
-| SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 47 |
-| **合计** | **289** |
+| SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 48 |
+| **合计** | **292** |
 
 | 指标 | 审计前 | 审计后 |
 |---|---:|---:|
 | 分类数（含 1 个 reserved） | 35 | 42 |
 | 生态分类数 | 10 | 17 |
-| Canonical 品牌数 | 284 | 289 |
+| Canonical 品牌数 | 284 | 292 |
 | 已记录 parent_brand 的品牌数 | 58 | 116 |
-| 无图标母公司白名单条目 | 0 | 31 |
+| 无图标母公司白名单条目 | 0 | 30 |
 
 ## 4. 本轮新发现并新建的生态 / Newly Discovered Ecosystems
 
@@ -73,7 +73,7 @@
 
 | Amazon | — | 5 | — | 关系全部复核通过 |
 
-| Apple | — | 12 | Podcasts | 关系全部复核通过 |
+| Apple | — | 13 | ApplePodcasts | 关系全部复核通过；Podcasts → ApplePodcasts 重命名（2026-09-30） |
 
 | Baidu | — | 3 | iQIYI | 关系全部复核通过 |
 
@@ -94,10 +94,10 @@
 
 以下母公司为已确认的现实世界母公司，但仓库暂无其品牌图标；**其 children < 2，不触发一级生态分类**，子品牌保留在原功能分类并记录 `parent_brand`。[§83 §100]
 
-`Block`, `ButterflyEffect`, `ChunghwaTelecom`, `DMM`, `Daiichikosho`, `EchoStar`, `FarEasTone`, `Fox`, `KKCompany`, `Kadokawa`, `Kakao`, `Kuaishou`, `LibertyMedia`, `MangoSuperMedia`, `MoonshotAI`, `NTTDocomo`, `NewsCorp`, `PLAY`, `Paramount`, `Quora`, `Rakuten`, `RedBull`, `Sina`, `SiriusXM`, `Snap`, `TaiwanMobile`, `UNEXTHoldings`, `Valve`, `Xperi`, `ZhipuAI`, `iCABLE`
+`Block`, `ButterflyEffect`, `ChunghwaTelecom`, `DMM`, `Daiichikosho`, `EchoStar`, `FarEasTone`, `Fox`, `KKCompany`, `Kadokawa`, `Kakao`, `Kuaishou`, `LibertyMedia`, `MangoSuperMedia`, `MoonshotAI`, `NTTDocomo`, `NewsCorp`, `PLAY`, `Paramount`, `Quora`, `Rakuten`, `RedBull`, `SiriusXM`, `Snap`, `TaiwanMobile`, `UNEXTHoldings`, `Valve`, `Xperi`, `ZhipuAI`, `iCABLE`
 
 
-## 7. 全量矩阵 / Full Ownership Matrix（289 / 289）
+## 7. 全量矩阵 / Full Ownership Matrix（292 / 292）
 
 > `Current Category` / `Parent Brand` 为**审计前**状态（`HEAD` = 009d994）；`Proposed Parent` 为本轮最终值。
 
@@ -194,7 +194,7 @@
 
 | `ByteDance` | ByteDance | — | —（生态根品牌） | 生态根品牌（entity_type=ecosystem），自身无母公司 | NO_PARENT | 无变更（复核通过） |
 
-| `CATCHPLAY` | Media | — | — | CATCHPLAY 为台湾独立影音平台 · 2026-09 | NO_PARENT | 无变更（复核通过） |
+| `CATCHPLAYPlus` | Media | — | — | CATCHPLAY+ 为台湾独立影音平台 · 2026-09；2026-09-30 会话按 Plus 命名惯例重命名 CATCHPLAY → CATCHPLAYPlus | NO_PARENT | 无变更（复核通过） |
 
 | `CN-Taiwan` | Country | — | — | 特殊实体（Country），不参与普通母公司归属 [§87] | SPECIAL_ENTITY | 无变更（复核通过） |
 
@@ -488,7 +488,7 @@
 
 | `Plex` | Media | — | — | Plex, Inc. 自有产品，无独立母公司实体 · 2026-09 | NO_PARENT | 无变更（复核通过） |
 
-| `Podcasts` | Media | — | Apple | Apple Podcasts 为 Apple 自有应用（Apple 官方识别规范）· 2026-09 | CONFIRMED_PARENT | 迁移 Media → Apple |
+| `ApplePodcasts` | Media → Apple | — | Apple | Apple Podcasts 为 Apple 自有应用（Apple 官方识别规范）· 2026-09；2026-09-30 会话按 Apple 子品牌命名规范重命名 Podcasts → ApplePodcasts（目录/文件名/icon_path/display_name 全同步） | CONFIRMED_PARENT | 迁移 Media → Apple + 重命名 ApplePodcasts |
 
 | `Poe` | AI | — | Quora | Poe 为 Quora 旗下 AI 产品（Quora 官方）· 2026-09 | CONFIRMED_PARENT | 补全 parent_brand = Quora |
 
@@ -497,6 +497,7 @@
 | `PrimeVideo` | Amazon | Amazon | Amazon | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
 | `Proxy` | System | — | — | 特殊实体（System），不参与普通母公司归属 [§87] | SPECIAL_ENTITY | 无变更（复核通过） |
+| `Proxmox` | —(2026-09-30 新增) | — | — | Proxmox（开源虚拟化平台）品牌图标按用户提供的官方图标入库 · 2026-09-30 | NO_PARENT | 新增品牌（图标用户提供） |
 
 | `QQ` | Tencent | Tencent | Tencent | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
@@ -541,6 +542,7 @@
 | `Singapore` | Country | — | — | 特殊实体（Country），不参与普通母公司归属 [§87] | SPECIAL_ENTITY | 无变更（复核通过） |
 
 | `SiriAI` | Apple | Apple | Apple | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
+| `SINA` | —(2026-09-30 新增) | — | — | 新浪（Sina Corporation）公司品牌图标按用户提供的官方图标入库 · 2026-09-30 | NO_PARENT | 新增品牌（图标用户提供）；白名单 `Sina` 移除，子品牌 Weibo 的 parent 指向 SINA |
 
 | `Skype` | Communication | — | — | Microsoft 于 2025-05 停运 Skype，转为 Teams 生态；品牌退役，保留图标 · 2026-09 | RETIRED | 保留图标并标记退役（不迁移、不设母公司） |
 
@@ -630,7 +632,7 @@
 
 | `WeTV` | Tencent | Tencent | Tencent | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
-| `Weibo` | Social | — | Sina | 微博由新浪（Sina Corporation）控股（微博年报/公开资料）· 2026-09 | CONFIRMED_PARENT | 补全 parent_brand = Sina |
+| `Weibo` | Social | — | SINA | 微博由新浪（Sina Corporation）控股（微博年报/公开资料）· 2026-09；2026-09-30 SINA 公司图标入库后 parent 指向带图标条目 SINA | CONFIRMED_PARENT | parent_brand = SINA |
 
 | `WhatsApp` | Meta | Meta | Meta | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
@@ -641,6 +643,7 @@
 | `Xbox` | Microsoft | Microsoft | Microsoft | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 
 | `Xiaomi` | Hardware | — | — | 独立实体（无控股母公司）· 2026-09 | NO_PARENT | 无变更（复核通过） |
+| `Xiaoyuzhou` | —(2026-09-30 新增) | — | — | 小宇宙（Xiaoyuzhou）播客 App 品牌图标按用户提供的官方图标入库 · 2026-09-30 | NO_PARENT | 新增品牌（图标用户提供） |
 
 | `YouTube` | Google | Google | Google | 本次全库复核：既有 parent_brand 关系仍成立 · 2026-09 | CONFIRMED_PARENT | 无变更（复核通过） |
 

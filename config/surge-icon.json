@@ -163,14 +163,14 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/AppleNewsPlus/AppleNewsPlus.png"
     },
     {
+      "name": "ApplePodcasts",
+      "category": "Apple",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/ApplePodcasts/ApplePodcasts.png"
+    },
+    {
       "name": "AppleTV",
       "category": "Apple",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/AppleTV/AppleTV.png"
-    },
-    {
-      "name": "Podcasts",
-      "category": "Apple",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Apple/Podcasts/Podcasts.png"
     },
     {
       "name": "SiriAI",
@@ -613,6 +613,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Oracle/Oracle.png"
     },
     {
+      "name": "Proxmox",
+      "category": "Infrastructure",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Proxmox/Proxmox.png"
+    },
+    {
       "name": "Synology",
       "category": "Infrastructure",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Infrastructure/Synology/Synology.png"
@@ -643,9 +648,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Bangumi/Bangumi.png"
     },
     {
-      "name": "CATCHPLAY",
+      "name": "CATCHPLAYPlus",
       "category": "Media",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/CATCHPLAY/CATCHPLAY.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png"
     },
     {
       "name": "DAZN",
@@ -866,6 +871,11 @@
       "name": "Wallpaper",
       "category": "Media",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Wallpaper/Wallpaper.png"
+    },
+    {
+      "name": "Xiaoyuzhou",
+      "category": "Media",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Xiaoyuzhou/Xiaoyuzhou.png"
     },
     {
       "name": "bilibili",
@@ -1181,6 +1191,11 @@
       "name": "Reddit",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Reddit/Reddit.png"
+    },
+    {
+      "name": "SINA",
+      "category": "Social",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/SINA/SINA.png"
     },
     {
       "name": "Weibo",

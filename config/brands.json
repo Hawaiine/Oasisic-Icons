@@ -321,6 +321,13 @@
       "icon_path": "icons/Infrastructure/Synology/Synology.png"
     },
     {
+      "id": "Proxmox",
+      "display_name": "Proxmox",
+      "category": "Infrastructure",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Infrastructure/Proxmox/Proxmox.png"
+    },
+    {
       "id": "115",
       "display_name": "115",
       "category": "CloudStorage",
@@ -900,11 +907,11 @@
       "icon_path": "icons/Media/Bangumi/Bangumi.png"
     },
     {
-      "id": "CATCHPLAY",
+      "id": "CATCHPLAYPlus",
       "display_name": "CATCHPLAY+",
       "category": "Media",
       "entity_type": "product_brand",
-      "icon_path": "icons/Media/CATCHPLAY/CATCHPLAY.png"
+      "icon_path": "icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png"
     },
     {
       "id": "Crunchyroll",
@@ -1177,11 +1184,11 @@
       "icon_path": "icons/Media/Plex/Plex.png"
     },
     {
-      "id": "Podcasts",
-      "display_name": "Podcasts",
+      "id": "ApplePodcasts",
+      "display_name": "Apple Podcasts",
       "category": "Apple",
       "entity_type": "product_brand",
-      "icon_path": "icons/Apple/Podcasts/Podcasts.png",
+      "icon_path": "icons/Apple/ApplePodcasts/ApplePodcasts.png",
       "parent_brand": "Apple"
     },
     {
@@ -1379,6 +1386,13 @@
       "entity_type": "product_brand",
       "icon_path": "icons/Media/myTVSUPER/myTVSUPER.png",
       "parent_brand": "TVB"
+    },
+    {
+      "id": "Xiaoyuzhou",
+      "display_name": "小宇宙",
+      "category": "Media",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Media/Xiaoyuzhou/Xiaoyuzhou.png"
     },
     {
       "id": "Azure",
@@ -1759,7 +1773,7 @@
       "category": "Social",
       "entity_type": "product_brand",
       "icon_path": "icons/Social/Weibo/Weibo.png",
-      "parent_brand": "Sina"
+      "parent_brand": "SINA"
     },
     {
       "id": "X",
@@ -1789,6 +1803,13 @@
       "category": "Social",
       "entity_type": "product_brand",
       "icon_path": "icons/Social/rednote/rednote.png"
+    },
+    {
+      "id": "SINA",
+      "display_name": "新浪",
+      "category": "Social",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Social/SINA/SINA.png"
     },
     {
       "id": "Surge",
@@ -2163,7 +2184,6 @@
     "Quora",
     "Rakuten",
     "RedBull",
-    "Sina",
     "SiriusXM",
     "Snap",
     "TaiwanMobile",

@@ -1,6 +1,6 @@
 # 品牌术语表 / Brand Glossary
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **289** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **292** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -36,6 +36,7 @@
 | AppleFitnessPlus | Apple Fitness+ |
 | AppleMusic | Apple Music |
 | AppleNewsPlus | Apple News+ |
+| ApplePodcasts | Apple Podcasts |
 | AppleTV | Apple TV |
 | Aqara | Aqara |
 | Area | Area |
@@ -67,7 +68,7 @@
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
-| CATCHPLAY | CATCHPLAY+ |
+| CATCHPLAYPlus | CATCHPLAY+ |
 | CN-Taiwan | 中国台湾 |
 | Canada | 加拿大 |
 | China | 中国 |
@@ -288,10 +289,10 @@
 | Play | Play |
 | PlayStation | PlayStation |
 | Plex | Plex |
-| Podcasts | Podcasts |
 | Poe | Poe |
 | Poland | 波兰 |
 | PrimeVideo | Prime Video |
+| Proxmox | Proxmox |
 | Proxy | Proxy |
 | pixiv | pixiv |
 
@@ -323,6 +324,7 @@
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | SF-Express | SF-Express |
+| SINA | 新浪 |
 | SONY | 索尼 |
 | SOOP | SOOP |
 | SSID | SSID |
@@ -408,6 +410,7 @@
 | X | X |
 | Xbox | Xbox |
 | Xiaomi | 小米 |
+| Xiaoyuzhou | 小宇宙 |
 | xAI | xAI |
 
 ## Y

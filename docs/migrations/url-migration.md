@@ -174,7 +174,7 @@
 - `icons/Media/NBC/` → `icons/NBCUniversal/NBC/`
 - `icons/Media/NowE/` → `icons/PCCW/NowE/`
 - `icons/Media/PeacockTV/` → `icons/NBCUniversal/PeacockTV/`
-- `icons/Media/Podcasts/` → `icons/Apple/Podcasts/`
+- `icons/Media/Podcasts/` → `icons/Apple/ApplePodcasts/`（2026-09-30 重命名 Podcasts → ApplePodcasts）
 - `icons/Media/Viu/` → `icons/PCCW/Viu/`
 - `icons/Media/Youku/` → `icons/Alibaba/Youku/`
 - `icons/Media/discoveryPlus/` → `icons/WarnerBrosDiscovery/discoveryPlus/`

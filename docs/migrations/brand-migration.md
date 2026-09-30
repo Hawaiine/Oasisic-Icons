@@ -129,8 +129,20 @@
 | PeacockTV | Media | NBCUniversal | `icons/Media/PeacockTV/PeacockTV.png` | `icons/NBCUniversal/PeacockTV/PeacockTV.png` | NBCUniversal（Comcast）流媒体；新建 NBCUniversal 生态 |
 | Pipixia | Social | ByteDance | `icons/Social/Pipixia/Pipixia.png` | `icons/ByteDance/Pipixia/Pipixia.png` | 字节跳动旗下短视频社区；ByteDance 生态 |
 | PlayStation | Game | SONY | `icons/Game/PlayStation/PlayStation.png` | `icons/SONY/PlayStation/PlayStation.png` | Sony Interactive Entertainment（索尼全资）；SONY 生态 |
-| Podcasts | Media | Apple | `icons/Media/Podcasts/Podcasts.png` | `icons/Apple/Podcasts/Podcasts.png` | Apple Podcasts（Apple 自有应用）；Apple 生态 |
+| ApplePodcasts | Media | Apple | `icons/Media/Podcasts/Podcasts.png` | `icons/Apple/ApplePodcasts/ApplePodcasts.png` | Apple Podcasts（Apple 自有应用）；Apple 生态。2026-09-30 会话按 Apple 子品牌命名规范重命名 Podcasts → ApplePodcasts |
 | SONY | Hardware | SONY | `icons/Hardware/SONY/SONY.png` | `icons/SONY/SONY/SONY.png` | 索尼生态根品牌（PlayStation + Crunchyroll + mora ≥2）；id 保持 `SONY`，分类显示名规范为 Sony |
 | Viu | Media | PCCW | `icons/Media/Viu/Viu.png` | `icons/PCCW/Viu/Viu.png` | PCCW Media Group 旗下 OTT；新建 PCCW 生态（2 children） |
 | X | Social | xAI | `icons/Social/X/X.png` | `icons/xAI/X/X.png` | xAI 子公司（2025-03 xAI 收购 X Corp）；新建 xAI 生态（2 children） |
 | Youku | Media | Alibaba | `icons/Media/Youku/Youku.png` | `icons/Alibaba/Youku/Youku.png` | 阿里巴巴集团在线视频平台；Alibaba 生态 |
+
+## 本轮增量：会话新增品牌（2026-09-30）
+
+> 3 个新增品牌（图标由用户提供，按规范 512×512 RGBA r=115 入库）+ 1 个重命名（Podcasts → ApplePodcasts，pure rename，git R100，SHA-256 不变）。
+
+| Brand | 变更 | 路径 | 理由 |
+|---|---|---|---|
+| ApplePodcasts | 重命名（原 Podcasts） | `icons/Apple/ApplePodcasts/ApplePodcasts.png` | Apple 子品牌统一 `Apple` 前缀命名规范（对齐 AppleBooks/AppleMusic/AppleTV）；display_name 补全为「Apple Podcasts」 |
+| Xiaoyuzhou | 新增（Media） | `icons/Media/Xiaoyuzhou/Xiaoyuzhou.png` | 小宇宙（Xiaoyuzhou）播客 App，用户提供的官方图标 |
+| Proxmox | 新增（Infrastructure） | `icons/Infrastructure/Proxmox/Proxmox.png` | Proxmox 开源虚拟化平台，用户提供的官方图标 |
+| SINA | 新增（Social） | `icons/Social/SINA/SINA.png` | 新浪（Sina Corporation）公司品牌，用户提供的官方图标；白名单 `Sina` 移除，子品牌 Weibo 的 parent_brand 指向 SINA |
+| CATCHPLAYPlus | 重命名（原 CATCHPLAY） | `icons/Media/CATCHPLAY/CATCHPLAY.png` | `icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png` | 按全库 Plus 品牌命名惯例对齐（id/目录/文件名）；display_name 仍为「CATCHPLAY+」 |

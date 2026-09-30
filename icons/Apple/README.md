@@ -11,8 +11,8 @@
 | `AppleFitnessPlus` | `AppleFitnessPlus.png` |
 | `AppleMusic` | `AppleMusic.png` |
 | `AppleNewsPlus` | `AppleNewsPlus.png` |
+| `ApplePodcasts` | `ApplePodcasts.png` |
 | `AppleTV` | `AppleTV.png` |
-| `Podcasts` | `Podcasts.png` |
 | `SiriAI` | `SiriAI.png` |
 | `TestFlight` | `TestFlight.png` |
 | `iCloud` | `iCloud.png` |

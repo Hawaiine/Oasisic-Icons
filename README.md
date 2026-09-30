@@ -17,8 +17,8 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-289-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-289-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/icons-292-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-292-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-42-orange?style=flat-square" alt="Categories Count">
 </p>
 
@@ -26,9 +26,9 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **289** 个 PNG 图标，覆盖 **289** 个品牌，归入 **42** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **292** 个 PNG 图标，覆盖 **292** 个品牌，归入 **42** 个一级分类（其中 30 个活跃，`Finance` 为预留空分类）。
 
-本项目为独立图标仓库，当前 289 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，当前 292 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
 > 仓库内图标按该规范维护，均为 512×512、RGBA、保留原始底色，经 `scripts/optimize-icons.py` 无损重压缩；少量历史圆角边缘遗留项待处理，明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
@@ -162,7 +162,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | ▶️ ByteDance | 字节跳动生态 | 6 | 6 |
 | 📶 ChinaMobile | 中国移动生态 | 3 | 3 |
 | 🏰 Disney | 迪士尼生态 | 4 | 4 |
-| 🏗️ Infrastructure | 基础设施与运维（云平台/网络/容器/NAS） | 6 | 6 |
+| 🏗️ Infrastructure | 基础设施与运维（云平台/网络/容器/NAS） | 7 | 7 |
 | 💾 Cloud Storage | 云盘与文件存储 | 5 | 5 |
 | 💬 Communication | 即时通讯与团队协作 | 6 | 6 |
 | 🌍 Country | 国家与地区旗帜 | 21 | 21 |
@@ -178,7 +178,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🦚 NBCUniversal | NBC 环球生态 | 3 | 3 |
 | 🎧 NetEase | 网易生态 | 3 | 3 |
 | 🏠 Home | 智能家居与家庭设备 | 2 | 2 |
-| 🎬 Media | 影音流媒体与视频 | 54 | 54 |
+| 🎬 Media | 影音流媒体与视频 | 55 | 55 |
 | 🪟 Microsoft | 微软服务与生态 | 10 | 10 |
 | 🎵 Music | 音乐服务 | 10 | 10 |
 | 📰 News | 新闻与资讯 | 1 | 1 |
@@ -186,7 +186,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | ☎️ PCCW | 电讯盈科生态 | 3 | 3 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
 | 🛒 Shopping | 购物与电商 | 5 | 5 |
-| 👥 Social | 社交媒体与社区 | 9 | 9 |
+| 👥 Social | 社交媒体与社区 | 10 | 10 |
 | 🕹️ Sony | 索尼生态 | 4 | 4 |
 | ⚡ Surge | Surge 应用图标 | 1 | 1 |
 | ⚙️ System | 代理系统图标与通用策略 | 20 | 20 |
@@ -196,7 +196,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | 🎞️ Warner Bros. Discovery | 华纳兄弟探索生态 | 3 | 3 |
 | 🛰️ xAI | xAI 生态 | 3 | 3 |
-| **合计** | — | **289** | **289** |
+| **合计** | — | **292** | **292** |
 ### 分类体系原则（方案 C，2026-09-29）
 
 一级分类**扁平**：不设置 `Ecosystems / Services / Special` 等中间层，`icons/<分类>/<品牌>/` 为唯一深度。

@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体与视频
 
-> 共 **54** 个图标，**54** 个品牌
+> 共 **55** 个图标，**55** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -9,7 +9,7 @@
 | `BBC` | `BBC.png` |
 | `Bahamut` | `Bahamut.png` |
 | `Bangumi` | `Bangumi.png` |
-| `CATCHPLAY` | `CATCHPLAY.png` |
+| `CATCHPLAYPlus` | `CATCHPLAYPlus.png` |
 | `DAZN` | `DAZN.png` |
 | `DMMTV` | `DMMTV.png` |
 | `Emby` | `Emby.png` |
@@ -54,6 +54,7 @@
 | `Vimeo` | `Vimeo.png` |
 | `WOWOW` | `WOWOW.png` |
 | `Wallpaper` | `Wallpaper.png` |
+| `Xiaoyuzhou` | `Xiaoyuzhou.png` |
 | `bilibili` | `bilibili.png` |
 | `dAnimeStore` | `dAnimeStore.png` |
 | `friDayVideo` | `friDayVideo.png` |
