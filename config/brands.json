@@ -33,10 +33,10 @@
     {
       "id": "Grok",
       "display_name": "Grok",
-      "category": "AI",
+      "category": "SpaceXAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/AI/Grok/Grok.png",
-      "parent_brand": "SpaceXAI"
+      "icon_path": "icons/SpaceXAI/Grok/Grok.png",
+      "parent_brand": "xAI"
     },
     {
       "id": "Kimi",
@@ -1778,9 +1778,18 @@
     {
       "id": "X",
       "display_name": "X",
-      "category": "Social",
+      "category": "SpaceXAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/Social/X/X.png"
+      "icon_path": "icons/SpaceXAI/X/X.png",
+      "parent_brand": "SpaceXAI"
+    },
+    {
+      "id": "xAI",
+      "display_name": "xAI",
+      "category": "SpaceXAI",
+      "entity_type": "product_brand",
+      "icon_path": "icons/SpaceXAI/xAI/xAI.png",
+      "parent_brand": "SpaceXAI"
     },
     {
       "id": "Zhihu",
@@ -2151,45 +2160,39 @@
       "category": "PCCW",
       "entity_type": "ecosystem",
       "icon_path": "icons/PCCW/PCCW/PCCW.png"
-    },
-    {
-      "id": "SpaceXAI",
-      "display_name": "SpaceXAI",
-      "category": "AI",
-      "entity_type": "product_brand",
-      "icon_path": "icons/AI/SpaceXAI/SpaceXAI.png"
     }
   ],
   "parent_brands_without_icon": [
     "Block",
     "ButterflyEffect",
     "ChunghwaTelecom",
-    "DMM",
     "Daiichikosho",
+    "DMM",
     "EchoStar",
     "FarEasTone",
     "Fox",
-    "KKCompany",
+    "iCABLE",
     "Kadokawa",
     "Kakao",
+    "KKCompany",
     "Kuaishou",
     "LibertyMedia",
     "MangoSuperMedia",
     "MoonshotAI",
-    "NTTDocomo",
     "NewsCorp",
-    "PLAY",
+    "NTTDocomo",
     "Paramount",
+    "PLAY",
     "Quora",
     "Rakuten",
     "RedBull",
     "SiriusXM",
     "Snap",
+    "SpaceXAI",
     "TaiwanMobile",
     "UNEXTHoldings",
     "Valve",
     "Xperi",
-    "ZhipuAI",
-    "iCABLE"
+    "ZhipuAI"
   ]
 }

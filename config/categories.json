@@ -368,6 +368,15 @@
       "type": "ecosystem",
       "status": "active",
       "sort_order": 40
+    },
+    {
+      "id": "SpaceXAI",
+      "display_name": "SpaceXAI",
+      "emoji": "🛰️",
+      "description": "SpaceXAI 生态",
+      "type": "ecosystem",
+      "status": "active",
+      "sort_order": 41
     }
   ]
 }

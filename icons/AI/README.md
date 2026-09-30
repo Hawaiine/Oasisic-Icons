@@ -1,13 +1,12 @@
 # 🤖 AI / 人工智能服务与模型
 
-> 共 **13** 个图标，**13** 个品牌
+> 共 **11** 个图标，**11** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `Anthropic` | `Anthropic.png` |
 | `DeepSeek` | `DeepSeek.png` |
 | `GLM` | `GLM.png` |
-| `Grok` | `Grok.png` |
 | `Kimi` | `Kimi.png` |
 | `Manus` | `Manus.png` |
 | `MiniMax` | `MiniMax.png` |
@@ -16,4 +15,3 @@
 | `OpenAI` | `OpenAI.png` |
 | `Perplexity` | `Perplexity.png` |
 | `Poe` | `Poe.png` |
-| `SpaceXAI` | `SpaceXAI.png` |
