@@ -225,11 +225,11 @@
       "parent_brand": "Apple"
     },
     {
-      "id": "AppleNews",
-      "display_name": "Apple News",
+      "id": "AppleNewsPlus",
+      "display_name": "Apple News+",
       "category": "Apple",
       "entity_type": "product_brand",
-      "icon_path": "icons/Apple/AppleNews/AppleNews.png",
+      "icon_path": "icons/Apple/AppleNewsPlus/AppleNewsPlus.png",
       "parent_brand": "Apple"
     },
     {

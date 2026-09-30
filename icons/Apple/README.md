@@ -10,7 +10,7 @@
 | `AppleBooks` | `AppleBooks.png` |
 | `AppleFitnessPlus` | `AppleFitnessPlus.png` |
 | `AppleMusic` | `AppleMusic.png` |
-| `AppleNews` | `AppleNews.png` |
+| `AppleNewsPlus` | `AppleNewsPlus.png` |
 | `AppleTV` | `AppleTV.png` |
 | `SiriAI` | `SiriAI.png` |
 | `TestFlight` | `TestFlight.png` |

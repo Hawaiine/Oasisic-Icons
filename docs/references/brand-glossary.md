@@ -36,7 +36,7 @@
 | AppleBooks | Apple Books |
 | AppleFitnessPlus | Apple Fitness+ |
 | AppleMusic | Apple Music |
-| AppleNews | Apple News |
+| AppleNewsPlus | Apple News+ |
 | AppleTV | Apple TV |
 | Aqara | Aqara |
 | Area | Area |
