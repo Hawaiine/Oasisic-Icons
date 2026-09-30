@@ -18,9 +18,12 @@
  10. Legacy paths         README/docs/scripts/.github/config 禁止引用已删除的 legacy 路径
                           （docs/migrations/ 内的历史记录性引用除外）
  11. README 表格          主 README 分类清单：结构、全量覆盖、顺序与计数
- 12. 生态一致性           关系图门禁（scripts/brand_relationships.py）
- 13. README 父节点        任何拥有 ≥1 child brand 的物理品牌节点，其 icon 目录
-                          必须有 README.md（生态根 + 中间父品牌）；叶子品牌不强制
+ 12. 生态一致性           关系图门禁（scripts/brand_relationships.py）：直接父品牌、
+                          graph root ≠ ecosystem root、双向生态阈值（root descendants ≥ 2
+                          必须 ecosystem）、canonical 实体过滤
+ 13. README 统计          主 README badge + intro 汇总数 vs SSOT/文件系统（防硬编码漂移）
+ 14. README 父节点        任何拥有 ≥1 child brand 的物理品牌节点必须有 README.md，且
+                          生成 README 内容与 expected_parent_readme() 逐字节一致
 
 全部组 PASS 输出 'Validation Groups: N / All groups: PASS' 并以 exit 0 结束；
 任一组失败输出全部问题并以 exit 1 结束。
@@ -216,7 +219,13 @@ else:
     for rel in sorted(ssot_rel - disk_brands):
         fail('Brands SSOT', 'brands.json 品牌在磁盘不存在: %s' % rel)
 
-# ---------- 8. surge-icon.json ----------
+# ---------- 8. surge-icon.json（§30-§34 双向集合一致性） ----------
+# 存在性 → 升级为「与 brands.json SSOT 逐项对应」：
+#   - surge ID 集合 == brands.json ID 集合（双向，可检测多余/缺失/旧 ID）
+#   - surge name == brands.json.id；surge category == brands.json.category
+#   - surge url == 由 brands.json.icon_path 派生的 canonical URL
+#   - 保留：URL 存在 /icons/、无 jsDelivr、文件在磁盘存在
+SURGE_BASE = 'https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main'
 entries = []
 if not JSON_PATH.exists():
     fail('Surge JSON', '缺少 %s' % JSON_PATH)
@@ -224,7 +233,15 @@ else:
     entries = json.loads(JSON_PATH.read_text(encoding='utf-8')).get('icons', [])
     if len(entries) != len(all_pngs):
         fail('Surge JSON', '条目数不一致: surge-icon.json=%d, 磁盘 PNG=%d' % (len(entries), len(all_pngs)))
+
+    # canonical 映射：id -> (category, icon_path)
+    canon = {e['id']: (e.get('category', ''), e.get('icon_path', '')) for e in bdata}
+
+    # 逐条：name/category/url 与 SSOT 精确一致 + 文件存在 + 无 jsDelivr
+    surge_ids = set()
     for it in entries:
+        name = it.get('name', '')
+        surge_ids.add(name)
         url = it.get('url', '')
         if '/icons/' not in url:
             fail('Surge JSON', 'URL 缺少 /icons/: %s' % url)
@@ -234,21 +251,42 @@ else:
             continue
         if not Path(url.split('main/', 1)[-1]).exists():
             fail('Surge JSON', 'JSON 引用但文件不存在: %s' % url)
+            continue
+        if name not in canon:
+            fail('Surge JSON', 'surge entry name 不在 brands.json（多余/旧 ID）: %s' % name)
+            continue
+        cat, ipath = canon[name]
+        if it.get('category', '') != cat:
+            fail('Surge JSON', 'category 不符: %s surge=%r ssot=%r' % (name, it.get('category', ''), cat))
+        expected_url = '%s/%s' % (SURGE_BASE, ipath) if ipath else ''
+        if expected_url and url != expected_url:
+            fail('Surge JSON', 'URL 与 icon_path 派生不符: %s surge=%r expected=%r' % (name, url, expected_url))
 
-# ---------- 9. Glossary ----------
+    # 双向：brands.json 每个品牌必须出现在 surge（缺失/旧 ID 检测）
+    for bid in sorted(set(canon) - surge_ids):
+        fail('Surge JSON', 'brands.json 品牌在 surge-icon.json 缺失: %s' % bid)
+
+# ---------- 9. Glossary（§35-§39 ID + display_name 双向映射一致性） ----------
 if not GLOSS_PATH.exists():
     fail('Glossary', '缺少 %s' % GLOSS_PATH)
 else:
-    gloss = set()
+    gloss = {}
     for line in GLOSS_PATH.read_text(encoding='utf-8').splitlines():
         m = re.match(r'^\|\s*([\w.\-]+)\s*\|\s*([^|]+?)\s*\|\s*$', line)
         if m and m.group(1) not in ('英文文件夹',) and m.group(1)[0].isalnum():
-            gloss.add(m.group(1))
+            gloss[m.group(1)] = m.group(2)
     ssot_ids = set(ssot)
-    for b in sorted(ssot_ids - gloss):
+    for b in sorted(ssot_ids - set(gloss)):
         fail('Glossary', '缺失品牌: %s' % b)
-    for b in sorted(gloss - ssot_ids):
+    for b in sorted(set(gloss) - ssot_ids):
         fail('Glossary', '多余品牌（brands.json 无）: %s' % b)
+    # §35-§39：每个品牌的 technical ID 与 display_name 必须与 brands.json 精确一致
+    # 特殊命名（+ / @ / 中文 / 官方 casing）只要符合 Naming Contract 即 PASS，
+    # 不视为 mismatch。
+    for bid in sorted(set(gloss) & ssot_ids):
+        exp_dn = ssot[bid].get('display_name', '')
+        if gloss[bid] != exp_dn:
+            fail('Glossary', 'display_name 不符: %s glossary=%r ssot=%r' % (bid, gloss[bid], exp_dn))
 
 # ---------- 10. Legacy paths（历史引用仅允许在 docs/migrations/） ----------
 # 用拼接构造模式串，避免 CI 脚本被自身扫描命中
@@ -346,39 +384,83 @@ else:
 # ---------- 12. 生态一致性（关系图：直接父品牌 + 动态生态根 + descendants 阈值） ----------
 # 模型（scripts/brand_relationships.py）：
 #   - parent_brand = 直接父品牌（immediate parent），如 Instagram → Facebook；
-#   - 生态根 = entity_type=ecosystem 品牌（顶层生态），生态根可沿 parent 链动态派生，不存字段；
-#   - 生态阈值 = 生态根 canonical descendants ≥ 2（直系子 + 孙 + …，不含 root/variants/aliases），
-#     用 descendants 而非 direct children，避免中间层（如 Facebook）误触发分类爆炸。
-# 负测（cycle / self-parent / missing parent / wrong root / threshold）见 tests/test_brand_relationships.py。
-from brand_relationships import validate_relationships  # noqa: E402
+#   - graph root ≠ ecosystem root（Mijia → Xiaomi：graph root=Xiaomi，非生态→ecosystem root=None）；
+#   - 生态阈值（双向）= graph root canonical descendants ≥ 2（直系子 + 孙 + …，仅 product_brand），
+#     正向（ecosystem→≥2）+ 反向（root ≥2→必须 ecosystem），只作用于 graph root，中间层不升级。
+# 负测（cycle / self-parent / missing parent / wrong root / threshold 双向 / canonical 过滤）
+# 见 tests/test_brand_relationships.py。
+from brand_relationships import (  # noqa: E402
+    expected_parent_readme,
+    physical_parent_nodes,
+    validate_relationships,
+)
 cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8')) if CATS_PATH.exists() else {}
 brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8')) if BRANDS_PATH.exists() else {}
 for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
     fail('生态一致性', _rel_err)
 
-# ---------- 13. README 父节点（Parent README Policy） ----------
+# ---------- 13. README 统计（§42-§45：badge + intro 数字 vs SSOT/文件系统） ----------
+# 主 README 的 badge 与正文统计句属 hardcoded statistics，必须与真实数据一致。
+# 分类表逐行计数由第 11 组负责（不重复实现）；本组只校验 badge + intro 汇总数。
+if Path('README.md').exists():
+    _rd = Path('README.md').read_text(encoding='utf-8')
+    _real_png = len(all_pngs)
+    _real_brand = len(ssot)
+    _real_cat = len([d for d in ICONS.iterdir() if d.is_dir()])
+    _real_active = sum(1 for d in ICONS.iterdir()
+                       if d.is_dir() and any(d.rglob('*.png')))
+    for _label, _n in (('icons', _real_png), ('brands', _real_brand),
+                       ('categories', _real_cat)):
+        _m = re.search(r'badge/%s-(\d+)-' % _label, _rd)
+        if _m is None:
+            fail('README 统计', 'badge 未找到: %s' % _label)
+        elif int(_m.group(1)) != _n:
+            fail('README 统计', 'badge %s=%s 实际=%d' % (_label, _m.group(1), _n))
+    _mi = re.search(r'当前共 \*\*(\d+)\*\* 个 PNG 图标，覆盖 \*\*(\d+)\*\* 个品牌，归入 \*\*(\d+)\*\* 个', _rd)
+    if _mi is None:
+        fail('README 统计', 'intro 统计句未找到')
+    elif (int(_mi.group(1)), int(_mi.group(2)), int(_mi.group(3))) != (_real_png, _real_brand, _real_cat):
+        fail('README 统计', 'intro 汇总 %s 实际=%d/%d/%d'
+             % (_mi.groups(), _real_png, _real_brand, _real_cat))
+    _ma = re.search(r'（其中 (\d+) 个活跃', _rd)
+    if _ma is not None and int(_ma.group(1)) != _real_active:
+        fail('README 统计', 'intro 活跃分类=%s 实际=%d' % (_ma.group(1), _real_active))
+else:
+    fail('README 统计', '缺少 README.md')
+
+# ---------- 14. README 父节点（Parent README Policy：存在 + 内容） ----------
 # 规则（docs/references/brand-naming-contract.md）：
-#   任何拥有 ≥1 个 child brand 的物理品牌节点，其 icon 目录必须有 README.md
-#   （一级生态根 + 中间父品牌 + 更深层父品牌）；叶子品牌不强制。
-#   Country / System / Surge 特殊目录不套用（当前库中它们无父节点，天然排除）。
-# 反向：叶子品牌即使没有 README 也不报错。
-_child_map = defaultdict(list)
-for _bid, _e in ssot.items():
-    _p = _e.get('parent_brand')
-    if _p:
-        _child_map[_p].append(_bid)
-for _p, _kids in sorted(_child_map.items()):
+#   任何拥有 ≥1 个 child brand 的物理品牌节点（physical_parent_nodes，动态计算，
+#   非固定名单），其 icon 目录必须有 README.md（生态根 + 中间父品牌 + 更深层父品牌）；
+#   叶子品牌不强制。
+#   内容校验（§22-§25）：带 generated marker 的 README 必须与 expected_parent_readme()
+#   逐字节相等（数据全部来自 brands.json + 动态关系解析）；人工 README 只做最低结构检查。
+for _p in sorted(physical_parent_nodes(brands_doc)):
     if _p not in ssot:
         continue  # 白名单母公司（无自身图标/目录）：关系级引用，不适用目录级 README
     _d = Path(ssot[_p]['icon_path']).parent
-    if not (_d / 'README.md').exists():
-        fail('README 父节点', '父品牌缺 README: %s（children: %s）' % (_p, ', '.join(sorted(_kids))))
+    _rdp = _d / 'README.md'
+    if not _rdp.exists():
+        fail('README 父节点', '父品牌缺 README: %s' % _p)
+        continue
+    _text = _rdp.read_text(encoding='utf-8')
+    _first = _text.splitlines()[0].strip() if _text.splitlines() else ''
+    if _first == '<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->':
+        if _text != expected_parent_readme(_p, ssot):
+            fail('README 父节点', '生成 README 内容与 expected 不一致: %s（运行 '
+                 'scripts/generate-category-readmes.sh 重新生成）' % _p)
+    else:
+        # 人工 README：最低结构（含 display_name + 至少一个关系字段）
+        if ssot[_p]['display_name'] not in _text:
+            fail('README 父节点', '人工 README 缺 display_name: %s' % _p)
+        if not re.search(r'Ancestor Chain|Direct Children|Parent:', _text):
+            fail('README 父节点', '人工 README 缺关系结构: %s' % _p)
 
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
                    'Surge JSON', 'Glossary', 'Legacy paths',
-                   'README 表格', '生态一致性', 'README 父节点']
+                   'README 表格', '生态一致性', 'README 统计', 'README 父节点']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:

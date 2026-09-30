@@ -17,7 +17,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 from brand_relationships import (  # noqa: E402
+    PARENT_README_MARKER,
     _root_of,
+    expected_parent_readme,
+    physical_parent_nodes,
     resolve_ecosystem_root,
     validate_relationships,
 )
@@ -143,6 +146,42 @@ class ParentReadmeTests(unittest.TestCase):
             self.assertIn('Direct Children', text)
             self.assertIn('Ecosystem Root', text)
 
+    def test_all_parent_readme_bytes_match_expected(self):
+        # §22-§25：ALL physical parent nodes（动态，非固定名单）逐一做
+        # deterministic expected == actual 逐字节等价校验。
+        # 有 marker 的生成文件必须严格相等；无 marker 的人工 README 跳过。
+        parents = physical_parent_nodes(self.brands_doc)
+        checked = 0
+        for p in sorted(parents):
+            rd = REPO / Path(self.ssot[p]['icon_path']).parent / 'README.md'
+            self.assertTrue(rd.exists(), '%s 缺 README' % p)
+            text = rd.read_text(encoding='utf-8')
+            if text.splitlines() and text.splitlines()[0].strip() == PARENT_README_MARKER:
+                expected = expected_parent_readme(p, self.ssot)
+                self.assertEqual(text, expected,
+                                 '%s README 内容与 expected 不一致（应运行 '
+                                 'scripts/generate-category-readmes.sh 重新生成）' % p)
+                checked += 1
+        self.assertGreater(checked, 0, '未校验到任何 generated 父品牌 README')
+
+    def test_graph_root_parent_role(self):
+        # §26-§28：SINA / Xiaomi 是 graph root 但 descendants=1 → 非 ecosystem，
+        # 角色应为 Graph Root Parent（不是 Intermediate Parent Brand）
+        for p in ('SINA', 'Xiaomi'):
+            rd = REPO / Path(self.ssot[p]['icon_path']).parent / 'README.md'
+            text = rd.read_text(encoding='utf-8')
+            self.assertIn('Role:         Graph Root Parent', text,
+                          '%s 角色应为 Graph Root Parent' % p)
+            self.assertIn('Graph Root:   %s' % p, text)
+            self.assertIn('Ecosystem Root: —', text)
+
+    def test_intermediate_role_real_repo(self):
+        # Facebook 有 SSOT 父（Meta）+ 有子 → Intermediate Parent Brand
+        rd = REPO / Path(self.ssot['Facebook']['icon_path']).parent / 'README.md'
+        text = rd.read_text(encoding='utf-8')
+        self.assertIn('Role:         Intermediate Parent Brand', text)
+        self.assertIn('Ecosystem Root: Meta', text)
+
 
 class NamingContractTests(unittest.TestCase):
     """§109 / §51 / §52：技术 ID 与 display_name 命名契约（真实库）。"""
@@ -188,6 +227,16 @@ class NamingContractTests(unittest.TestCase):
         # §50/§52：官方 casing 保留，不机械 PascalCase
         for bid in ('iQIYI', 'SONY', 'vivo', 'myTVSUPER', 'TIDAL', 'xAI'):
             self.assertIn(bid, self.ssot, '官方 casing 品牌 %s 缺失' % bid)
+
+    def test_chinese_display_names(self):
+        # §37/§48：中文 display_name 合法（ID 仍为 ASCII，ID ≠ display_name）
+        expect = {'SINA': '新浪', 'Xiaoyuzhou': '小宇宙'}
+        for bid, dn in expect.items():
+            self.assertIn(bid, self.ssot, '缺少品牌 %s' % bid)
+            self.assertEqual(self.ssot[bid]['display_name'], dn,
+                             '%s display_name 应为 %r' % (bid, dn))
+            self.assertNotEqual(self.ssot[bid]['display_name'], bid,
+                                'ID 与 display_name 不应相同: %s' % bid)
 
 
 if __name__ == '__main__':
