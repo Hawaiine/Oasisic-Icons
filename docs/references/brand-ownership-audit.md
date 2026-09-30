@@ -31,6 +31,16 @@
   用 descendants 而非 direct children，避免中间层（Facebook 有 4 直系子）误触发分类爆炸。
 - **ownership ≠ brand architecture**：同属一家公司不自动新增 parent_brand；一旦关系成立且 descendants ≥ 2，
   生态目录规则立即适用。证据只存本文件，不写入 `brands.json`。
+- **X / xAI / SpaceX 专项**（2026-09-30 复核）：`X.parent_brand = xAI` 维持。xAI 于 2026-02 被 SpaceX
+  收购（$250bn）、2026-07 法律实体更名 SpaceXAI——但**法律股权不压缩进品牌关系字段**：不新增
+  `icons/SpaceX/`、不设 `xAI.parent_brand = SpaceX`。xAI 仍是品牌生态根（descendants = X + Grok ≥ 2），
+  股权变动记录于 §8 边界监控。
+- **Parent README Policy**（2026-09-30 定稿）：任何拥有 ≥1 个 child brand 的物理品牌节点，
+  其 icon 目录必须拥有 `README.md`（生态根 + 中间父品牌 + 更深层父品牌）；叶子品牌不强制；
+  Country / System / Surge 特殊目录不套用；白名单母公司无物理目录不适用。
+  生成器 `scripts/generate-category-readmes.sh`（父品牌段），CI 第 13 组「README 父节点」门禁。
+  完整契约见 `docs/references/brand-naming-contract.md`（ID / display_name / directory / filename /
+  特殊字符映射 / 同步矩阵）。
 
 ## 2. 来源 / Sources
 
@@ -712,6 +722,9 @@
 
 > 对照源：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT`（**34 对**，2026-09-30 只读审计，未修改 mihomo-rules；旧文写 33 对为笔误）。
 > 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义后，与 mihomo 的直接父语义天然对齐。
+> Peacock 注记：Peacock 不在 SUB_PARENT 中（34 对无 Peacock），2026-09-30 技术 ID `PeacockTV`→`Peacock`
+> 对 mihomo 对照**零影响**；mihomo 4 个 config 中的 `Media/PeacockTV/` 图标 URL 属既有 stale 引用
+> （早于 NBCUniversal 生态迁移），不在本仓修改范围。
 
 | 品牌 | Oasisic parent_brand | mihomo SUB_PARENT | Oasisic 生态根（派生） | 结论 |
 |---|---|---|---|---|
