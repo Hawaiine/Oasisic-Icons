@@ -17,3 +17,21 @@
 | `TestFlight` | `TestFlight.png` |
 | `iCloud` | `iCloud.png` |
 | `iCloudPrivateRelay` | `iCloudPrivateRelay.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Apple
+├── AppStore
+├── AppleArcade
+├── AppleBooks
+├── AppleFitnessPlus
+├── AppleMusic
+├── AppleNewsPlus
+├── ApplePodcasts
+├── AppleTV
+├── SiriAI
+├── TestFlight
+└── iCloud
+    └── iCloudPrivateRelay
+```

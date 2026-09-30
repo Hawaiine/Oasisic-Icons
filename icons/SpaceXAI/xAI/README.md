@@ -1,14 +1,14 @@
 <!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# xAI 父品牌（Graph Root）
+# xAI / SpaceXAI 生态父品牌
 
 ```text
 Brand:        xAI
 Display Name: xAI
-Role:         Graph Root Parent
+Role:         Intermediate Parent Brand
 Parent:       SpaceXAI
 Graph Root:   SpaceXAI
-Ecosystem Root: —
+Ecosystem Root: SpaceXAI
 Ancestor Chain: xAI → SpaceXAI
 Direct Children: 1
 ```

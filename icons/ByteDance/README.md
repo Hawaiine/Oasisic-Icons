@@ -10,3 +10,14 @@
 | `Lark` | `Lark.png` |
 | `Pipixia` | `Pipixia.png` |
 | `TikTok` | `TikTok.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+ByteDance
+├── Doubao
+├── Douyin
+├── Lark
+├── Pipixia
+└── TikTok
+```

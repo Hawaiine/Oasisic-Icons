@@ -10,3 +10,14 @@
 | `AmazonMusic` | `AmazonMusic.png` |
 | `PrimeVideo` | `PrimeVideo.png` |
 | `Twitch` | `Twitch.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Amazon
+├── AWS
+├── AmazonAlexa
+├── AmazonMusic
+├── PrimeVideo
+└── Twitch
+```

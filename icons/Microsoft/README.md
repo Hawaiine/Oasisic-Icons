@@ -14,3 +14,18 @@
 | `OneDrive` | `OneDrive.png` |
 | `Outlook` | `Outlook.png` |
 | `Xbox` | `Xbox.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Microsoft
+├── Azure
+├── Bing
+├── Copilot
+├── GitHub
+├── LinkedIn
+├── MicrosoftStore
+├── OneDrive
+├── Outlook
+└── Xbox
+```

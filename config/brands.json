@@ -35,7 +35,7 @@
       "display_name": "Grok",
       "category": "SpaceXAI",
       "entity_type": "product_brand",
-      "icon_path": "icons/SpaceXAI/Grok/Grok.png",
+      "icon_path": "icons/SpaceXAI/xAI/Grok/Grok.png",
       "parent_brand": "xAI"
     },
     {
@@ -275,7 +275,7 @@
       "display_name": "iCloud Private Relay",
       "category": "Apple",
       "entity_type": "product_brand",
-      "icon_path": "icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png",
+      "icon_path": "icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png",
       "parent_brand": "iCloud"
     },
     {
@@ -430,7 +430,7 @@
       "display_name": "Messenger",
       "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Meta/Messenger/Messenger.png",
+      "icon_path": "icons/Meta/Facebook/Messenger/Messenger.png",
       "parent_brand": "Facebook"
     },
     {
@@ -468,7 +468,7 @@
       "display_name": "WhatsApp",
       "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Meta/WhatsApp/WhatsApp.png",
+      "icon_path": "icons/Meta/Facebook/WhatsApp/WhatsApp.png",
       "parent_brand": "Facebook"
     },
     {
@@ -783,7 +783,7 @@
       "display_name": "YouTube Music",
       "category": "Google",
       "entity_type": "product_brand",
-      "icon_path": "icons/Google/YouTubeMusic/YouTubeMusic.png",
+      "icon_path": "icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png",
       "parent_brand": "YouTube"
     },
     {
@@ -1695,7 +1695,7 @@
       "display_name": "Instagram",
       "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Meta/Instagram/Instagram.png",
+      "icon_path": "icons/Meta/Facebook/Instagram/Instagram.png",
       "parent_brand": "Facebook"
     },
     {
@@ -1748,7 +1748,7 @@
       "display_name": "Threads",
       "category": "Meta",
       "entity_type": "product_brand",
-      "icon_path": "icons/Meta/Threads/Threads.png",
+      "icon_path": "icons/Meta/Facebook/Threads/Threads.png",
       "parent_brand": "Facebook"
     },
     {

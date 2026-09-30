@@ -7,3 +7,11 @@
 | `NetEase` | `NetEase.png` |
 | `NetEaseCloudMusic` | `NetEaseCloudMusic.png` |
 | `NetEaseMail` | `NetEaseMail.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+NetEase
+├── NetEaseCloudMusic
+└── NetEaseMail
+```

@@ -8,3 +8,12 @@
 | `PlayStation` | `PlayStation.png` |
 | `SONY` | `SONY.png` |
 | `mora` | `mora.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+SONY
+├── Crunchyroll
+├── PlayStation
+└── mora
+```

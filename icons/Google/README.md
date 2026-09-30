@@ -16,3 +16,20 @@
 | `GoogleVoice` | `GoogleVoice.png` |
 | `YouTube` | `YouTube.png` |
 | `YouTubeMusic` | `YouTubeMusic.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Google
+├── Gmail
+├── GoogleAI
+├── GoogleDrive
+├── GoogleMaps
+├── GoogleNews
+├── GooglePhotos
+├── GooglePlay
+├── GoogleTranslate
+├── GoogleVoice
+└── YouTube
+    └── YouTubeMusic
+```

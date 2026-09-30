@@ -12,3 +12,16 @@
 | `Qwen` | `Qwen.png` |
 | `Taobao` | `Taobao.png` |
 | `Youku` | `Youku.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Alibaba
+├── AliCloud
+├── AliPay
+├── DingTalk
+├── Quark
+├── Qwen
+├── Taobao
+└── Youku
+```

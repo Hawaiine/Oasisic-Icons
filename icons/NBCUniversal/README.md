@@ -7,3 +7,11 @@
 | `NBC` | `NBC.png` |
 | `NBCUniversal` | `NBCUniversal.png` |
 | `Peacock` | `Peacock.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+NBCUniversal
+├── NBC
+└── Peacock
+```

@@ -8,3 +8,12 @@
 | `BaiduNetdisk` | `BaiduNetdisk.png` |
 | `Tieba` | `Tieba.png` |
 | `iQIYI` | `iQIYI.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Baidu
+├── BaiduNetdisk
+├── Tieba
+└── iQIYI
+```

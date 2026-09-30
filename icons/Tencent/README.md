@@ -11,3 +11,15 @@
 | `TencentVideo` | `TencentVideo.png` |
 | `WeChat` | `WeChat.png` |
 | `WeTV` | `WeTV.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Tencent
+├── QQ
+├── QQMail
+├── QQMusic
+├── TencentVideo
+├── WeChat
+└── WeTV
+```

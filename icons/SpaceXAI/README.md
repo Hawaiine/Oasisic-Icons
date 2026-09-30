@@ -7,3 +7,12 @@
 | `Grok` | `Grok.png` |
 | `X` | `X.png` |
 | `xAI` | `xAI.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+SpaceXAI
+├── X
+└── xAI
+    └── Grok
+```

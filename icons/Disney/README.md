@@ -8,3 +8,12 @@
 | `DisneyPlus` | `DisneyPlus.png` |
 | `ESPN` | `ESPN.png` |
 | `Hulu` | `Hulu.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Disney
+├── DisneyPlus
+├── ESPN
+└── Hulu
+```

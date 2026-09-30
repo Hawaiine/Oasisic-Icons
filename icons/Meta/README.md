@@ -10,3 +10,14 @@
 | `Meta` | `Meta.png` |
 | `Threads` | `Threads.png` |
 | `WhatsApp` | `WhatsApp.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Meta
+└── Facebook
+    ├── Instagram
+    ├── Messenger
+    ├── Threads
+    └── WhatsApp
+```

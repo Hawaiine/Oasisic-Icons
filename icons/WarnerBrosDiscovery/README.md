@@ -7,3 +7,11 @@
 | `HBOMax` | `HBOMax.png` |
 | `WarnerBrosDiscovery` | `WarnerBrosDiscovery.png` |
 | `discoveryPlus` | `discoveryPlus.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+WarnerBrosDiscovery
+├── HBOMax
+└── discoveryPlus
+```
