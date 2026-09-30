@@ -19,14 +19,14 @@
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
   <img src="https://img.shields.io/badge/icons-292-blue?style=flat-square" alt="Icons Count">
   <img src="https://img.shields.io/badge/brands-292-green?style=flat-square" alt="Brands Count">
-  <img src="https://img.shields.io/badge/categories-42-orange?style=flat-square" alt="Categories Count">
+  <img src="https://img.shields.io/badge/categories-41-orange?style=flat-square" alt="Categories Count">
 </p>
 
 ---
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **292** 个 PNG 图标，覆盖 **292** 个品牌，归入 **42** 个一级分类（其中 41 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **292** 个 PNG 图标，覆盖 **292** 个品牌，归入 **41** 个一级分类（其中 40 个活跃，`Finance` 为预留空分类）。
 
 本项目为独立图标仓库，当前 292 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
@@ -154,7 +154,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 | 分类 | 说明 | 品牌数 | 图标数 |
 |---|---|---:|---:|
-| 🤖 AI | 人工智能服务与模型 | 11 | 11 |
+| 🤖 AI | 人工智能服务与模型 | 13 | 13 |
 | 🏢 Alibaba | 阿里巴巴生态 | 8 | 8 |
 | 📦 Amazon | 亚马逊生态 | 6 | 6 |
 | 🍎 Apple | 苹果生态 | 13 | 13 |
@@ -186,7 +186,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | ☎️ PCCW | 电讯盈科生态 | 3 | 3 |
 | 🌐 Proxy | 代理线路与协议 | 4 | 4 |
 | 🛒 Shopping | 购物与电商 | 5 | 5 |
-| 👥 Social | 社交媒体与社区 | 10 | 10 |
+| 👥 Social | 社交媒体与社区 | 11 | 11 |
 | 🕹️ Sony | 索尼生态 | 4 | 4 |
 | ⚡ Surge | Surge 应用图标 | 1 | 1 |
 | ⚙️ System | 代理系统图标与通用策略 | 20 | 20 |
@@ -195,7 +195,6 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | 🎞️ Warner Bros. Discovery | 华纳兄弟探索生态 | 3 | 3 |
-| 🚀 SpaceXAI | SpaceXAI 生态 | 3 | 3 |
 | **合计** | — | **292** | **292** |
 ### 分类体系原则（方案 C，2026-09-29）
 
@@ -214,12 +213,12 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    - descendants ≥ 2 → 建 `icons/<Root>/` 一级分类，descendants 统一迁入（`category = <Root>`，**保留 `parent_brand`**）；
    - 生态根有 root icon → 迁入 `icons/<Root>/<Root>/<Root>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**，生态根登记 `parent_brands_without_icon`（白名单只表示无 root icon，不代表不建目录，且白名单内不得出现已有 canonical icon 的品牌）；
    - descendants < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
-   当前生态分类（17 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery / SpaceXAI。
+   当前生态分类（16 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
 5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且生态根 descendants ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；
 6. **category ≠ parent_brand ≠ 生态根**：category 回答「图标归哪个一级目录」，parent_brand 回答「直接属于哪个品牌」（**直接父品牌 / immediate parent**，如 Instagram → Facebook、YouTubeMusic → YouTube、iCloudPrivateRelay → iCloud），生态根回答「最终属于哪个生态」——生态根**不单独存字段**，由 `entity_type: ecosystem` 标记 + 沿 parent 链向上动态派生（`brand_relationships.resolve_ecosystem_root`），消费方零成本获得。
-   **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 17 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`。
+   **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 16 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`；**公司品牌但未构成独立生态者（如 SINA / Xiaomi / TVB / SpaceXAI）亦为 `product_brand`**，其子公司/产品经 `parent_brand` 关联，不建一级生态目录。
 
 **归属审计（研究层）**：[`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md) 记录全库每个 Canonical Brand 的**当前现实世界母公司**判断、证据来源、状态（CONFIRMED_PARENT / NO_PARENT / AMBIGUOUS_JV / RETIRED / SPECIAL_ENTITY）与采取的动作。CI 只能验证结构一致性，**无法证明现实归属完整性**——该职责由该审计文档承担。
 

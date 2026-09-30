@@ -18,6 +18,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/GLM/GLM.png"
     },
     {
+      "name": "Grok",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Grok/Grok.png"
+    },
+    {
       "name": "Kimi",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Kimi/Kimi.png"
@@ -56,6 +61,11 @@
       "name": "Poe",
       "category": "AI",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Poe/Poe.png"
+    },
+    {
+      "name": "SpaceXAI",
+      "category": "AI",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/SpaceXAI/SpaceXAI.png"
     },
     {
       "name": "AliCloud",
@@ -1203,6 +1213,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Weibo/Weibo.png"
     },
     {
+      "name": "X",
+      "category": "Social",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/X/X.png"
+    },
+    {
       "name": "Zhihu",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Zhihu/Zhihu.png"
@@ -1216,21 +1231,6 @@
       "name": "rednote",
       "category": "Social",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/rednote/rednote.png"
-    },
-    {
-      "name": "Grok",
-      "category": "SpaceXAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/Grok/Grok.png"
-    },
-    {
-      "name": "SpaceXAI",
-      "category": "SpaceXAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/SpaceXAI/SpaceXAI.png"
-    },
-    {
-      "name": "X",
-      "category": "SpaceXAI",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/SpaceXAI/X/X.png"
     },
     {
       "name": "Surge",

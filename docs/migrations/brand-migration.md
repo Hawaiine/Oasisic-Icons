@@ -146,3 +146,20 @@
 | Proxmox | 新增（Infrastructure） | `icons/Infrastructure/Proxmox/Proxmox.png` | Proxmox 开源虚拟化平台，用户提供的官方图标 |
 | SINA | 新增（Social） | `icons/Social/SINA/SINA.png` | 新浪（Sina Corporation）公司品牌，用户提供的官方图标；白名单 `Sina` 移除，子品牌 Weibo 的 parent_brand 指向 SINA |
 | CATCHPLAYPlus | 重命名（原 CATCHPLAY） | `icons/Media/CATCHPLAY/CATCHPLAY.png` | `icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png` | 按全库 Plus 品牌命名惯例对齐（id/目录/文件名）；display_name 仍为「CATCHPLAY+」 |
+
+## Final Seal Review 增量（2026-09-30）：X / Grok / SpaceXAI 关系厘清
+
+> 四个品牌变更 + 1 个公司品牌降级，全部为 pure move（git R100，SHA-256 不变）。
+> 决策依据：**官方当前证据**（SpaceXAI 官方 Terms / Privacy Policy）优先于历史 metadata。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| SpaceXAI | SpaceXAI | AI | `icons/SpaceXAI/SpaceXAI/SpaceXAI.png` | `icons/AI/SpaceXAI/SpaceXAI.png` | 2026-07-06 官方**品牌标识**由 xAI 更名 SpaceXAI（非新增品牌）；canonical descendants = 1（仅 Grok）< 2 → **降为 product_brand**（公司品牌），不构成独立生态 |
+| Grok | SpaceXAI | AI | `icons/SpaceXAI/Grok/Grok.png` | `icons/AI/Grok/Grok.png` | Grok 为 SpaceXAI 开发的 AI 产品（官方 Terms）；`parent_brand = SpaceXAI` 保留；分类回到功能分类 AI |
+| X | SpaceXAI | Social | `icons/SpaceXAI/X/X.png` | `icons/Social/X/X.png` | **移除 `parent_brand`**：SpaceXAI 官方 Privacy Policy 明确「SpaceXAI is a separate company from X Corp.」，SpaceXAI 官方产品清单不含 X → X 为独立平台品牌，**不以 corporate ownership 推导品牌父级** |
+| SpaceX（未入库） | — | — | — | — | **Corporate Owner only**：不建 `icons/SpaceX/`、不设 `parent_brand = SpaceX`；仅记录于归属审计 |
+
+**口径说明**：`xAI → SpaceXAI` 属**品牌标识（brand identity）更名**——官方品牌层面证据为 2026-07-06
+`@SpaceXAI` 账号发布「We are now @SpaceXAI」+ 新 logo + 官方页标题/页脚（Business Insider /
+Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记层面未获正式文件证据，本文件不作此断言**；
+官方 Terms 仅证明当前实体名为「SpaceXAI LLC」（Nevada），不足以推出更名日期。

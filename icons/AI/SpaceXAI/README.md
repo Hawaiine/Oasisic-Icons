@@ -1,19 +1,18 @@
 <!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->
 
-# SpaceXAI / SpaceXAI 生态根品牌
+# SpaceXAI 父品牌（Graph Root）
 
 ```text
 Brand:        SpaceXAI
 Display Name: SpaceXAI
-Role:         Ecosystem Root
+Role:         Graph Root Parent
 Parent:       —
 Graph Root:   SpaceXAI
-Ecosystem Root: SpaceXAI
+Ecosystem Root: —
 Ancestor Chain: SpaceXAI
-Direct Children: 2
+Direct Children: 1
 ```
 
 | Child | Display Name |
 |:---|:---|
 | `Grok` | Grok |
-| `X` | X |
