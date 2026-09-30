@@ -13,8 +13,9 @@
 2. 主动检索现实世界的**当前**控股关系（官方站点 / 官方公告 / 财报 / 公司登记信息 / 权威百科），不依赖历史 metadata；[§92 §93 §95]
 3. 判断控股口径：**全资或多数控股**记为 `CONFIRMED_PARENT`；少数股权与合资公司一律不设母公司；[§102]
 4. 不得仅凭品牌名推断归属（如 `DisneyPlus`、`ChinaMobileDisk` 均需证据）；
-5. 对每个 `parent_brand` 统计 Canonical Child 数，套用硬规则：**children ≥ 2 → 必须存在一级生态分类**；
-   children < 2 → `parent_brand` 照记，子品牌保留在功能分类，不新建生态分类。[§83 §84 §85]
+5. 对每个生态根统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，不含 root 本身），套用硬规则：**descendants ≥ 2 → 必须存在一级生态分类**；
+   descendants < 2 → `parent_brand` 照记，子品牌保留在功能分类，不新建生态分类。[§83 §84 §85]
+   用 descendants 而非 direct children，否则中间层品牌（如 Facebook 直系 4 子）会误触发分类爆炸。
 
 **五类状态**（每个品牌必须落入其一，不允许「未审查」）：`CONFIRMED_PARENT` / `NO_PARENT` / `AMBIGUOUS_JV` / `RETIRED` / `SPECIAL_ENTITY`。[§91]
 
@@ -66,28 +67,29 @@
 
 ## 5. 既有生态的补全与复核 / Existing Ecosystems Revalidated
 
-| 生态 | 审计前 children | 审计后 children | 本轮新增 | 复核结论 |
+> 2026-09-30 起 `parent_brand` 语义改为**直接父品牌**（immediate parent），生态根由 `entity_type: ecosystem` 标记并沿 parent 链动态派生（不存 `ecosystem_root` 字段）。下表 `descendants` 为含孙代的可达后代数，`direct children` 为直接父品牌指向数。
+
+| 生态根 | direct children | descendants | 本轮变更 | 复核结论 |
 |---|---:|---:|---|---|
+| Alibaba | 7 | 7 | — | 关系全部复核通过 |
+| Amazon | 5 | 5 | — | 关系全部复核通过 |
+| Apple | 11 | 12 | iCloudPrivateRelay 父改为 iCloud（中间层） | 关系全部复核通过；Podcasts → ApplePodcasts 重命名（2026-09-30） |
+| Baidu | 3 | 3 | — | 关系全部复核通过 |
+| ByteDance | 5 | 5 | — | 关系全部复核通过 |
+| ChinaMobile | 2 | 2 | — | 关系全部复核通过 |
+| Disney | 3 | 3 | — | 关系全部复核通过（JioHotstar 2025 与 JioCinema 合并、现属 JioStar，不并入 Disney children，独立 NO_PARENT 处理） |
+| Google | 10 | 11 | YouTubeMusic 父改为 YouTube（中间层） | 关系全部复核通过 |
+| Meta | 1 | 5 | Facebook 保留为中间层；Instagram / Messenger / Threads / WhatsApp 父改 Facebook | 关系全部复核通过；descendants=5 ≥ 2，生态成立 |
+| Microsoft | 9 | 9 | — | 关系全部复核通过 |
+| NBCUniversal | 2 | 2 | Peacock display_name 改为官方现名 Peacock | 关系全部复核通过 |
+| NetEase | 2 | 2 | — | 关系全部复核通过 |
+| PCCW | 2 | 2 | — | 关系全部复核通过 |
+| SONY | 3 | 3 | — | 关系全部复核通过 |
+| Tencent | 6 | 6 | — | 关系全部复核通过 |
+| WarnerBrosDiscovery | 2 | 2 | — | 关系全部复核通过（HBOMax 2025-05 已改回 HBO Max，display_name 当前正确） |
+| xAI | 2 | 2 | — | 关系全部复核通过 |
 
-| Alibaba | — | 7 | Youku | 关系全部复核通过 |
-
-| Amazon | — | 5 | — | 关系全部复核通过 |
-
-| Apple | — | 13 | ApplePodcasts | 关系全部复核通过；Podcasts → ApplePodcasts 重命名（2026-09-30） |
-
-| Baidu | — | 3 | iQIYI | 关系全部复核通过 |
-
-| ByteDance | — | 5 | Doubao, Pipixia | 关系全部复核通过 |
-
-| Meta | — | 5 | — | 关系全部复核通过 |
-
-| Google | — | 11 | — | 关系全部复核通过 |
-
-| NetEase | — | 2 | — | 关系全部复核通过 |
-
-| Microsoft | — | 9 | LinkedIn, GitHub | 关系全部复核通过 |
-
-| Tencent | — | 6 | — | 关系全部复核通过 |
+**中间层品牌（直接父品牌语义新增，2026-09-30）**：`Facebook`（直系 4 子：Instagram / Messenger / Threads / WhatsApp，生态根 Meta）、`YouTube`（直系 1 子：YouTubeMusic，生态根 Google）、`iCloud`（直系 1 子：iCloudPrivateRelay，生态根 Apple）。中间层不建一级目录（阈值看生态根 descendants），仅承担 `parent_brand` 直接父关系。
 
 
 ## 6. 无自身图标的母公司白名单 / `parent_brands_without_icon`
@@ -690,6 +692,50 @@
 
 - **CI 能力边界**：CI 只能验证 `brands.json` ↔ 磁盘 ↔ `categories.json` ↔ `surge-icon.json` 的结构一致性，**无法证明现实世界归属的完整性**；现实归属由本文件承担（研究层）。[§64 §96 §97]
 - **本轮发现的高价值漏项**：`Hulu → Disney`、`ESPN → Disney`、`LinkedIn/GitHub → Microsoft`、`Youku → Alibaba`、`iQIYI → Baidu`、`Doubao/Pipixia → ByteDance`、`Podcasts → Apple`、`mora → Sony` 等，均在 PR 分支真实缺失，属本轮发现并修复。
-- **易变关系**：`X / Grok → xAI`（xAI 2026-02 起为 SpaceX 全资子公司，品牌结构处于变动期）、`Lemino`（2026-10-01 起与 WOWOW 合资）、`HBO Max / discovery+`（WBD 拆分进行中）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）——后续需按 §95 重新验证。
+- **易变关系**：`X / Grok → xAI`（xAI 与 SpaceX 股权关系处于变动期，2026-02 起为 SpaceX 全资子公司——品牌生态根仍记 xAI）、`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）——后续需按 §95 重新验证。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
 - **退役品牌**：`Skype`（2025-05 停运）、`KKTV`（2025-12-31 停运并入 LINE TV）保留图标并标记退役，不参与生态归属。
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
+## 9. mihomo-rules 对照 / mihomo-rules Compatibility Matrix
+
+> 对照源：mihomo-rules `scripts/lib/ownership_map.py` 的 `SUB_PARENT`（33 对，2026-09-30 只读审计，未修改 mihomo-rules）。
+> 2026-09-30 起 Oasisic `parent_brand` 采用**直接父品牌**语义后，与 mihomo 的直接父语义天然对齐。
+
+| 品牌 | Oasisic parent_brand | mihomo SUB_PARENT | Oasisic 生态根（派生） | 结论 |
+|---|---|---|---|---|
+| AWS | Amazon | Amazon | Amazon | MATCH |
+| AppStore | Apple | Apple | Apple | MATCH |
+| AppleFitnessPlus | Apple | Apple | Apple | MATCH |
+| AppleMusic | Apple | Apple | Apple | MATCH |
+| AppleNews | — | Apple | — | NOT_CONSUMED：mihomo 有此映射，Oasisic 暂无此 canonical 品牌（非错误） |
+| AppleTV | Apple | Apple | Apple | MATCH |
+| Azure | Microsoft | Microsoft | Microsoft | MATCH |
+| Bing | Microsoft | Microsoft | Microsoft | MATCH |
+| Copilot | Microsoft | Microsoft | Microsoft | MATCH |
+| GitHub | Microsoft | Microsoft | Microsoft | MATCH |
+| Gmail | Google | Google | Google | MATCH |
+| GoogleAI | Google | Google | Google | MATCH |
+| GoogleDrive | Google | Google | Google | MATCH |
+| GoogleMaps | Google | Google | Google | MATCH |
+| GoogleNews | Google | Google | Google | MATCH |
+| GooglePhotos | Google | Google | Google | MATCH |
+| GooglePlay | Google | Google | Google | MATCH |
+| GoogleVoice | Google | Google | Google | MATCH |
+| Grok | xAI | X | xAI | 已知差异：mihomo 直接父=X（平台），Oasisic 直接父=xAI（生态根，X 为其品牌之一）；祖先链 xAI 一致，非错误 |
+| Hotstar | —（现为 JioHotstar） | Disney | — | ID 差异：Oasisic canonical ID=JioHotstar（2025 合并后现名，JioStar 旗下）；mihomo 的 Hotstar→Disney 为 stale 映射（JioHotstar 不属 Disney 生态）。建议 mihomo 侧后续更新 |
+| Hulu | Disney | Disney | Disney | MATCH |
+| Instagram | Facebook | Facebook | Meta | MATCH |
+| Messenger | Facebook | Facebook | Meta | MATCH |
+| OneDrive | Microsoft | Microsoft | Microsoft | MATCH |
+| Outlook | Microsoft | Microsoft | Microsoft | MATCH |
+| PrimeVideo | Amazon | Amazon | Amazon | MATCH |
+| SiriAI | Apple | Apple | Apple | MATCH |
+| Threads | Facebook | Facebook | Meta | MATCH |
+| WhatsApp | Facebook | Facebook | Meta | MATCH |
+| Xbox | Microsoft | Microsoft | Microsoft | MATCH |
+| YouTube | Google | Google | Google | MATCH |
+| YouTubeMusic | YouTube | YouTube | Google | MATCH |
+| iCloud | Apple | Apple | Apple | MATCH |
+| iCloudPrivateRelay | iCloud | iCloud | Apple | MATCH |
+
+**结论**：33 对中 31 对完全 MATCH；2 对为 ID 层面差异（`Grok` 的直接父 X vs xAI 属生态根选择差异，祖先链一致；`Hotstar→Disney` 为 mihomo stale，现名 JioHotstar 不属 Disney）；1 对 NOT_CONSUMED（AppleNews 未在 Oasisic）。
+**长期方向**：Oasisic `brands.json`（id / display_name / parent_brand / entity_type + 派生生态根）作为品牌关系 SSOT，mihomo-rules 后续可消费其 parent_brand 生成 SUB_PARENT，减少双仓手工维护。本轮**未修改** mihomo-rules。

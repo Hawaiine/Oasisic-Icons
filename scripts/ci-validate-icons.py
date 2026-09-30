@@ -339,78 +339,18 @@ else:
                     fail('README 表格', '%s 计数不符: 表=%d/%d 实际=%d/%d' %
                          (name, nb, ni, brand_by_cat.get(cid, 0), icon_by_cat.get(cid, 0)))
 
-# ---------- 12. 生态一致性（动态：children ≥ 2 → 一级生态目录） ----------
-# 统一硬规则：一个 parent_brand 拥有 ≥2 个 Canonical Child Brands 时，
-# 必须存在对应一级生态分类（type=ecosystem），子品牌统一归入该分类。
-# 反向：type=ecosystem 的分类必须对应 ≥2 children 的父品牌。
-# 白名单 parent_brands_without_icon 仅表示无 root icon，不豁免目录规则。
-cat_by_id = {c['id']: c for c in cats}
-brand_by_id_cat = {b['id']: b.get('category') for b in bdata}
-children_of = {}
-for e in bdata:
-    p = e.get('parent_brand')
-    if p:
-        children_of.setdefault(p, []).append(e['id'])
-eco_cat_ids = {c['id'] for c in cats if c.get('type') == 'ecosystem'}
-# (a) 白名单纯净：不得含已有 canonical icon 的品牌
-for a in aliases:
-    if a in ssot:
-        fail('生态一致性', 'parent_brands_without_icon 含已有 icon 的品牌: %s' % a)
-# (b) 正向：children ≥ 2 → 必须有一级生态分类
-for p, chs in children_of.items():
-    if len(chs) < 2:
-        continue
-    if p not in eco_cat_ids:
-        fail('生态一致性', '≥2 子品牌但无一级生态分类: %s (%d 子)' % (p, len(chs)))
-        continue
-    parent = ssot.get(p)
-    if not parent:
-        fail('生态一致性', '生态分类 %s 无对应品牌条目' % p)
-        continue
-    if parent.get('entity_type') != 'ecosystem':
-        fail('生态一致性', '生态分类 %s 的父品牌 entity_type 应为 ecosystem: 实际 %s'
-             % (p, parent.get('entity_type')))
-    if parent.get('category') != p:
-        fail('生态一致性', '父品牌 %s 的 category 应为自身 %s: 实际 %s'
-             % (p, p, parent.get('category')))
-    # 有 root icon：路径必须在生态分类内；无 root icon：须登记白名单
-    if p in ssot:
-        ipath = ssot[p].get('icon_path', '')
-        if ipath and not ipath.startswith('icons/%s/' % p):
-            fail('生态一致性', '父品牌 %s 的 icon 不在生态目录内: %s' % (p, ipath))
-        if not ipath and p not in aliases:
-            fail('生态一致性', '父品牌 %s 无 icon 但未登记白名单' % p)
-    elif p not in aliases:
-        fail('生态一致性', '父品牌 %s 无品牌条目也未登记白名单' % p)
-    # (c) 每个子品牌必须保留 parent_brand 且 category 归入生态分类
-    for c2 in chs:
-        ce = ssot.get(c2)
-        if not ce:
-            continue
-        if ce.get('parent_brand') != p:
-            fail('生态一致性', '子品牌 %s 的 parent_brand 应为 %s: 实际 %s'
-                 % (c2, p, ce.get('parent_brand')))
-        if ce.get('category') != p:
-            fail('生态一致性', '子品牌 %s 的 category 应为 %s: 实际 %s'
-                 % (c2, p, ce.get('category')))
-# (d) 反向：ecosystem 分类必须对应 ≥2 children 的父品牌
-for cid in eco_cat_ids:
-    if len(children_of.get(cid, [])) < 2:
-        fail('生态一致性', '生态分类 %s 对应父品牌子品牌数 <2' % cid)
-    if cid not in ssot:
-        fail('生态一致性', '生态分类 %s 无对应品牌条目' % cid)
-# (e) entity_type=ecosystem 必须拥有自身一级分类（无孤儿生态实体）
-for bid, e in ssot.items():
-    if e.get('entity_type') == 'ecosystem' and e.get('category') != bid:
-        fail('生态一致性', 'entity_type=ecosystem 的 %s 未以自身为一级分类: %s'
-             % (bid, e.get('category')))
-# (f) 漏标拦截：位于生态分类内的非根品牌必须声明 parent_brand 且指向该分类
-for bid, e in ssot.items():
-    c = e.get('category')
-    if c in eco_cat_ids and bid != c:
-        if e.get('parent_brand') != c:
-            fail('生态一致性', '位于生态分类 %s/ 但未标注 parent_brand=%s: %s（实际 %s）'
-                 % (c, c, bid, e.get('parent_brand') or '无'))
+# ---------- 12. 生态一致性（关系图：直接父品牌 + 动态生态根 + descendants 阈值） ----------
+# 模型（scripts/brand_relationships.py）：
+#   - parent_brand = 直接父品牌（immediate parent），如 Instagram → Facebook；
+#   - 生态根 = entity_type=ecosystem 品牌（顶层生态），生态根可沿 parent 链动态派生，不存字段；
+#   - 生态阈值 = 生态根 canonical descendants ≥ 2（直系子 + 孙 + …，不含 root/variants/aliases），
+#     用 descendants 而非 direct children，避免中间层（如 Facebook）误触发分类爆炸。
+# 负测（cycle / self-parent / missing parent / wrong root / threshold）见 tests/test_brand_relationships.py。
+from brand_relationships import validate_relationships  # noqa: E402
+cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8')) if CATS_PATH.exists() else {}
+brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8')) if BRANDS_PATH.exists() else {}
+for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
+    fail('生态一致性', _rel_err)
 
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',

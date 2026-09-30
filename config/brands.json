@@ -276,7 +276,7 @@
       "category": "Apple",
       "entity_type": "product_brand",
       "icon_path": "icons/Apple/iCloudPrivateRelay/iCloudPrivateRelay.png",
-      "parent_brand": "Apple"
+      "parent_brand": "iCloud"
     },
     {
       "id": "Cloudflare",
@@ -431,7 +431,7 @@
       "category": "Meta",
       "entity_type": "product_brand",
       "icon_path": "icons/Meta/Messenger/Messenger.png",
-      "parent_brand": "Meta"
+      "parent_brand": "Facebook"
     },
     {
       "id": "NetEaseMail",
@@ -469,7 +469,7 @@
       "category": "Meta",
       "entity_type": "product_brand",
       "icon_path": "icons/Meta/WhatsApp/WhatsApp.png",
-      "parent_brand": "Meta"
+      "parent_brand": "Facebook"
     },
     {
       "id": "Argentina",
@@ -784,7 +784,7 @@
       "category": "Google",
       "entity_type": "product_brand",
       "icon_path": "icons/Google/YouTubeMusic/YouTubeMusic.png",
-      "parent_brand": "Google"
+      "parent_brand": "YouTube"
     },
     {
       "id": "DJI",
@@ -1170,7 +1170,7 @@
     },
     {
       "id": "PeacockTV",
-      "display_name": "Peacock TV",
+      "display_name": "Peacock",
       "category": "NBCUniversal",
       "entity_type": "product_brand",
       "icon_path": "icons/NBCUniversal/PeacockTV/PeacockTV.png",
@@ -1696,7 +1696,7 @@
       "category": "Meta",
       "entity_type": "product_brand",
       "icon_path": "icons/Meta/Instagram/Instagram.png",
-      "parent_brand": "Meta"
+      "parent_brand": "Facebook"
     },
     {
       "id": "Kwai",
@@ -1749,7 +1749,7 @@
       "category": "Meta",
       "entity_type": "product_brand",
       "icon_path": "icons/Meta/Threads/Threads.png",
-      "parent_brand": "Meta"
+      "parent_brand": "Facebook"
     },
     {
       "id": "Tieba",

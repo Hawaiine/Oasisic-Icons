@@ -208,18 +208,18 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 **分类原则**：
 
 1. **功能分类**（AI / Media / Music / …）按服务语义归类；
-2. **生态分类**判定规则统一如下（机械、可自动验证，CI 动态校验）：
-   > **一个 `parent_brand` 拥有 ≥ 2 个 Canonical Child Brands 时，为其建立独立一级品牌生态分类。**
-   统计口径：只计算 `brands.json` 中 `parent_brand` 指向该品牌的 Canonical Brand，不计算 aliases / 历史品牌 / 重复文件；不因 company ownership 自动增加 parent。
-   - 子品牌 ≥ 2 → 建 `icons/<Parent>/` 一级分类，子品牌统一迁入（`category = <Parent>`，**保留 `parent_brand`**）；
-   - 父品牌有 root icon → 迁入 `icons/<Parent>/<Parent>/<Parent>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**，父品牌登记 `parent_brands_without_icon`（白名单只表示无 root icon，不代表不建目录）；
-   - 子品牌 < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
+2. **生态分类**判定规则统一如下（机械、可自动验证，CI 动态校验，`scripts/brand_relationships.py`）：
+   > **一个生态根（`entity_type: ecosystem`）拥有 ≥ 2 个 Canonical Descendants 时，为其建立独立一级品牌生态分类。**
+   统计口径：只计算沿 `parent_brand` 链可达该生态根的 Canonical Brand（**descendants = 直系子 + 孙 + 更深后代**，不含 root 本身、aliases / 历史品牌 / 重复文件）；用 descendants 而非 direct children，避免中间层（如 Facebook）误触发分类爆炸。
+   - descendants ≥ 2 → 建 `icons/<Root>/` 一级分类，descendants 统一迁入（`category = <Root>`，**保留 `parent_brand`**）；
+   - 生态根有 root icon → 迁入 `icons/<Root>/<Root>/<Root>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**，生态根登记 `parent_brands_without_icon`（白名单只表示无 root icon，不代表不建目录，且白名单内不得出现已有 canonical icon 的品牌）；
+   - descendants < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
    当前生态分类（17 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / Tencent / WarnerBrosDiscovery / xAI。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
-5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且子品牌 ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；
-6. **category ≠ parent_brand**：category 回答「图标归哪个功能/生态分类」，parent_brand 回答「品牌属于哪个生态」，两者独立。
-   **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 17 个，随 brands.json 动态扩展），子品牌一律 `product_brand`。
+5. **ownership ≠ 生态归属**：company ownership 只记录在 `brands.json`，不因「同属一家公司」自动新增 `parent_brand`；但一旦 `parent_brand` 关系成立且生态根 descendants ≥ 2，生态目录规则（第 2 条）立即适用（如 BaiduNetdisk / Tieba 归 `Baidu/`）；
+6. **category ≠ parent_brand ≠ 生态根**：category 回答「图标归哪个一级目录」，parent_brand 回答「直接属于哪个品牌」（**直接父品牌 / immediate parent**，如 Instagram → Facebook、YouTubeMusic → YouTube、iCloudPrivateRelay → iCloud），生态根回答「最终属于哪个生态」——生态根**不单独存字段**，由 `entity_type: ecosystem` 标记 + 沿 parent 链向上动态派生（`brand_relationships.resolve_ecosystem_root`），消费方零成本获得。
+   **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 17 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`。
 
 **归属审计（研究层）**：[`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md) 记录全库每个 Canonical Brand 的**当前现实世界母公司**判断、证据来源、状态（CONFIRMED_PARENT / NO_PARENT / AMBIGUOUS_JV / RETIRED / SPECIAL_ENTITY）与采取的动作。CI 只能验证结构一致性，**无法证明现实归属完整性**——该职责由该审计文档承担。
 
@@ -227,7 +227,8 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 - 新增 Spotify → `Music/Spotify/`
 - 新增 Amazon 服务（如 Amazon Gaming）→ `Amazon/<Brand>/`
-- 某功能品牌新增第二个同 parent 子品牌 → parent 子品牌数达到 2，**立即建立** `icons/<Parent>/` 一级生态分类并迁入（CI 动态校验）
+- 某生态根新增第二个 descendant（直系或孙代均可）→ 生态根 descendants 达到 2，**立即建立** `icons/<Root>/` 一级生态分类并迁入（CI 动态校验）
+- 新增中间层产品（如 YouTube 下新增 YouTube Shorts 类服务）→ 写直接父品牌（parent_brand = YouTube），**不**要求为中间层建一级目录（阈值看生态根 descendants，防止分类爆炸）
 - 新增 Alibaba AI 产品 → `Alibaba/<Brand>/`（AI 属性写 tags）
 - 品牌被收购 → 先查**当前**官方状态，再决定生态归属；历史收购关系不等于当前归属
 - 品牌脱离母公司 → 按当前独立状态归回功能分类
