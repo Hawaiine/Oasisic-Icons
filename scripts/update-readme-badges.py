@@ -15,6 +15,7 @@
   2. 分类表 品牌数/图标数、合计行、icon-quality-notes 扫描范围从未被脚本覆盖，
      只能手工维护 → 本次纳入自动更新。
 """
+import json
 import re
 from pathlib import Path
 from collections import Counter
@@ -23,32 +24,39 @@ REPO = Path(".")
 ICONS = REPO / "icons"
 
 
+def ssot_brands():
+    """品牌 SSOT（config/brands.json）。统计一律以 SSOT 为准，不从目录层级推导——
+    多层物理层级（icons/<category>/<中间父>/<id>/）会让「一级子目录 = 品牌」的
+    假设失效（§21/§38：统计必须由程序从 SSOT 动态计算）。"""
+    try:
+        doc = json.loads((REPO / "config/brands.json").read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    return doc.get("brands", [])
+
+
 def count():
     files = list(ICONS.rglob("*.png"))
-    brands = Counter()
-    for p in files:
-        rel = p.relative_to(ICONS)
-        parts = rel.parts
-        if len(parts) >= 2:
-            brands[(parts[0], parts[1])] += 1
+    brands = ssot_brands()
     # 分类数 = icons/ 下目录总数（含预留空分类），不能从 PNG 推导
     categories = {p.name for p in ICONS.iterdir() if p.is_dir()}
     return len(files), len(brands), len(categories)
 
 
 def per_category():
-    """分类 -> (品牌数, 图标数)；预留空分类（无 PNG）返回 (0, 0)。"""
+    """分类 -> (品牌数, 图标数)；品牌数来自 SSOT，图标数来自递归扫描。
+
+    预留空分类（无 PNG）返回 (0, 0)。"""
+    by_cat = Counter(b.get("category") for b in ssot_brands())
     cats = {}
     for cat_dir in sorted(p for p in ICONS.iterdir() if p.is_dir()):
         pngs = list(cat_dir.rglob("*.png"))
-        brands = {b.name for b in cat_dir.iterdir() if b.is_dir()}
-        cats[cat_dir.name] = (len(brands), len(pngs))
+        cats[cat_dir.name] = (by_cat.get(cat_dir.name, 0), len(pngs))
     return cats
 
 
 def display_to_id():
     """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。"""
-    import json
     try:
         cs = json.loads((REPO / 'config/categories.json').read_text(encoding='utf-8'))['categories']
     except Exception:

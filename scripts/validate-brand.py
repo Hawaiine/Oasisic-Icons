@@ -39,7 +39,8 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / 'scripts'))
 
-from brand_relationships import (  # noqa: E402
+from brand_relationships import (
+    expected_icon_path,  # noqa: E402
     _ancestor_set_ordered,
     resolve_ecosystem_root,
     resolve_graph_root,
@@ -141,14 +142,17 @@ def validate_brand(entry, brands_doc, cats_doc, repo_root='.', include_engine=Tr
                      '若只是「尚不确定父品牌」，请把候选写入 config/brand-review-queue.json，'
                      '不要把猜测写进 SSOT（§41）' % bid)
 
-    # 6. icon
+    # 6. icon —— 期望路径由统一解析器推导（§21：不得手写图标路径；多层物理层级
+    #    icons/<category>/<中间父…>/<id>/<id>.png 也由此得到）
+    _cand = dict(ssot)
+    _cand[bid] = entry
+    expected = expected_icon_path(bid, _cand)
     icon = entry.get('icon_path')
     if et != 'country' and not icon and bid and cat:
-        icon = 'icons/%s/%s/%s.png' % (cat, bid, bid)
+        icon = expected
     if icon:
-        expected = 'icons/%s/%s/%s.png' % (cat, bid, bid)
         if icon != expected:
-            errors.append('icon_path 与命名契约不一致: %s（应为 %s）' % (icon, expected))
+            errors.append('icon_path 与路径规则不一致: %s（应为 %s）' % (icon, expected))
         p = root / icon
         if not p.exists():
             errors.append('icon 文件不存在: %s' % icon)

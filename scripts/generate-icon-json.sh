@@ -9,32 +9,29 @@ ICONS_DIR="icons"
 OUTPUT="config/surge-icon.json"
 
 python3 -c "
-import json, os
+import json
 from pathlib import Path
 
-icons_dir = Path('$ICONS_DIR')
 base_url = '$BASE_URL'
 output = '$OUTPUT'
 
-entries = []
-for cat_dir in sorted(icons_dir.iterdir()):
-    if not cat_dir.is_dir():
-        continue
-    category = cat_dir.name
-    for brand_dir in sorted(cat_dir.iterdir()):
-        if not brand_dir.is_dir():
-            continue
-        brand = brand_dir.name
-        for png_file in sorted(brand_dir.glob('*.png')):
-            name = png_file.stem
-            url = f'{base_url}/{icons_dir.name}/{category}/{brand}/{png_file.name}'
-            entries.append({
-                'name': name,
-                'category': category,
-                'url': url,
-            })
+# SSOT 驱动（§21）：icon_path 由统一解析器确定，支持多层物理层级
+# （icons/<category>/<中间父>/<id>/<id>.png）。禁止再按「一级子目录 = 品牌」遍历。
+brands = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))['brands']
 
-# 按 (category, name) 稳定排序
+entries = []
+for b in sorted(brands, key=lambda e: (e.get('category', ''), e.get('id', ''))):
+    icon_path = b.get('icon_path')
+    if not icon_path:
+        continue
+    d = Path(icon_path).parent
+    for png_file in sorted(d.glob('*.png')):
+        entries.append({
+            'name': png_file.stem,
+            'category': b['category'],
+            'url': f'{base_url}/{d.as_posix()}/{png_file.name}',
+        })
+
 entries.sort(key=lambda e: (e['category'], e['name']))
 
 result = {
@@ -45,7 +42,7 @@ result = {
 
 with open(output, 'w', encoding='utf-8') as f:
     json.dump(result, f, indent=2, ensure_ascii=False)
-    f.write('\n')
+    f.write('\\n')
 
 print(f'✓ 已生成 {output} ({len(entries)} 个图标)')
 "

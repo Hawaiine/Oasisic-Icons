@@ -49,6 +49,27 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 # 不得各自硬编码——标记必须指向真实存在的生成入口）。
 PARENT_README_MARKER = '<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->'
 
+# ---------------------------------------------------------------------------
+# 物理路径模型（2026-10-01 定稿，§5/§6/§9/§10/§11/§21）
+#
+#   一级目录 = category（不因关系改变）
+#   同一 category 内，若 child 的直接父品牌本身也有父品牌（中间父品牌），
+#   则 child 必须物理嵌套在父品牌目录下：
+#
+#       icons/<category>/<中间父…>/<id>/<id>.png
+#
+#   例：icons/Meta/Facebook/Instagram/Instagram.png
+#       icons/SpaceXAI/xAI/Grok/Grok.png
+#
+#   不嵌套（保持 icons/<category>/<id>/<id>.png）：
+#     - 直接父品牌就是 category 根（一级 direct child，如 AppleMusic → Apple）；
+#     - 直接父品牌属其它 category（cross-category，如 Mijia → Xiaomi，不机械迁移）；
+#     - 直接父品牌无自身图标（parent_brands_without_icon，无目录可嵌套，如 Kimi → MoonshotAI）。
+#
+#   expected_icon_path() 是唯一路径推导入口：brands.json / 文件系统 / Surge /
+#   Glossary / CI / 生成器全部跟随它，禁止在别处再写第二套路径规则。
+# ---------------------------------------------------------------------------
+
 
 def _ancestor_set(bid, ssot):
     """返回 bid 的全部祖先品牌集合（不含自身）。
@@ -119,18 +140,138 @@ def resolve_graph_root(bid, ssot):
     return _root_of(bid, ssot)
 
 
-def resolve_ecosystem_root(bid, ssot):
+def ecosystem_category_ids(cats_list):
+    """返回 type=ecosystem 的一级生态分类 ID 集合（categories.json 单一来源）。"""
+    return {c['id'] for c in (cats_list or []) if c.get('type') == 'ecosystem'}
+
+
+def resolve_ecosystem_root(bid, ssot, eco_cat_ids=None):
     """对外 API：派生某品牌所属的独立生态根（动态，不存储）。
 
-    返回 bid 的 graph root；若该 graph root 的 entity_type 不是 ecosystem，
-    返回 None（如 Mijia → Xiaomi → None）。
-    注意：本 API 于 2026-09-30 收口为严格语义（此前对非生态 graph root 也
-    返回 root 本身，语义已废弃）。
+    两种合法生态根（§13/§14/§26）：
+      1. graph root 有 SSOT 条目且 entity_type == ecosystem；
+      2. graph root 无 SSOT 条目（官方标志待补 → 登记 parent_brands_without_icon）
+         但存在 type=ecosystem 的一级生态分类 → 它仍是该生态的逻辑生态根。
+         「无图标」不等于「不是生态」（§26）：ecosystem identity = YES，
+         icon availability = PENDING，两者独立。
+
+    若 graph root 两者皆不满足，返回 None（如 Mijia → Xiaomi → None）。
     """
     g = _root_of(bid, ssot)
     if g in ssot and ssot[g].get('entity_type') == 'ecosystem':
         return g
+    if eco_cat_ids and g not in ssot and g in eco_cat_ids:
+        return g
     return None
+
+
+def expected_icon_path(bid, ssot):
+    """唯一物理路径推导入口：由 category + 可表达的物理父层级推出 canonical icon_path。
+
+    算法（§5/§6/§10/§11）：
+      - 从直接父品牌向上收集「同 category 且自身有图标」的祖先链；遇到白名单
+        母公司（不在 SSOT）或跨 category 父品牌即停止（停止点以上的祖先也不可
+        嵌套——那一层物理目录并不存在）；
+      - 把该前缀按「根→叶」反序拼进路径，跳过与 category 同名的那一级
+        （category 目录本身就是一级）。
+    纯函数：只读关系数据，不读文件系统。
+    """
+    e = ssot.get(bid)
+    if not e:
+        return None
+    cat = e.get('category', '')
+    chain = []
+    seen = {bid}                         # 环保护：路径推导绝不允许死循环
+    cur = e.get('parent_brand')
+    while cur:
+        if cur in seen:                  # 自指 / 环（关系引擎会报错，这里只保证终止）
+            break
+        seen.add(cur)
+        if cur not in ssot:
+            break                        # 白名单母公司：无目录，不能嵌套（§11）
+        if ssot[cur].get('category') != cat:
+            break                        # 跨分类父品牌：不机械迁移（§10）
+        nxt = ssot[cur].get('parent_brand')
+        if not nxt or nxt in seen:
+            break                        # §6：graph root 的直系子品牌保持平铺
+                                         #（AppleMusic → Apple、myTVSUPER → TVB）
+        chain.append(cur)
+        cur = nxt
+    parts = [cat]
+    for a in reversed(chain):
+        if a != cat:
+            parts.append(a)
+    parts.append(bid)
+    return 'icons/%s/%s.png' % ('/'.join(parts), bid)
+
+
+def physical_brand_dir(bid, ssot):
+    """品牌物理目录（= icon_path 的父目录）。派生，不存储。"""
+    ip = ssot.get(bid, {}).get('icon_path') or expected_icon_path(bid, ssot)
+    return str(Path(ip).parent) if ip else None
+
+
+def validate_physical_paths(brands_doc, cats_list, repo_root='.'):
+    """物理路径校验（§19/§20）：返回错误列表，空 = 通过。
+
+    覆盖：category 一级目录合法；品牌目录 basename == id；叶子文件名 == id.png；
+    icon_path 必须等于 expected_icon_path()（§21 禁止手工随意填写）；
+    同类深层中间父品牌必须物理嵌套；cross-category 父品牌不得被机械嵌套；
+    白名单母公司不得被制造出伪目录（§11）。
+    """
+    errs = []
+    ssot = {e['id']: e for e in brands_doc.get('brands', []) if e.get('id')}
+    aliases = set(brands_doc.get('parent_brands_without_icon', []))
+    cat_ids = {c['id'] for c in (cats_list or [])}
+    root = Path(repo_root)
+
+    def fail(msg):
+        errs.append(msg)
+
+    for bid, e in sorted(ssot.items()):
+        cat = e.get('category', '')
+        ip = e.get('icon_path', '')
+        exp = expected_icon_path(bid, ssot)
+        if cat not in cat_ids:
+            fail('category 非法: %s -> %s' % (bid, cat))
+            continue
+        if ip != exp:
+            fail('icon_path 与路径规则不符: %s 应为 %s' % (ip, exp))
+            continue
+        path = root / ip
+        if not path.exists():
+            fail('icon 文件不存在: %s' % ip)
+            continue
+        if path.parent.name != bid:
+            fail('品牌目录 basename != id: %s（目录 %s）' % (bid, path.parent.name))
+        if path.name != '%s.png' % bid:
+            fail('叶子文件名 != id.png: %s' % ip)
+        if path.relative_to(root / 'icons').parts[0] != cat:
+            fail('一级目录 != category: %s' % ip)
+        par = e.get('parent_brand')
+        # §5/§6：只有「父品牌自身**也有**父品牌」（非 graph root 的中间父品牌）
+        # 才要求物理嵌套；graph root 的直系子品牌保持平铺
+        # （AppleMusic → Apple、AWS → Amazon）。
+        if (par and par in ssot and ssot[par].get('category') == cat
+                and ssot[par].get('parent_brand')):
+            pdir = (root / ssot[par]['icon_path']).parent
+            if pdir == path.parent:
+                fail('同类父品牌目录冲突（未嵌套）: %s' % bid)
+            elif pdir not in path.parents:
+                fail('同类深层父品牌未物理嵌套: %s 应位于 %s 之下'
+                     % (bid, str(pdir.relative_to(root))))
+        if par and par in ssot and ssot[par].get('category') != cat:
+            other = ssot[par]['category']
+            if other in path.relative_to(root / 'icons').parts:
+                fail('cross-category 父品牌被机械迁移: %s 出现在 %s/' % (bid, other))
+        if par and par not in ssot:
+            if par not in aliases:
+                fail('parent_brand 既不在 SSOT 也不在白名单: %s -> %s' % (bid, par))
+            ghost = root / 'icons' / cat / par
+            if ghost.exists():
+                fail('为无图标母公司制造了伪目录: %s（%s 无自身图标）'
+                     % (str(ghost.relative_to(root)), par))
+    return errs
 
 
 def physical_parent_nodes(brands_doc):
@@ -151,39 +292,43 @@ def physical_parent_nodes(brands_doc):
     return {p for p in child_map if p in ssot}
 
 
-def brand_role(bid, ssot):
+def brand_role(bid, ssot, aliases=None):
     """父品牌节点角色（三态）：
 
     - Ecosystem Root:         graph root + entity_type=ecosystem（独立一级生态）
     - Graph Root Parent:      graph root + 有子 + 未构成独立生态
                                （如 SINA → Weibo、Xiaomi → Mijia）
-    - Intermediate Parent Brand: 有（SSOT 内）父 + 有子（如 Facebook、YouTube）
+    - Intermediate Parent Brand: 有父（SSOT 内父品牌**或**白名单母公司，如
+                              Facebook / YouTube / xAI → SpaceXAI）+ 有子
 
     阈值若未来使某 Graph Root Parent 的 descendants ≥ 2，CI 反向规则会要求
     其声明 entity_type=ecosystem，届时角色自动变为 Ecosystem Root。
+    注意（§15）：父品牌即使无自身图标（白名单母公司），child 依然是
+    Intermediate Parent Brand，不得因父无条目而降级成 Graph Root Parent。
     """
     e = ssot.get(bid)
     if e is None:
         return None
+    aliases = set(aliases or ())
     p = e.get('parent_brand')
-    if p and p in ssot:
+    if p and (p in ssot or p in aliases):
         return 'Intermediate Parent Brand'
     if e.get('entity_type') == 'ecosystem':
         return 'Ecosystem Root'
     return 'Graph Root Parent'
 
 
-def expected_parent_readme(bid, ssot):
+def expected_parent_readme(bid, ssot, aliases=None, eco_cat_ids=None):
     """生成父品牌 README 的确定性规范内容（供 CI 等价校验与生成器共用）。
 
     数据全部来自 SSOT + 动态关系解析；任何手工改动都会在第 13 组被拦截。
     """
     e = ssot[bid]
     dn = e['display_name']
-    role = brand_role(bid, ssot)
+    role = brand_role(bid, ssot, aliases)
     parent = e.get('parent_brand') or '—'
     gr = _root_of(bid, ssot)
-    er = gr if (gr in ssot and ssot[gr].get('entity_type') == 'ecosystem') else '—'
+    er = resolve_ecosystem_root(bid, ssot, eco_cat_ids) or '—'
     chain = [bid] + list(_ancestor_set_ordered(bid, ssot))
     kids = sorted(x['id'] for x in ssot.values()
                   if x.get('parent_brand') == bid and is_canonical_brand(x))
@@ -192,7 +337,11 @@ def expected_parent_readme(bid, ssot):
     elif role == 'Graph Root Parent':
         title = '# %s 父品牌（Graph Root）' % dn
     else:
-        title = '# %s / %s 生态父品牌' % (dn, ssot[gr]['display_name'])
+        # 生态父品牌标题中的「生态名」取逻辑生态根的 display_name；根无 SSOT 条目
+        # （官方标志待补的白名单母公司，如 SpaceXAI）时退回其 id，禁止 KeyError。
+        _eco = er if er != '—' else gr
+        _eco_dn = ssot[_eco]['display_name'] if _eco in ssot else _eco
+        title = '# %s / %s 生态父品牌' % (dn, _eco_dn)
     lines = [
         PARENT_README_MARKER,
         '',
@@ -235,6 +384,35 @@ def _ancestor_set_ordered(bid, ssot):
             break
         cur = ssot.get(cur, {}).get('parent_brand')
     return out
+
+
+ECO_TREE_MARKER = '<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->'
+
+
+def _tree_lines(bid, ssot, prefix=''):
+    """递归渲染直接子品牌（canonical product_brand），按 id 稳定排序。"""
+    kids = sorted(x['id'] for x in ssot.values()
+                  if x.get('parent_brand') == bid and is_canonical_brand(x))
+    out = []
+    for i, k in enumerate(kids):
+        last = (i == len(kids) - 1)
+        out.append('%s%s %s' % (prefix, '└──' if last else '├──', k))
+        out.extend(_tree_lines(k, ssot, prefix + ('    ' if last else '│   ')))
+    return out
+
+
+def expected_ecosystem_tree(root, ssot):
+    """生态关系树的确定性渲染（R0 逻辑生态根 + 全部后代，逐层嵌套）。
+
+    生态分类 README 用它表达真实层级，禁止出现把孙代品牌平铺成一级子品牌的树
+    （§16/§48：SpaceXAI ├── X └── xAI └── Grok）。
+    """
+    return '\n'.join(['```text', root] + _tree_lines(root, ssot, '') + ['```'])
+
+
+def expected_ecosystem_readme_block(root, ssot):
+    """生态分类 README 的树段落（带 marker，供生成器写入 / CI 逐字节校验）。"""
+    return '%s\n\n%s\n' % (ECO_TREE_MARKER, expected_ecosystem_tree(root, ssot))
 
 
 def validate_relationships(brands_doc, cats_list):

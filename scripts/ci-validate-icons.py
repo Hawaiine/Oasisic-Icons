@@ -58,6 +58,19 @@ def fail(group, msg):
     groups.setdefault(group, []).append(msg)
 
 
+# 关系 / 物理路径解析器（唯一来源：scripts/brand_relationships.py）
+sys.path.insert(0, str(Path('scripts').resolve()))
+from brand_relationships import (  # noqa: E402
+    ecosystem_category_ids,
+    expected_ecosystem_readme_block,
+    expected_icon_path,
+    expected_parent_readme,
+    physical_parent_nodes,
+    resolve_ecosystem_root,
+    validate_physical_paths,
+    validate_relationships,
+)
+
 # ---------- 扫描 ----------
 all_pngs = sorted(ICONS.rglob('*.png'))
 if not all_pngs:
@@ -90,7 +103,11 @@ for p in all_pngs:
     if corners is not None and any(c != 0 for c in corners):
         fail('Image spec', '四角 alpha 非 0: %s %s' % (p, corners))
 
-# ---------- 3. Naming / 结构 ----------
+# ---------- 3. Naming / 结构（递归：支持多层物理层级） ----------
+# 物理模型（scripts/brand_relationships.py 文档头 / docs/references/brand-naming-contract.md）：
+#   icons/<category>/<id>/<id>.png                     一级 direct child（category root 的直系子）
+#   icons/<category>/<中间父>/<id>/<id>.png            同类中间父品牌下的深层子品牌
+# 结构校验必须递归，不能只扫一级目录（否则深层嵌套会被漏检 / 误判为分类）。
 brand_dirs = defaultdict(list)
 for cat_dir in sorted(ICONS.iterdir()):
     if not cat_dir.is_dir():
@@ -98,13 +115,17 @@ for cat_dir in sorted(ICONS.iterdir()):
     for item in sorted(cat_dir.iterdir()):
         if item.is_file() and item.suffix == '.png':
             fail('Naming', '扁平文件（应放入品牌文件夹）: %s' % item)
+    for d in sorted(cat_dir.rglob('*')):
+        if not d.is_dir():
             continue
-        if not item.is_dir():
-            continue
-        pngs = sorted(f for f in item.iterdir() if f.is_file() and f.suffix == '.png')
-        if not pngs:
-            fail('Naming', '空的品牌文件夹（无 PNG）: %s' % item)
-        brand_dirs[item] = pngs
+        pngs = sorted(f for f in d.iterdir() if f.is_file() and f.suffix == '.png')
+        subs = [x for x in d.iterdir() if x.is_dir()]
+        if pngs:
+            brand_dirs[d] = pngs
+        elif subs:
+            fail('Naming', '中间目录无自身图标（疑似为无图标母公司制造伪目录）: %s' % d)
+        else:
+            fail('Naming', '空目录（无 PNG）: %s' % d)
 
 for brand_dir, pngs in brand_dirs.items():
     brand = brand_dir.name
@@ -178,6 +199,7 @@ else:
         brands_doc = {'brands': []}
     aliases = set(brands_doc.get('parent_brands_without_icon', []))
     bdata = brands_doc.get('brands', [])
+    _byid = {e.get('id'): e for e in bdata}
     seen_paths = set()
     for e in bdata:
         bid = e.get('id', '')
@@ -191,9 +213,9 @@ else:
         cat = e.get('category', '')
         if cats and cat not in {c['id'] for c in cats}:
             fail('Brands SSOT', '引用未知分类: %s (%s)' % (cat, bid))
-        expected = 'icons/%s/%s/%s.png' % (cat, bid, bid)
+        expected = expected_icon_path(bid, _byid)
         if ip != expected:
-            fail('Brands SSOT', 'icon_path 与 canonical 规则不一致: %s 应为 %s' % (ip, expected))
+            fail('Brands SSOT', 'icon_path 与路径规则不一致: %s 应为 %s' % (ip, expected))
         elif not Path(ip).exists():
             fail('Brands SSOT', 'icon_path 文件不存在: %s' % ip)
         elif Path(ip).parent.name != bid:
@@ -440,11 +462,6 @@ else:
 #     正向（ecosystem→≥2）+ 反向（root ≥2→必须 ecosystem），只作用于 graph root，中间层不升级。
 # 负测（cycle / self-parent / missing parent / wrong root / threshold 双向 / canonical 过滤）
 # 见 tests/test_brand_relationships.py。
-from brand_relationships import (  # noqa: E402
-    expected_parent_readme,
-    physical_parent_nodes,
-    validate_relationships,
-)
 cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8')) if CATS_PATH.exists() else {}
 brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8')) if BRANDS_PATH.exists() else {}
 for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
@@ -497,7 +514,8 @@ for _p in sorted(physical_parent_nodes(brands_doc)):
     _text = _rdp.read_text(encoding='utf-8')
     _first = _text.splitlines()[0].strip() if _text.splitlines() else ''
     if _first == '<!-- generated: parent-brand-readme (scripts/generate-category-readmes.sh) -->':
-        if _text != expected_parent_readme(_p, ssot):
+        if _text != expected_parent_readme(_p, ssot, aliases, ecosystem_category_ids(
+                cats_doc.get('categories', []))):
             fail('README 父节点', '生成 README 内容与 expected 不一致: %s（运行 '
                  'scripts/generate-category-readmes.sh 重新生成）' % _p)
     else:
@@ -506,6 +524,22 @@ for _p in sorted(physical_parent_nodes(brands_doc)):
             fail('README 父节点', '人工 README 缺 display_name: %s' % _p)
         if not re.search(r'Ancestor Chain|Direct Children|Parent:', _text):
             fail('README 父节点', '人工 README 缺关系结构: %s' % _p)
+
+# ---------- 14b. 生态分类 README 关系树（§16/§48） ----------
+# ecosystem 分类的 README 必须带 marker 段落，且逐字节等于 resolver 渲染的树；
+# 禁止把孙代品牌平铺成一级子品牌（SpaceXAI ├── X ├── xAI └── Grok 为非法）。
+for _cid in sorted(ecosystem_category_ids(cats_doc.get('categories', []))):
+    _cd = ICONS / _cid / 'README.md'
+    if not _cd.exists():
+        fail('README 父节点', '生态分类缺 README: icons/%s/README.md' % _cid)
+        continue
+    _ct = _cd.read_text(encoding='utf-8')
+    _blk = expected_ecosystem_readme_block(_cid, ssot)
+    if _blk not in _ct:
+        fail('README 父节点', '生态分类 README 缺/错关系树（应逐字节包含 resolver 渲染）: icons/%s/README.md'
+             % _cid)
+    if _cid in ssot and _cid in ssot[_cid].get('icon_path', ''):
+        pass
 
 # ---------- 15. 关系派生导出（downstream artifact，禁止成为第二 SSOT） ----------
 # config/brand-relationships.json 由 scripts/export-brand-relationships.py 从
@@ -530,7 +564,7 @@ else:
     except Exception as _exc:  # noqa: BLE001
         fail('关系派生导出', '无法加载 scripts/export-brand-relationships.py: %s' % str(_exc)[:80])
     if _build_rel is not None:
-        _expected = _build_rel(brands_doc)
+        _expected = _build_rel(brands_doc, cats_doc.get('categories', []))
         _rows = {r['child']: r for r in _rel.get('brands', [])}
         _exp_rows = {r['child']: r for r in _expected['brands']}
         for _b in sorted(set(_exp_rows) - set(_rows)):
@@ -577,12 +611,36 @@ else:
         if _it.get('status') == 'RESOLVED' and not _it.get('resolved_note'):
             fail('Review Queue', 'RESOLVED 条目必须带 resolved_note（记录裁决结论）: %s' % _iid)
 
+# ---------- 17. 物理路径（递归多层嵌套，§5/§6/§9-§11/§19-§21） ----------
+# 一级目录 = category；同类中间父品牌下的深层子品牌必须物理嵌套；icon_path 必须等于
+# 统一解析器 expected_icon_path() 的结果（禁止手工随意填写，§21）。
+for _p_err in validate_physical_paths(brands_doc, cats_doc.get('categories', []), '.'):
+    fail('物理路径', _p_err)
+
+# 审计文档（全库矩阵）必须与重算结果逐字节一致（§38/§46/§47）
+_PHA = Path('docs/references/physical-hierarchy-audit.md')
+if not _PHA.exists():
+    fail('物理路径', '缺少 %s（运行 scripts/gen-physical-hierarchy-audit.py）' % _PHA)
+else:
+    try:
+        import importlib.util as _ilu2
+        _spec2 = _ilu2.spec_from_file_location(
+            'gen_physical_hierarchy_audit', Path('scripts/gen-physical-hierarchy-audit.py'))
+        _mod2 = _ilu2.module_from_spec(_spec2)
+        _spec2.loader.exec_module(_mod2)  # type: ignore[union-attr]
+        _exp_text, _ = _mod2.build(brands_doc, cats_doc.get('categories', []))
+        if _PHA.read_text(encoding='utf-8') != _exp_text:
+            fail('物理路径', '关系矩阵文档与重算不一致: %s（运行 '
+                 'scripts/gen-physical-hierarchy-audit.py 重新生成）' % _PHA)
+    except Exception as _exc2:  # noqa: BLE001
+        fail('物理路径', '无法校验 %s: %s' % (_PHA, str(_exc2)[:80]))
+
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
                    'Surge JSON', 'Glossary', 'Legacy paths',
                    'README 表格', '生态一致性', 'README 统计', 'README 父节点',
-                   '关系派生导出', 'Review Queue']
+                   '关系派生导出', 'Review Queue', '物理路径']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:

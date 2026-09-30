@@ -3,7 +3,7 @@
   "generated": true,
   "source": "config/brands.json",
   "generated_by": "scripts/export-brand-relationships.py",
-  "note": "派生导出（下游消费用），不是第二个 SSOT：关系事实只存于 config/brands.json，手工修改本文件会被 CI 第 15 组拒绝。parent 为直接父品牌（immediate parent）；ecosystem_root 为沿 parent 链动态派生，未构成独立生态时为 null；白名单母公司（parent_brands_without_icon，如官方标志待补的 SpaceXAI）尚无 SSOT 条目，因此其子品牌的 ecosystem_root 当前为 null——这是白名单机制的既有语义，待根条目建立后自动恢复。",
+  "note": "派生导出（下游消费用），不是第二个 SSOT：关系事实只存于 config/brands.json，手工修改本文件会被 CI 第 15 组拒绝。parent 为直接父品牌（immediate parent）；ecosystem_root 为沿 parent 链动态派生：graph root 有 SSOT 条目且 entity_type=ecosystem，或 graph root 无条目（parent_brands_without_icon，官方标志待补）但存在 type=ecosystem 的一级生态分类（逻辑生态根，如 SpaceXAI）。physical_path 由统一路径解析器 expected_icon_path() 生成，支持多层物理层级（icons/<category>/<中间父…>/<id>/<id>.png）。",
   "relation_semantics": {
     "parent": "immediate brand parent (Brand / Product Hierarchy only)",
     "excluded": [
@@ -15,6 +15,34 @@
     "generated_roots": [
       "graph_root",
       "ecosystem_root"
+    ]
+  },
+  "ecosystem_categories": [
+    "Alibaba",
+    "Amazon",
+    "Apple",
+    "Baidu",
+    "ByteDance",
+    "ChinaMobile",
+    "Disney",
+    "Google",
+    "Meta",
+    "Microsoft",
+    "NBCUniversal",
+    "NetEase",
+    "PCCW",
+    "SONY",
+    "SpaceXAI",
+    "Tencent",
+    "WarnerBrosDiscovery"
+  ],
+  "physical_path_model": {
+    "rule": "icons/<category>/<intermediate-parents…>/<id>/<id>.png",
+    "resolver": "scripts/brand_relationships.py::expected_icon_path",
+    "flat_when": [
+      "parent is the category root (direct child)",
+      "parent is in another category (cross-category)",
+      "parent has no icon (parent_brands_without_icon)"
     ]
   },
   "whitelist_parents_without_icon": [
@@ -61,7 +89,10 @@
       "graph_root": "115",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/CloudStorage/115/115.png",
+      "physical_path": "icons/CloudStorage/115/115.png",
+      "physical_parent": null
     },
     {
       "child": "123",
@@ -73,7 +104,10 @@
       "graph_root": "123",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/CloudStorage/123/123.png",
+      "physical_path": "icons/CloudStorage/123/123.png",
+      "physical_parent": null
     },
     {
       "child": "189",
@@ -87,7 +121,10 @@
       "graph_root": "ChinaTelecom",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/CloudStorage/189/189.png",
+      "physical_path": "icons/CloudStorage/189/189.png",
+      "physical_parent": null
     },
     {
       "child": "1Password",
@@ -99,7 +136,10 @@
       "graph_root": "1Password",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/1Password/1Password.png",
+      "physical_path": "icons/Utilities/1Password/1Password.png",
+      "physical_parent": null
     },
     {
       "child": "ABEMA",
@@ -111,7 +151,10 @@
       "graph_root": "ABEMA",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/ABEMA/ABEMA.png",
+      "physical_path": "icons/Media/ABEMA/ABEMA.png",
+      "physical_parent": null
     },
     {
       "child": "AD",
@@ -123,7 +166,10 @@
       "graph_root": "AD",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/AD/AD.png",
+      "physical_path": "icons/System/AD/AD.png",
+      "physical_parent": null
     },
     {
       "child": "AMC",
@@ -135,7 +181,10 @@
       "graph_root": "AMC",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/AMC/AMC.png",
+      "physical_path": "icons/Media/AMC/AMC.png",
+      "physical_parent": null
     },
     {
       "child": "AWS",
@@ -149,7 +198,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Amazon/AWS/AWS.png",
+      "physical_path": "icons/Amazon/AWS/AWS.png",
+      "physical_parent": null
     },
     {
       "child": "AdGuard",
@@ -161,7 +213,10 @@
       "graph_root": "AdGuard",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/AdGuard/AdGuard.png",
+      "physical_path": "icons/Utilities/AdGuard/AdGuard.png",
+      "physical_parent": null
     },
     {
       "child": "Adobe",
@@ -173,7 +228,10 @@
       "graph_root": "Adobe",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Adobe/Adobe.png",
+      "physical_path": "icons/Utilities/Adobe/Adobe.png",
+      "physical_parent": null
     },
     {
       "child": "Airport",
@@ -185,7 +243,10 @@
       "graph_root": "Airport",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Airport/Airport.png",
+      "physical_path": "icons/System/Airport/Airport.png",
+      "physical_parent": null
     },
     {
       "child": "AliCloud",
@@ -199,7 +260,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/AliCloud/AliCloud.png",
+      "physical_path": "icons/Alibaba/AliCloud/AliCloud.png",
+      "physical_parent": null
     },
     {
       "child": "AliPay",
@@ -213,7 +277,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/AliPay/AliPay.png",
+      "physical_path": "icons/Alibaba/AliPay/AliPay.png",
+      "physical_parent": null
     },
     {
       "child": "Alibaba",
@@ -225,7 +292,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Alibaba/Alibaba/Alibaba.png",
+      "physical_path": "icons/Alibaba/Alibaba/Alibaba.png",
+      "physical_parent": null
     },
     {
       "child": "Amazon",
@@ -237,7 +307,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Amazon/Amazon/Amazon.png",
+      "physical_path": "icons/Amazon/Amazon/Amazon.png",
+      "physical_parent": null
     },
     {
       "child": "AmazonAlexa",
@@ -251,7 +324,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Amazon/AmazonAlexa/AmazonAlexa.png",
+      "physical_path": "icons/Amazon/AmazonAlexa/AmazonAlexa.png",
+      "physical_parent": null
     },
     {
       "child": "AmazonMusic",
@@ -265,7 +341,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Amazon/AmazonMusic/AmazonMusic.png",
+      "physical_path": "icons/Amazon/AmazonMusic/AmazonMusic.png",
+      "physical_parent": null
     },
     {
       "child": "Anthropic",
@@ -277,7 +356,10 @@
       "graph_root": "Anthropic",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Anthropic/Anthropic.png",
+      "physical_path": "icons/AI/Anthropic/Anthropic.png",
+      "physical_parent": null
     },
     {
       "child": "AppStore",
@@ -291,7 +373,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppStore/AppStore.png",
+      "physical_path": "icons/Apple/AppStore/AppStore.png",
+      "physical_parent": null
     },
     {
       "child": "Apple",
@@ -303,7 +388,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Apple/Apple/Apple.png",
+      "physical_path": "icons/Apple/Apple/Apple.png",
+      "physical_parent": null
     },
     {
       "child": "AppleArcade",
@@ -317,7 +405,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleArcade/AppleArcade.png",
+      "physical_path": "icons/Apple/AppleArcade/AppleArcade.png",
+      "physical_parent": null
     },
     {
       "child": "AppleBooks",
@@ -331,7 +422,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleBooks/AppleBooks.png",
+      "physical_path": "icons/Apple/AppleBooks/AppleBooks.png",
+      "physical_parent": null
     },
     {
       "child": "AppleFitnessPlus",
@@ -345,7 +439,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleFitnessPlus/AppleFitnessPlus.png",
+      "physical_path": "icons/Apple/AppleFitnessPlus/AppleFitnessPlus.png",
+      "physical_parent": null
     },
     {
       "child": "AppleMusic",
@@ -359,7 +456,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleMusic/AppleMusic.png",
+      "physical_path": "icons/Apple/AppleMusic/AppleMusic.png",
+      "physical_parent": null
     },
     {
       "child": "AppleNewsPlus",
@@ -373,7 +473,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleNewsPlus/AppleNewsPlus.png",
+      "physical_path": "icons/Apple/AppleNewsPlus/AppleNewsPlus.png",
+      "physical_parent": null
     },
     {
       "child": "ApplePodcasts",
@@ -387,7 +490,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/ApplePodcasts/ApplePodcasts.png",
+      "physical_path": "icons/Apple/ApplePodcasts/ApplePodcasts.png",
+      "physical_parent": null
     },
     {
       "child": "AppleTV",
@@ -401,7 +507,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/AppleTV/AppleTV.png",
+      "physical_path": "icons/Apple/AppleTV/AppleTV.png",
+      "physical_parent": null
     },
     {
       "child": "Aqara",
@@ -413,7 +522,10 @@
       "graph_root": "Aqara",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Home/Aqara/Aqara.png",
+      "physical_path": "icons/Home/Aqara/Aqara.png",
+      "physical_parent": null
     },
     {
       "child": "Area",
@@ -425,7 +537,10 @@
       "graph_root": "Area",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Area/Area.png",
+      "physical_path": "icons/System/Area/Area.png",
+      "physical_parent": null
     },
     {
       "child": "Argentina",
@@ -437,7 +552,10 @@
       "graph_root": "Argentina",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Argentina/Argentina.png",
+      "physical_path": "icons/Country/Argentina/Argentina.png",
+      "physical_parent": null
     },
     {
       "child": "Australia",
@@ -449,7 +567,10 @@
       "graph_root": "Australia",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Australia/Australia.png",
+      "physical_path": "icons/Country/Australia/Australia.png",
+      "physical_parent": null
     },
     {
       "child": "Auto",
@@ -461,7 +582,10 @@
       "graph_root": "Auto",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Auto/Auto.png",
+      "physical_path": "icons/System/Auto/Auto.png",
+      "physical_parent": null
     },
     {
       "child": "Azure",
@@ -475,7 +599,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/Azure/Azure.png",
+      "physical_path": "icons/Microsoft/Azure/Azure.png",
+      "physical_parent": null
     },
     {
       "child": "BBC",
@@ -487,7 +614,10 @@
       "graph_root": "BBC",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/BBC/BBC.png",
+      "physical_path": "icons/Media/BBC/BBC.png",
+      "physical_parent": null
     },
     {
       "child": "BGP",
@@ -499,7 +629,10 @@
       "graph_root": "BGP",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Proxy/BGP/BGP.png",
+      "physical_path": "icons/Proxy/BGP/BGP.png",
+      "physical_parent": null
     },
     {
       "child": "Bahamut",
@@ -511,7 +644,10 @@
       "graph_root": "Bahamut",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Bahamut/Bahamut.png",
+      "physical_path": "icons/Media/Bahamut/Bahamut.png",
+      "physical_parent": null
     },
     {
       "child": "Baidu",
@@ -523,7 +659,10 @@
       "graph_root": "Baidu",
       "ecosystem_root": "Baidu",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Baidu/Baidu/Baidu.png",
+      "physical_path": "icons/Baidu/Baidu/Baidu.png",
+      "physical_parent": null
     },
     {
       "child": "BaiduNetdisk",
@@ -537,7 +676,10 @@
       "graph_root": "Baidu",
       "ecosystem_root": "Baidu",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Baidu/BaiduNetdisk/BaiduNetdisk.png",
+      "physical_path": "icons/Baidu/BaiduNetdisk/BaiduNetdisk.png",
+      "physical_parent": null
     },
     {
       "child": "Bangumi",
@@ -549,7 +691,10 @@
       "graph_root": "Bangumi",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Bangumi/Bangumi.png",
+      "physical_path": "icons/Media/Bangumi/Bangumi.png",
+      "physical_parent": null
     },
     {
       "child": "BestBuy",
@@ -561,7 +706,10 @@
       "graph_root": "BestBuy",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/BestBuy/BestBuy.png",
+      "physical_path": "icons/Shopping/BestBuy/BestBuy.png",
+      "physical_parent": null
     },
     {
       "child": "Binance",
@@ -573,7 +721,10 @@
       "graph_root": "Binance",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Payment/Binance/Binance.png",
+      "physical_path": "icons/Payment/Binance/Binance.png",
+      "physical_parent": null
     },
     {
       "child": "Bing",
@@ -587,7 +738,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/Bing/Bing.png",
+      "physical_path": "icons/Microsoft/Bing/Bing.png",
+      "physical_parent": null
     },
     {
       "child": "Blacklist",
@@ -599,7 +753,10 @@
       "graph_root": "Blacklist",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Blacklist/Blacklist.png",
+      "physical_path": "icons/System/Blacklist/Blacklist.png",
+      "physical_parent": null
     },
     {
       "child": "Bluesky",
@@ -611,7 +768,10 @@
       "graph_root": "Bluesky",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Bluesky/Bluesky.png",
+      "physical_path": "icons/Social/Bluesky/Bluesky.png",
+      "physical_parent": null
     },
     {
       "child": "Bot",
@@ -623,7 +783,10 @@
       "graph_root": "Bot",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Bot/Bot.png",
+      "physical_path": "icons/System/Bot/Bot.png",
+      "physical_parent": null
     },
     {
       "child": "ByteDance",
@@ -635,7 +798,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/ByteDance/ByteDance/ByteDance.png",
+      "physical_path": "icons/ByteDance/ByteDance/ByteDance.png",
+      "physical_parent": null
     },
     {
       "child": "CATCHPLAYPlus",
@@ -647,7 +813,10 @@
       "graph_root": "CATCHPLAYPlus",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png",
+      "physical_path": "icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png",
+      "physical_parent": null
     },
     {
       "child": "CN-Taiwan",
@@ -659,7 +828,10 @@
       "graph_root": "CN-Taiwan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/CN-Taiwan/CN-Taiwan.png",
+      "physical_path": "icons/Country/CN-Taiwan/CN-Taiwan.png",
+      "physical_parent": null
     },
     {
       "child": "Canada",
@@ -671,7 +843,10 @@
       "graph_root": "Canada",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Canada/Canada.png",
+      "physical_path": "icons/Country/Canada/Canada.png",
+      "physical_parent": null
     },
     {
       "child": "China",
@@ -683,7 +858,10 @@
       "graph_root": "China",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/China/China.png",
+      "physical_path": "icons/Country/China/China.png",
+      "physical_parent": null
     },
     {
       "child": "ChinaBroadnet",
@@ -695,7 +873,10 @@
       "graph_root": "ChinaBroadnet",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Telecom/ChinaBroadnet/ChinaBroadnet.png",
+      "physical_path": "icons/Telecom/ChinaBroadnet/ChinaBroadnet.png",
+      "physical_parent": null
     },
     {
       "child": "ChinaMobile",
@@ -707,7 +888,10 @@
       "graph_root": "ChinaMobile",
       "ecosystem_root": "ChinaMobile",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/ChinaMobile/ChinaMobile/ChinaMobile.png",
+      "physical_path": "icons/ChinaMobile/ChinaMobile/ChinaMobile.png",
+      "physical_parent": null
     },
     {
       "child": "ChinaMobileDisk",
@@ -721,7 +905,10 @@
       "graph_root": "ChinaMobile",
       "ecosystem_root": "ChinaMobile",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "physical_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "physical_parent": null
     },
     {
       "child": "ChinaTelecom",
@@ -733,7 +920,10 @@
       "graph_root": "ChinaTelecom",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Telecom/ChinaTelecom/ChinaTelecom.png",
+      "physical_path": "icons/Telecom/ChinaTelecom/ChinaTelecom.png",
+      "physical_parent": null
     },
     {
       "child": "ChinaUnicom",
@@ -745,7 +935,10 @@
       "graph_root": "ChinaUnicom",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Telecom/ChinaUnicom/ChinaUnicom.png",
+      "physical_path": "icons/Telecom/ChinaUnicom/ChinaUnicom.png",
+      "physical_parent": null
     },
     {
       "child": "Cloudflare",
@@ -757,7 +950,10 @@
       "graph_root": "Cloudflare",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/Cloudflare/Cloudflare.png",
+      "physical_path": "icons/Infrastructure/Cloudflare/Cloudflare.png",
+      "physical_parent": null
     },
     {
       "child": "Copilot",
@@ -771,7 +967,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/Copilot/Copilot.png",
+      "physical_path": "icons/Microsoft/Copilot/Copilot.png",
+      "physical_parent": null
     },
     {
       "child": "Crunchyroll",
@@ -785,7 +984,10 @@
       "graph_root": "SONY",
       "ecosystem_root": "SONY",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SONY/Crunchyroll/Crunchyroll.png",
+      "physical_path": "icons/SONY/Crunchyroll/Crunchyroll.png",
+      "physical_parent": null
     },
     {
       "child": "Cryptocurrency",
@@ -797,7 +999,10 @@
       "graph_root": "Cryptocurrency",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Crypto/Cryptocurrency/Cryptocurrency.png",
+      "physical_path": "icons/Crypto/Cryptocurrency/Cryptocurrency.png",
+      "physical_parent": null
     },
     {
       "child": "Cursor",
@@ -809,7 +1014,10 @@
       "graph_root": "Cursor",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Development/Cursor/Cursor.png",
+      "physical_path": "icons/Development/Cursor/Cursor.png",
+      "physical_parent": null
     },
     {
       "child": "DAZN",
@@ -821,7 +1029,10 @@
       "graph_root": "DAZN",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/DAZN/DAZN.png",
+      "physical_path": "icons/Media/DAZN/DAZN.png",
+      "physical_parent": null
     },
     {
       "child": "DJI",
@@ -833,7 +1044,10 @@
       "graph_root": "DJI",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/DJI/DJI.png",
+      "physical_path": "icons/Hardware/DJI/DJI.png",
+      "physical_parent": null
     },
     {
       "child": "DMMTV",
@@ -847,7 +1061,10 @@
       "graph_root": "DMM",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/DMMTV/DMMTV.png",
+      "physical_path": "icons/Media/DMMTV/DMMTV.png",
+      "physical_parent": null
     },
     {
       "child": "DeepSeek",
@@ -859,7 +1076,10 @@
       "graph_root": "DeepSeek",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/DeepSeek/DeepSeek.png",
+      "physical_path": "icons/AI/DeepSeek/DeepSeek.png",
+      "physical_parent": null
     },
     {
       "child": "Deezer",
@@ -871,7 +1091,10 @@
       "graph_root": "Deezer",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/Deezer/Deezer.png",
+      "physical_path": "icons/Music/Deezer/Deezer.png",
+      "physical_parent": null
     },
     {
       "child": "DiDi",
@@ -883,7 +1106,10 @@
       "graph_root": "DiDi",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Transport/DiDi/DiDi.png",
+      "physical_path": "icons/Transport/DiDi/DiDi.png",
+      "physical_parent": null
     },
     {
       "child": "DingTalk",
@@ -897,7 +1123,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/DingTalk/DingTalk.png",
+      "physical_path": "icons/Alibaba/DingTalk/DingTalk.png",
+      "physical_parent": null
     },
     {
       "child": "Direct",
@@ -909,7 +1138,10 @@
       "graph_root": "Direct",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Direct/Direct.png",
+      "physical_path": "icons/System/Direct/Direct.png",
+      "physical_parent": null
     },
     {
       "child": "Discord",
@@ -921,7 +1153,10 @@
       "graph_root": "Discord",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/Discord/Discord.png",
+      "physical_path": "icons/Communication/Discord/Discord.png",
+      "physical_parent": null
     },
     {
       "child": "Disney",
@@ -933,7 +1168,10 @@
       "graph_root": "Disney",
       "ecosystem_root": "Disney",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Disney/Disney/Disney.png",
+      "physical_path": "icons/Disney/Disney/Disney.png",
+      "physical_parent": null
     },
     {
       "child": "DisneyPlus",
@@ -947,7 +1185,10 @@
       "graph_root": "Disney",
       "ecosystem_root": "Disney",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Disney/DisneyPlus/DisneyPlus.png",
+      "physical_path": "icons/Disney/DisneyPlus/DisneyPlus.png",
+      "physical_parent": null
     },
     {
       "child": "Docker",
@@ -959,7 +1200,10 @@
       "graph_root": "Docker",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/Docker/Docker.png",
+      "physical_path": "icons/Infrastructure/Docker/Docker.png",
+      "physical_parent": null
     },
     {
       "child": "Douban",
@@ -971,7 +1215,10 @@
       "graph_root": "Douban",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Douban/Douban.png",
+      "physical_path": "icons/Social/Douban/Douban.png",
+      "physical_parent": null
     },
     {
       "child": "Doubao",
@@ -985,7 +1232,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ByteDance/Doubao/Doubao.png",
+      "physical_path": "icons/ByteDance/Doubao/Doubao.png",
+      "physical_parent": null
     },
     {
       "child": "Douyin",
@@ -999,7 +1249,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ByteDance/Douyin/Douyin.png",
+      "physical_path": "icons/ByteDance/Douyin/Douyin.png",
+      "physical_parent": null
     },
     {
       "child": "Dropbox",
@@ -1011,7 +1264,10 @@
       "graph_root": "Dropbox",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/CloudStorage/Dropbox/Dropbox.png",
+      "physical_path": "icons/CloudStorage/Dropbox/Dropbox.png",
+      "physical_parent": null
     },
     {
       "child": "Duolingo",
@@ -1023,7 +1279,10 @@
       "graph_root": "Duolingo",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Education/Duolingo/Duolingo.png",
+      "physical_path": "icons/Education/Duolingo/Duolingo.png",
+      "physical_parent": null
     },
     {
       "child": "ESPN",
@@ -1037,7 +1296,10 @@
       "graph_root": "Disney",
       "ecosystem_root": "Disney",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Disney/ESPN/ESPN.png",
+      "physical_path": "icons/Disney/ESPN/ESPN.png",
+      "physical_parent": null
     },
     {
       "child": "Egypt",
@@ -1049,7 +1311,10 @@
       "graph_root": "Egypt",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Egypt/Egypt.png",
+      "physical_path": "icons/Country/Egypt/Egypt.png",
+      "physical_parent": null
     },
     {
       "child": "Emby",
@@ -1061,7 +1326,10 @@
       "graph_root": "Emby",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Emby/Emby.png",
+      "physical_path": "icons/Media/Emby/Emby.png",
+      "physical_parent": null
     },
     {
       "child": "EpicGames",
@@ -1073,7 +1341,10 @@
       "graph_root": "EpicGames",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Game/EpicGames/EpicGames.png",
+      "physical_path": "icons/Game/EpicGames/EpicGames.png",
+      "physical_parent": null
     },
     {
       "child": "F1TV",
@@ -1087,7 +1358,10 @@
       "graph_root": "LibertyMedia",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/F1TV/F1TV.png",
+      "physical_path": "icons/Media/F1TV/F1TV.png",
+      "physical_parent": null
     },
     {
       "child": "Facebook",
@@ -1101,7 +1375,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Meta/Facebook/Facebook.png",
+      "physical_path": "icons/Meta/Facebook/Facebook.png",
+      "physical_parent": null
     },
     {
       "child": "Fan",
@@ -1113,7 +1390,10 @@
       "graph_root": "Fan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Fan/Fan.png",
+      "physical_path": "icons/Media/Fan/Fan.png",
+      "physical_parent": null
     },
     {
       "child": "Fileball",
@@ -1125,7 +1405,10 @@
       "graph_root": "Fileball",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Fileball/Fileball.png",
+      "physical_path": "icons/Media/Fileball/Fileball.png",
+      "physical_parent": null
     },
     {
       "child": "Final",
@@ -1137,7 +1420,10 @@
       "graph_root": "Final",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Final/Final.png",
+      "physical_path": "icons/System/Final/Final.png",
+      "physical_parent": null
     },
     {
       "child": "FujiTV",
@@ -1149,7 +1435,10 @@
       "graph_root": "FujiTV",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/FujiTV/FujiTV.png",
+      "physical_path": "icons/Media/FujiTV/FujiTV.png",
+      "physical_parent": null
     },
     {
       "child": "GIA",
@@ -1161,7 +1450,10 @@
       "graph_root": "GIA",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Proxy/GIA/GIA.png",
+      "physical_path": "icons/Proxy/GIA/GIA.png",
+      "physical_parent": null
     },
     {
       "child": "GLM",
@@ -1175,7 +1467,10 @@
       "graph_root": "ZhipuAI",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/GLM/GLM.png",
+      "physical_path": "icons/AI/GLM/GLM.png",
+      "physical_parent": null
     },
     {
       "child": "Game",
@@ -1187,7 +1482,10 @@
       "graph_root": "Game",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Game/Game.png",
+      "physical_path": "icons/System/Game/Game.png",
+      "physical_parent": null
     },
     {
       "child": "GeneralAI",
@@ -1199,7 +1497,10 @@
       "graph_root": "GeneralAI",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/GeneralAI/GeneralAI.png",
+      "physical_path": "icons/System/GeneralAI/GeneralAI.png",
+      "physical_parent": null
     },
     {
       "child": "Germany",
@@ -1211,7 +1512,10 @@
       "graph_root": "Germany",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Germany/Germany.png",
+      "physical_path": "icons/Country/Germany/Germany.png",
+      "physical_parent": null
     },
     {
       "child": "GitHub",
@@ -1225,7 +1529,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/GitHub/GitHub.png",
+      "physical_path": "icons/Microsoft/GitHub/GitHub.png",
+      "physical_parent": null
     },
     {
       "child": "Global",
@@ -1237,7 +1544,10 @@
       "graph_root": "Global",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Global/Global.png",
+      "physical_path": "icons/System/Global/Global.png",
+      "physical_parent": null
     },
     {
       "child": "Gmail",
@@ -1251,7 +1561,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/Gmail/Gmail.png",
+      "physical_path": "icons/Google/Gmail/Gmail.png",
+      "physical_parent": null
     },
     {
       "child": "Google",
@@ -1263,7 +1576,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Google/Google/Google.png",
+      "physical_path": "icons/Google/Google/Google.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleAI",
@@ -1277,7 +1593,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleAI/GoogleAI.png",
+      "physical_path": "icons/Google/GoogleAI/GoogleAI.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleDrive",
@@ -1291,7 +1610,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleDrive/GoogleDrive.png",
+      "physical_path": "icons/Google/GoogleDrive/GoogleDrive.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleMaps",
@@ -1305,7 +1627,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleMaps/GoogleMaps.png",
+      "physical_path": "icons/Google/GoogleMaps/GoogleMaps.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleNews",
@@ -1319,7 +1644,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleNews/GoogleNews.png",
+      "physical_path": "icons/Google/GoogleNews/GoogleNews.png",
+      "physical_parent": null
     },
     {
       "child": "GooglePhotos",
@@ -1333,7 +1661,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GooglePhotos/GooglePhotos.png",
+      "physical_path": "icons/Google/GooglePhotos/GooglePhotos.png",
+      "physical_parent": null
     },
     {
       "child": "GooglePlay",
@@ -1347,7 +1678,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GooglePlay/GooglePlay.png",
+      "physical_path": "icons/Google/GooglePlay/GooglePlay.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleTranslate",
@@ -1361,7 +1695,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleTranslate/GoogleTranslate.png",
+      "physical_path": "icons/Google/GoogleTranslate/GoogleTranslate.png",
+      "physical_parent": null
     },
     {
       "child": "GoogleVoice",
@@ -1375,7 +1712,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/GoogleVoice/GoogleVoice.png",
+      "physical_path": "icons/Google/GoogleVoice/GoogleVoice.png",
+      "physical_parent": null
     },
     {
       "child": "Grok",
@@ -1388,9 +1728,12 @@
         "SpaceXAI"
       ],
       "graph_root": "SpaceXAI",
-      "ecosystem_root": null,
+      "ecosystem_root": "SpaceXAI",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SpaceXAI/xAI/Grok/Grok.png",
+      "physical_path": "icons/SpaceXAI/xAI/Grok/Grok.png",
+      "physical_parent": "xAI"
     },
     {
       "child": "HBOMax",
@@ -1404,7 +1747,10 @@
       "graph_root": "WarnerBrosDiscovery",
       "ecosystem_root": "WarnerBrosDiscovery",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/WarnerBrosDiscovery/HBOMax/HBOMax.png",
+      "physical_path": "icons/WarnerBrosDiscovery/HBOMax/HBOMax.png",
+      "physical_parent": null
     },
     {
       "child": "HOYTV",
@@ -1418,7 +1764,10 @@
       "graph_root": "iCABLE",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/HOYTV/HOYTV.png",
+      "physical_path": "icons/Media/HOYTV/HOYTV.png",
+      "physical_parent": null
     },
     {
       "child": "HamiVideo",
@@ -1432,7 +1781,10 @@
       "graph_root": "ChunghwaTelecom",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/HamiVideo/HamiVideo.png",
+      "physical_path": "icons/Media/HamiVideo/HamiVideo.png",
+      "physical_parent": null
     },
     {
       "child": "Hanxiaoquan",
@@ -1444,7 +1796,10 @@
       "graph_root": "Hanxiaoquan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Hanxiaoquan/Hanxiaoquan.png",
+      "physical_path": "icons/Media/Hanxiaoquan/Hanxiaoquan.png",
+      "physical_parent": null
     },
     {
       "child": "HongKong",
@@ -1456,7 +1811,10 @@
       "graph_root": "HongKong",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/HongKong/HongKong.png",
+      "physical_path": "icons/Country/HongKong/HongKong.png",
+      "physical_parent": null
     },
     {
       "child": "Honor",
@@ -1468,7 +1826,10 @@
       "graph_root": "Honor",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/Honor/Honor.png",
+      "physical_path": "icons/Hardware/Honor/Honor.png",
+      "physical_parent": null
     },
     {
       "child": "Huawei",
@@ -1480,7 +1841,10 @@
       "graph_root": "Huawei",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/Huawei/Huawei.png",
+      "physical_path": "icons/Hardware/Huawei/Huawei.png",
+      "physical_parent": null
     },
     {
       "child": "Hulu",
@@ -1494,7 +1858,10 @@
       "graph_root": "Disney",
       "ecosystem_root": "Disney",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Disney/Hulu/Hulu.png",
+      "physical_path": "icons/Disney/Hulu/Hulu.png",
+      "physical_parent": null
     },
     {
       "child": "IEPL",
@@ -1506,7 +1873,10 @@
       "graph_root": "IEPL",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Proxy/IEPL/IEPL.png",
+      "physical_path": "icons/Proxy/IEPL/IEPL.png",
+      "physical_parent": null
     },
     {
       "child": "IPLC",
@@ -1518,7 +1888,10 @@
       "graph_root": "IPLC",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Proxy/IPLC/IPLC.png",
+      "physical_path": "icons/Proxy/IPLC/IPLC.png",
+      "physical_parent": null
     },
     {
       "child": "India",
@@ -1530,7 +1903,10 @@
       "graph_root": "India",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/India/India.png",
+      "physical_path": "icons/Country/India/India.png",
+      "physical_parent": null
     },
     {
       "child": "Infuse",
@@ -1542,7 +1918,10 @@
       "graph_root": "Infuse",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Infuse/Infuse.png",
+      "physical_path": "icons/Media/Infuse/Infuse.png",
+      "physical_parent": null
     },
     {
       "child": "Instagram",
@@ -1557,7 +1936,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Meta/Facebook/Instagram/Instagram.png",
+      "physical_path": "icons/Meta/Facebook/Instagram/Instagram.png",
+      "physical_parent": "Facebook"
     },
     {
       "child": "JD",
@@ -1569,7 +1951,10 @@
       "graph_root": "JD",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/JD/JD.png",
+      "physical_path": "icons/Shopping/JD/JD.png",
+      "physical_parent": null
     },
     {
       "child": "Japan",
@@ -1581,7 +1966,10 @@
       "graph_root": "Japan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Japan/Japan.png",
+      "physical_path": "icons/Country/Japan/Japan.png",
+      "physical_parent": null
     },
     {
       "child": "Jellyfin",
@@ -1593,7 +1981,10 @@
       "graph_root": "Jellyfin",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Jellyfin/Jellyfin.png",
+      "physical_path": "icons/Media/Jellyfin/Jellyfin.png",
+      "physical_parent": null
     },
     {
       "child": "JioHotstar",
@@ -1605,7 +1996,10 @@
       "graph_root": "JioHotstar",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/JioHotstar/JioHotstar.png",
+      "physical_path": "icons/Media/JioHotstar/JioHotstar.png",
+      "physical_parent": null
     },
     {
       "child": "KKBOX",
@@ -1619,7 +2013,10 @@
       "graph_root": "KKCompany",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/KKBOX/KKBOX.png",
+      "physical_path": "icons/Music/KKBOX/KKBOX.png",
+      "physical_parent": null
     },
     {
       "child": "KKTV",
@@ -1631,7 +2028,10 @@
       "graph_root": "KKTV",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/KKTV/KKTV.png",
+      "physical_path": "icons/Media/KKTV/KKTV.png",
+      "physical_parent": null
     },
     {
       "child": "KakaoTalk",
@@ -1645,7 +2045,10 @@
       "graph_root": "Kakao",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/KakaoTalk/KakaoTalk.png",
+      "physical_path": "icons/Communication/KakaoTalk/KakaoTalk.png",
+      "physical_parent": null
     },
     {
       "child": "KaraokeDAM",
@@ -1659,7 +2062,10 @@
       "graph_root": "Daiichikosho",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/KaraokeDAM/KaraokeDAM.png",
+      "physical_path": "icons/Media/KaraokeDAM/KaraokeDAM.png",
+      "physical_parent": null
     },
     {
       "child": "Keep",
@@ -1671,7 +2077,10 @@
       "graph_root": "Keep",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Health/Keep/Keep.png",
+      "physical_path": "icons/Health/Keep/Keep.png",
+      "physical_parent": null
     },
     {
       "child": "Kimi",
@@ -1685,7 +2094,10 @@
       "graph_root": "MoonshotAI",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Kimi/Kimi.png",
+      "physical_path": "icons/AI/Kimi/Kimi.png",
+      "physical_parent": null
     },
     {
       "child": "Korea",
@@ -1697,7 +2109,10 @@
       "graph_root": "Korea",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Korea/Korea.png",
+      "physical_path": "icons/Country/Korea/Korea.png",
+      "physical_parent": null
     },
     {
       "child": "Kwai",
@@ -1711,7 +2126,10 @@
       "graph_root": "Kuaishou",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Kwai/Kwai.png",
+      "physical_path": "icons/Social/Kwai/Kwai.png",
+      "physical_parent": null
     },
     {
       "child": "LG",
@@ -1723,7 +2141,10 @@
       "graph_root": "LG",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/LG/LG.png",
+      "physical_path": "icons/Hardware/LG/LG.png",
+      "physical_parent": null
     },
     {
       "child": "LINE",
@@ -1735,7 +2156,10 @@
       "graph_root": "LINE",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/LINE/LINE.png",
+      "physical_path": "icons/Communication/LINE/LINE.png",
+      "physical_parent": null
     },
     {
       "child": "LINETV",
@@ -1747,7 +2171,10 @@
       "graph_root": "LINETV",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/LINETV/LINETV.png",
+      "physical_path": "icons/Media/LINETV/LINETV.png",
+      "physical_parent": null
     },
     {
       "child": "Lark",
@@ -1761,7 +2188,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ByteDance/Lark/Lark.png",
+      "physical_path": "icons/ByteDance/Lark/Lark.png",
+      "physical_parent": null
     },
     {
       "child": "Lemino",
@@ -1773,7 +2203,10 @@
       "graph_root": "Lemino",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Lemino/Lemino.png",
+      "physical_path": "icons/Media/Lemino/Lemino.png",
+      "physical_parent": null
     },
     {
       "child": "LiTV",
@@ -1785,7 +2218,10 @@
       "graph_root": "LiTV",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/LiTV/LiTV.png",
+      "physical_path": "icons/Media/LiTV/LiTV.png",
+      "physical_parent": null
     },
     {
       "child": "Lightning",
@@ -1797,7 +2233,10 @@
       "graph_root": "Lightning",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Lightning/Lightning.png",
+      "physical_path": "icons/System/Lightning/Lightning.png",
+      "physical_parent": null
     },
     {
       "child": "LinkedIn",
@@ -1811,7 +2250,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/LinkedIn/LinkedIn.png",
+      "physical_path": "icons/Microsoft/LinkedIn/LinkedIn.png",
+      "physical_parent": null
     },
     {
       "child": "Mail",
@@ -1823,7 +2265,10 @@
       "graph_root": "Mail",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Mail/Mail.png",
+      "physical_path": "icons/System/Mail/Mail.png",
+      "physical_parent": null
     },
     {
       "child": "MangoTV",
@@ -1837,7 +2282,10 @@
       "graph_root": "MangoSuperMedia",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/MangoTV/MangoTV.png",
+      "physical_path": "icons/Media/MangoTV/MangoTV.png",
+      "physical_parent": null
     },
     {
       "child": "Manus",
@@ -1851,7 +2299,10 @@
       "graph_root": "ButterflyEffect",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Manus/Manus.png",
+      "physical_path": "icons/AI/Manus/Manus.png",
+      "physical_parent": null
     },
     {
       "child": "Meituan",
@@ -1863,7 +2314,10 @@
       "graph_root": "Meituan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/Meituan/Meituan.png",
+      "physical_path": "icons/Shopping/Meituan/Meituan.png",
+      "physical_parent": null
     },
     {
       "child": "Messenger",
@@ -1878,7 +2332,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Meta/Facebook/Messenger/Messenger.png",
+      "physical_path": "icons/Meta/Facebook/Messenger/Messenger.png",
+      "physical_parent": "Facebook"
     },
     {
       "child": "Meta",
@@ -1890,7 +2347,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Meta/Meta/Meta.png",
+      "physical_path": "icons/Meta/Meta/Meta.png",
+      "physical_parent": null
     },
     {
       "child": "MetaBrainz",
@@ -1902,7 +2362,10 @@
       "graph_root": "MetaBrainz",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/MetaBrainz/MetaBrainz.png",
+      "physical_path": "icons/Utilities/MetaBrainz/MetaBrainz.png",
+      "physical_parent": null
     },
     {
       "child": "Microsoft",
@@ -1914,7 +2377,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Microsoft/Microsoft/Microsoft.png",
+      "physical_path": "icons/Microsoft/Microsoft/Microsoft.png",
+      "physical_parent": null
     },
     {
       "child": "MicrosoftStore",
@@ -1928,7 +2394,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/MicrosoftStore/MicrosoftStore.png",
+      "physical_path": "icons/Microsoft/MicrosoftStore/MicrosoftStore.png",
+      "physical_parent": null
     },
     {
       "child": "Migu",
@@ -1942,7 +2411,10 @@
       "graph_root": "ChinaMobile",
       "ecosystem_root": "ChinaMobile",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ChinaMobile/Migu/Migu.png",
+      "physical_path": "icons/ChinaMobile/Migu/Migu.png",
+      "physical_parent": null
     },
     {
       "child": "Mijia",
@@ -1956,7 +2428,10 @@
       "graph_root": "Xiaomi",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Home/Mijia/Mijia.png",
+      "physical_path": "icons/Home/Mijia/Mijia.png",
+      "physical_parent": null
     },
     {
       "child": "MikroTik",
@@ -1968,7 +2443,10 @@
       "graph_root": "MikroTik",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/MikroTik/MikroTik.png",
+      "physical_path": "icons/Infrastructure/MikroTik/MikroTik.png",
+      "physical_parent": null
     },
     {
       "child": "MiniMax",
@@ -1980,7 +2458,10 @@
       "graph_root": "MiniMax",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/MiniMax/MiniMax.png",
+      "physical_path": "icons/AI/MiniMax/MiniMax.png",
+      "physical_parent": null
     },
     {
       "child": "Muse",
@@ -1992,7 +2473,10 @@
       "graph_root": "Muse",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Muse/Muse.png",
+      "physical_path": "icons/AI/Muse/Muse.png",
+      "physical_parent": null
     },
     {
       "child": "MusicBrainz",
@@ -2006,7 +2490,10 @@
       "graph_root": "MetaBrainz",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/MusicBrainz/MusicBrainz.png",
+      "physical_path": "icons/Music/MusicBrainz/MusicBrainz.png",
+      "physical_parent": null
     },
     {
       "child": "MusicJapan",
@@ -2018,7 +2505,10 @@
       "graph_root": "MusicJapan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/MusicJapan/MusicJapan.png",
+      "physical_path": "icons/Music/MusicJapan/MusicJapan.png",
+      "physical_parent": null
     },
     {
       "child": "Musixmatch",
@@ -2030,7 +2520,10 @@
       "graph_root": "Musixmatch",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/Musixmatch/Musixmatch.png",
+      "physical_path": "icons/Music/Musixmatch/Musixmatch.png",
+      "physical_parent": null
     },
     {
       "child": "MyVideo",
@@ -2044,7 +2537,10 @@
       "graph_root": "TaiwanMobile",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/MyVideo/MyVideo.png",
+      "physical_path": "icons/Media/MyVideo/MyVideo.png",
+      "physical_parent": null
     },
     {
       "child": "NBA",
@@ -2056,7 +2552,10 @@
       "graph_root": "NBA",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/NBA/NBA.png",
+      "physical_path": "icons/Media/NBA/NBA.png",
+      "physical_parent": null
     },
     {
       "child": "NBC",
@@ -2070,7 +2569,10 @@
       "graph_root": "NBCUniversal",
       "ecosystem_root": "NBCUniversal",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/NBCUniversal/NBC/NBC.png",
+      "physical_path": "icons/NBCUniversal/NBC/NBC.png",
+      "physical_parent": null
     },
     {
       "child": "NBCUniversal",
@@ -2082,7 +2584,10 @@
       "graph_root": "NBCUniversal",
       "ecosystem_root": "NBCUniversal",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/NBCUniversal/NBCUniversal/NBCUniversal.png",
+      "physical_path": "icons/NBCUniversal/NBCUniversal/NBCUniversal.png",
+      "physical_parent": null
     },
     {
       "child": "NHK",
@@ -2094,7 +2599,10 @@
       "graph_root": "NHK",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/NHK/NHK.png",
+      "physical_path": "icons/Media/NHK/NHK.png",
+      "physical_parent": null
     },
     {
       "child": "NetEase",
@@ -2106,7 +2614,10 @@
       "graph_root": "NetEase",
       "ecosystem_root": "NetEase",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/NetEase/NetEase/NetEase.png",
+      "physical_path": "icons/NetEase/NetEase/NetEase.png",
+      "physical_parent": null
     },
     {
       "child": "NetEaseCloudMusic",
@@ -2120,7 +2631,10 @@
       "graph_root": "NetEase",
       "ecosystem_root": "NetEase",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/NetEase/NetEaseCloudMusic/NetEaseCloudMusic.png",
+      "physical_path": "icons/NetEase/NetEaseCloudMusic/NetEaseCloudMusic.png",
+      "physical_parent": null
     },
     {
       "child": "NetEaseMail",
@@ -2134,7 +2648,10 @@
       "graph_root": "NetEase",
       "ecosystem_root": "NetEase",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/NetEase/NetEaseMail/NetEaseMail.png",
+      "physical_path": "icons/NetEase/NetEaseMail/NetEaseMail.png",
+      "physical_parent": null
     },
     {
       "child": "Netflix",
@@ -2146,7 +2663,10 @@
       "graph_root": "Netflix",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Netflix/Netflix.png",
+      "physical_path": "icons/Media/Netflix/Netflix.png",
+      "physical_parent": null
     },
     {
       "child": "Netherlands",
@@ -2158,7 +2678,10 @@
       "graph_root": "Netherlands",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Netherlands/Netherlands.png",
+      "physical_path": "icons/Country/Netherlands/Netherlands.png",
+      "physical_parent": null
     },
     {
       "child": "Niconico",
@@ -2172,7 +2695,10 @@
       "graph_root": "Kadokawa",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Niconico/Niconico.png",
+      "physical_path": "icons/Media/Niconico/Niconico.png",
+      "physical_parent": null
     },
     {
       "child": "Nigeria",
@@ -2184,7 +2710,10 @@
       "graph_root": "Nigeria",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Nigeria/Nigeria.png",
+      "physical_path": "icons/Country/Nigeria/Nigeria.png",
+      "physical_parent": null
     },
     {
       "child": "Nintendo",
@@ -2196,7 +2725,10 @@
       "graph_root": "Nintendo",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Game/Nintendo/Nintendo.png",
+      "physical_path": "icons/Game/Nintendo/Nintendo.png",
+      "physical_parent": null
     },
     {
       "child": "NorthKorea",
@@ -2208,7 +2740,10 @@
       "graph_root": "NorthKorea",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/NorthKorea/NorthKorea.png",
+      "physical_path": "icons/Country/NorthKorea/NorthKorea.png",
+      "physical_parent": null
     },
     {
       "child": "Notion",
@@ -2220,7 +2755,10 @@
       "graph_root": "Notion",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Notion/Notion.png",
+      "physical_path": "icons/Utilities/Notion/Notion.png",
+      "physical_parent": null
     },
     {
       "child": "NousResearch",
@@ -2232,7 +2770,10 @@
       "graph_root": "NousResearch",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/NousResearch/NousResearch.png",
+      "physical_path": "icons/AI/NousResearch/NousResearch.png",
+      "physical_parent": null
     },
     {
       "child": "NowE",
@@ -2246,7 +2787,10 @@
       "graph_root": "PCCW",
       "ecosystem_root": "PCCW",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/PCCW/NowE/NowE.png",
+      "physical_path": "icons/PCCW/NowE/NowE.png",
+      "physical_parent": null
     },
     {
       "child": "OKX",
@@ -2258,7 +2802,10 @@
       "graph_root": "OKX",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Payment/OKX/OKX.png",
+      "physical_path": "icons/Payment/OKX/OKX.png",
+      "physical_parent": null
     },
     {
       "child": "OPPO",
@@ -2270,7 +2817,10 @@
       "graph_root": "OPPO",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/OPPO/OPPO.png",
+      "physical_path": "icons/Hardware/OPPO/OPPO.png",
+      "physical_parent": null
     },
     {
       "child": "Obsidian",
@@ -2282,7 +2832,10 @@
       "graph_root": "Obsidian",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Obsidian/Obsidian.png",
+      "physical_path": "icons/Utilities/Obsidian/Obsidian.png",
+      "physical_parent": null
     },
     {
       "child": "OneDrive",
@@ -2296,7 +2849,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/OneDrive/OneDrive.png",
+      "physical_path": "icons/Microsoft/OneDrive/OneDrive.png",
+      "physical_parent": null
     },
     {
       "child": "OpenAI",
@@ -2308,7 +2864,10 @@
       "graph_root": "OpenAI",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/OpenAI/OpenAI.png",
+      "physical_path": "icons/AI/OpenAI/OpenAI.png",
+      "physical_parent": null
     },
     {
       "child": "OpenWrt",
@@ -2320,7 +2879,10 @@
       "graph_root": "OpenWrt",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/OpenWrt/OpenWrt.png",
+      "physical_path": "icons/Infrastructure/OpenWrt/OpenWrt.png",
+      "physical_parent": null
     },
     {
       "child": "Oracle",
@@ -2332,7 +2894,10 @@
       "graph_root": "Oracle",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/Oracle/Oracle.png",
+      "physical_path": "icons/Infrastructure/Oracle/Oracle.png",
+      "physical_parent": null
     },
     {
       "child": "Outlook",
@@ -2346,7 +2911,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/Outlook/Outlook.png",
+      "physical_path": "icons/Microsoft/Outlook/Outlook.png",
+      "physical_parent": null
     },
     {
       "child": "PCCW",
@@ -2358,7 +2926,10 @@
       "graph_root": "PCCW",
       "ecosystem_root": "PCCW",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/PCCW/PCCW/PCCW.png",
+      "physical_path": "icons/PCCW/PCCW/PCCW.png",
+      "physical_parent": null
     },
     {
       "child": "Pandora",
@@ -2372,7 +2943,10 @@
       "graph_root": "SiriusXM",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/Pandora/Pandora.png",
+      "physical_path": "icons/Music/Pandora/Pandora.png",
+      "physical_parent": null
     },
     {
       "child": "ParamountPlus",
@@ -2386,7 +2960,10 @@
       "graph_root": "Paramount",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/ParamountPlus/ParamountPlus.png",
+      "physical_path": "icons/Media/ParamountPlus/ParamountPlus.png",
+      "physical_parent": null
     },
     {
       "child": "PayPal",
@@ -2398,7 +2975,10 @@
       "graph_root": "PayPal",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Payment/PayPal/PayPal.png",
+      "physical_path": "icons/Payment/PayPal/PayPal.png",
+      "physical_parent": null
     },
     {
       "child": "Peacock",
@@ -2412,7 +2992,10 @@
       "graph_root": "NBCUniversal",
       "ecosystem_root": "NBCUniversal",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/NBCUniversal/Peacock/Peacock.png",
+      "physical_path": "icons/NBCUniversal/Peacock/Peacock.png",
+      "physical_parent": null
     },
     {
       "child": "Perplexity",
@@ -2424,7 +3007,10 @@
       "graph_root": "Perplexity",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Perplexity/Perplexity.png",
+      "physical_path": "icons/AI/Perplexity/Perplexity.png",
+      "physical_parent": null
     },
     {
       "child": "PikPak",
@@ -2436,7 +3022,10 @@
       "graph_root": "PikPak",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/CloudStorage/PikPak/PikPak.png",
+      "physical_path": "icons/CloudStorage/PikPak/PikPak.png",
+      "physical_parent": null
     },
     {
       "child": "Pinduoduo",
@@ -2448,7 +3037,10 @@
       "graph_root": "Pinduoduo",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/Pinduoduo/Pinduoduo.png",
+      "physical_path": "icons/Shopping/Pinduoduo/Pinduoduo.png",
+      "physical_parent": null
     },
     {
       "child": "Pinterest",
@@ -2460,7 +3052,10 @@
       "graph_root": "Pinterest",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Pinterest/Pinterest.png",
+      "physical_path": "icons/Social/Pinterest/Pinterest.png",
+      "physical_parent": null
     },
     {
       "child": "Pipixia",
@@ -2474,7 +3069,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ByteDance/Pipixia/Pipixia.png",
+      "physical_path": "icons/ByteDance/Pipixia/Pipixia.png",
+      "physical_parent": null
     },
     {
       "child": "Play",
@@ -2486,7 +3084,10 @@
       "graph_root": "Play",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Play/Play.png",
+      "physical_path": "icons/System/Play/Play.png",
+      "physical_parent": null
     },
     {
       "child": "PlayStation",
@@ -2500,7 +3101,10 @@
       "graph_root": "SONY",
       "ecosystem_root": "SONY",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SONY/PlayStation/PlayStation.png",
+      "physical_path": "icons/SONY/PlayStation/PlayStation.png",
+      "physical_parent": null
     },
     {
       "child": "Plex",
@@ -2512,7 +3116,10 @@
       "graph_root": "Plex",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Plex/Plex.png",
+      "physical_path": "icons/Media/Plex/Plex.png",
+      "physical_parent": null
     },
     {
       "child": "Poe",
@@ -2526,7 +3133,10 @@
       "graph_root": "Quora",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/AI/Poe/Poe.png",
+      "physical_path": "icons/AI/Poe/Poe.png",
+      "physical_parent": null
     },
     {
       "child": "Poland",
@@ -2538,7 +3148,10 @@
       "graph_root": "Poland",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Poland/Poland.png",
+      "physical_path": "icons/Country/Poland/Poland.png",
+      "physical_parent": null
     },
     {
       "child": "PrimeVideo",
@@ -2552,7 +3165,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Amazon/PrimeVideo/PrimeVideo.png",
+      "physical_path": "icons/Amazon/PrimeVideo/PrimeVideo.png",
+      "physical_parent": null
     },
     {
       "child": "Proxmox",
@@ -2564,7 +3180,10 @@
       "graph_root": "Proxmox",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/Proxmox/Proxmox.png",
+      "physical_path": "icons/Infrastructure/Proxmox/Proxmox.png",
+      "physical_parent": null
     },
     {
       "child": "Proxy",
@@ -2576,7 +3195,10 @@
       "graph_root": "Proxy",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Proxy/Proxy.png",
+      "physical_path": "icons/System/Proxy/Proxy.png",
+      "physical_parent": null
     },
     {
       "child": "QQ",
@@ -2590,7 +3212,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/QQ/QQ.png",
+      "physical_path": "icons/Tencent/QQ/QQ.png",
+      "physical_parent": null
     },
     {
       "child": "QQMail",
@@ -2604,7 +3229,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/QQMail/QQMail.png",
+      "physical_path": "icons/Tencent/QQMail/QQMail.png",
+      "physical_parent": null
     },
     {
       "child": "QQMusic",
@@ -2618,7 +3246,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/QQMusic/QQMusic.png",
+      "physical_path": "icons/Tencent/QQMusic/QQMusic.png",
+      "physical_parent": null
     },
     {
       "child": "Qobuz",
@@ -2630,7 +3261,10 @@
       "graph_root": "Qobuz",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/Qobuz/Qobuz.png",
+      "physical_path": "icons/Music/Qobuz/Qobuz.png",
+      "physical_parent": null
     },
     {
       "child": "Quark",
@@ -2644,7 +3278,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/Quark/Quark.png",
+      "physical_path": "icons/Alibaba/Quark/Quark.png",
+      "physical_parent": null
     },
     {
       "child": "Qwen",
@@ -2658,7 +3295,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/Qwen/Qwen.png",
+      "physical_path": "icons/Alibaba/Qwen/Qwen.png",
+      "physical_parent": null
     },
     {
       "child": "Radiko",
@@ -2670,7 +3310,10 @@
       "graph_root": "Radiko",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Radiko/Radiko.png",
+      "physical_path": "icons/Media/Radiko/Radiko.png",
+      "physical_parent": null
     },
     {
       "child": "RakutenTV",
@@ -2684,7 +3327,10 @@
       "graph_root": "Rakuten",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/RakutenTV/RakutenTV.png",
+      "physical_path": "icons/Media/RakutenTV/RakutenTV.png",
+      "physical_parent": null
     },
     {
       "child": "ReadJapan",
@@ -2696,7 +3342,10 @@
       "graph_root": "ReadJapan",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/ReadJapan/ReadJapan.png",
+      "physical_path": "icons/Media/ReadJapan/ReadJapan.png",
+      "physical_parent": null
     },
     {
       "child": "RedBullTV",
@@ -2710,7 +3359,10 @@
       "graph_root": "RedBull",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/RedBullTV/RedBullTV.png",
+      "physical_path": "icons/Media/RedBullTV/RedBullTV.png",
+      "physical_parent": null
     },
     {
       "child": "Reddit",
@@ -2722,7 +3374,10 @@
       "graph_root": "Reddit",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Reddit/Reddit.png",
+      "physical_path": "icons/Social/Reddit/Reddit.png",
+      "physical_parent": null
     },
     {
       "child": "Reject",
@@ -2734,7 +3389,10 @@
       "graph_root": "Reject",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Reject/Reject.png",
+      "physical_path": "icons/System/Reject/Reject.png",
+      "physical_parent": null
     },
     {
       "child": "SF-Express",
@@ -2746,7 +3404,10 @@
       "graph_root": "SF-Express",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Transport/SF-Express/SF-Express.png",
+      "physical_path": "icons/Transport/SF-Express/SF-Express.png",
+      "physical_parent": null
     },
     {
       "child": "SINA",
@@ -2758,7 +3419,10 @@
       "graph_root": "SINA",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/SINA/SINA.png",
+      "physical_path": "icons/Social/SINA/SINA.png",
+      "physical_parent": null
     },
     {
       "child": "SONY",
@@ -2770,7 +3434,10 @@
       "graph_root": "SONY",
       "ecosystem_root": "SONY",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/SONY/SONY/SONY.png",
+      "physical_path": "icons/SONY/SONY/SONY.png",
+      "physical_parent": null
     },
     {
       "child": "SOOP",
@@ -2782,7 +3449,10 @@
       "graph_root": "SOOP",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/SOOP/SOOP.png",
+      "physical_path": "icons/Media/SOOP/SOOP.png",
+      "physical_parent": null
     },
     {
       "child": "SSID",
@@ -2794,7 +3464,10 @@
       "graph_root": "SSID",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/SSID/SSID.png",
+      "physical_path": "icons/System/SSID/SSID.png",
+      "physical_parent": null
     },
     {
       "child": "STARZ",
@@ -2806,7 +3479,10 @@
       "graph_root": "STARZ",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/STARZ/STARZ.png",
+      "physical_path": "icons/Media/STARZ/STARZ.png",
+      "physical_parent": null
     },
     {
       "child": "SWIFT",
@@ -2818,7 +3494,10 @@
       "graph_root": "SWIFT",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Payment/SWIFT/SWIFT.png",
+      "physical_path": "icons/Payment/SWIFT/SWIFT.png",
+      "physical_parent": null
     },
     {
       "child": "Samsung",
@@ -2830,7 +3509,10 @@
       "graph_root": "Samsung",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/Samsung/Samsung.png",
+      "physical_path": "icons/Hardware/Samsung/Samsung.png",
+      "physical_parent": null
     },
     {
       "child": "Search",
@@ -2842,7 +3524,10 @@
       "graph_root": "Search",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Search/Search.png",
+      "physical_path": "icons/System/Search/Search.png",
+      "physical_parent": null
     },
     {
       "child": "Singapore",
@@ -2854,7 +3539,10 @@
       "graph_root": "Singapore",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Singapore/Singapore.png",
+      "physical_path": "icons/Country/Singapore/Singapore.png",
+      "physical_parent": null
     },
     {
       "child": "SiriAI",
@@ -2868,7 +3556,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/SiriAI/SiriAI.png",
+      "physical_path": "icons/Apple/SiriAI/SiriAI.png",
+      "physical_parent": null
     },
     {
       "child": "Skype",
@@ -2880,7 +3571,10 @@
       "graph_root": "Skype",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/Skype/Skype.png",
+      "physical_path": "icons/Communication/Skype/Skype.png",
+      "physical_parent": null
     },
     {
       "child": "SlingTV",
@@ -2894,7 +3588,10 @@
       "graph_root": "EchoStar",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/SlingTV/SlingTV.png",
+      "physical_path": "icons/Media/SlingTV/SlingTV.png",
+      "physical_parent": null
     },
     {
       "child": "Snapchat",
@@ -2908,7 +3605,10 @@
       "graph_root": "Snap",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/Snapchat/Snapchat.png",
+      "physical_path": "icons/Communication/Snapchat/Snapchat.png",
+      "physical_parent": null
     },
     {
       "child": "SoundCloud",
@@ -2920,7 +3620,10 @@
       "graph_root": "SoundCloud",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/SoundCloud/SoundCloud.png",
+      "physical_path": "icons/Music/SoundCloud/SoundCloud.png",
+      "physical_parent": null
     },
     {
       "child": "Spain",
@@ -2932,7 +3635,10 @@
       "graph_root": "Spain",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Spain/Spain.png",
+      "physical_path": "icons/Country/Spain/Spain.png",
+      "physical_parent": null
     },
     {
       "child": "Speedtest",
@@ -2944,7 +3650,10 @@
       "graph_root": "Speedtest",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Speedtest/Speedtest.png",
+      "physical_path": "icons/Utilities/Speedtest/Speedtest.png",
+      "physical_parent": null
     },
     {
       "child": "Spotify",
@@ -2956,7 +3665,10 @@
       "graph_root": "Spotify",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/Spotify/Spotify.png",
+      "physical_path": "icons/Music/Spotify/Spotify.png",
+      "physical_parent": null
     },
     {
       "child": "StarPlus",
@@ -2968,7 +3680,10 @@
       "graph_root": "StarPlus",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/StarPlus/StarPlus.png",
+      "physical_path": "icons/Media/StarPlus/StarPlus.png",
+      "physical_parent": null
     },
     {
       "child": "Steam",
@@ -2982,7 +3697,10 @@
       "graph_root": "Valve",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Game/Steam/Steam.png",
+      "physical_path": "icons/Game/Steam/Steam.png",
+      "physical_parent": null
     },
     {
       "child": "Surge",
@@ -2994,7 +3712,10 @@
       "graph_root": "Surge",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Surge/Surge/Surge.png",
+      "physical_path": "icons/Surge/Surge/Surge.png",
+      "physical_parent": null
     },
     {
       "child": "Synology",
@@ -3006,7 +3727,10 @@
       "graph_root": "Synology",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Infrastructure/Synology/Synology.png",
+      "physical_path": "icons/Infrastructure/Synology/Synology.png",
+      "physical_parent": null
     },
     {
       "child": "TELASA",
@@ -3018,7 +3742,10 @@
       "graph_root": "TELASA",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/TELASA/TELASA.png",
+      "physical_path": "icons/Media/TELASA/TELASA.png",
+      "physical_parent": null
     },
     {
       "child": "TIDAL",
@@ -3032,7 +3759,10 @@
       "graph_root": "Block",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Music/TIDAL/TIDAL.png",
+      "physical_path": "icons/Music/TIDAL/TIDAL.png",
+      "physical_parent": null
     },
     {
       "child": "TMDB",
@@ -3046,7 +3776,10 @@
       "graph_root": "Xperi",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/TMDB/TMDB.png",
+      "physical_path": "icons/Media/TMDB/TMDB.png",
+      "physical_parent": null
     },
     {
       "child": "TVB",
@@ -3058,7 +3791,10 @@
       "graph_root": "TVB",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/TVB/TVB.png",
+      "physical_path": "icons/Media/TVB/TVB.png",
+      "physical_parent": null
     },
     {
       "child": "TVer",
@@ -3070,7 +3806,10 @@
       "graph_root": "TVer",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/TVer/TVer.png",
+      "physical_path": "icons/Media/TVer/TVer.png",
+      "physical_parent": null
     },
     {
       "child": "Taobao",
@@ -3084,7 +3823,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/Taobao/Taobao.png",
+      "physical_path": "icons/Alibaba/Taobao/Taobao.png",
+      "physical_parent": null
     },
     {
       "child": "Telegram",
@@ -3096,7 +3838,10 @@
       "graph_root": "Telegram",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Communication/Telegram/Telegram.png",
+      "physical_path": "icons/Communication/Telegram/Telegram.png",
+      "physical_parent": null
     },
     {
       "child": "Tencent",
@@ -3108,7 +3853,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/Tencent/Tencent/Tencent.png",
+      "physical_path": "icons/Tencent/Tencent/Tencent.png",
+      "physical_parent": null
     },
     {
       "child": "TencentVideo",
@@ -3122,7 +3870,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/TencentVideo/TencentVideo.png",
+      "physical_path": "icons/Tencent/TencentVideo/TencentVideo.png",
+      "physical_parent": null
     },
     {
       "child": "TestFlight",
@@ -3136,7 +3887,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/TestFlight/TestFlight.png",
+      "physical_path": "icons/Apple/TestFlight/TestFlight.png",
+      "physical_parent": null
     },
     {
       "child": "Thailand",
@@ -3148,7 +3902,10 @@
       "graph_root": "Thailand",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Thailand/Thailand.png",
+      "physical_path": "icons/Country/Thailand/Thailand.png",
+      "physical_parent": null
     },
     {
       "child": "Threads",
@@ -3163,7 +3920,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Meta/Facebook/Threads/Threads.png",
+      "physical_path": "icons/Meta/Facebook/Threads/Threads.png",
+      "physical_parent": "Facebook"
     },
     {
       "child": "Tieba",
@@ -3177,7 +3937,10 @@
       "graph_root": "Baidu",
       "ecosystem_root": "Baidu",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Baidu/Tieba/Tieba.png",
+      "physical_path": "icons/Baidu/Tieba/Tieba.png",
+      "physical_parent": null
     },
     {
       "child": "TikTok",
@@ -3191,7 +3954,10 @@
       "graph_root": "ByteDance",
       "ecosystem_root": "ByteDance",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/ByteDance/TikTok/TikTok.png",
+      "physical_path": "icons/ByteDance/TikTok/TikTok.png",
+      "physical_parent": null
     },
     {
       "child": "Traffic",
@@ -3203,7 +3969,10 @@
       "graph_root": "Traffic",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/Traffic/Traffic.png",
+      "physical_path": "icons/System/Traffic/Traffic.png",
+      "physical_parent": null
     },
     {
       "child": "Tubi",
@@ -3217,7 +3986,10 @@
       "graph_root": "Fox",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Tubi/Tubi.png",
+      "physical_path": "icons/Media/Tubi/Tubi.png",
+      "physical_parent": null
     },
     {
       "child": "Turkey",
@@ -3229,7 +4001,10 @@
       "graph_root": "Turkey",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/Turkey/Turkey.png",
+      "physical_path": "icons/Country/Turkey/Turkey.png",
+      "physical_parent": null
     },
     {
       "child": "Twitch",
@@ -3243,7 +4018,10 @@
       "graph_root": "Amazon",
       "ecosystem_root": "Amazon",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Amazon/Twitch/Twitch.png",
+      "physical_path": "icons/Amazon/Twitch/Twitch.png",
+      "physical_parent": null
     },
     {
       "child": "UK",
@@ -3255,7 +4033,10 @@
       "graph_root": "UK",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/UK/UK.png",
+      "physical_path": "icons/Country/UK/UK.png",
+      "physical_parent": null
     },
     {
       "child": "UNEXT",
@@ -3269,7 +4050,10 @@
       "graph_root": "UNEXTHoldings",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/UNEXT/UNEXT.png",
+      "physical_path": "icons/Media/UNEXT/UNEXT.png",
+      "physical_parent": null
     },
     {
       "child": "URL",
@@ -3281,7 +4065,10 @@
       "graph_root": "URL",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/System/URL/URL.png",
+      "physical_path": "icons/System/URL/URL.png",
+      "physical_parent": null
     },
     {
       "child": "US",
@@ -3293,7 +4080,10 @@
       "graph_root": "US",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Country/US/US.png",
+      "physical_path": "icons/Country/US/US.png",
+      "physical_parent": null
     },
     {
       "child": "Uber",
@@ -3305,7 +4095,10 @@
       "graph_root": "Uber",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Transport/Uber/Uber.png",
+      "physical_path": "icons/Transport/Uber/Uber.png",
+      "physical_parent": null
     },
     {
       "child": "UnionPay",
@@ -3317,7 +4110,10 @@
       "graph_root": "UnionPay",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Payment/UnionPay/UnionPay.png",
+      "physical_path": "icons/Payment/UnionPay/UnionPay.png",
+      "physical_parent": null
     },
     {
       "child": "VideoMarket",
@@ -3331,7 +4127,10 @@
       "graph_root": "PLAY",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/VideoMarket/VideoMarket.png",
+      "physical_path": "icons/Media/VideoMarket/VideoMarket.png",
+      "physical_parent": null
     },
     {
       "child": "Vimeo",
@@ -3343,7 +4142,10 @@
       "graph_root": "Vimeo",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Vimeo/Vimeo.png",
+      "physical_path": "icons/Media/Vimeo/Vimeo.png",
+      "physical_parent": null
     },
     {
       "child": "Viu",
@@ -3357,7 +4159,10 @@
       "graph_root": "PCCW",
       "ecosystem_root": "PCCW",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/PCCW/Viu/Viu.png",
+      "physical_path": "icons/PCCW/Viu/Viu.png",
+      "physical_parent": null
     },
     {
       "child": "WOWOW",
@@ -3369,7 +4174,10 @@
       "graph_root": "WOWOW",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/WOWOW/WOWOW.png",
+      "physical_path": "icons/Media/WOWOW/WOWOW.png",
+      "physical_parent": null
     },
     {
       "child": "WSJ",
@@ -3383,7 +4191,10 @@
       "graph_root": "NewsCorp",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/News/WSJ/WSJ.png",
+      "physical_path": "icons/News/WSJ/WSJ.png",
+      "physical_parent": null
     },
     {
       "child": "Wallpaper",
@@ -3395,7 +4206,10 @@
       "graph_root": "Wallpaper",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Wallpaper/Wallpaper.png",
+      "physical_path": "icons/Media/Wallpaper/Wallpaper.png",
+      "physical_parent": null
     },
     {
       "child": "WarnerBrosDiscovery",
@@ -3407,7 +4221,10 @@
       "graph_root": "WarnerBrosDiscovery",
       "ecosystem_root": "WarnerBrosDiscovery",
       "is_graph_root": true,
-      "is_ecosystem_root": true
+      "is_ecosystem_root": true,
+      "icon_path": "icons/WarnerBrosDiscovery/WarnerBrosDiscovery/WarnerBrosDiscovery.png",
+      "physical_path": "icons/WarnerBrosDiscovery/WarnerBrosDiscovery/WarnerBrosDiscovery.png",
+      "physical_parent": null
     },
     {
       "child": "WeChat",
@@ -3421,7 +4238,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/WeChat/WeChat.png",
+      "physical_path": "icons/Tencent/WeChat/WeChat.png",
+      "physical_parent": null
     },
     {
       "child": "WeTV",
@@ -3435,7 +4255,10 @@
       "graph_root": "Tencent",
       "ecosystem_root": "Tencent",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Tencent/WeTV/WeTV.png",
+      "physical_path": "icons/Tencent/WeTV/WeTV.png",
+      "physical_parent": null
     },
     {
       "child": "Weibo",
@@ -3449,7 +4272,10 @@
       "graph_root": "SINA",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Weibo/Weibo.png",
+      "physical_path": "icons/Social/Weibo/Weibo.png",
+      "physical_parent": null
     },
     {
       "child": "WhatsApp",
@@ -3464,7 +4290,10 @@
       "graph_root": "Meta",
       "ecosystem_root": "Meta",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Meta/Facebook/WhatsApp/WhatsApp.png",
+      "physical_path": "icons/Meta/Facebook/WhatsApp/WhatsApp.png",
+      "physical_parent": "Facebook"
     },
     {
       "child": "Wikipedia",
@@ -3476,7 +4305,10 @@
       "graph_root": "Wikipedia",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Wikipedia/Wikipedia.png",
+      "physical_path": "icons/Utilities/Wikipedia/Wikipedia.png",
+      "physical_parent": null
     },
     {
       "child": "X",
@@ -3488,9 +4320,12 @@
         "SpaceXAI"
       ],
       "graph_root": "SpaceXAI",
-      "ecosystem_root": null,
+      "ecosystem_root": "SpaceXAI",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SpaceXAI/X/X.png",
+      "physical_path": "icons/SpaceXAI/X/X.png",
+      "physical_parent": null
     },
     {
       "child": "Xbox",
@@ -3504,7 +4339,10 @@
       "graph_root": "Microsoft",
       "ecosystem_root": "Microsoft",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Microsoft/Xbox/Xbox.png",
+      "physical_path": "icons/Microsoft/Xbox/Xbox.png",
+      "physical_parent": null
     },
     {
       "child": "Xiaomi",
@@ -3516,7 +4354,10 @@
       "graph_root": "Xiaomi",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/Xiaomi/Xiaomi.png",
+      "physical_path": "icons/Hardware/Xiaomi/Xiaomi.png",
+      "physical_parent": null
     },
     {
       "child": "Xiaoyuzhou",
@@ -3528,7 +4369,10 @@
       "graph_root": "Xiaoyuzhou",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/Xiaoyuzhou/Xiaoyuzhou.png",
+      "physical_path": "icons/Media/Xiaoyuzhou/Xiaoyuzhou.png",
+      "physical_parent": null
     },
     {
       "child": "YouTube",
@@ -3542,7 +4386,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/YouTube/YouTube.png",
+      "physical_path": "icons/Google/YouTube/YouTube.png",
+      "physical_parent": null
     },
     {
       "child": "YouTubeMusic",
@@ -3557,7 +4404,10 @@
       "graph_root": "Google",
       "ecosystem_root": "Google",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png",
+      "physical_path": "icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png",
+      "physical_parent": "YouTube"
     },
     {
       "child": "Youku",
@@ -3571,7 +4421,10 @@
       "graph_root": "Alibaba",
       "ecosystem_root": "Alibaba",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/Youku/Youku.png",
+      "physical_path": "icons/Alibaba/Youku/Youku.png",
+      "physical_parent": null
     },
     {
       "child": "Z-Library",
@@ -3583,7 +4436,10 @@
       "graph_root": "Z-Library",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Education/Z-Library/Z-Library.png",
+      "physical_path": "icons/Education/Z-Library/Z-Library.png",
+      "physical_parent": null
     },
     {
       "child": "Zhihu",
@@ -3595,7 +4451,10 @@
       "graph_root": "Zhihu",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/Zhihu/Zhihu.png",
+      "physical_path": "icons/Social/Zhihu/Zhihu.png",
+      "physical_parent": null
     },
     {
       "child": "Zoom",
@@ -3607,7 +4466,10 @@
       "graph_root": "Zoom",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Utilities/Zoom/Zoom.png",
+      "physical_path": "icons/Utilities/Zoom/Zoom.png",
+      "physical_parent": null
     },
     {
       "child": "bilibili",
@@ -3619,7 +4481,10 @@
       "graph_root": "bilibili",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/bilibili/bilibili.png",
+      "physical_path": "icons/Media/bilibili/bilibili.png",
+      "physical_parent": null
     },
     {
       "child": "dAnimeStore",
@@ -3633,7 +4498,10 @@
       "graph_root": "NTTDocomo",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/dAnimeStore/dAnimeStore.png",
+      "physical_path": "icons/Media/dAnimeStore/dAnimeStore.png",
+      "physical_parent": null
     },
     {
       "child": "discoveryPlus",
@@ -3647,7 +4515,10 @@
       "graph_root": "WarnerBrosDiscovery",
       "ecosystem_root": "WarnerBrosDiscovery",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png",
+      "physical_path": "icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png",
+      "physical_parent": null
     },
     {
       "child": "eBay",
@@ -3659,7 +4530,10 @@
       "graph_root": "eBay",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/eBay/eBay.png",
+      "physical_path": "icons/Shopping/eBay/eBay.png",
+      "physical_parent": null
     },
     {
       "child": "friDayVideo",
@@ -3673,7 +4547,10 @@
       "graph_root": "FarEasTone",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/friDayVideo/friDayVideo.png",
+      "physical_path": "icons/Media/friDayVideo/friDayVideo.png",
+      "physical_parent": null
     },
     {
       "child": "iCloud",
@@ -3687,7 +4564,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/iCloud/iCloud.png",
+      "physical_path": "icons/Apple/iCloud/iCloud.png",
+      "physical_parent": null
     },
     {
       "child": "iCloudPrivateRelay",
@@ -3702,7 +4582,10 @@
       "graph_root": "Apple",
       "ecosystem_root": "Apple",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png",
+      "physical_path": "icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png",
+      "physical_parent": "iCloud"
     },
     {
       "child": "iQIYI",
@@ -3716,7 +4599,10 @@
       "graph_root": "Baidu",
       "ecosystem_root": "Baidu",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Baidu/iQIYI/iQIYI.png",
+      "physical_path": "icons/Baidu/iQIYI/iQIYI.png",
+      "physical_parent": null
     },
     {
       "child": "mora",
@@ -3730,7 +4616,10 @@
       "graph_root": "SONY",
       "ecosystem_root": "SONY",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SONY/mora/mora.png",
+      "physical_path": "icons/SONY/mora/mora.png",
+      "physical_parent": null
     },
     {
       "child": "myTVSUPER",
@@ -3744,7 +4633,10 @@
       "graph_root": "TVB",
       "ecosystem_root": null,
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Media/myTVSUPER/myTVSUPER.png",
+      "physical_path": "icons/Media/myTVSUPER/myTVSUPER.png",
+      "physical_parent": null
     },
     {
       "child": "pixiv",
@@ -3756,7 +4648,10 @@
       "graph_root": "pixiv",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/pixiv/pixiv.png",
+      "physical_path": "icons/Social/pixiv/pixiv.png",
+      "physical_parent": null
     },
     {
       "child": "rednote",
@@ -3768,7 +4663,10 @@
       "graph_root": "rednote",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Social/rednote/rednote.png",
+      "physical_path": "icons/Social/rednote/rednote.png",
+      "physical_parent": null
     },
     {
       "child": "vivo",
@@ -3780,7 +4678,10 @@
       "graph_root": "vivo",
       "ecosystem_root": null,
       "is_graph_root": true,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Hardware/vivo/vivo.png",
+      "physical_path": "icons/Hardware/vivo/vivo.png",
+      "physical_parent": null
     },
     {
       "child": "xAI",
@@ -3792,9 +4693,12 @@
         "SpaceXAI"
       ],
       "graph_root": "SpaceXAI",
-      "ecosystem_root": null,
+      "ecosystem_root": "SpaceXAI",
       "is_graph_root": false,
-      "is_ecosystem_root": false
+      "is_ecosystem_root": false,
+      "icon_path": "icons/SpaceXAI/xAI/xAI.png",
+      "physical_path": "icons/SpaceXAI/xAI/xAI.png",
+      "physical_parent": null
     }
   ]
 }
