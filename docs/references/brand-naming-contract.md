@@ -18,6 +18,14 @@
 `parent_brand` = **直接父品牌**（immediate parent）。祖先链与生态根一律动态派生
 （`scripts/brand_relationships.py` 的 `resolve_ecosystem_root`），不存字段。
 
+**关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy（如
+`Google → YouTube → YouTubeMusic`、`Meta → Facebook → Instagram`、`Apple → iCloud →
+iCloudPrivateRelay`）。Developer / Provider / Brand Owner 与 Platform Integration / Distribution
+不是 `parent_brand`：例如官方资料同时支持「SpaceXAI 开发 Grok」与「Grok 可通过 X 平台使用」，
+前者决定 `Grok.parent_brand = SpaceXAI`，后者是 `Grok ↔ X` 的平台集成关系，不得倒推
+`Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；除非未来出现
+全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在证据审计层。
+
 ## 2. Technical ID 规则
 
 - 仅 `[A-Za-z0-9]` 开头，后续允许 `[A-Za-z0-9._-]`；ASCII、无空格、无 `/`。

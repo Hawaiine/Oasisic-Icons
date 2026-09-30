@@ -25,6 +25,11 @@
 
 - **`parent_brand` = 直接父品牌（immediate parent）**，不表示公司股权结构、不表示历史所有者。
   例：`Instagram → Facebook`、`YouTubeMusic → YouTube`、`iCloudPrivateRelay → iCloud`。
+- **关系类型边界（Final Trust Audit）**：`parent_brand` 只表达 Brand / Product Hierarchy；Developer /
+  Provider / Brand Owner 与 Platform Integration / Distribution 不写入该字段。当前官方证据同时支持
+  「SpaceXAI 开发 Grok」与「Grok 可通过 X 平台使用」：前者决定 `Grok → SpaceXAI`，后者是
+  `Grok ↔ X` 的平台集成关系，**不**证明 `Grok → X`。仓库当前没有通用 platform/integration
+  schema，本轮不为单一案例扩张 SSOT；平台关系留在审计证据层。
 - **graph root ≠ ecosystem root**（2026-09-30 语义拆分，`brand_relationships`）：
   - **graph root** = 沿 `parent_brand` 链向上走到的最高节点（`resolve_graph_root`）。
   - **ecosystem root** = graph root 且 `entity_type: ecosystem`（`resolve_ecosystem_root`）。
@@ -42,16 +47,20 @@
 - **X / Grok / xAI / SpaceXAI / SpaceX 专项**（2026-09-30 Final Seal Review 复核）：五者身份分离——
   - `xAI` → `SpaceXAI`：**品牌身份 rename**（官方品牌标识 2026-07-06 更名完成，见下条），非新增品牌；
   - `Grok`：SpaceXAI 开发的 AI 产品 → `parent_brand = SpaceXAI`（官方 Terms / Privacy Policy 明确
-    「Grok，由 SpaceXAI 的大语言模型驱动」）；
+    「Grok，由 SpaceXAI 的大语言模型驱动」）；**同时**，X 官方 Help Center 将 Grok 描述为「available
+    to X users / on the X platform」，这是 Platform Integration / Distribution 关系，不是品牌父级；
   - `X`：**独立平台品牌**，`parent_brand = null` —— 官方 Privacy Policy 明确「**SpaceXAI is a
     separate company from X Corp.**」，且「X 的使用（含 X 平台上的 Grok）由 X 的条款管辖，**不适用**
     SpaceXAI 政策」；SpaceXAI 官方产品清单仅 Grok / Grokipedia，**不含 X**。`parent_brand` 回答
-    「直接品牌父级」，**不以 corporate ownership 推导**（§13）；
+    「直接品牌父级」，**不以 corporate ownership 或 platform integration 推导**（§13）；
   - `SpaceXAI`：canonical brand，但 **canonical descendants = 1（仅 Grok）< 2 → 不构成独立生态**，
     故 `entity_type = product_brand`（公司品牌），目录 `icons/AI/SpaceXAI/`；
   - `SpaceX`：**Corporate Owner only**，不进入 Oasisic Brand Graph（不建 `icons/SpaceX/`、
     不设 `parent_brand = SpaceX`）。
-- **品牌标识更名 vs 法律实体更名**（2026-09-30 定稿）：`xAI` → `SpaceXAI` 为**品牌标识（brand
+  **证据链接（primary source）**：SpaceXAI [Privacy Policy](https://x.ai/legal/privacy-policy)（effective 2026-08-24）、
+  [Consumer Terms](https://x.ai/legal/terms-of-service)（updated 2026-09-11）、[Consumer FAQ](https://x.ai/legal/faq)、
+  [Brand Guidelines](https://x.ai/legal/brand-guidelines)；X [About Grok Help Center](https://help.x.com/en/using-x/about-grok)。
+（2026-09-30 定稿）：`xAI` → `SpaceXAI` 为**品牌标识（brand
   identity）更名**——官方品牌层面证据：**2026-07-06** `@SpaceXAI` 账号发布「We are now @SpaceXAI」、
   debuting 新 logo、官方页标题与页脚均用 SpaceXAI（Business Insider / Yahoo Finance 同日报道一致）。
   **「法律实体更名」在 SEC / 公司登记层面未获正式文件证据，本文件不作此断言**；官方 Terms 仅证明

@@ -202,7 +202,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 
 **分类定义 SSOT**：分类的 ID、emoji、显示名、描述、排序、状态唯一来源为 [`config/categories.json`](config/categories.json)；分类 README 由 `scripts/generate-category-readmes.sh` 从该文件生成，禁止在脚本中硬编码。
 
-**品牌语义 SSOT**：[`config/brands.json`](config/brands.json) 记录每个品牌的 canonical 归属（分类、实体类型、生态父品牌、显示名）。`surge-icon.json` 与 `brand-glossary.md` 均由磁盘 + SSOT 派生，CI 校验三方一致。
+**品牌语义 SSOT**：[`config/brands.json`](config/brands.json) 记录每个品牌的 canonical 归属（分类、实体类型、直接品牌父级、显示名）。`parent_brand` 只表达 Brand / Product Hierarchy；Developer / Provider / Platform Integration / Distribution 关系不写入该字段，相关当前事实由归属审计文档记录。`surge-icon.json` 与 `brand-glossary.md` 均由磁盘 + SSOT 派生，CI 校验三方一致。
 
 **分类原则**：
 

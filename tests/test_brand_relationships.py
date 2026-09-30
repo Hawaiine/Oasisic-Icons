@@ -479,6 +479,14 @@ class RealRepoTests(unittest.TestCase):
         # xAI 旧 ID 不得残留
         self.assertNotIn('xAI', self.ssot)
 
+    def test_platform_integration_is_not_parent_brand(self):
+        """Grok 在 X 上可用是 platform integration，不改变其品牌父级。"""
+        self.assertEqual(self.ssot['Grok']['parent_brand'], 'SpaceXAI')
+        for entry in self.brands_doc['brands']:
+            self.assertNotIn('platform_brand', entry)
+            self.assertNotIn('integration_brand', entry)
+            self.assertNotIn('distribution_brand', entry)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
