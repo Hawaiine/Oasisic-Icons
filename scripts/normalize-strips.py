@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-"""窄条/字标类图标：裁到内容 → 用「主色反色底」补成方形色块 → 512×512 → 圆角 r=115 (Apple squircle)。
+"""LEGACY / MANUAL TOOL —— **不属于当前 canonical 图标入库流水线**。
+
+仅用于**历史窄条字标素材**（极端宽高比的 wordmark）：裁到内容 → 用「主色反色底」
+补成方形色块 → 512×512 → 圆角 r=115 (Apple squircle)。
+
+- 当前标准入库流程是 `scripts/normalize-icons.py`（规范化）+ `scripts/optimize-icons.py`（无损重压缩）；
+- 当前仓库的 CI（`.github/workflows/validate.yml`）与各生成器**均无**对本脚本的调用（2026-10-01 审计）；
+- 历史资产的具体来源**无法仅凭当前 PNG 反推**（例如 r≈105 类资产既非本脚本的 r=115 产物、
+  也非 `normalize-icons.py` 的 r=115 产物）——因此本仓库**不声称**现有资产全部与本脚本无历史关系；
+- 仅在明确需要处理历史窄条素材时手工使用；不要把它当作当前 icon normalization pipeline。
+
+用法：
 
 规则：取内容不透明像素的主色（字标颜色），按亮度选对比底色——
   亮色字标 → 深色底（同色系压暗 78%）；暗色字标 → 白底。
 这样在方形画布里既填满、又保证字标可读（不做背景抠除，不改字标颜色）。
 
-用法：
   python3 scripts/normalize-strips.py <图标路径> [更多路径...]
-（历史上用于若干窄条字标素材；此类素材后来大多已替换为官方方形源图）
 """
 import sys, collections
 from pathlib import Path

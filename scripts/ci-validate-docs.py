@@ -71,8 +71,6 @@ INCLUDE_GLOBS = (
 EXCLUDE_GLOBS = (
     "docs/migrations/**",
     "docs/references/upstream-history.md",
-    "docs/references/brand-migration.md",
-    "docs/references/category-migration.md",
     "docs/references/brand-ownership-audit.md",
 )
 

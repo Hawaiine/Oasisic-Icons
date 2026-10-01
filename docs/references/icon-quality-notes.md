@@ -125,7 +125,7 @@
 | 脚本 | 作用 |
 |------|------|
 | `scripts/normalize-icons.py` | 按标准规范化：`--report` 查看待处理 / `--sheet out.png` 生成前后对比 / `--apply` 写入（幂等） |
-| `scripts/normalize-strips.py` | 处理窄条字标类图标（裁内容 + 对比色圆角底块；命令行传入 PNG 路径） |
+| `scripts/normalize-strips.py` | **LEGACY / MANUAL**：历史窄条字标素材专用（裁内容 + 对比色圆角底块）；**不属于当前 canonical 入库流水线**——CI 与生成器均无调用（2026-10-01 审计）；历史资产来源无法仅凭 PNG 反推，故不作「无历史关系」的断言 |
 | `scripts/optimize-icons.py` | pyoxipng 无损重压缩（`pip install pyoxipng`） |
 | `scripts/ci-validate-icons.py` | CI 校验：PNG 合法性、目录/命名规范、订阅 JSON 一致性 |
 

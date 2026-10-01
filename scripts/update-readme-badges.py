@@ -8,12 +8,21 @@
   - README 分类表逐行 品牌数/图标数 + 合计行
   - docs/references/icon-quality-notes.md 扫描范围句
 
-历史上失效的两处（本次修复）：
+修复历史（静默失同步）：
   1. 统计句正则写死「个分类」结尾，实际正文是「个活跃分类」→ 正则永不命中，
      正文数字长期静默失同步（徽章在更新、正文不动，看起来"脚本跑过了"）。
      修正为「个(?=[^，\n]*分类)」，允许中间修饰词（活跃 / 功能 …）。
   2. 分类表 品牌数/图标数、合计行、icon-quality-notes 扫描范围从未被脚本覆盖，
-     只能手工维护 → 本次纳入自动更新。
+     只能手工维护 → 纳入自动更新。
+
+2026-10-01 审计修订：
+  3. 删除 2 条**永久失效**的正则（`**N 个图标全部经过统一规范化处理**`、
+     `**N / N 均为 512×512 Apple 风格圆角**`）——README 已无对应句子（文档重构后
+     未同步），保留只会制造「脚本跑过了」的假信号；不恢复旧文案。
+  4. icon-quality-notes 扫描范围句正则改为匹配**当前真实文本**并写入实时预留分类。
+  5. generated 目标未命中不再只打 ⚠：属于 generated contract 的行（badge / 统计句 /
+     活跃分类句 / 独立仓库句 / 分类表行 / 合计行 / 统计口径行 / 生态计数 /
+     扫描范围句）缺失时 **print ERROR + exit 1**。
 """
 import json
 import re
@@ -87,27 +96,33 @@ def display_to_id():
     return {c['display_name']: c['id'] for c in cs}
 
 
-def update_readme(n_png, n_brands, n_cats, cats):
+def update_readme(n_png, n_brands, n_cats, cats, spacexai_present=False):
+    """更新 README 的 generated 行；返回未命中的 generated 目标名列表。
+
+    spacexai_present：SSOT 中是否存在 SpaceXAI 条目——只有存在时「资产状态句」
+    才是必须命中的 generated 行。
+    """
     readme = REPO / "README.md"
     s = readme.read_text()
     before = s
 
     # badge（整行重写：旧正则 [^"]*" 会吞掉结尾引号与后续属性，导致 HTML 损坏）
-    s = re.sub(
+    s, nb_icons = re.subn(
         r'<img src="https://img\.shields\.io/badge/icons-\d+-blue[^\n]*',
         f'<img src="https://img.shields.io/badge/icons-{n_png}-blue?style=flat-square" alt="Icons Count">',
         s,
     )
-    s = re.sub(
+    s, nb_brands = re.subn(
         r'<img src="https://img\.shields\.io/badge/brands-\d+-green[^\n]*',
         f'<img src="https://img.shields.io/badge/brands-{n_brands}-green?style=flat-square" alt="Brands Count">',
         s,
     )
-    s = re.sub(
+    s, nb_cats = re.subn(
         r'<img src="https://img\.shields\.io/badge/categories-\d+-orange[^\n]*',
         f'<img src="https://img.shields.io/badge/categories-{n_cats}-orange?style=flat-square" alt="Categories Count">',
         s,
     )
+    n_badge = nb_icons + nb_brands + nb_cats
 
     # 显式统计口径行 —— 2026-10-01 新增：禁止把「SSOT 条目数」与「有图标条目数」
     # 混写成模糊的「brands = N」。字段口径见 scripts/update-readme-badges.py::ssot_metrics。
@@ -160,24 +175,10 @@ def update_readme(n_png, n_brands, n_cats, cats):
         s,
     )
 
-    # 全量规范化句
-    s, n2 = re.subn(
-        r'\*\*\d+ 个图标全部经过统一规范化处理\*\*',
-        f'**{n_png} 个图标全部经过统一规范化处理**',
-        s,
-    )
-
     # 独立图标仓库句（「当前 N 个图标均为 512×512 PNG」）—— 本次新增覆盖
     s, n3 = re.subn(
         r'当前 \d+ 个图标均为 512×512 PNG',
         f'当前 {n_png} 个图标均为 512×512 PNG',
-        s,
-    )
-
-    # 规范化完成句
-    s, n4 = re.subn(
-        r'\*\*\d+ / \d+ 均为 512×512 Apple 风格圆角',
-        f'**{n_png} / {n_png} 均为 512×512 Apple 风格圆角',
         s,
     )
 
@@ -217,37 +218,64 @@ def update_readme(n_png, n_brands, n_cats, cats):
         readme.write_text(s)
 
     print(f"✓ README 已更新：{n_png} 图标 / {n_brands} 品牌 / {n_cats} 分类")
-    print(f"    命中：统计句 {n1} / 活跃分类句 {n1b} / 规范化句 {n2} / 独立仓库句 {n3} "
-          f"/ 规范化完成句 {n4} / 分类表行 {n5} / 合计行 {n6} / 统计口径行 {n7} "
+    print(f"    命中：badge {n_badge} / 统计句 {n1} / 活跃分类句 {n1b} / 独立仓库句 {n3} "
+          f"/ 分类表行 {n5} / 合计行 {n6} / 统计口径行 {n7} "
           f"/ 生态计数 {n8} / SpaceXAI 资产状态句 {n9}")
-    for name, hits in (("统计句", n1), ("活跃分类句", n1b), ("分类表", n5), ("合计行", n6),
-                       ("统计口径行", n7), ("生态计数", n8), ("SpaceXAI 资产状态句", n9)):
+    # generated contract：以下行缺失即契约破裂（措辞被改 / 行被删），必须让调用方失败
+    missing = []
+    for name, hits in (("badge", n_badge), ("正文统计句", n1), ("活跃分类句", n1b),
+                       ("独立仓库句", n3), ("分类表行", n5), ("合计行", n6),
+                       ("统计口径行", n7), ("生态计数", n8)):
         if hits == 0:
-            print(f"    ⚠ {name}未命中 —— README 措辞/格式可能已改，请同步修正本脚本正则")
+            missing.append(name)
+    if spacexai_present and n9 == 0:
+        missing.append("SpaceXAI 资产状态句")
+    return missing
 
 
-def update_quality_notes(n_png, n_brands, n_cats, reserved):
-    """同步 docs/references/icon-quality-notes.md 的扫描范围句 —— 本次新增覆盖。"""
+def update_quality_notes(n_png, n_brands, n_cats, reserved_ids):
+    """同步 docs/references/icon-quality-notes.md 的扫描范围句（generated 行）。
+
+    正则匹配**当前真实文本**（`> 扫描范围：全库 PNG（含 N 个预留空分类 `X`）`）。
+    注：文档重构后失效的旧格式（`N 个 PNG（N 个品牌目录 / N 个分类…）`）已删除，
+    不恢复旧文案；预留分类变化时本行随 SSOT/文件系统实时更新。
+    返回未命中列表（非空 ⇒ 调用方以非 0 退出）。
+    """
     p = REPO / "docs/references/icon-quality-notes.md"
     if not p.exists():
         print("  · icon-quality-notes.md 不存在，跳过")
-        return
+        return ["icon-quality-notes 扫描范围句（文件不存在）"]
     s = p.read_text()
     old = s
+    ids = ''.join(' `%s`' % c for c in reserved_ids)
     s, n = re.subn(
-        r'> 扫描范围：\d+ 个 PNG（\d+ 个品牌目录 / \d+ 个分类，含 \d+ 个预留空分类）',
-        f'> 扫描范围：{n_png} 个 PNG（{n_brands} 个品牌目录 / {n_cats} 个分类，含 {reserved} 个预留空分类）',
+        r'> 扫描范围：全库 PNG（含 \d+ 个预留空分类[^）]*）',
+        '> 扫描范围：全库 PNG（含 %d 个预留空分类%s）' % (len(reserved_ids), ids),
         s,
     )
     if s != old:
         p.write_text(s)
     print(f"  {'✓' if n else '⚠'} icon-quality-notes 扫描范围句：命中 {n}")
+    return [] if n else ["icon-quality-notes 扫描范围句"]
+
+
+def main():
+    n_png, n_brands, n_cats = count()
+    cats = per_category()
+    reserved_ids = sorted(cid for cid, (b, i) in cats.items() if b == 0 and i == 0)
+    spacexai_present = any(b.get('id') == 'SpaceXAI' for b in ssot_brands())
+    print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类"
+          f"（预留空分类 {len(reserved_ids)} 个）")
+    missing = update_readme(n_png, n_brands, n_cats, cats, spacexai_present)
+    missing += update_quality_notes(n_png, n_brands, n_cats, reserved_ids)
+    if missing:
+        print("ERROR: 以下 generated 目标未命中（README / docs 措辞可能已改，或对应行被删除）：")
+        for name in missing:
+            print("    - %s" % name)
+        print("       生成器不再静默通过：请同步修正本脚本正则，或恢复对应 generated 行。")
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    n_png, n_brands, n_cats = count()
-    cats = per_category()
-    reserved = sum(1 for b, i in cats.values() if b == 0 and i == 0)
-    print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类（预留空分类 {reserved} 个）")
-    update_readme(n_png, n_brands, n_cats, cats)
-    update_quality_notes(n_png, n_brands, n_cats, reserved)
+    sys.exit(main())

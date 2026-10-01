@@ -73,6 +73,8 @@ from brand_relationships import (  # noqa: E402
     validate_physical_paths,
     validate_relationships,
 )
+# 发布面常量唯一来源（生成器 generate-icon-json.sh 共用同一值，禁止各自写字面量）
+from site_constants import ICON_RAW_BASE as SURGE_BASE  # noqa: E402
 
 # ---------- 扫描 ----------
 all_pngs = sorted(ICONS.rglob('*.png'))
@@ -289,7 +291,6 @@ else:
 #   - surge name == brands.json.id；surge category == brands.json.category
 #   - surge url == 由 brands.json.icon_path 派生的 canonical URL
 #   - 保留：URL 存在 /icons/、无 jsDelivr、文件在磁盘存在
-SURGE_BASE = 'https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main'
 entries = []
 if not JSON_PATH.exists():
     fail('Surge JSON', '缺少 %s' % JSON_PATH)
@@ -475,6 +476,23 @@ else:
                 if nb != brand_by_cat.get(cid, 0) or ni != icon_by_cat.get(cid, 0):
                     fail('README 表格', '%s 计数不符: 表=%d/%d 实际=%d/%d' %
                          (name, nb, ni, brand_by_cat.get(cid, 0), icon_by_cat.get(cid, 0)))
+            # 合计行（2026-10-01 补：此前被 skip，可被任意篡改而 CI 仍 PASS）
+            total_rows = [r for r in trows[2:] if r.strip() != '|' and '合计' in r]
+            if len(total_rows) != 1:
+                fail('README 表格', '合计行数量异常: %d（应恰为 1 行）' % len(total_rows))
+            else:
+                tcells = [c.strip() for c in total_rows[0].strip().strip('|').split('|')]
+                if len(tcells) != 4:
+                    fail('README 表格', '合计行列数 != 4: %s' % total_rows[0].strip())
+                else:
+                    tnb = re.match(r'^\*\*(\d+)\*\*$', tcells[2])
+                    tni = re.match(r'^\*\*(\d+)\*\*$', tcells[3])
+                    if not tnb or not tni:
+                        fail('README 表格', '合计行计数列格式非法（应为 **N**）: %s'
+                             % total_rows[0].strip())
+                    elif int(tnb.group(1)) != len(bdata) or int(tni.group(1)) != len(all_pngs):
+                        fail('README 表格', '合计行不符: 表=%s/%s 实际=%d/%d'
+                             % (tnb.group(1), tni.group(1), len(bdata), len(all_pngs)))
 
 # ---------- 12. 生态一致性（关系图：直接父品牌 + 动态生态根 + descendants 阈值） ----------
 # 模型（scripts/brand_relationships.py）：
@@ -513,8 +531,16 @@ if Path('README.md').exists():
         fail('README 统计', 'intro 汇总 %s 实际=%d/%d/%d'
              % (_mi.groups(), _real_png, _real_brand, _real_cat))
     _ma = re.search(r'（其中 (\d+) 个活跃', _rd)
-    if _ma is not None and int(_ma.group(1)) != _real_active:
+    if _ma is None:
+        fail('README 统计', 'intro 活跃分类句未找到（（其中 N 个活跃…）')
+    elif int(_ma.group(1)) != _real_active:
         fail('README 统计', 'intro 活跃分类=%s 实际=%d' % (_ma.group(1), _real_active))
+    # 独立仓库句（2026-10-01 补：由 update-readme-badges.py 生成，此前无人校验）
+    _m3 = re.search(r'当前 (\d+) 个图标均为 512×512 PNG', _rd)
+    if _m3 is None:
+        fail('README 统计', '独立仓库句未找到（当前 N 个图标均为 512×512 PNG）')
+    elif int(_m3.group(1)) != _real_png:
+        fail('README 统计', '独立仓库句=%s 实际=%d' % (_m3.group(1), _real_png))
 
     # 显式统计口径行（2026-10-01）：SSOT entities / canonical / icon-backed / PNG /
     # pending no-icon / categories / ecosystems 必须逐项等于实时值——禁止把「SSOT 条目数」
