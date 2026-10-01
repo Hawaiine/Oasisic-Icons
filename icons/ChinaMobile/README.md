@@ -5,13 +5,13 @@
 | 品牌 | 图标文件 |
 |:---|:---|
 | `ChinaMobile` | `ChinaMobile.png` |
-| `ChinaMobileDisk` | `ChinaMobileDisk.png` |
+| `ChinaMobileCloudDrive` | `ChinaMobileCloudDrive.png` |
 | `Migu` | `Migu.png` |
 
 <!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
 
 ```text
 ChinaMobile
-├── ChinaMobileDisk
+├── ChinaMobileCloudDrive
 └── Migu
 ```

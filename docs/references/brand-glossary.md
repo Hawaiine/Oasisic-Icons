@@ -1,6 +1,6 @@
 # 品牌术语表 / Brand Glossary
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **294** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **298** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -75,7 +75,7 @@
 | China | 中国 |
 | ChinaBroadnet | ChinaBroadnet |
 | ChinaMobile | ChinaMobile |
-| ChinaMobileDisk | 中国移动云盘 |
+| ChinaMobileCloudDrive | 中国移动云盘 |
 | ChinaTelecom | ChinaTelecom |
 | ChinaUnicom | ChinaUnicom |
 | Cloudflare | Cloudflare |
@@ -222,6 +222,7 @@
 | MangoTV | 芒果TV |
 | Manus | Manus |
 | Meituan | 美团 |
+| MeituanFoodDelivery | 美团外卖 |
 | Messenger | Messenger |
 | Meta | Meta |
 | MetaBrainz | MetaBrainz |
@@ -317,6 +318,7 @@
 | RedBullTV | Red Bull TV |
 | Reddit | Reddit |
 | Reject | Reject |
+| RockstarGames | Rockstar Games |
 | rednote | 小红书 |
 
 ## S
@@ -357,6 +359,7 @@
 | TVB | TVB |
 | TVer | TVer |
 | Taobao | 淘宝 |
+| TaobaoShangou | 淘宝闪购 |
 | Telegram | Telegram |
 | Tencent | 腾讯 |
 | TencentCloud | 腾讯云 |
@@ -380,6 +383,7 @@
 | URL | URL |
 | US | 美国 |
 | Uber | Uber |
+| Ubisoft | Ubisoft |
 | UnionPay | 银联 |
 
 ## V

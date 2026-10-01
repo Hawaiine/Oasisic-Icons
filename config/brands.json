@@ -145,6 +145,14 @@
       "parent_brand": "Alibaba"
     },
     {
+      "id": "TaobaoShangou",
+      "display_name": "淘宝闪购",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png",
+      "parent_brand": "Taobao"
+    },
+    {
       "id": "AWS",
       "display_name": "AWS",
       "category": "Amazon",
@@ -366,11 +374,11 @@
       "parent_brand": "Baidu"
     },
     {
-      "id": "ChinaMobileDisk",
+      "id": "ChinaMobileCloudDrive",
       "display_name": "中国移动云盘",
       "category": "ChinaMobile",
       "entity_type": "product_brand",
-      "icon_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "icon_path": "icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png",
       "parent_brand": "ChinaMobile"
     },
     {
@@ -682,6 +690,21 @@
       "category": "Game",
       "entity_type": "product_brand",
       "icon_path": "icons/Game/Nintendo/Nintendo.png"
+    },
+    {
+      "id": "RockstarGames",
+      "display_name": "Rockstar Games",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Game/RockstarGames/RockstarGames.png",
+      "parent_brand": "TakeTwo"
+    },
+    {
+      "id": "Ubisoft",
+      "display_name": "Ubisoft",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Game/Ubisoft/Ubisoft.png"
     },
     {
       "id": "PlayStation",
@@ -1648,6 +1671,14 @@
       "icon_path": "icons/Shopping/Meituan/Meituan.png"
     },
     {
+      "id": "MeituanFoodDelivery",
+      "display_name": "美团外卖",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Shopping/MeituanFoodDelivery/MeituanFoodDelivery.png",
+      "parent_brand": "Meituan"
+    },
+    {
       "id": "Pinduoduo",
       "display_name": "拼多多",
       "category": "Shopping",
@@ -2207,6 +2238,7 @@
     "SiriusXM",
     "Snap",
     "TaiwanMobile",
+    "TakeTwo",
     "UNEXTHoldings",
     "Valve",
     "Xperi",

@@ -71,6 +71,7 @@
     "SiriusXM",
     "Snap",
     "TaiwanMobile",
+    "TakeTwo",
     "UNEXTHoldings",
     "Valve",
     "Xperi",
@@ -1016,7 +1017,7 @@
       "physical_parent": null
     },
     {
-      "child": "ChinaMobileDisk",
+      "child": "ChinaMobileCloudDrive",
       "display_name": "中国移动云盘",
       "category": "ChinaMobile",
       "entity_type": "product_brand",
@@ -1028,10 +1029,10 @@
       "ecosystem_root": "ChinaMobile",
       "is_graph_root": false,
       "is_ecosystem_root": false,
-      "icon_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "icon_path": "icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png",
       "icon_status": "official",
       "canonical": true,
-      "physical_path": "icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png",
+      "physical_path": "icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png",
       "physical_parent": null
     },
     {
@@ -2622,6 +2623,25 @@
       "physical_parent": null
     },
     {
+      "child": "MeituanFoodDelivery",
+      "display_name": "美团外卖",
+      "category": "Shopping",
+      "entity_type": "product_brand",
+      "parent": "Meituan",
+      "ancestor_chain": [
+        "Meituan"
+      ],
+      "graph_root": "Meituan",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Shopping/MeituanFoodDelivery/MeituanFoodDelivery.png",
+      "icon_status": "official",
+      "canonical": true,
+      "physical_path": "icons/Shopping/MeituanFoodDelivery/MeituanFoodDelivery.png",
+      "physical_parent": null
+    },
+    {
       "child": "Messenger",
       "display_name": "Messenger",
       "category": "Meta",
@@ -3814,6 +3834,25 @@
       "physical_parent": null
     },
     {
+      "child": "RockstarGames",
+      "display_name": "Rockstar Games",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "parent": "TakeTwo",
+      "ancestor_chain": [
+        "TakeTwo"
+      ],
+      "graph_root": "TakeTwo",
+      "ecosystem_root": null,
+      "is_graph_root": false,
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Game/RockstarGames/RockstarGames.png",
+      "icon_status": "official",
+      "canonical": true,
+      "physical_path": "icons/Game/RockstarGames/RockstarGames.png",
+      "physical_parent": null
+    },
+    {
       "child": "SF-Express",
       "display_name": "SF-Express",
       "category": "Transport",
@@ -4321,6 +4360,26 @@
       "physical_parent": null
     },
     {
+      "child": "TaobaoShangou",
+      "display_name": "淘宝闪购",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Taobao",
+      "ancestor_chain": [
+        "Taobao",
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png",
+      "icon_status": "official",
+      "canonical": true,
+      "physical_path": "icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png",
+      "physical_parent": "Taobao"
+    },
+    {
       "child": "Telegram",
       "display_name": "Telegram",
       "category": "Communication",
@@ -4643,6 +4702,23 @@
       "icon_status": "official",
       "canonical": true,
       "physical_path": "icons/Transport/Uber/Uber.png",
+      "physical_parent": null
+    },
+    {
+      "child": "Ubisoft",
+      "display_name": "Ubisoft",
+      "category": "Game",
+      "entity_type": "product_brand",
+      "parent": null,
+      "ancestor_chain": [],
+      "graph_root": "Ubisoft",
+      "ecosystem_root": null,
+      "is_graph_root": true,
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Game/Ubisoft/Ubisoft.png",
+      "icon_status": "official",
+      "canonical": true,
+      "physical_path": "icons/Game/Ubisoft/Ubisoft.png",
       "physical_parent": null
     },
     {

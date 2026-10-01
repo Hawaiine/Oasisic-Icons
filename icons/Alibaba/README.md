@@ -1,6 +1,6 @@
 # 🏢 Alibaba / 阿里巴巴生态
 
-> 共 **9** 个图标，**9** 个品牌
+> 共 **10** 个图标，**10** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -12,6 +12,7 @@
 | `Quark` | `Quark.png` |
 | `Qwen` | `Qwen.png` |
 | `Taobao` | `Taobao.png` |
+| `TaobaoShangou` | `TaobaoShangou.png` |
 | `Youku` | `Youku.png` |
 
 <!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
@@ -25,5 +26,6 @@ Alibaba
 ├── Quark
 ├── Qwen
 ├── Taobao
+│   └── TaobaoShangou
 └── Youku
 ```

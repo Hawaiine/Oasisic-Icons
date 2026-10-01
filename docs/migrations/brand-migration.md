@@ -156,6 +156,24 @@
 | SINA | 新增（Social） | `icons/Social/SINA/SINA.png` | 新浪（Sina Corporation）公司品牌，用户提供的官方图标；白名单 `Sina` 移除，子品牌 Weibo 的 parent_brand 指向 SINA |
 | CATCHPLAYPlus | 重命名（原 CATCHPLAY） | `icons/Media/CATCHPLAY/CATCHPLAY.png` | `icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png` | 按全库 Plus 品牌命名惯例对齐（id/目录/文件名）；display_name 仍为「CATCHPLAY+」 |
 
+## 本轮增量：新增品牌与重命名（2026-10-02）
+
+> 4 个新增品牌（图标由用户提供，按规范 512×512 RGBA r=115 入库）+ 1 个技术 ID 重命名
+> （`ChinaMobileDisk` → `ChinaMobileCloudDrive`，目录/文件名同步）。**本轮不允许 XML 之外的资产被改**：
+> 除该重命名目录与用户提供的替换图（iCloud）外，0 个既有 PNG 被修改。
+
+| Brand | 变更 | 路径 | 理由 |
+|---|---|---|---|
+| ChinaMobileCloudDrive | 重命名（原 `ChinaMobileDisk`） | `icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png` | 技术 ID 对齐官方英文名（China Mobile Cloud Drive）；display_name 不变（中国移动云盘）。旧 ID 登记于 `scripts/legacy_map.py`，**公开 URL 变化见 url-migration.md** |
+| Ubisoft | 新增（Game） | `icons/Game/Ubisoft/Ubisoft.png` | 育碧（Ubisoft）游戏发行商，用户提供的官方图标；独立品牌（图根，无 parent_brand） |
+| RockstarGames | 新增（Game） | `icons/Game/RockstarGames/RockstarGames.png` | Rockstar Games（《GTA》/《荒野大镖客》发行商）；`parent_brand = TakeTwo`，Take-Two Interactive 作为「无图标父品牌」登记进 `parent_brands_without_icon`（对齐 `Steam` → `Valve` 先例） |
+| TaobaoShangou | 新增（Alibaba） | `icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png` | 淘宝闪购（即时零售）；`parent_brand = Taobao`，物理层级按同分类中间父品牌递归（`icons/Alibaba/Taobao/<child>/`） |
+| MeituanFoodDelivery | 新增（Shopping） | `icons/Shopping/Meituan/MeituanFoodDelivery/MeituanFoodDelivery.png` | 美团外卖；`parent_brand = Meituan`，物理层级同上（`icons/Shopping/Meituan/<child>/`） |
+
+| 资产替换 | 路径 | 理由 |
+|---|---|---|
+| iCloud | `icons/Apple/iCloud/iCloud.png` | 换用 Apple 官方 squircle 资源（原资产为无底云朵字形，透明度占比 50.5%、形态不符全库统一口径）；新资产按 r=115 规范入库 |
+
 ## Final Seal Review 增量（2026-09-30）：X / Grok / SpaceXAI 关系厘清
 
 > 四个品牌变更 + 1 个公司品牌降级，全部为 pure move（git R100，SHA-256 不变）。

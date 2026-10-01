@@ -156,13 +156,14 @@ class LegacyMapTests(unittest.TestCase):
         segs = set(legacy_path_segments())
         for s in ('DevOps', 'Drive', 'General', 'Tool'):
             self.assertIn(s, segs, '历史分类目录必须在 legacy map 中')
-        for s in ('PeacockTV', 'Podcasts', 'Twitter'):
+        for s in ('ChinaMobileDisk', 'PeacockTV', 'Podcasts', 'Twitter'):
             self.assertIn(s, segs, '历史品牌 ID 必须在 legacy map 中')
         self.assertNotIn('xAI', segs, 'xAI 已是当前 canonical ID，不得登记为 legacy 名')
         pats = set(legacy_scan_patterns())
         self.assertIn('icons/xAI/', pats, '旧 xAI 目录必须以完整前缀登记')
         self.assertNotIn('/xAI/', pats, '/xAI/ 段在 canonical 路径中合法，不得作为模式')
-        self.assertEqual(legacy_ids(), {'PeacockTV', 'Podcasts', 'Twitter'})
+        # 注册表只允许显式扩容：新增重命名必须同步改这一行（有意保留的摩擦）
+        self.assertEqual(legacy_ids(), {'ChinaMobileDisk', 'PeacockTV', 'Podcasts', 'Twitter'})
 
     def test_canonical_id_is_not_legacy(self):
         """§34：current canonical ID 绝不与 legacy ID 重叠。"""

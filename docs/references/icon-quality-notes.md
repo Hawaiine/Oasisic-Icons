@@ -106,13 +106,13 @@
 
 | 项目 | 结果 |
 |------|------|
-| 尺寸 | **294 / 294 = 512×512**（已全量统一，2026-10-01 实测复扫） |
+| 尺寸 | **298 / 298 = 512×512**（已全量统一，2026-10-01 实测复扫） |
 | 圆角 | 统一 r=115px（≈22.4%，Apple squircle），四角透明（`alpha=0`） |
 | 用户手动更新的图标 | 新增图标（Qwen / Kimi / Manus / MiniMax / GLM 等）入库前须已合规 |
 | 规范化处理 | 历史 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
 | 窄条字标 | 曾对 4 个窄条字标素材由 `scripts/normalize-strips.py` 处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
-| 体积 | 合计 ≈ 16.1 MB；平均 ≈54KB / 最大 292KB（298,829 B，`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
-| 模式分布 | RGBA 294（其余色型 0） |
+| 体积 | 合计 ≈ 16.4 MB；平均 ≈54KB / 最大 292KB（298,829 B，`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
+| 模式分布 | RGBA 298（其余色型 0） |
 
 ## 7. 需要留意
 
