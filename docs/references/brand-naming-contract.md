@@ -58,8 +58,8 @@ iCloudPrivateRelay`，以及最终品牌树 `SpaceXAI → xAI → Grok`）。Dev
 Platform Integration / Distribution **不是** `parent_brand`：官方资料既支持「SpaceXAI 品牌体系持有
 Grok 品牌权利」，也支持「Grok 可通过 X 平台使用」；后者是 `Grok ↔ X` 的平台集成关系，
 **不得**倒推 `Grok.parent_brand = X`。当前全库没有通用 platform/integration relation schema；
-除非未来出现全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在证据审计层（辅助审计，
-非 SSOT、非阻塞条件）。
+除非未来出现全库级消费需求，不为单一案例扩张 SSOT，平台关系保留在归属审计研究文档
+（`docs/references/brand-ownership-audit.md`）的说明层，不进入 `parent_brand`。
 
 **最终品牌树（2026-10-01 用户确认）**：
 
@@ -72,7 +72,9 @@ SpaceXAI
 
 直接父品牌：`X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**
 （独立 ID / display_name / 图标），**不是 legacy 旧名**（见 `scripts/legacy_map.py` 与
- `tests/test_hardening.py`）；`SpaceXAI` 为正式 canonical 顶层生态 SSOT（descendants = 3 ≥ 2），icon_status=pending，根图标待官方标志，不得伪造。
+ `tests/test_hardening.py`）；`SpaceXAI` 为正式 canonical 顶层生态 SSOT（descendants = 3 ≥ 2），根图标取自官方 Brand Guidelines 资产包
+（`https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` → `spacexai - symbol - black - squared.png`，2026-10-01 取得），
+按本项目容器规范（512×512 RGBA、squircle）落库为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，`icon_status=official`。
 
 ## 2. Technical ID 规则
 

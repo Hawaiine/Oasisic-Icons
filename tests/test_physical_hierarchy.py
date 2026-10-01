@@ -3,7 +3,7 @@
 
 覆盖：
   - 最终品牌树三个直接父关系（Grok→xAI、X→SpaceXAI、xAI→SpaceXAI）；
-  - SpaceXAI 作为正式 canonical ecosystem SSOT（icon_status=pending，无 physical icon_path）；
+  - SpaceXAI 作为正式 canonical ecosystem SSOT（官方根图标 icon_status=official）；
   - 祖先链（Grok / xAI）；
   - 多层物理路径：同类中间父品牌必须嵌套，graph root 直系子品牌保持平铺；
   - cross-category 父品牌不得被机械迁移；
@@ -61,11 +61,12 @@ class FinalTreeTests(unittest.TestCase):
 
 class LogicalEcosystemTests(unittest.TestCase):
     def test_space_xai_is_logical_ecosystem(self):
-        # PR #10：SpaceXAI 是正式 canonical ecosystem SSOT 节点，资产仍 pending。
+        # PR #10：SpaceXAI 是正式 canonical ecosystem SSOT 节点；官方根图标已落库。
         self.assertIn('SpaceXAI', SSOT)
         self.assertEqual(SSOT['SpaceXAI']['entity_type'], 'ecosystem')
         self.assertIs(SSOT['SpaceXAI']['canonical'], True)
-        self.assertEqual(SSOT['SpaceXAI']['icon_status'], 'pending')
+        self.assertEqual(SSOT['SpaceXAI']['icon_status'], 'official')
+        self.assertEqual(SSOT['SpaceXAI']['icon_path'], 'icons/SpaceXAI/SpaceXAI/SpaceXAI.png')
         self.assertIn('SpaceXAI', ECO_CATS)
         self.assertNotIn('SpaceXAI', ALIASES)
         for bid in ('xAI', 'X', 'Grok'):

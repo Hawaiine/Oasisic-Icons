@@ -2167,7 +2167,8 @@
       "category": "SpaceXAI",
       "entity_type": "ecosystem",
       "canonical": true,
-      "icon_status": "pending"
+      "icon_path": "icons/SpaceXAI/SpaceXAI/SpaceXAI.png",
+      "icon_status": "official"
     }
   ],
   "parent_brands_without_icon": [

@@ -17,11 +17,18 @@
 """
 import json
 import re
+import sys
 from pathlib import Path
 from collections import Counter
 
 REPO = Path(".")
 ICONS = REPO / "icons"
+sys.path.insert(0, str((REPO / "scripts").resolve()))
+try:
+    from brand_relationships import is_canonical_brand
+except Exception:  # 关系引擎不可用时退化为 canonical 字段
+    def is_canonical_brand(entry):
+        return bool(entry.get('canonical'))
 
 
 def ssot_brands():
@@ -33,6 +40,22 @@ def ssot_brands():
     except Exception:
         return []
     return doc.get("brands", [])
+
+
+def ssot_metrics():
+    """显式统计口径（SSOT entities / canonical / icon-backed / pending no-icon / ecosystems）。
+
+    口径必须区分「SSOT 条目」与「有图标的条目」：pending ecosystem 是正式 SSOT 节点
+    但没有 PNG，把两者混写成「brands = N」会造成 293/292 口径漂移（2026-10-01 修正）。
+    """
+    brands = ssot_brands()
+    return {
+        'ssot_entities': len(brands),
+        'canonical_entities': sum(1 for b in brands if is_canonical_brand(b)),
+        'icon_backed': sum(1 for b in brands if b.get('icon_path')),
+        'pending_no_icon': sum(1 for b in brands if not b.get('icon_path')),
+        'ecosystems': sum(1 for b in brands if b.get('entity_type') == 'ecosystem'),
+    }
 
 
 def count():
@@ -85,6 +108,40 @@ def update_readme(n_png, n_brands, n_cats, cats):
         f'<img src="https://img.shields.io/badge/categories-{n_cats}-orange?style=flat-square" alt="Categories Count">',
         s,
     )
+
+    # 显式统计口径行 —— 2026-10-01 新增：禁止把「SSOT 条目数」与「有图标条目数」
+    # 混写成模糊的「brands = N」。字段口径见 scripts/update-readme-badges.py::ssot_metrics。
+    m = ssot_metrics()
+    s, n7 = re.subn(
+        r'^\*\*仓库统计口径 / Repository metrics\*\*：.*$',
+        ('**仓库统计口径 / Repository metrics**：'
+         'SSOT entities **{ssot_entities}** · canonical entities **{canonical_entities}** · '
+         'icon-backed entities **{icon_backed}** · PNG **{png}** · '
+         'pending no-icon entities **{pending_no_icon}** · categories **{cats}** · '
+         'ecosystems **{ecosystems}**').format(png=n_png, cats=n_cats, **m),
+        s, flags=re.M,
+    )
+
+    # 生态根计数（「当前 N 个」）—— 与 SSOT entity_type=ecosystem 实时一致，禁止手工维护
+    s, n8 = re.subn(
+        r'（拥有自身一级生态分类者，当前 \d+ 个',
+        '（拥有自身一级生态分类者，当前 %d 个' % m['ecosystems'],
+        s,
+    )
+
+    # SpaceXAI 资产状态句（generated）—— 根图标从 pending 变为 official 后必须同步，
+    # 且不得再出现「当前无 entity_type 条目」这类旧文。
+    _sp = next((b for b in ssot_brands() if b.get('id') == 'SpaceXAI'), None)
+    if _sp is not None:
+        _ip = _sp.get('icon_path') or '（无物理资产）'
+        s, n9 = re.subn(
+            r'^(\s*)`SpaceXAI` 资产状态（generated）：.*$',
+            r'\1`SpaceXAI` 资产状态（generated）：`icon_status=%s`；`icon_path=%s`。'
+            % (_sp.get('icon_status', 'official'), _ip),
+            s, flags=re.M,
+        )
+    else:
+        n9 = 0
 
     # 正文统计句 —— 修复点 1：允许「个<修饰>分类」（活跃分类 / 功能分类…）
     # 旧正则 r'…归入 \*\*\d+\*\* 个分类' 永不命中，正文数字长期失同步。
@@ -161,8 +218,10 @@ def update_readme(n_png, n_brands, n_cats, cats):
 
     print(f"✓ README 已更新：{n_png} 图标 / {n_brands} 品牌 / {n_cats} 分类")
     print(f"    命中：统计句 {n1} / 活跃分类句 {n1b} / 规范化句 {n2} / 独立仓库句 {n3} "
-          f"/ 规范化完成句 {n4} / 分类表行 {n5} / 合计行 {n6}")
-    for name, hits in (("统计句", n1), ("活跃分类句", n1b), ("分类表", n5), ("合计行", n6)):
+          f"/ 规范化完成句 {n4} / 分类表行 {n5} / 合计行 {n6} / 统计口径行 {n7} "
+          f"/ 生态计数 {n8} / SpaceXAI 资产状态句 {n9}")
+    for name, hits in (("统计句", n1), ("活跃分类句", n1b), ("分类表", n5), ("合计行", n6),
+                       ("统计口径行", n7), ("生态计数", n8), ("SpaceXAI 资产状态句", n9)):
         if hits == 0:
             print(f"    ⚠ {name}未命中 —— README 措辞/格式可能已改，请同步修正本脚本正则")
 

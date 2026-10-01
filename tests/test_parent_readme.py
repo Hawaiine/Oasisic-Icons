@@ -172,7 +172,7 @@ class ParentReadmeTests(unittest.TestCase):
         self.assertGreater(checked, 0, '未校验到任何 generated 父品牌 README')
 
     def test_xai_readme_is_intermediate_parent_with_pending_eco_root(self):
-        # xAI 有父（正式 pending ecosystem SSOT SpaceXAI）+ 有子（Grok）→ Intermediate Parent
+        # xAI 有父（正式 ecosystem SSOT SpaceXAI）+ 有子（Grok）→ Intermediate Parent
         # Brand；Ecosystem Root 必须是逻辑生态根 SpaceXAI（不得是「—」/ Graph Root Parent）
         text = (REPO / Path(self.ssot['xAI']['icon_path']).parent / 'README.md').read_text(encoding='utf-8')
         self.assertIn('Role:         Intermediate Parent Brand', text)
@@ -245,8 +245,8 @@ class NamingContractTests(unittest.TestCase):
             self.assertIn(bid, self.ssot, '官方 casing 品牌 %s 缺失' % bid)
 
     def test_spacexai_official_casing_in_ecosystem_category(self):
-        # §23/§68：SpaceXAI 升级为顶层生态后不再有 brands.json 条目（根图标待官方标志），
-        # 其官方 casing 必须由生态分类 display_name 承担，且不得被写成 SpaceXAi / Spacexai。
+        # SpaceXAI 已是正式 SSOT 节点，官方 casing 同时由 SSOT id/display_name 与生态分类
+        # display_name 承担，不得被写成 SpaceXAi / Spacexai。
         import json
         repo = Path(__file__).resolve().parent.parent
         cats = json.loads((repo / 'config' / 'categories.json').read_text(encoding='utf-8'))['categories']

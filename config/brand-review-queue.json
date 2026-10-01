@@ -20,15 +20,19 @@
       "child": "SpaceXAI",
       "candidate_parent": null,
       "issue_kind": "official_logo_missing",
-      "reason": "SpaceXAI 已作为正式 canonical ecosystem SSOT 节点登记；官方 logo 下载源当前不可访问（x.ai 返回 403），本轮不伪造、不复制其它品牌资产，icon_status=pending。",
-      "next_step": "取得官方 Brand Guidelines 下载资产后，写入 SpaceXAI icon_path 并将 icon_status 改为 official，再关闭本项。",
-      "evidence": "docs/references/brand-ownership-audit.md §2 / §7（xAI 行）",
-      "status": "OPEN",
+      "reason": "SpaceXAI 已作为正式 canonical ecosystem SSOT 节点登记；官方 Brand Guidelines 提供的 Logos 资产包已取得并据本项目容器规范落库为根图标，icon_status=official。",
+      "next_step": "如官方资产更新（品牌指引改版 / logo 替换），按 `docs/references/brand-naming-contract.md` 流程更新 icons/SpaceXAI/SpaceXAI/SpaceXAI.png 并记录新版来源。",
+      "evidence": "docs/references/brand-ownership-audit.md §2 / §7（SpaceXAI 行）",
+      "status": "RESOLVED",
       "source_lookup": {
         "official_guidelines": "https://x.ai/legal/brand-guidelines",
-        "lookup_status": "blocked_403",
-        "official_asset_used": false
-      }
+        "official_asset": "https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip",
+        "asset_member": "spacexai - symbol - black - squared.png",
+        "lookup_status": "retrieved_200",
+        "retrieved_at": "2026-10-01",
+        "official_asset_used": true
+      },
+      "resolved_note": "2026-10-01 人工裁决：SpaceXAI 的官方 logo 从官方 Brand Guidelines 提供的 Logos 资产包取得（data.x.ai/logos/SpaceXAI_Grok_Assets.zip，HTTP 200），选用 `spacexai - symbol - black - squared.png`，按本项目容器规范处理为 icons/SpaceXAI/SpaceXAI/SpaceXAI.png，icon_status 置 official。"
     },
     {
       "id": "Lemino-jv-revalidation",

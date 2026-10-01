@@ -56,11 +56,13 @@
 
   - `SpaceXAI`：**顶层生态根**。canonical descendants = `X` + `xAI` + `Grok` = **3 ≥ 2** →
     成立一级生态分类 `icons/SpaceXAI/`（`categories.json` `type=ecosystem`）。
-    **SpaceXAI** 是正式 SSOT 节点（`entity_type=ecosystem`、`canonical=true`、`icon_status=pending`）。官方 SpaceXAI
-    新标志尚未取得，**不得伪造、也不得把 xAI 图标复制为 SpaceXAI 图标**（CI 第 6 组同时禁止
-    两个品牌共用同一 SHA 图标）。故 `SpaceXAI` 暂不生成 `icon_path`（`icon_status=pending`），
-    并在 `config/brand-review-queue.json` 记录「官方标志待补」为 OPEN 项——pending 只表示
-    「暂无自身图标」，不代表不是生态根，`ecosystem_root` 仍解析为 `SpaceXAI`。
+    **SpaceXAI** 是正式 SSOT 节点（`entity_type=ecosystem`、`canonical=true`）。根图标取自官方
+    Brand Guidelines 资产包（`https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` →
+    `spacexai - symbol - black - squared.png`，2026-10-01 取得，HTTP 200），按本项目容器规范
+    （512×512 RGBA、squircle、四角透明）落库为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，
+    `icon_status=official`。**不得伪造、也不得把 xAI / X 图标复制为 SpaceXAI 图标**
+    （CI 第 6 组同时禁止两个品牌共用同一 SHA 图标）；`config/brand-review-queue.json` 对应项已置
+    `RESOLVED` 并记录官方来源。
   - `xAI`：**当前 canonical 品牌**（独立 `id` / `display_name` / 图标 / `parent_brand`）。
     图标为历史 xAI 字标资产（blob `2f53aa6…`）**R100 迁回**，SHA-256 不变；
     `xAI → SpaceXAI` 是品牌体系内的直接父级。**`xAI` 不是 legacy ID**（见 `scripts/legacy_map.py` §34）。
@@ -105,7 +107,7 @@
 | SPECIAL_ENTITY（Country/System/Surge/Proxy/Crypto 特殊实体） | 47 |
 
 > **计数口径**：上表由 §7 全量矩阵（292 行）逐行统计，与 `config/brands.json` 的 live `parent_brand` 数（117）一致。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，不代表该 edge 已达到 Brand Hierarchy closure。
-> 2026-10-01 修正后：`X` 由 NO_PARENT 改为 CONFIRMED_PARENT（用户确认的最终品牌树），`xAI` 恢复为 canonical 节点且与 `SpaceXAI` 建立直接父级，`SpaceXAI` 作为正式 canonical ecosystem SSOT 节点登记（icon_status=pending，根图标待官方标志）。
+> 2026-10-01 修正后：`X` 由 NO_PARENT 改为 CONFIRMED_PARENT（用户确认的最终品牌树），`xAI` 恢复为 canonical 节点且与 `SpaceXAI` 建立直接父级，`SpaceXAI` 作为正式 canonical ecosystem SSOT 节点登记（`icon_status=official`，根图标来自官方 Brand Guidelines 资产包，2026-10-01 取得）。
 
 > **证据层角色（2026-10-01 起）：辅助审计 / review context，非 SSOT、非阻塞条件**
 > （manifest 内 `role: supporting_evidence_layer` / `is_ssot: false` / `blocking: false`）。
@@ -154,7 +156,7 @@
 
 | **Warner Bros. Discovery** | 2 | HBOMax / discoveryPlus | HBO Max 与 discovery+ 均归属 WBD（拆分仍处进行中，2026-09 复核） |
 
-| **SpaceXAI** | 2 | X / xAI | 2026-10-01 最终品牌树：`SpaceXAI ├── X └── xAI └── Grok`，descendants = 3 ≥ 2 → 顶层生态成立；正式 SSOT 节点 icon_status=pending，根图标待官方标志到位（Review Queue） |
+| **SpaceXAI** | 2 | X / xAI | 2026-10-01 最终品牌树：`SpaceXAI ├── X └── xAI └── Grok`，descendants = 3 ≥ 2 → 顶层生态成立；正式 SSOT 节点，根图标已按官方 Brand Guidelines 资产落库（`icon_status=official`） |
 
 > `SpaceXAI` 于 2026-09-30 曾被移出生态清单（当时 descendants = 1），2026-10-01 按用户确认的
 > 最终品牌树恢复为顶层生态（descendants = 3）；恢复过程**不重写历史提交**，只追加修正提交。
@@ -182,10 +184,10 @@
 | SONY | 3 | 3 | — | 关系全部复核通过 |
 | Tencent | 6 | 6 | — | 关系全部复核通过 |
 | WarnerBrosDiscovery | 2 | 2 | — | 关系全部复核通过（HBOMax 2025-05 已改回 HBO Max，display_name 当前正确） |
-| SpaceXAI | 2 | 3 | 新增（2026-10-01）：X / xAI 直系；Grok 经 xAI 为孙代 | 生态成立（descendants = 3 ≥ 2）；根条目已入 SSOT，根图标待官方标志，icon_status=pending |
+| SpaceXAI | 2 | 3 | 新增（2026-10-01）：X / xAI 直系；Grok 经 xAI 为孙代 | 生态成立（descendants = 3 ≥ 2）；根条目与根图标均已入 SSOT（`icon_status=official`，官方资产） |
 
-> `SpaceXAI` 生态根正式登记于 `brands.json`（`entity_type=ecosystem`、`canonical=true`、`icon_status=pending`）；`icons/SpaceXAI/` 一级目录承载 X / xAI / Grok，根 icon 待官方标志后补入，历史说明保留在 migration docs。
-> 该正式 SSOT 节点不进入 `parent_brands_without_icon`；对应 Review Queue 在官方图标取得前保持 OPEN。
+> `SpaceXAI` 生态根正式登记于 `brands.json`（`entity_type=ecosystem`、`canonical=true`、`icon_status=official`）；`icons/SpaceXAI/` 一级目录承载 X / xAI / Grok，根图标为官方 Brand Guidelines 资产（`icons/SpaceXAI/SpaceXAI/SpaceXAI.png`）。
+> 该正式 SSOT 节点不进入 `parent_brands_without_icon`；对应 Review Queue 项已 `RESOLVED` 并记录官方来源 URL 与取得时间。
 
 **中间层品牌（直接父品牌语义新增，2026-09-30）**：`Facebook`（直系 4 子：Instagram / Messenger / Threads / WhatsApp，生态根 Meta）、`YouTube`（直系 1 子：YouTubeMusic，生态根 Google）、`iCloud`（直系 1 子：iCloudPrivateRelay，生态根 Apple）。中间层不建一级目录（阈值看生态根 descendants），仅承担 `parent_brand` 直接父关系。
 
@@ -790,7 +792,7 @@
 
 - **CI 能力边界**：CI 只能验证 `brands.json` ↔ 磁盘 ↔ `categories.json` ↔ `surge-icon.json` 的结构一致性，**无法证明现实世界归属的完整性**；现实归属由本文件承担（研究层）。[§64 §96 §97]
 - **本轮发现的高价值漏项**：`Hulu → Disney`、`ESPN → Disney`、`LinkedIn/GitHub → Microsoft`、`Youku → Alibaba`、`iQIYI → Baidu`、`Doubao/Pipixia → ByteDance`、`Podcasts → Apple`、`mora → Sony` 等，均在 PR 分支真实缺失，属本轮发现并修复。
-- **最终品牌树（2026-10-01 定稿）**：`SpaceXAI ├── X └── xAI └── Grok`；直接父品牌为 `X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**（非 legacy），`SpaceXAI` 为正式 canonical ecosystem SSOT（descendants = 3，icon_status=pending，根图标待官方标志 + Review Queue）；`SpaceX` = corporate owner only，不进入 Brand Graph。
+- **最终品牌树（2026-10-01 定稿）**：`SpaceXAI ├── X └── xAI └── Grok`；直接父品牌为 `X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**（非 legacy），`SpaceXAI` 为正式 canonical ecosystem SSOT（descendants = 3，根图标为官方 Brand Guidelines 资产，`icon_status=official`）；`SpaceX` = corporate owner only，不进入 Brand Graph。
 - **仍易变关系（后续需按 §95 复验）**：`Lemino`（2026-10-01 起与 WOWOW 合资）、`discovery+`（WBD 拆分进行中，与 Max 整合预期）、`Speedtest`（Ookla 出售给 Accenture 已宣布、交割待确认）。`HBOMax` 经核实 2025-05 已由 "Max" 改回 "HBO Max"，当前 display_name 正确（官方页 max.com 现标题为 HBO Max）；`JioHotstar` 经核实为 Hotstar 与 JioCinema 于 2025 年合并后的现行官方名称（JioStar 旗下），**不改名**，且不属于 Disney 生态。
 - **退役品牌**：`Skype`（2025-05 停运）、`KKTV`（2025-12-31 停运并入 LINE TV）保留图标并标记退役，不参与生态归属。
 - **后续监控建议**：品牌被收购/分拆/更名/关停时，必须重新验证 current state，并同步本文件与 `brands.json`。[§95]
@@ -875,8 +877,8 @@ Oasisic 是品牌关系 SSOT，mihomo-rules 是下游消费者。为免下游反
   `Grok → xAI → SpaceXAI`；全部物理嵌套（`git mv` R100，SHA-256 不变）。
 - **cross-category 3 条**（`189 → ChinaTelecom`、`Mijia → Xiaomi`、
   `MusicBrainz → MetaBrainz`）：保持平铺，不机械迁移。
-- **无图标且不在 SSOT 的母公司 30 个**（`parent_brands_without_icon`）：无目录可嵌套，子品牌保持平铺，禁止制造伪目录。正式 SSOT ecosystem（如 SpaceXAI）若 icon_status=pending，则保留身份但不生成物理 icon 目录。
-- **逻辑生态根**：`SpaceXAI` 已是正式 SSOT `entity_type=ecosystem` 节点，虽 `icon_status=pending` 仍可作为生态根，因此 `X` / `xAI` / `Grok` 的 `ecosystem_root = SpaceXAI`。
+- **无图标且不在 SSOT 的母公司 30 个**（`parent_brands_without_icon`）：无目录可嵌套，子品牌保持平铺，禁止制造伪目录。正式 SSOT ecosystem 若 `icon_status=pending`，则保留身份但不生成物理 icon 目录（当前无此类节点：`SpaceXAI` 根图标已落库）。
+- **生态根**：`SpaceXAI` 是正式 SSOT `entity_type=ecosystem` 节点，因此 `X` / `xAI` / `Grok` 的 `ecosystem_root = SpaceXAI`。
 
 本轮**未改动任何直接父关系**，也未修改 `mihomo-rules`（下游同步项：mihomo 的
 `Grok → X` 相对本仓 `Grok → xAI → SpaceXAI` 为 DOWNSTREAM_MISMATCH / STALE）。

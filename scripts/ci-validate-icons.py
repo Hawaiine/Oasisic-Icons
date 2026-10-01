@@ -21,7 +21,9 @@
  12. 生态一致性           关系图门禁（scripts/brand_relationships.py）：直接父品牌、
                           graph root ≠ ecosystem root、双向生态阈值（root descendants ≥ 2
                           必须 ecosystem）、canonical 实体过滤
- 13. README 统计          主 README badge + intro 汇总数 vs SSOT/文件系统（防硬编码漂移）
+ 13. README 统计          主 README badge / intro 汇总数 / 统计口径行（SSOT entities ·
+                          canonical · icon-backed · PNG · pending no-icon · categories ·
+                          ecosystems）/ 生态根计数 / SpaceXAI 资产状态句 vs SSOT（防硬编码漂移）
  14. README 父节点        任何拥有 ≥1 child brand 的物理品牌节点必须有 README.md，且
                           生成 README 内容与 expected_parent_readme() 逐字节一致
  15. 关系派生导出         config/brand-relationships.json 必须与 brands.json + 关系引擎
@@ -65,6 +67,7 @@ from brand_relationships import (  # noqa: E402
     expected_ecosystem_readme_block,
     expected_icon_path,
     expected_parent_readme,
+    is_canonical_brand,
     physical_parent_nodes,
     resolve_ecosystem_root,
     validate_physical_paths,
@@ -512,6 +515,44 @@ if Path('README.md').exists():
     _ma = re.search(r'（其中 (\d+) 个活跃', _rd)
     if _ma is not None and int(_ma.group(1)) != _real_active:
         fail('README 统计', 'intro 活跃分类=%s 实际=%d' % (_ma.group(1), _real_active))
+
+    # 显式统计口径行（2026-10-01）：SSOT entities / canonical / icon-backed / PNG /
+    # pending no-icon / categories / ecosystems 必须逐项等于实时值——禁止把「SSOT 条目数」
+    # 与「有图标条目数」混写成模糊的「brands = N」。
+    _mm = re.search(
+        r'\*\*仓库统计口径 / Repository metrics\*\*：'
+        r'SSOT entities \*\*(\d+)\*\* · canonical entities \*\*(\d+)\*\* · '
+        r'icon-backed entities \*\*(\d+)\*\* · PNG \*\*(\d+)\*\* · '
+        r'pending no-icon entities \*\*(\d+)\*\* · categories \*\*(\d+)\*\* · '
+        r'ecosystems \*\*(\d+)\*\*', _rd)
+    _real_canonical = sum(1 for e in brands_doc.get('brands', []) if is_canonical_brand(e))
+    _real_iconbacked = sum(1 for e in brands_doc.get('brands', []) if e.get('icon_path'))
+    _real_pending = sum(1 for e in brands_doc.get('brands', []) if not e.get('icon_path'))
+    _real_eco = sum(1 for e in brands_doc.get('brands', []) if e.get('entity_type') == 'ecosystem')
+    if _mm is None:
+        fail('README 统计', '统计口径行未找到（Repository metrics）')
+    else:
+        _expect = (_real_brand, _real_canonical, _real_iconbacked, _real_png,
+                   _real_pending, _real_cat, _real_eco)
+        _got = tuple(int(x) for x in _mm.groups())
+        if _got != _expect:
+            fail('README 统计', '统计口径行 %s 实际 SSOT/canonical/icon-backed/PNG/pending/categories/ecosystems=%s'
+                 % (_got, _expect))
+    _me = re.search(r'（拥有自身一级生态分类者，当前 (\d+) 个', _rd)
+    if _me is None:
+        fail('README 统计', '生态根计数句未找到')
+    elif int(_me.group(1)) != _real_eco:
+        fail('README 统计', '生态根计数=%s 实际=%d' % (_me.group(1), _real_eco))
+    # SpaceXAI 资产状态句必须与 SSOT 一致（pending ↔ official 迁移后不得残留旧文）
+    _sp = next((e for e in brands_doc.get('brands', []) if e.get('id') == 'SpaceXAI'), None)
+    if _sp is not None:
+        _msp = re.search(r'`SpaceXAI` 资产状态（generated）：`icon_status=([a-z_]+)`；`icon_path=([^`]+)`', _rd)
+        if _msp is None:
+            fail('README 统计', 'SpaceXAI 资产状态句未找到（generated）')
+        elif (_msp.group(1), _msp.group(2)) != (_sp.get('icon_status'),
+                                                _sp.get('icon_path') or '（无物理资产）'):
+            fail('README 统计', 'SpaceXAI 资产状态句=%s 实际=%s'
+                 % (_msp.groups(), (_sp.get('icon_status'), _sp.get('icon_path'))))
 else:
     fail('README 统计', '缺少 README.md')
 

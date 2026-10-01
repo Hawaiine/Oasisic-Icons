@@ -4085,10 +4085,10 @@
       "ecosystem_root": "SpaceXAI",
       "is_graph_root": true,
       "is_ecosystem_root": true,
-      "icon_path": null,
-      "icon_status": "pending",
+      "icon_path": "icons/SpaceXAI/SpaceXAI/SpaceXAI.png",
+      "icon_status": "official",
       "canonical": true,
-      "physical_path": null,
+      "physical_path": "icons/SpaceXAI/SpaceXAI/SpaceXAI.png",
       "physical_parent": null
     },
     {

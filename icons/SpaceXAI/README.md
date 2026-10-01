@@ -1,11 +1,11 @@
 # 🛰️ SpaceXAI / SpaceXAI 生态
 
-> 共 **3** 个图标，**4** 个品牌
+> 共 **4** 个图标，**4** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `Grok` | `Grok.png` |
-| `SpaceXAI` | `` |
+| `SpaceXAI` | `SpaceXAI.png` |
 | `X` | `X.png` |
 | `xAI` | `xAI.png` |
 

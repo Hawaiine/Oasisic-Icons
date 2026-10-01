@@ -184,7 +184,7 @@ Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记
 | X | Social | SpaceXAI | `icons/Social/X/X.png` | `icons/SpaceXAI/X/X.png` | 用户确认的最终品牌树：`X → SpaceXAI`（取代 2026-09-30 的「移除 parent_brand」结论） |
 | Grok | AI | SpaceXAI | `icons/AI/Grok/Grok.png` | `icons/SpaceXAI/Grok/Grok.png` | 直接父品牌由扁平 `SpaceXAI` 改为 `xAI`（`Grok → xAI → SpaceXAI`） |
 | xAI | —（2026-09-30 曾被当作历史名） | SpaceXAI | 历史 `icons/xAI/xAI/xAI.png`（SHA-256 前缀 `2f53aa6…`） | `icons/SpaceXAI/xAI/xAI.png` | **恢复为 canonical 品牌**：独立 ID / display_name / 图标 / `parent_brand = SpaceXAI`；同时从 legacy 表中移除 |
-| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 待官方标志：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png`（未建立） | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**官方新标志未取得，不得伪造、不得与 xAI 共用同一 SHA 图标** → 根条目/根图标暂缺，登记 `icon_status=pending` + `config/brand-review-queue.json` |
+| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 官方资产已落库：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png` | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**历史中间态**：官方新标志一度未取得，曾登记 `icon_status=pending` + Review Queue；2026-10-01 已从官方 Brand Guidelines 资产包取得并落库为 `icon_status=official` |
 
 **图标口径（重要）**：仓库历史中唯一存在的相关资产只有一张 xAI 字标（blob `2f53aa6…`），
 `f219392`（xAI → SpaceXAI 更名）与 `aa6fe42`（目录迁移）均为 R100 改名，**图像内容从未更换**。
@@ -206,11 +206,11 @@ Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记
    `icons/Google/YouTubeMusic/YouTubeMusic.png` →
    `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` 的 ID / display_name 未变。
    明细见 [`url-migration.md`](url-migration.md)。
-2. **逻辑生态根**：`SpaceXAI` 无 `brands.json` 条目（官方标志待补，登记
-   `parent_brands_without_icon`），但 `categories.json` 有 `type=ecosystem` 分类。
-   `resolve_ecosystem_root()` 因此返回该逻辑生态根，使 `xAI` / `Grok` /
-   `X` 的 ecosystem root = `SpaceXAI`（此前为 null）。「无图标」≠「不是生态」：
-   ecosystem identity = YES，icon availability = PENDING。
+2. **逻辑生态根（历史状态 / Historical）**：本轮当时 `SpaceXAI` 无 `brands.json` 条目（官方标志待补，
+   登记 `parent_brands_without_icon`），但 `categories.json` 有 `type=ecosystem` 分类；
+   `resolve_ecosystem_root()` 因此返回该逻辑生态根。**此后状态已变更**：`SpaceXAI` 已成为正式
+   `brands.json` SSOT 节点（`entity_type=ecosystem`、`canonical=true`），根图标取自官方 Brand
+   Guidelines 资产包并落库（`icon_status=official`），不再依赖白名单补节点。
 
 本轮**未**改变任何直接父关系（`SpaceXAI → X`、`SpaceXAI → xAI`、`xAI → Grok`
 均为上轮已定稿值）；`X` 曾被误列为「无品牌父级」、`xAI` 曾被当作 legacy 历史名，

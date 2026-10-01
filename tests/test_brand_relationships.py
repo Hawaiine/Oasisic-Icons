@@ -495,7 +495,7 @@ class RealRepoTests(unittest.TestCase):
         self.assertTrue(hashlib.sha256(p.read_bytes()).hexdigest())
 
     def test_xai_ancestor_chain(self):
-        """xAI 直接父为正式 pending ecosystem SSOT SpaceXAI。"""
+        """xAI 直接父为正式 ecosystem SSOT SpaceXAI。"""
         self.assertEqual(self.ssot['xAI'].get('parent_brand'), 'SpaceXAI')
         self.assertEqual(resolve_graph_root('xAI', self.ssot), 'SpaceXAI')
 
@@ -514,11 +514,13 @@ class RealRepoTests(unittest.TestCase):
         ds = _descendants('SpaceXAI', self.ssot)
         self.assertEqual(ds, {'X', 'xAI', 'Grok'}, 'SpaceXAI canonical descendants 应为 3')
         self.assertGreaterEqual(len(ds), 2)
-        # PR #10：正式 SSOT ecosystem 节点可以在 icon pending 时存在。
+        # PR #10：正式 SSOT ecosystem 节点；根图标为官方 Brand Guidelines 资产。
         self.assertIn('SpaceXAI', self.ssot)
         self.assertEqual(self.ssot['SpaceXAI']['entity_type'], 'ecosystem')
         self.assertIs(self.ssot['SpaceXAI']['canonical'], True)
-        self.assertEqual(self.ssot['SpaceXAI']['icon_status'], 'pending')
+        self.assertEqual(self.ssot['SpaceXAI']['icon_status'], 'official')
+        self.assertEqual(self.ssot['SpaceXAI']['icon_path'],
+                         'icons/SpaceXAI/SpaceXAI/SpaceXAI.png')
         self.assertEqual(resolve_ecosystem_root('X', self.ssot), 'SpaceXAI')
 
     def test_spacex_not_in_brand_graph(self):

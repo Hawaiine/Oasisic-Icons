@@ -279,13 +279,18 @@ class ReviewQueueTests(unittest.TestCase):
             cp = it.get('candidate_parent')
             self.assertTrue(cp is None or cp in self.brands or cp in self.aliases, it['id'])
 
-    def test_spacexai_logo_item_present_and_open(self):
+    def test_spacexai_logo_item_resolved_with_official_asset(self):
         it = next(i for i in self.q['items'] if i['child'] == 'SpaceXAI')
-        self.assertEqual(it['status'], 'OPEN')
+        self.assertEqual(it['status'], 'RESOLVED')
         self.assertEqual(it['issue_kind'], 'official_logo_missing')
+        self.assertTrue(it.get('resolved_note'), 'RESOLVED 必须带裁决说明')
+        src = it.get('source_lookup', {})
+        self.assertTrue(src.get('official_asset_used') is True)
+        self.assertIn('data.x.ai/logos/SpaceXAI_Grok_Assets.zip', src.get('official_asset', ''))
         self.assertIn('SpaceXAI', self.brands)
         root = next(b for b in REAL_BRANDS['brands'] if b['id'] == 'SpaceXAI')
-        self.assertEqual(root.get('icon_status'), 'pending')
+        self.assertEqual(root.get('icon_status'), 'official')
+        self.assertEqual(root.get('icon_path'), 'icons/SpaceXAI/SpaceXAI/SpaceXAI.png')
 
 
 if __name__ == '__main__':

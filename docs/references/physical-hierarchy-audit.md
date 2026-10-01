@@ -95,11 +95,11 @@ cross-category 关系共 **3** 条。
 | `NetEase` | `NetEase` | YES | `NetEase` | 2 | Ecosystem |
 | `PCCW` | `PCCW` | YES | `PCCW` | 2 | Ecosystem |
 | `SONY` | `SONY` | YES | `SONY` | 3 | Ecosystem |
-| `SpaceXAI` | `SpaceXAI` | NO / PENDING | `SpaceXAI` | 3 | Ecosystem |
+| `SpaceXAI` | `SpaceXAI` | YES | `SpaceXAI` | 3 | Ecosystem |
 | `Tencent` | `Tencent` | YES | `Tencent` | 6 | Ecosystem |
 | `WarnerBrosDiscovery` | `WarnerBrosDiscovery` | YES | `WarnerBrosDiscovery` | 2 | Ecosystem |
 
-生态分类共 **17** 个；其中无根图标（PENDING，登记白名单）**1** 个。
+生态分类共 **17** 个；其中无根图标（PENDING，登记白名单）**0** 个。
 
 ## 6. 统计
 
