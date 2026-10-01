@@ -32,7 +32,8 @@ exclude（黑名单，即使命中 include 也跳过）：
     docs/references/brand-ownership-audit.md（历史审计快照）
 
 > 刻意**不做**「段落里出现 Historical 就跳过」这类基于关键词的豁免——那会让 current 文档
-> 用一个词逃过校验。需要豁免时使用下方 KNOWN_MISSING 显式登记（必须带理由）。
+> 用一个词逃过校验；也**不设任何豁免清单**：current 文档中的 concrete path 必须真实存在，
+> 长期保留的旧路径只能写进下方 exclude 覆盖的历史 / 迁移文档。
 
 路径类型
 --------
@@ -45,7 +46,7 @@ exclude（黑名单，即使命中 include 也跳过）：
 ----
     python3 scripts/ci-validate-docs.py [--root DIR] [--quiet] [--list-files]
 
-退出码：0 = 所有 concrete path 均存在；1 = 存在失效引用或豁免清单失真。
+退出码：0 = 所有 concrete path 均存在；1 = 存在失效引用。
 """
 
 from __future__ import annotations
@@ -75,18 +76,6 @@ EXCLUDE_GLOBS = (
     "docs/references/category-migration.md",
     "docs/references/brand-ownership-audit.md",
 )
-
-# 显式豁免：文档中「故意引用不存在路径」的示例（必须写明理由）。
-# 值 = {相对路径: {"<path>": "<理由>"}}
-# 约束：豁免项**必须仍然不存在**；一旦它变成真实路径，本脚本会报错要求清理（防止豁免清单腐化）。
-KNOWN_MISSING = {
-    "AGENTS.md": {
-        "icons/SpaceXAI/Grok/Grok.png": "§4 禁止清单中的反例路径（该路径明确禁止存在）",
-    },
-    "docs/references/brand-naming-contract.md": {
-        "icons/R/A/B/C/C.png": "通用嵌套示例路径（非真实文件，仅说明层级写法）",
-    },
-}
 
 # `icons/<...>/<file>.png`；含 <> 的占位符不会匹配
 PATH_RE = re.compile(r"icons/(?:[A-Za-z0-9._\-]+/)+[A-Za-z0-9._\-]+\.png")
@@ -124,13 +113,10 @@ def scan_text(text: str, rel: str, root: Path) -> tuple[list[str], int]:
       violations 形如 "<rel>:<line>: 不存在的图标路径 <path>"
     """
     violations: list[str] = []
-    allowed = KNOWN_MISSING.get(rel, {})
     checked = 0
     for lineno, line in enumerate(text.splitlines(), start=1):
         for match in PATH_RE.finditer(line):
             token = match.group(0)
-            if token in allowed:
-                continue
             checked += 1
             if not (root / token).is_file():
                 violations.append(f"{rel}:{lineno}: 引用了不存在的图标路径 {token}")
@@ -148,23 +134,16 @@ def check_repo(root: Path, quiet: bool = False, list_files: bool = False) -> int
         violations.extend(v)
         checked += c
 
-    # 豁免清单腐化检测：豁免项若已变成真实路径，说明文档已改进，必须清理清单
-    stale_allow: list[str] = []
-    for rel, entries in KNOWN_MISSING.items():
-        for token, reason in entries.items():
-            if (root / token).is_file():
-                stale_allow.append(f"{rel}: 豁免项 {token} 现已存在（{reason}），请从 KNOWN_MISSING 移除")
-
     if not quiet:
         print(f"扫描文档（include 白名单 / exclude 黑名单见脚本头部）：{len(docs)} 个文件 / {checked} 处 concrete path")
         if list_files:
             for rel in docs:
                 print(f"  · {rel}")
 
-    for item in violations + stale_allow:
+    for item in violations:
         print(f"  ✗ {item}")
-    if violations or stale_allow:
-        print(f"  {GROUP_NAME}：FAIL（{len(violations)} 处失效引用，{len(stale_allow)} 项豁免失真）")
+    if violations:
+        print(f"  {GROUP_NAME}：FAIL（{len(violations)} 处失效引用）")
         return 1
     print(f"  ✓ {GROUP_NAME}：PASS（{len(docs)} 个文档 / {checked} 处 concrete path 全部存在）")
     return 0

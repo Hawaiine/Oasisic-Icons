@@ -8,7 +8,9 @@
   - URL template             → 跳过（不误判）
   - historical / migration   → 位于 exclude 范围，合法旧 path 不导致 FAIL
   - inline code / fenced code / Markdown link / bare URL → 均纳入校验
-  - 豁免清单（KNOWN_MISSING）→ 生效；若豁免项变成真实路径则 FAIL（防腐化）
+
+不设任何 concrete-path 豁免清单：current / normative 文档中的 concrete path 必须真实存在，
+需要长期保留的旧 path 只能位于 exclude 覆盖的历史 / 迁移文档。
 
 另含设计红线测试：校验器不得引入第二套品牌/路径真相。
 """
@@ -154,21 +156,6 @@ class ScopeTests(unittest.TestCase):
         t = TempRepo(self)
         t.write("icons/Apple/README.md", "icons/Apple/AppleNews/AppleNews.png\n")
         self.assertEqual(VD.collect_docs(t.root), ["icons/Apple/README.md"])
-        self.assertEqual(VD.check_repo(t.root, quiet=True), 1)
-
-
-class AllowlistTests(unittest.TestCase):
-    def test_known_missing_entry_is_respected(self):
-        t = TempRepo(self)
-        t.write("AGENTS.md", "禁止：icons/SpaceXAI/Grok/Grok.png\n")
-        t.write("docs/references/brand-naming-contract.md", "通用示例 icons/R/A/B/C/C.png\n")
-        self.assertEqual(VD.check_repo(t.root, quiet=True), 0)
-
-    def test_stale_allowlist_entry_fails(self):
-        """豁免项若变成真实路径，说明清单腐化，必须 FAIL 提醒清理。"""
-        t = TempRepo(self)
-        t.png("icons/SpaceXAI/Grok/Grok.png")
-        t.write("AGENTS.md", "禁止：icons/SpaceXAI/Grok/Grok.png\n")
         self.assertEqual(VD.check_repo(t.root, quiet=True), 1)
 
 

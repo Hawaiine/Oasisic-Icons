@@ -53,7 +53,7 @@ SpaceXAI
 `SpaceX` = corporate ownership background only，不进入 Brand Graph。
 路径：`icons/SpaceXAI/X/X.png`、`icons/SpaceXAI/xAI/xAI.png`、`icons/SpaceXAI/xAI/Grok/Grok.png`、
 生态根 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`。
-禁止：`Grok → X`、`Grok → SpaceXAI`、`icons/SpaceXAI/Grok/Grok.png`。
+禁止：`Grok → X`、`Grok → SpaceXAI`，以及任何跳过 xAI 中间层的路径（例如 `icons/SpaceXAI/Grok/`）。
 
 ## 5. 资产模型（图标）
 
@@ -87,7 +87,7 @@ SpaceXAI
   快照必须带日期）／**historical / migration**（保留旧路径是其职责，不是错误）。
 - current-state 文档中的 concrete icon path（`icons/<category>/…/<file>.png`）视为**公开契约**：
   必须真实存在、可被用户直接复制使用，由 `scripts/ci-validate-docs.py` 校验
-  （显式 include 白名单 / exclude 黑名单 + `KNOWN_MISSING` 显式豁免，豁免必须写理由）。
+  （显式 include 白名单 / exclude 黑名单；**不设任何 concrete-path 豁免清单**）。
 - 禁止用「段落里出现 Historical」之类关键词豁免让 current 文档逃过校验；禁止手改生成结果来「修好」CI。
 - 改路径 / 改分类时，文档中的可复制示例必须与 SSOT 同步修改，不得留到「下次一起改」。
 
