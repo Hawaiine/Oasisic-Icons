@@ -13,7 +13,7 @@
 2. 主动检索现实世界的**当前** ownership / brand architecture / developer / provider / platform 关系（官方站点 / 官方公告 / 财报 / 公司登记信息 / 权威百科），不依赖历史 metadata；[§92 §93 §95]
 3. **先分类关系类型，再决定 SSOT**：`CORPORATE_OWNERSHIP`、`DEVELOPER_PROVIDER`、`PLATFORM_INTEGRATION` 不能单独证明 `parent_brand`；只有明确的 Brand / Product Hierarchy 或 direct brand umbrella 证据才可判 `BRAND_HIERARCHY`。全资或多数控股只证明 corporate control，不自动证明 Brand Parent；[§102]
 4. 不得仅凭品牌名推断归属（如 `DisneyPlus`、`ChinaMobileDisk` 均需证据）；
-5. 每条 live `parent_brand` edge 必须在 `config/parent-edge-evidence.json` 中有独立的 `relation_type` + `parent_brand_validity` 记录（由 `scripts/gen-parent-edge-evidence.py` 生成）；该文件是研究/复核层，不替代 `config/brands.json` SSOT。
+5. 每条 live `parent_brand` edge 的语义判据记录在本文件（研究层）。仓库曾存在的机器可读 evidence 清单已于 2026-10-01 移除（无真实消费者、无法独立取证），当前架构不存在第二套关系叙事层。
 6. 对每个 graph root 统计 **Canonical Descendants**（直系子 + 孙 + 更深，沿 `parent_brand` 链可达，
    不含 root 本身，仅 `entity_type=product_brand` 计入），套用**双向**硬规则：**descendants ≥ 2 →
    必须存在一级生态分类且 root 为 ecosystem；descendants < 2 → 不要求生态分类**，`parent_brand`
@@ -109,20 +109,7 @@
 > **计数口径**：上表由 §7 全量矩阵（292 行）逐行统计，与 `config/brands.json` 的 live `parent_brand` 数（117）一致。`CONFIRMED_PARENT` 是 **ownership/evidence 状态**，不代表该 edge 已达到 Brand Hierarchy closure。
 > 2026-10-01 修正后：`X` 由 NO_PARENT 改为 CONFIRMED_PARENT（用户确认的最终品牌树），`xAI` 恢复为 canonical 节点且与 `SpaceXAI` 建立直接父级，`SpaceXAI` 作为正式 canonical ecosystem SSOT 节点登记（`icon_status=official`，根图标来自官方 Brand Guidelines 资产包，2026-10-01 取得）。
 
-> **证据层角色（2026-10-01 起）：辅助审计 / review context，非 SSOT、非阻塞条件**
-> （manifest 内 `role: supporting_evidence_layer` / `is_ssot: false` / `blocking: false`）。
-> live `parent_brand` edge 的关系类型证据见 [`config/parent-edge-evidence.json`](../../config/parent-edge-evidence.json)
-> 与 [`parent-edge-semantic-audit.md`](parent-edge-semantic-audit.md)（两者均由 `scripts/gen-parent-edge-evidence.py` 生成、可重放）。
-> 当前 **117** 条 edge 的 `relation_type` 分布为 **BRAND_HIERARCHY 8 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 7 /
-> PLATFORM_INTEGRATION 0 / UNKNOWN 60**；`parent_brand_validity` 为 **CONFIRMED 8 / OPEN_REVIEW 109 / REJECTED 0**。
-> `CONFIRMED_PARENT` 是 **ownership/evidence 状态**，**不等同于** `parent_brand_validity = CONFIRMED`；
-> ownership audit 与 Brand Graph closure 必须分开。
-> 该分级是 **evidence-text triage**，不是 real-world proof：117 条中 **0 条** 记录了 `source.url`；
-> 逐边补来源属**后续完善项**，**不再作为 PR 合并的阻塞条件**（§14/§15）。
->
-> * Historical snapshot（仅作对照，不得当作当前值）：`Snapshot HEAD = 9c62b95` / `Snapshot Date = 2026-09-30`，
->   当时为 115 条 edge、`BRAND_HIERARCHY 5 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 8 / UNKNOWN 60`、
->   `CONFIRMED 5 / OPEN_REVIEW 110`。
+> **Evidence 层已于 2026-10-01 移除**（无真实消费者、非 SSOT、无条件阻塞语义；其分级为人工审计文字的关键词 triage，且 0 条带 source.url）。关系事实只存在于 `config/brands.json` + `scripts/brand_relationships.py`；现实歧义进 `config/brand-review-queue.json`。
 
 | **合计** | **292** |
 

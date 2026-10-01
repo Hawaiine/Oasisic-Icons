@@ -436,13 +436,6 @@ class RealRepoTests(unittest.TestCase):
             (repo / 'config' / 'categories.json').read_text(encoding='utf-8'))
         cls.ssot = {e['id']: e for e in cls.brands_doc['brands']}
 
-    @staticmethod
-    def _manifest():
-        import json
-        repo = Path(__file__).resolve().parent.parent
-        return json.loads(
-            (repo / 'config' / 'parent-edge-evidence.json').read_text(encoding='utf-8'))
-
     def test_real_repo_passes(self):
         errs = validate_relationships(self.brands_doc, self.cats_doc['categories'])
         self.assertEqual(errs, [])
@@ -536,121 +529,25 @@ class RealRepoTests(unittest.TestCase):
             self.assertNotIn('integration_brand', entry)
             self.assertNotIn('distribution_brand', entry)
 
-    # ---- evidence 层：辅助审计，不是 SSOT / 不是阻塞条件（§14 §15 §52） ----
-    def test_parent_edge_evidence_covers_every_live_edge(self):
-        """每条 live parent_brand edge 都必须有独立的关系类型 + validity 记录（集合相等）。"""
-        manifest = self._manifest()
-        live = {(e['id'], e['parent_brand'])
-                for e in self.brands_doc['brands'] if e.get('parent_brand')}
-        audited = {(e['child'], e['parent']) for e in manifest['edges']}
-        self.assertEqual(audited, live, 'evidence 清单必须与 live edge 集合完全一致')
-        self.assertEqual(len(audited), len(live))
-        self.assertEqual(set(manifest['relation_types']),
-                         {'BRAND_HIERARCHY', 'CORPORATE_OWNERSHIP', 'DEVELOPER_PROVIDER',
-                          'PLATFORM_INTEGRATION', 'UNKNOWN'})
-        self.assertEqual(set(manifest['validity_values']),
-                         {'CONFIRMED', 'OPEN_REVIEW', 'REJECTED'})
-        for e in manifest['edges']:
-            self.assertIn(e['relation_type'], manifest['relation_types'], e['child'])
-            self.assertIn(e['parent_brand_validity'], manifest['validity_values'], e['child'])
-
-    def test_evidence_layer_is_not_ssot_and_not_blocking(self):
-        """§14/§15：evidence 层只是辅助审计，不得冒充 SSOT 或阻塞条件。"""
-        manifest = self._manifest()
-        self.assertEqual(manifest['role'], 'supporting_evidence_layer')
-        self.assertIs(manifest['is_ssot'], False)
-        self.assertIs(manifest['blocking'], False)
-        audit = (Path(__file__).resolve().parent.parent
-                 / 'docs' / 'references' / 'parent-edge-semantic-audit.md').read_text(encoding='utf-8')
-        self.assertNotIn('BLOCKER A', audit, 'evidence 不再是 PR 阻塞条件')
-        self.assertIn('supporting_evidence_layer', audit)
-
-    def test_evidence_counts_are_recomputed_not_hardcoded(self):
-        """§55：计数一律实时计算；不再把 115 等历史值写成当前事实。"""
-        manifest = self._manifest()
-        live = sum(1 for e in self.brands_doc['brands'] if e.get('parent_brand'))
-        self.assertEqual(len(manifest['edges']), live)
-        self.assertIn('0/%d' % live, manifest['self_reference_risk'])
-        # 8 条品牌伞状措辞证据 → CONFIRMED；其余一律 OPEN_REVIEW（不得凭归属措辞升级）
-        confirmed = {e['child'] for e in manifest['edges']
-                     if e['parent_brand_validity'] == 'CONFIRMED'}
-        for child in confirmed:
-            self.assertEqual(next(e for e in manifest['edges'] if e['child'] == child)['relation_type'],
-                             'BRAND_HIERARCHY', '%s 只允许 BRAND_HIERARCHY 判 CONFIRMED' % child)
-
-    def test_corporate_ownership_alone_is_not_hierarchy_proof(self):
-        """§16/§17：ownership-only 证据不得静默升级为 hierarchy。"""
-        manifest = self._manifest()
-        by_child = {e['child']: e for e in manifest['edges']}
-        self.assertEqual(by_child['LinkedIn']['relation_type'], 'CORPORATE_OWNERSHIP')
-        self.assertEqual(by_child['LinkedIn']['parent_brand_validity'], 'OPEN_REVIEW')
-
-    def test_umbrella_word_alone_is_not_hierarchy_proof(self):
-        """§70 Test A：「旗下」不得单独证明 BRAND_HIERARCHY。"""
-        manifest = self._manifest()
-        by_child = {e['child']: e for e in manifest['edges']}
-        for child in ('F1TV', 'NowE', 'NBC', 'KakaoTalk', 'Snapchat', 'Viu', 'myTVSUPER'):
-            self.assertEqual(by_child[child]['relation_type'], 'CORPORATE_OWNERSHIP',
-                             '%s 只凭「旗下」不得判为品牌层级' % child)
-            self.assertEqual(by_child[child]['parent_brand_validity'], 'OPEN_REVIEW')
-        confirmed = {e['child'] for e in manifest['edges']
-                     if e['parent_brand_validity'] == 'CONFIRMED'}
-        self.assertTrue(confirmed.isdisjoint({'F1TV', 'NowE', 'NBC', 'KakaoTalk'}))
-
-    def test_developer_or_platform_alone_is_not_parent(self):
-        """§70 Test C/D：developer-only、platform-only 不得自动成为 parent。"""
-        manifest = self._manifest()
-        by_child = {e['child']: e for e in manifest['edges']}
-        self.assertEqual(by_child['Kimi']['relation_type'], 'DEVELOPER_PROVIDER')
-        self.assertEqual(by_child['Kimi']['parent_brand_validity'], 'OPEN_REVIEW')
-        for e in manifest['edges']:
-            if e['relation_type'] in ('DEVELOPER_PROVIDER', 'PLATFORM_INTEGRATION'):
-                self.assertNotEqual(e['parent_brand_validity'], 'CONFIRMED',
-                                    '%s 不得因 developer/platform 证据判 CONFIRMED' % e['child'])
-
-    def test_brand_tree_edges_are_brand_hierarchy(self):
-        """最终品牌树的三条边都是品牌层级，且逐条带证据/规则/来源结构。"""
-        manifest = self._manifest()
-        by_child = {e['child']: e for e in manifest['edges']}
-        for child, parent in (('X', 'SpaceXAI'), ('xAI', 'SpaceXAI'), ('Grok', 'xAI')):
-            e = by_child[child]
-            self.assertEqual(e['parent'], parent)
-            self.assertEqual(e['relation_type'], 'BRAND_HIERARCHY', child)
-            self.assertEqual(e['parent_brand_validity'], 'CONFIRMED', child)
-            self.assertTrue(e['evidence_quote'], child)
-            self.assertTrue(e['decision_rule'].startswith('R'), child)
-            self.assertIn('url_status', e['source'], child)
-            self.assertTrue(e['rationale'], child)
-
-    def test_generic_restatement_stays_unknown(self):
-        """§70 Test E：泛化复述必须 UNKNOWN / OPEN_REVIEW。"""
-        manifest = self._manifest()
-        unknown = [e for e in manifest['edges'] if e['relation_type'] == 'UNKNOWN']
-        self.assertTrue(unknown, '存在泛化复述 edge 时应为 UNKNOWN')
-        for e in unknown:
-            self.assertEqual(e['parent_brand_validity'], 'OPEN_REVIEW', e['child'])
-
-    def test_source_urls_are_explicitly_unrecorded(self):
-        """§74：不得伪造来源。当前无 URL 时必须显式标注 NOT_RECORDED。"""
-        manifest = self._manifest()
-        for e in manifest['edges']:
-            self.assertIsNone(e['source']['url'], e['child'])
-            self.assertEqual(e['source']['url_status'], 'NOT_RECORDED', e['child'])
-
-    def test_parent_edge_evidence_is_deterministic(self):
-        """manifest + audit 文档必须可由生成器确定性重放（0 diff）。"""
-        import subprocess
-        import sys
+    # ---- Evidence 层已于 2026-10-01 移除：不得重新引入第二套关系叙事层 ----
+    def test_evidence_layer_removed_from_active_architecture(self):
+        """无真实消费者的关系证据层已从 active 架构移除，且不得静默复活。"""
         repo = Path(__file__).resolve().parent.parent
-        gen = repo / 'scripts' / 'gen-parent-edge-evidence.py'
-        json_path = repo / 'config' / 'parent-edge-evidence.json'
-        md_path = repo / 'docs' / 'references' / 'parent-edge-semantic-audit.md'
-        before = (json_path.read_text(encoding='utf-8'), md_path.read_text(encoding='utf-8'))
-        subprocess.run([sys.executable, str(gen)], cwd=str(repo), check=True,
-                       capture_output=True)
-        after = (json_path.read_text(encoding='utf-8'), md_path.read_text(encoding='utf-8'))
-        self.assertEqual(before, after, 'parent edge evidence 生成器不幂等')
+        for rel in ('config/parent-edge-evidence.json',
+                    'scripts/gen-parent-edge-evidence.py',
+                    'docs/references/parent-edge-semantic-audit.md'):
+            self.assertFalse((repo / rel).exists(), '%s 不应存在（已移除）' % rel)
+        hist = (repo / 'docs' / 'references' / 'upstream-history.md').read_text(encoding='utf-8')
+        self.assertIn('parent-edge-evidence', hist, '移除决定必须留下一次历史说明')
+        self.assertEqual(validate_relationships(self.brands_doc, self.cats_doc['categories']), [])
 
+    def test_ownership_and_platform_facts_do_not_decide_parent_brand(self):
+        """§16/§70：ownership / developer / platform / distribution / evidence 不得成为 parent_brand 来源。"""
+        forbidden = ('ownership', 'ownership_parent', 'platform_parent', 'developer_parent',
+                     'distribution_parent', 'provider_parent', 'evidence')
+        for e in self.brands_doc['brands']:
+            for key in forbidden:
+                self.assertNotIn(key, e, '%s 不得带 %s 字段' % (e.get('id'), key))
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

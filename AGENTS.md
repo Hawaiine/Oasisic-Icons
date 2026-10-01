@@ -30,7 +30,10 @@
   ecosystem root / cycle detection / missing parent / parent type validation / physical path）。
 - `ecosystem` **动态计算**：graph root + canonical descendants ≥ 2（阈值按生态根 descendants 计），
   不手工维护生态清单、不硬编码数量。
-- 平台集成事实（例：Grok 可通过 X 平台使用）**不得**倒推 `parent_brand`。
+- 平台集成事实（例：Grok 可通过 X 平台使用）**不得**倒推 `parent_brand`；
+  ownership / developer / platform / distribution 证据**不得**决定 `parent_brand`。
+- 仓库不再维护任何机器可读「证据分级」层（曾存在的 `parent-edge-evidence` 因无真实消费者、
+  无法独立取证而移除）：不得重新引入第二套关系叙事层。
 - 真正无法机器判定的现实世界关系进 `config/brand-review-queue.json`（`is_ssot: false`），
   人工裁决后写回 `brands.json`，再把队列项置 `RESOLVED`。
 

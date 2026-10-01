@@ -250,17 +250,11 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 17 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`；**公司品牌但未构成独立生态者（如 SINA / Xiaomi / TVB）亦为 `product_brand`**，其子公司/产品经 `parent_brand` 关联，不建一级生态目录。
    `SpaceXAI` 资产状态（generated）：`icon_status=official`；`icon_path=icons/SpaceXAI/SpaceXAI/SpaceXAI.png`。
 
-   **关系证据层角色（辅助审计，非 SSOT、非阻塞条件）**：`config/parent-edge-evidence.json` 与
-   [`docs/references/parent-edge-semantic-audit.md`](docs/references/parent-edge-semantic-audit.md)
-   （均由 `scripts/gen-parent-edge-evidence.py` 生成，可重放）对全部 **117** 条 live `parent_brand` edge
-   记录 `relation_type` + `parent_brand_validity`，仅供复核与 review context：
-   - 关系事实与判定由 `config/brands.json`（SSOT）+ `scripts/brand_relationships.py`（关系引擎）承担；
-   - 该分级是 evidence-text triage，不是 real-world proof（117 条中 0 条记录 `source.url`），
-     逐边补来源是**后续完善项**，不作为 PR 完成前提；
-   - 当前分布 `BRAND_HIERARCHY 8 / CORPORATE_OWNERSHIP 42 / DEVELOPER_PROVIDER 7 /
-     PLATFORM_INTEGRATION 0 / UNKNOWN 60`，即 **CONFIRMED 8 / OPEN_REVIEW 109 / REJECTED 0**；
-   - 收购/持股/合资/开发者/平台等证据**不会**自动升级为 Brand Hierarchy；真正有歧义的关系进
-     `config/brand-review-queue.json`，人工裁决后写回 `brands.json`。
+   **历史说明（Evidence 实验已移除）**：仓库曾尝试一层 `parent-edge-evidence` 辅助审计清单
+   （`relation_type` / `parent_brand_validity` 分级）。2026-10-01 评估后**从 active 架构中移除**：
+   它没有真实消费者（不被 CI、生成器、resolver 或下游依赖），不是 SSOT，且其分级是对人工审计文字的
+   关键词 triage，117 条记录中 0 条带 `source.url`，无法独立取证——保留只会制造第二套关系叙事的错觉。
+   现实世界歧义由 `config/brand-review-queue.json`（人工裁决）+ [`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md)（研究层）承担。
 
    **下游同步接口**：`config/brand-relationships.json` 是从上述 SSOT + 关系引擎派生的机器可读导出
    （标 `generated: true` / `source: config/brands.json`，**不是第二个 SSOT**，CI 第 15 组逐项校验），

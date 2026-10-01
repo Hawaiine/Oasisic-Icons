@@ -192,8 +192,7 @@ Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记
 期间不使用任何占位图。
 
 **关系与派生**：`config/brands.json`（SSOT）→ `scripts/brand_relationships.py`（关系引擎）→
-`config/brand-relationships.json`（下游导出，`generated: true`）+ `config/parent-edge-evidence.json`
-（辅助审计层）。mihomo 侧仍为旧关系（`Grok → X`），属**下游同步项**，本仓不修改 mihomo-rules。
+`config/brand-relationships.json`（下游导出，`generated: true`）。mihomo 侧仍为旧关系（`Grok → X`），属**下游同步项**，本仓不修改 mihomo-rules。
 
 ---
 
