@@ -1736,14 +1736,7 @@
       "entity_type": "product_brand",
       "icon_path": "icons/Social/Pinterest/Pinterest.png"
     },
-    {
-      "id": "Pipixia",
-      "display_name": "皮皮虾",
-      "category": "ByteDance",
-      "entity_type": "product_brand",
-      "icon_path": "icons/ByteDance/Pipixia/Pipixia.png",
-      "parent_brand": "ByteDance"
-    },
+    
     {
       "id": "Reddit",
       "display_name": "Reddit",

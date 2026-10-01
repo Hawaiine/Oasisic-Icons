@@ -10,7 +10,7 @@ Parent:       —
 Graph Root:   ByteDance
 Ecosystem Root: ByteDance
 Ancestor Chain: ByteDance
-Direct Children: 5
+Direct Children: 4
 ```
 
 | Child | Display Name |
@@ -18,5 +18,4 @@ Direct Children: 5
 | `Doubao` | 豆包 |
 | `Douyin` | 抖音 |
 | `Lark` | 飞书 |
-| `Pipixia` | 皮皮虾 |
 | `TikTok` | TikTok |

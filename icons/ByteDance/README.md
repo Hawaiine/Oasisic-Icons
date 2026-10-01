@@ -1,6 +1,6 @@
 # ▶️ ByteDance / 字节跳动生态
 
-> 共 **6** 个图标，**6** 个品牌
+> 共 **5** 个图标，**5** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -8,7 +8,6 @@
 | `Doubao` | `Doubao.png` |
 | `Douyin` | `Douyin.png` |
 | `Lark` | `Lark.png` |
-| `Pipixia` | `Pipixia.png` |
 | `TikTok` | `TikTok.png` |
 
 <!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
@@ -18,6 +17,5 @@ ByteDance
 ├── Doubao
 ├── Douyin
 ├── Lark
-├── Pipixia
 └── TikTok
 ```

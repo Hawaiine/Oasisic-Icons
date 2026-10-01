@@ -85,7 +85,7 @@ cross-category 关系共 **3** 条。
 | `Amazon` | `Amazon` | YES | `Amazon` | 5 | Ecosystem |
 | `Apple` | `Apple` | YES | `Apple` | 12 | Ecosystem |
 | `Baidu` | `Baidu` | YES | `Baidu` | 3 | Ecosystem |
-| `ByteDance` | `ByteDance` | YES | `ByteDance` | 5 | Ecosystem |
+| `ByteDance` | `ByteDance` | YES | `ByteDance` | 4 | Ecosystem |
 | `ChinaMobile` | `ChinaMobile` | YES | `ChinaMobile` | 2 | Ecosystem |
 | `Disney` | `Disney` | YES | `Disney` | 3 | Ecosystem |
 | `Google` | `Google` | YES | `Google` | 11 | Ecosystem |
@@ -103,7 +103,7 @@ cross-category 关系共 **3** 条。
 
 ## 6. 统计
 
-- canonical product brands：**236**
+- canonical product brands：**235**
 - canonical ecosystem entities：**1**
 - 物理父品牌节点：**26**
 - 深层嵌套品牌（路径 ≥ 5 段）：**7**

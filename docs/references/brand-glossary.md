@@ -1,6 +1,6 @@
 # 品牌术语表 / Brand Glossary
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **295** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **294** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -286,7 +286,6 @@
 | PikPak | PikPak |
 | Pinduoduo | 拼多多 |
 | Pinterest | Pinterest |
-| Pipixia | 皮皮虾 |
 | Play | Play |
 | PlayStation | PlayStation |
 | Plex | Plex |

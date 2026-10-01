@@ -3454,25 +3454,6 @@
       "physical_parent": null
     },
     {
-      "child": "Pipixia",
-      "display_name": "皮皮虾",
-      "category": "ByteDance",
-      "entity_type": "product_brand",
-      "parent": "ByteDance",
-      "ancestor_chain": [
-        "ByteDance"
-      ],
-      "graph_root": "ByteDance",
-      "ecosystem_root": "ByteDance",
-      "is_graph_root": false,
-      "is_ecosystem_root": false,
-      "icon_path": "icons/ByteDance/Pipixia/Pipixia.png",
-      "icon_status": "official",
-      "canonical": true,
-      "physical_path": "icons/ByteDance/Pipixia/Pipixia.png",
-      "physical_parent": null
-    },
-    {
       "child": "Play",
       "display_name": "Play",
       "category": "System",
