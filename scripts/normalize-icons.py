@@ -9,7 +9,9 @@
   - 禁止：背景去除、alpha 阈值、二值化、描边清理、填充镂空、二次圆角、有损压缩
   - 细线/低对比 logo（Docker 类）和带透明镂空 logo（AliCloud 类）需特别注意
 
-幂等：已是 512×512 + RGBA + 四角透明 + 半径正确的文件会被跳过。
+幂等：已是 512×512 + RGBA + 四角透明 + 遮罩外完全透明的文件会被跳过。
+      （2026-10-01 修订：删除旧的「单像素反推半径」判据——最终 alpha = 原图 alpha ×
+       圆角遮罩，无法从结果反推半径；见 is_compliant() docstring。）
 """
 import argparse
 from pathlib import Path
@@ -28,7 +30,38 @@ def rounded_mask(size=SIZE, radius=RADIUS):
     return np.array(m, dtype=np.float32) / 255.0
 
 
-def is_compliant(im):
+def outside_mask_alpha(im, mask=None):
+    """只读统计：圆角遮罩之外仍「可见」（alpha > 0）的像素数。
+
+    0 = 遮罩外完全透明（符合规范）。该值是判定遮罩是否真的生效的唯一可靠证据：
+    mask == 0 处 alpha > 0 ⇒ 文件不是由本模块的 r=115 遮罩产生的（例如历史 r≈99 资产）。
+    """
+    m = rounded_mask() if mask is None else mask
+    a = np.array(im.convert("RGBA"))[..., 3]
+    return int(((m < 0.5) & (a > 0)).sum())
+
+
+def is_compliant(im, mask=None):
+    """True = 可安全跳过（确定无需再次规范化）；False = 确定存在结构问题。
+
+    语义（2026-10-01 修订，替代旧的单像素半径判据）：
+
+      最终 PNG 的 alpha = 原图 alpha × 圆角遮罩，因此**无法从结果反推原始圆角半径**，
+      也不该用「某个点是否透明」推断半径——内容内缩较多的 logo 会让同一半径的文件
+      表现不一致（旧实现把正确的 r=115 满幅文件误判为「待处理」，全库误判 225/295）。
+
+    本函数只回答「能否确定该文件不需要再次执行规范化」，判据：
+
+      1. 尺寸 512×512；
+      2. 模式 RGBA；
+      3. 四角 alpha == 0；
+      4. 圆角遮罩之外不存在可见 alpha（mask == 0 且 alpha > 0 ⇒ 不合规）。
+
+    - 「遮罩内 alpha == 0」（logo 自身透明区域）是正常情况，**不**构成不合规；
+    - 历史 r≈99 / 内容越界等真实异常会在第 4 条被命中；
+    - 无法仅凭内容判定的情况一律**不**返回 False —— 宁可漏掉需要人工复核的异常，
+      也不能让 --apply 因误判重写大量正常文件。
+    """
     if im.size != (SIZE, SIZE) or im.mode != "RGBA":
         return False
     a = np.array(im)[..., 3]
@@ -38,8 +71,22 @@ def is_compliant(im):
     )
     if not corners_transparent:
         return False
-    # 圆角半径必须匹配：radius+1 处应为透明；若仍 opaque 说明旧半径 < RADIUS
-    return int(a[RADIUS + 1, 0]) == 0
+    return outside_mask_alpha(im, mask) == 0
+
+
+def noncompliance_reason(im, mask=None):
+    """返回不合规原因（可读字符串）；合规返回 None。仅供 --report 展示。"""
+    if im.size != (SIZE, SIZE):
+        return "尺寸非 512×512: %s" % (im.size,)
+    if im.mode != "RGBA":
+        return "模式非 RGBA: %s" % im.mode
+    a = np.array(im)[..., 3]
+    if any(int(a[y, x]) != 0 for y, x in ((0, 0), (0, SIZE - 1), (SIZE - 1, 0), (SIZE - 1, SIZE - 1))):
+        return "四角 alpha 非 0"
+    n = outside_mask_alpha(im, mask)
+    if n:
+        return "圆角遮罩外存在可见 alpha: %d px（历史半径 / 未套用遮罩）" % n
+    return None
 
 
 def border_color(rgba):
@@ -84,29 +131,35 @@ def main():
     mask = rounded_mask()
     todo, skipped = [], []
     for p in sorted(ICONS.rglob("*.png")):
-        im = Image.open(p)
-        (skipped if is_compliant(im) else todo).append((p, im.size, im.mode))
+        with Image.open(p) as im:
+            im.load()
+            ok = is_compliant(im, mask)
+            reason = None if ok else noncompliance_reason(im, mask)
+            (skipped if ok else todo).append((p, im.size, im.mode, reason))
     print(f"待处理 {len(todo)} 个 / 已合规跳过 {len(skipped)} 个 / 合计 {len(todo)+len(skipped)}")
     if args.report:
-        for p, size, mode in todo[:100]:
-            print(f"   - {p}  {size[0]}×{size[1]} {mode}")
+        for p, size, mode, reason in todo[:100]:
+            print(f"   - {p}  {size[0]}×{size[1]} {mode} | {reason}")
         if len(todo) > 100:
             print(f"   ... 其余 {len(todo)-100} 个")
 
     if args.apply:
         changed = 0
-        for p, _, _ in todo:
-            render(Image.open(p), mask).save(p, optimize=True)
+        for p, *_ in todo:
+            with Image.open(p) as im:
+                im.load()
+                out = render(im, mask)
+            out.save(p, optimize=True)
             changed += 1
         print(f"✓ 已规范化 {changed} 个文件")
 
     if args.sheet:
         want = [(144, 144), (108, 108), (300, 300), (1000, 1000), (500, 90), (176, 60), (81, 59), (513, 513)]
         by_size = {}
-        for p, size, _ in todo:
+        for p, size, *_ in todo:
             by_size.setdefault(size, p)
         picks = [by_size[s] for s in want if s in by_size]
-        for p, _, _ in todo:
+        for p, *_ in todo:
             if len(picks) >= args.sample:
                 break
             if p not in picks:

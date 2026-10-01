@@ -27,9 +27,11 @@ def main():
     before = sum(p.stat().st_size for p in files)
     ok = fail = fixed = 0
     for p in files:
-        # 强制 RGBA（像素不变）
-        if Image.open(p).mode != "RGBA":
-            Image.open(p).convert("RGBA").save(p, optimize=True)
+        # 强制 RGBA（像素不变）：每个文件只读取一次，转换结果在句柄关闭后写出
+        with Image.open(p) as im:
+            converted = im.convert("RGBA") if im.mode != "RGBA" else None
+        if converted is not None:
+            converted.save(p, optimize=True)
             fixed += 1
         try:
             oxipng.optimize(
@@ -49,8 +51,8 @@ def main():
     after = sum(p.stat().st_size for p in files)
     modes = {}
     for p in files:
-        m = Image.open(p).mode
-        modes[m] = modes.get(m, 0) + 1
+        with Image.open(p) as im:
+            modes[im.mode] = modes.get(im.mode, 0) + 1
     print(f"无损优化完成：{ok} 成功 / {fail} 失败；格式统一回 RGBA：{fixed} 个")
     print(f"体积 {before/1e6:.1f} MB → {after/1e6:.1f} MB")
     print("色型分布：", modes)

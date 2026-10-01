@@ -13,7 +13,7 @@
 | `id` | 机器稳定技术标识（路径安全、ASCII、无空格） | 只迁移不修改 |
 | `display_name` | 用户可见官方品牌名（保留官方 casing 与符号） | 随官方改名 |
 | `directory` | `icons/<category>/[<中间父…>/]<id>/`（末级与 id 一致，多层见 §1.1） | 随 id 迁移 |
-| `filename` | `<id>.png` / `<id>NN.png`（与 id 一致） | 随 id 迁移 |
+| `filename` | `<id>.png`（canonical；`<id>NN.png` 变体命名保留但**当前未启用**，不进入生成的 Surge 目录） | 随 id 迁移 |
 
 ### 1.1 物理路径模型（多层嵌套，2026-10-01 定稿）
 
