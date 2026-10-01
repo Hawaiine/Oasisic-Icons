@@ -7,8 +7,11 @@
 
 - **唯一 SSOT**：`config/brands.json`（品牌 / 图标 / 关系）与 `config/categories.json`（分类元数据）。
 - 派生文件（`config/surge-icon.json`、`config/brand-relationships.json`、`docs/references/brand-glossary.md`、
-  `docs/references/physical-hierarchy-audit.md`、各级 `README.md`、`docs/references/icon-quality-notes.md`）
+  `docs/references/physical-hierarchy-audit.md`、各级 `README.md`）
   **不得成为第二 SSOT**：不得手工编辑，必须由生成器重算。
+- **人工维护参考**：`docs/references/icon-quality-notes.md` 属 manual reference（规范正文 + 人工判断 + 带日期的扫描快照），
+  **不是生成物**，不参与逐字节 CI 校验；其中的扫描数据必须显式带日期，不得伪装成实时生成指标；
+  当前实时指标以 README「仓库统计口径」为准（由 `scripts/update-readme-badges.py` 从 SSOT 生成）。
 - 派生链：`brands.json` → 关系引擎 → 物理路径解析器 → 生成器 → CI 校验。
 
 ## 2. 目录 / 命名 / 物理路径
@@ -67,6 +70,7 @@ SpaceXAI
 - 提交前必须全绿：
   ```
   python3 scripts/ci-validate-icons.py
+  python3 scripts/ci-validate-docs.py
   python3 -m unittest discover -s tests -v
   git diff --check
   ```
@@ -77,7 +81,17 @@ SpaceXAI
 - CI 绿灯只证明**结构一致性**，不证明现实世界归属正确；后者由
   `docs/references/brand-ownership-audit.md`（研究层）承担。
 
-## 7. 下游与边界
+## 7. 文档纪律（documentation discipline）
+
+- 三类文档边界必须明确：**generated**（由生成器重算，CI 逐字节校验）／**manual reference**（人工维护，
+  快照必须带日期）／**historical / migration**（保留旧路径是其职责，不是错误）。
+- current-state 文档中的 concrete icon path（`icons/<category>/…/<file>.png`）视为**公开契约**：
+  必须真实存在、可被用户直接复制使用，由 `scripts/ci-validate-docs.py` 校验
+  （显式 include 白名单 / exclude 黑名单 + `KNOWN_MISSING` 显式豁免，豁免必须写理由）。
+- 禁止用「段落里出现 Historical」之类关键词豁免让 current 文档逃过校验；禁止手改生成结果来「修好」CI。
+- 改路径 / 改分类时，文档中的可复制示例必须与 SSOT 同步修改，不得留到「下次一起改」。
+
+## 8. 下游与边界
 
 - 本仓库是 SSOT；**mihomo-rules 等下游是 consumer**，不得在本仓库为下游改关系事实。
 - 已知下游差异（如 mihomo 侧旧的 `Grok → X`）记为 DOWNSTREAM_STALE，单独同步。
