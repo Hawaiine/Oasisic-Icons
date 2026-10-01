@@ -58,11 +58,6 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/AI/Poe/Poe.png"
     },
     {
-      "name": "AliCloud",
-      "category": "Alibaba",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/AliCloud/AliCloud.png"
-    },
-    {
       "name": "AliPay",
       "category": "Alibaba",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/AliPay/AliPay.png"
@@ -71,6 +66,11 @@
       "name": "Alibaba",
       "category": "Alibaba",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/Alibaba/Alibaba.png"
+    },
+    {
+      "name": "AlibabaCloud",
+      "category": "Alibaba",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/AlibabaCloud/AlibabaCloud.png"
     },
     {
       "name": "DingTalk",
@@ -1376,6 +1376,11 @@
       "name": "Tencent",
       "category": "Tencent",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tencent/Tencent/Tencent.png"
+    },
+    {
+      "name": "TencentCloud",
+      "category": "Tencent",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Tencent/TencentCloud/TencentCloud.png"
     },
     {
       "name": "TencentVideo",

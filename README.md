@@ -17,8 +17,8 @@
   <img src="https://img.shields.io/github/stars/Hawaiine/Oasisic-Icons?style=flat-square" alt="Stars">
   <img src="https://img.shields.io/github/last-commit/Hawaiine/Oasisic-Icons?style=flat-square" alt="Last Commit">
   <img src="https://img.shields.io/github/repo-size/Hawaiine/Oasisic-Icons?style=flat-square" alt="Repo Size">
-  <img src="https://img.shields.io/badge/icons-293-blue?style=flat-square" alt="Icons Count">
-  <img src="https://img.shields.io/badge/brands-293-green?style=flat-square" alt="Brands Count">
+  <img src="https://img.shields.io/badge/icons-294-blue?style=flat-square" alt="Icons Count">
+  <img src="https://img.shields.io/badge/brands-294-green?style=flat-square" alt="Brands Count">
   <img src="https://img.shields.io/badge/categories-42-orange?style=flat-square" alt="Categories Count">
 </p>
 
@@ -35,11 +35,11 @@
 
 ## 📖 简介 / Introduction
 
-**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **293** 个 PNG 图标，覆盖 **293** 个品牌，归入 **42** 个一级分类（其中 41 个活跃，`Finance` 为预留空分类）。
+**Oasisic-Icons** 是一套专为代理工具设计的策略组图标合集：当前共 **294** 个 PNG 图标，覆盖 **294** 个品牌，归入 **42** 个一级分类（其中 41 个活跃，`Finance` 为预留空分类）。
 
-**仓库统计口径 / Repository metrics**：SSOT entities **293** · canonical entities **234** · icon-backed entities **293** · PNG **293** · pending no-icon entities **0** · categories **42** · ecosystems **17**
+**仓库统计口径 / Repository metrics**：SSOT entities **294** · canonical entities **235** · icon-backed entities **294** · PNG **294** · pending no-icon entities **0** · categories **42** · ecosystems **17**
 
-本项目为独立图标仓库，当前 293 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
+本项目为独立图标仓库，当前 294 个图标均为 512×512 PNG（RGBA 模式），适配 Surge、Loon、Clash Meta / Mihomo、Stash、Quantumult X、Egern 等主流代理客户端。
 
 > **画质规范（贡献与替换标准）**：512×512 方形 PNG，RGBA 模式，Apple 风格 squircle 圆角（圆角半径 ≈ 115px / 约 22.4%），保留原始底色。
 > 仓库内图标按该规范维护，均为 512×512、RGBA、保留原始底色，经 `scripts/optimize-icons.py` 无损重压缩；少量历史圆角边缘遗留项待处理，明细与遗留项见 [`docs/references/icon-quality-notes.md`](docs/references/icon-quality-notes.md)。
@@ -218,12 +218,12 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 | ⚡ Surge | Surge 应用图标 | 1 | 1 |
 | ⚙️ System | 代理系统图标与通用策略 | 20 | 20 |
 | 📡 Telecom | 电信运营商 | 3 | 3 |
-| 🐧 Tencent | 腾讯生态 | 7 | 7 |
+| 🐧 Tencent | 腾讯生态 | 8 | 8 |
 | 🚗 Transport | 出行与交通 | 3 | 3 |
 | 🧰 Utilities | 生产力工具与实用服务 | 9 | 9 |
 | 🎞️ Warner Bros. Discovery | 华纳兄弟探索生态 | 3 | 3 |
 | 🛰️ SpaceXAI | SpaceXAI 生态 | 4 | 4 |
-| **合计** | — | **293** | **293** |
+| **合计** | — | **294** | **294** |
 ### 分类体系原则（方案 C，2026-09-29）
 
 一级分类**不设中间层**：不设置 `Ecosystems / Services / Special` 等分类之上的中间层；分类之下的深度只由**真实父子层级**决定——直接父品牌是 category 根时保持 `icons/<分类>/<品牌>/`，直接父品牌本身也是中间品牌（同类且有自身图标）时嵌套为 `icons/<分类>/<中间父>/<品牌>/`。

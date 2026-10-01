@@ -96,14 +96,14 @@ cross-category 关系共 **3** 条。
 | `PCCW` | `PCCW` | YES | `PCCW` | 2 | Ecosystem |
 | `SONY` | `SONY` | YES | `SONY` | 3 | Ecosystem |
 | `SpaceXAI` | `SpaceXAI` | YES | `SpaceXAI` | 3 | Ecosystem |
-| `Tencent` | `Tencent` | YES | `Tencent` | 6 | Ecosystem |
+| `Tencent` | `Tencent` | YES | `Tencent` | 7 | Ecosystem |
 | `WarnerBrosDiscovery` | `WarnerBrosDiscovery` | YES | `WarnerBrosDiscovery` | 2 | Ecosystem |
 
 生态分类共 **17** 个；其中无根图标（PENDING，登记白名单）**0** 个。
 
 ## 6. 统计
 
-- canonical product brands：**234**
+- canonical product brands：**235**
 - canonical ecosystem entities：**1**
 - 物理父品牌节点：**26**
 - 深层嵌套品牌（路径 ≥ 5 段）：**7**

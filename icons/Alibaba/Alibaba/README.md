@@ -15,8 +15,8 @@ Direct Children: 7
 
 | Child | Display Name |
 |:---|:---|
-| `AliCloud` | 阿里云 |
 | `AliPay` | 支付宝 |
+| `AlibabaCloud` | 阿里云 |
 | `DingTalk` | 钉钉 |
 | `Quark` | 夸克 |
 | `Qwen` | 通义千问 |

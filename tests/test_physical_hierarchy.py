@@ -117,7 +117,7 @@ class PhysicalPathTests(unittest.TestCase):
 
     def test_direct_children_of_graph_root_stay_flat(self):
         # §6：graph root 的直系子品牌保持 icons/<category>/<id>/<id>.png
-        for bid in ('AppleMusic', 'AppleTV', 'AWS', 'AliCloud', 'Weibo', 'myTVSUPER',
+        for bid in ('AppleMusic', 'AppleTV', 'AWS', 'AliPay', 'Weibo', 'myTVSUPER',
                     'X', 'SINA' if 'SINA' in SSOT else 'Apple'):
             e = SSOT.get(bid)
             if not e:

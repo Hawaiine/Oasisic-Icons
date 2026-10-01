@@ -4,9 +4,9 @@
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AliCloud` | `AliCloud.png` |
 | `AliPay` | `AliPay.png` |
 | `Alibaba` | `Alibaba.png` |
+| `AlibabaCloud` | `AlibabaCloud.png` |
 | `DingTalk` | `DingTalk.png` |
 | `Quark` | `Quark.png` |
 | `Qwen` | `Qwen.png` |
@@ -17,8 +17,8 @@
 
 ```text
 Alibaba
-├── AliCloud
 ├── AliPay
+├── AlibabaCloud
 ├── DingTalk
 ├── Quark
 ├── Qwen

@@ -1,6 +1,6 @@
 # 品牌术语表 / Brand Glossary
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **293** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **294** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -22,9 +22,9 @@
 | AdGuard | AdGuard |
 | Adobe | Adobe |
 | Airport | Airport |
-| AliCloud | 阿里云 |
 | AliPay | 支付宝 |
 | Alibaba | Alibaba |
+| AlibabaCloud | 阿里云 |
 | Amazon | Amazon |
 | AmazonAlexa | Amazon Alexa |
 | AmazonMusic | Amazon Music |
@@ -359,6 +359,7 @@
 | Taobao | 淘宝 |
 | Telegram | Telegram |
 | Tencent | 腾讯 |
+| TencentCloud | 腾讯云 |
 | TencentVideo | 腾讯视频 |
 | TestFlight | TestFlight |
 | Thailand | 泰国 |
