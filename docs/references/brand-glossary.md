@@ -1,7 +1,6 @@
 # 品牌术语表 / Brand Glossary
-
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **280** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **293** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -32,9 +31,12 @@
 | Anthropic | Anthropic |
 | AppStore | App Store |
 | Apple | Apple |
+| AppleArcade | Apple Arcade |
+| AppleBooks | Apple Books |
 | AppleFitnessPlus | Apple Fitness+ |
 | AppleMusic | Apple Music |
-| AppleNews | Apple News |
+| AppleNewsPlus | Apple News+ |
+| ApplePodcasts | Apple Podcasts |
 | AppleTV | Apple TV |
 | Aqara | Aqara |
 | Area | Area |
@@ -59,13 +61,14 @@
 | Blacklist | Blacklist |
 | Bluesky | Bluesky |
 | Bot | Bot |
+| ByteDance | 字节跳动 |
 | bilibili | bilibili |
 
 ## C
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
-| CATCHPLAY | CATCHPLAY+ |
+| CATCHPLAYPlus | CATCHPLAY+ |
 | CN-Taiwan | 中国台湾 |
 | Canada | 加拿大 |
 | China | 中国 |
@@ -93,6 +96,7 @@
 | DingTalk | 钉钉 |
 | Direct | Direct |
 | Discord | Discord |
+| Disney | Disney |
 | DisneyPlus | Disney+ |
 | Docker | Docker |
 | Douban | 豆瓣 |
@@ -240,7 +244,9 @@
 |---------------------|--------------------------|
 | NBA | NBA |
 | NBC | NBC |
+| NBCUniversal | NBCUniversal |
 | NHK | NHK |
+| NetEase | 网易 |
 | NetEaseCloudMusic | 网易云音乐 |
 | NetEaseMail | 网易邮箱 |
 | Netflix | Netflix |
@@ -270,10 +276,11 @@
 
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
+| PCCW | PCCW |
 | Pandora | Pandora |
 | ParamountPlus | Paramount+ |
 | PayPal | PayPal |
-| PeacockTV | Peacock TV |
+| Peacock | Peacock |
 | Perplexity | Perplexity |
 | PikPak | PikPak |
 | Pinduoduo | 拼多多 |
@@ -282,10 +289,10 @@
 | Play | Play |
 | PlayStation | PlayStation |
 | Plex | Plex |
-| Podcasts | Podcasts |
 | Poe | Poe |
 | Poland | 波兰 |
 | PrimeVideo | Prime Video |
+| Proxmox | Proxmox |
 | Proxy | Proxy |
 | pixiv | pixiv |
 
@@ -317,6 +324,7 @@
 | 英文文件夹 / Folder | 中文显示名 / Display Name |
 |---------------------|--------------------------|
 | SF-Express | SF-Express |
+| SINA | 新浪 |
 | SONY | 索尼 |
 | SOOP | SOOP |
 | SSID | SSID |
@@ -330,6 +338,7 @@
 | SlingTV | Sling TV |
 | Snapchat | Snapchat |
 | SoundCloud | SoundCloud |
+| SpaceXAI | SpaceXAI |
 | Spain | 西班牙 |
 | Speedtest | Speedtest |
 | Spotify | Spotify |
@@ -388,6 +397,7 @@
 | WOWOW | WOWOW |
 | WSJ | WSJ |
 | Wallpaper | Wallpaper |
+| WarnerBrosDiscovery | Warner Bros. Discovery |
 | WeChat | 微信 |
 | WeTV | WeTV |
 | Weibo | 微博 |
@@ -401,6 +411,8 @@
 | X | X |
 | Xbox | Xbox |
 | Xiaomi | 小米 |
+| Xiaoyuzhou | 小宇宙 |
+| xAI | xAI |
 
 ## Y
 

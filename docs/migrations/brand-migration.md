@@ -1,6 +1,11 @@
 # 品牌迁移记录 / Brand Migration
 
 > 完整逐项迁移表（Old → New），含 Canonical 决策理由。URL 变化 = 路径变化，见「URL 迁移表」。
+>
+> **历史措辞说明**：本表早期行的「（X 仅记录 ownership）」是 2026-09 旧口径的残留描述，当时把
+> corporate ownership 直接当作归属依据。2026-09-30 起 `parent_brand` 已收紧为**直接父品牌**
+> 语义，实际归属一律以 `config/brands.json` 的 `parent_brand` 与
+> `docs/references/brand-ownership-audit.md` 为准；本表该措辞仅为历史记录，不构成现状结论。
 
 | Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
 |---|---|---|---|---|---|
@@ -103,3 +108,110 @@
 | Zoom | Tool | Utilities | `icons/Tool/Zoom/Zoom.png` | `icons/Utilities/Zoom/Zoom.png` | 视频会议工具 |
 
 共 **96** 个品牌迁移（另有未列出的品牌分类未变）。
+## 本轮增量：全库生态归属审计（2026-09-30）
+
+> 25 个 Canonical 迁移，全部为 pure move（git R100，SHA-256 不变）。
+>
+> **历史记录**：本表记录**当时**状态。其中 `X` 行（`xAI 子公司`）已被同文件下节
+> 「Final Seal Review 增量」修订——`X` 现为独立平台品牌（无 `parent_brand`），`SpaceXAI`
+> 亦由生态降为 `product_brand`。现状一律以 `config/brands.json` 为准。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| ChinaMobile | Telecom | ChinaMobile | `icons/Telecom/ChinaMobile/ChinaMobile.png` | `icons/ChinaMobile/ChinaMobile/ChinaMobile.png` | 中国移动生态根品牌（ChinaMobileDisk + 咪咕 ≥2） |
+| ChinaMobileDisk | CloudStorage | ChinaMobile | `icons/CloudStorage/ChinaMobileDisk/ChinaMobileDisk.png` | `icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png` | 中国移动自有云盘；ChinaMobile 生态 |
+| Crunchyroll | Media | SONY | `icons/Media/Crunchyroll/Crunchyroll.png` | `icons/SONY/Crunchyroll/Crunchyroll.png` | Sony Pictures / Aniplex 全资；SONY 生态 |
+| discoveryPlus | Media | WarnerBrosDiscovery | `icons/Media/discoveryPlus/discoveryPlus.png` | `icons/WarnerBrosDiscovery/discoveryPlus/discoveryPlus.png` | WBD「Discovery Global」业务；新建 WarnerBrosDiscovery 生态 |
+| DisneyPlus | Media | Disney | `icons/Media/DisneyPlus/DisneyPlus.png` | `icons/Disney/DisneyPlus/DisneyPlus.png` | Disney 全资流媒体；新建 Disney 生态（3 children） |
+| Doubao | AI | ByteDance | `icons/AI/Doubao/Doubao.png` | `icons/ByteDance/Doubao/Doubao.png` | 字节跳动 AI 助手；ByteDance 生态 |
+| ESPN | Media | Disney | `icons/Media/ESPN/ESPN.png` | `icons/Disney/ESPN/ESPN.png` | Disney 持 80%（Hearst 20%）；新建 Disney 生态 |
+| GitHub | Development | Microsoft | `icons/Development/GitHub/GitHub.png` | `icons/Microsoft/GitHub/GitHub.png` | Microsoft 全资子公司（2018 收购）；child ≥2 归入 Microsoft 生态 |
+| Grok | AI | xAI | `icons/AI/Grok/Grok.png` | `icons/xAI/Grok/Grok.png` | xAI 开发（xAI 2026-02 起为 SpaceX 全资子公司）；新建 xAI 生态 |
+| HBOMax | Media | WarnerBrosDiscovery | `icons/Media/HBOMax/HBOMax.png` | `icons/WarnerBrosDiscovery/HBOMax/HBOMax.png` | Warner Bros. Discovery 流媒体；新建 WarnerBrosDiscovery 生态（2 children） |
+| Hulu | Media | Disney | `icons/Media/Hulu/Hulu.png` | `icons/Disney/Hulu/Hulu.png` | Disney 100% 持股（2025 收购 Comcast 剩余股份）；新建 Disney 生态 |
+| iQIYI | Media | Baidu | `icons/Media/iQIYI/iQIYI.png` | `icons/Baidu/iQIYI/iQIYI.png` | 百度控股（多数投票权）；Baidu 生态 |
+| LinkedIn | Social | Microsoft | `icons/Social/LinkedIn/LinkedIn.png` | `icons/Microsoft/LinkedIn/LinkedIn.png` | Microsoft 全资子公司（2016 收购）；child ≥2 归入 Microsoft 生态 |
+| Migu | Media | ChinaMobile | `icons/Media/Migu/Migu.png` | `icons/ChinaMobile/Migu/Migu.png` | 咪咕文化科技为中国移动全资子公司；ChinaMobile 生态 |
+| mora | Music | SONY | `icons/Music/mora/mora.png` | `icons/SONY/mora/mora.png` | Sony Music Solutions（索尼音乐娱乐日本）；SONY 生态 |
+| NBC | Media | NBCUniversal | `icons/Media/NBC/NBC.png` | `icons/NBCUniversal/NBC/NBC.png` | NBCUniversal 旗下电视网；新建 NBCUniversal 生态（2 children） |
+| NowE | Media | PCCW | `icons/Media/NowE/NowE.png` | `icons/PCCW/NowE/NowE.png` | PCCW / HKT 旗下；新建 PCCW 生态 |
+| Peacock | Media | NBCUniversal | `icons/Media/PeacockTV/PeacockTV.png` | `icons/NBCUniversal/Peacock/Peacock.png` | NBCUniversal（Comcast）流媒体；新建 NBCUniversal 生态。2026-09-30 技术 ID `PeacockTV` → `Peacock`（目录/文件名同步，纯迁移 SHA 不变） |
+| Pipixia | Social | ByteDance | `icons/Social/Pipixia/Pipixia.png` | `icons/ByteDance/Pipixia/Pipixia.png` | 字节跳动旗下短视频社区；ByteDance 生态 |
+| PlayStation | Game | SONY | `icons/Game/PlayStation/PlayStation.png` | `icons/SONY/PlayStation/PlayStation.png` | Sony Interactive Entertainment（索尼全资）；SONY 生态 |
+| ApplePodcasts | Media | Apple | `icons/Media/Podcasts/Podcasts.png` | `icons/Apple/ApplePodcasts/ApplePodcasts.png` | Apple Podcasts（Apple 自有应用）；Apple 生态。2026-09-30 会话按 Apple 子品牌命名规范重命名 Podcasts → ApplePodcasts |
+| SONY | Hardware | SONY | `icons/Hardware/SONY/SONY.png` | `icons/SONY/SONY/SONY.png` | 索尼生态根品牌（PlayStation + Crunchyroll + mora ≥2）；id 保持 `SONY`，分类显示名规范为 Sony |
+| Viu | Media | PCCW | `icons/Media/Viu/Viu.png` | `icons/PCCW/Viu/Viu.png` | PCCW Media Group 旗下 OTT；新建 PCCW 生态（2 children） |
+| X | Social | xAI | `icons/Social/X/X.png` | `icons/xAI/X/X.png` | xAI 子公司（2025-03 xAI 收购 X Corp）；新建 xAI 生态（2 children） |
+| Youku | Media | Alibaba | `icons/Media/Youku/Youku.png` | `icons/Alibaba/Youku/Youku.png` | 阿里巴巴集团在线视频平台；Alibaba 生态 |
+
+## 本轮增量：会话新增品牌（2026-09-30）
+
+> 3 个新增品牌（图标由用户提供，按规范 512×512 RGBA r=115 入库）+ 1 个重命名（Podcasts → ApplePodcasts，pure rename，git R100，SHA-256 不变）。
+
+| Brand | 变更 | 路径 | 理由 |
+|---|---|---|---|
+| ApplePodcasts | 重命名（原 Podcasts） | `icons/Apple/ApplePodcasts/ApplePodcasts.png` | Apple 子品牌统一 `Apple` 前缀命名规范（对齐 AppleBooks/AppleMusic/AppleTV）；display_name 补全为「Apple Podcasts」 |
+| Xiaoyuzhou | 新增（Media） | `icons/Media/Xiaoyuzhou/Xiaoyuzhou.png` | 小宇宙（Xiaoyuzhou）播客 App，用户提供的官方图标 |
+| Proxmox | 新增（Infrastructure） | `icons/Infrastructure/Proxmox/Proxmox.png` | Proxmox 开源虚拟化平台，用户提供的官方图标 |
+| SINA | 新增（Social） | `icons/Social/SINA/SINA.png` | 新浪（Sina Corporation）公司品牌，用户提供的官方图标；白名单 `Sina` 移除，子品牌 Weibo 的 parent_brand 指向 SINA |
+| CATCHPLAYPlus | 重命名（原 CATCHPLAY） | `icons/Media/CATCHPLAY/CATCHPLAY.png` | `icons/Media/CATCHPLAYPlus/CATCHPLAYPlus.png` | 按全库 Plus 品牌命名惯例对齐（id/目录/文件名）；display_name 仍为「CATCHPLAY+」 |
+
+## Final Seal Review 增量（2026-09-30）：X / Grok / SpaceXAI 关系厘清
+
+> 四个品牌变更 + 1 个公司品牌降级，全部为 pure move（git R100，SHA-256 不变）。
+> 决策依据：**官方当前证据**（SpaceXAI 官方 Terms / Privacy Policy）优先于历史 metadata。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| SpaceXAI | SpaceXAI | AI | `icons/SpaceXAI/SpaceXAI/SpaceXAI.png` | `icons/AI/SpaceXAI/SpaceXAI.png` | 2026-07-06 官方**品牌标识**由 xAI 更名 SpaceXAI（非新增品牌）；canonical descendants = 1（仅 Grok）< 2 → **降为 product_brand**（公司品牌），不构成独立生态 |
+| Grok | SpaceXAI | AI | `icons/SpaceXAI/Grok/Grok.png` | `icons/AI/Grok/Grok.png` | Grok 为 SpaceXAI 开发的 AI 产品（官方 Terms）；`parent_brand = SpaceXAI` 保留；分类回到功能分类 AI |
+| X | SpaceXAI | Social | `icons/SpaceXAI/X/X.png` | `icons/Social/X/X.png` | **移除 `parent_brand`**：SpaceXAI 官方 Privacy Policy 明确「SpaceXAI is a separate company from X Corp.」，SpaceXAI 官方产品清单不含 X → X 为独立平台品牌，**不以 corporate ownership 推导品牌父级** |
+| SpaceX（未入库） | — | — | — | — | **Corporate Owner only**：不建 `icons/SpaceX/`、不设 `parent_brand = SpaceX`；仅记录于归属审计 |
+
+**口径说明**：`xAI → SpaceXAI` 属**品牌标识（brand identity）更名**——官方品牌层面证据为 2026-07-06
+`@SpaceXAI` 账号发布「We are now @SpaceXAI」+ 新 logo + 官方页标题/页脚（Business Insider /
+Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记层面未获正式文件证据，本文件不作此断言**；
+官方 Terms 仅证明当前实体名为「SpaceXAI LLC」（Nevada），不足以推出更名日期。
+
+## 修正增量（2026-10-01）：恢复最终品牌树 SpaceXAI ├── X └── xAI └── Grok
+
+> 本节取代上节（Final Seal Review，2026-09-30）的结论；上节内容仅作**历史记录**保留，不再是当前状态。
+> 本轮为 **append-only 修正提交**：不改写既有 commit 历史、不动 `main`、不动 mihomo-rules。
+> 三个 PNG 全部为 `git mv` **R100 纯迁移，SHA-256 不变**（其中 xAI 图标为历史资产迁回）。
+
+| Brand | 旧分类 | 新分类 | 旧路径 | 新路径 | 理由 |
+|---|---|---|---|---|---|
+| X | Social | SpaceXAI | `icons/Social/X/X.png` | `icons/SpaceXAI/X/X.png` | 用户确认的最终品牌树：`X → SpaceXAI`（取代 2026-09-30 的「移除 parent_brand」结论） |
+| Grok | AI | SpaceXAI | `icons/AI/Grok/Grok.png` | `icons/SpaceXAI/Grok/Grok.png` | 直接父品牌由扁平 `SpaceXAI` 改为 `xAI`（`Grok → xAI → SpaceXAI`） |
+| xAI | —（2026-09-30 曾被当作历史名） | SpaceXAI | 历史 `icons/xAI/xAI/xAI.png`（SHA-256 前缀 `2f53aa6…`） | `icons/SpaceXAI/xAI/xAI.png` | **恢复为 canonical 品牌**：独立 ID / display_name / 图标 / `parent_brand = SpaceXAI`；同时从 legacy 表中移除 |
+| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 待官方标志：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png`（未建立） | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**官方新标志未取得，不得伪造、不得与 xAI 共用同一 SHA 图标** → 根条目/根图标暂缺，登记 `icon_status=pending` + `config/brand-review-queue.json` |
+
+**图标口径（重要）**：仓库历史中唯一存在的相关资产只有一张 xAI 字标（blob `2f53aa6…`），
+`f219392`（xAI → SpaceXAI 更名）与 `aa6fe42`（目录迁移）均为 R100 改名，**图像内容从未更换**。
+因此按「不伪造、可追溯」原则把该资产恢复为 xAI 品牌图标；SpaceXAI 的官方新标志待补，
+期间不使用任何占位图。
+
+**关系与派生**：`config/brands.json`（SSOT）→ `scripts/brand_relationships.py`（关系引擎）→
+`config/brand-relationships.json`（下游导出，`generated: true`）+ `config/parent-edge-evidence.json`
+（辅助审计层）。mihomo 侧仍为旧关系（`Grok → X`），属**下游同步项**，本仓不修改 mihomo-rules。
+
+---
+
+## 2026-10-01 物理层级统一与逻辑生态根（append-only 修正）
+
+本轮不重写历史、不 rename 品牌，只做两类修正：
+
+1. **physical restructure（路径层级）**：多层父子关系的深层子品牌迁入父品牌目录
+   （7 条，全部 `git mv` R100、SHA-256 不变）。这**不是** rename：
+   `icons/Google/YouTubeMusic/YouTubeMusic.png` →
+   `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` 的 ID / display_name 未变。
+   明细见 [`url-migration.md`](url-migration.md)。
+2. **逻辑生态根**：`SpaceXAI` 无 `brands.json` 条目（官方标志待补，登记
+   `parent_brands_without_icon`），但 `categories.json` 有 `type=ecosystem` 分类。
+   `resolve_ecosystem_root()` 因此返回该逻辑生态根，使 `xAI` / `Grok` /
+   `X` 的 ecosystem root = `SpaceXAI`（此前为 null）。「无图标」≠「不是生态」：
+   ecosystem identity = YES，icon availability = PENDING。
+
+本轮**未**改变任何直接父关系（`SpaceXAI → X`、`SpaceXAI → xAI`、`xAI → Grok`
+均为上轮已定稿值）；`X` 曾被误列为「无品牌父级」、`xAI` 曾被当作 legacy 历史名，
+这些错误中间态仅保留在历史 commit 中，当前 HEAD 不再出现。
