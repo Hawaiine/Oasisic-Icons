@@ -13,7 +13,7 @@
 | `id` | 机器稳定技术标识（路径安全、ASCII、无空格） | 只迁移不修改 |
 | `display_name` | 用户可见官方品牌名（保留官方 casing 与符号） | 随官方改名 |
 | `directory` | `icons/<category>/[<中间父…>/]<id>/`（末级与 id 一致，多层见 §1.1） | 随 id 迁移 |
-| `filename` | `<id>.png`（canonical；`<id>NN.png` 变体命名保留但**当前未启用**，不进入生成的 Surge 目录） | 随 id 迁移 |
+| `filename` | `<id>.png`（**canonical-only**：品牌目录内出现任何其它 PNG ⇒ 生成器非 0 退出 + CI 第 3 组 FAIL；变体需另立 schema） | 随 id 迁移 |
 
 ### 1.1 物理路径模型（多层嵌套，2026-10-01 定稿）
 
@@ -156,6 +156,7 @@ SpaceXAI
 | 命名 / 分类 / 关系 / 文件 / 图标校验 | `python3 scripts/validate-brand.py --id … --display-name … --category … --entity-type … [--parent-brand …] [--png …]` | 复用关系引擎（`brand_relationships.validate_relationships`） |
 | 关系机器可读导出（下游消费） | `python3 scripts/export-brand-relationships.py` → `config/brand-relationships.json` | 第 15 组「关系派生导出」（逐项一致 + `generated: true`） |
 | 无法机器判定的现实关系 | `config/brand-review-queue.json`（人工裁决队列，`is_ssot: false`） | 第 16 组「Review Queue」（结构 + 引用真实性） |
+| 圆角遮罩越界的历史资产 | `config/icon-mask-exemptions.json`（登记值 = 实测 `outside_mask_alpha`） | 第 18 组「Rounded mask 边界」（未登记越界 / 登记值不符 / 已合规仍登记 均 FAIL） |
 
 规则：
 

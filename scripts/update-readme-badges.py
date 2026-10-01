@@ -6,7 +6,7 @@
   - README 正文统计句（「当前共 **N** 个 PNG 图标，覆盖 **N** 个品牌，归入 **N** 个…分类」）
   - README 独立仓库句（「当前 N 个图标均为 512×512 PNG」）
   - README 分类表逐行 品牌数/图标数 + 合计行
-  - docs/references/icon-quality-notes.md 扫描范围句
+  - docs/references/icon-quality-notes.md 扫描范围句 + §6 现状表统计行（尺寸 / 模式分布 / 体积，2026-10-01 Phase 3 扩围）
 
 修复历史（静默失同步）：
   1. 统计句正则写死「个分类」结尾，实际正文是「个活跃分类」→ 正则永不命中，
@@ -33,22 +33,32 @@ from collections import Counter
 REPO = Path(".")
 ICONS = REPO / "icons"
 sys.path.insert(0, str((REPO / "scripts").resolve()))
-try:
-    from brand_relationships import is_canonical_brand
-except Exception:  # 关系引擎不可用时退化为 canonical 字段
-    def is_canonical_brand(entry):
-        return bool(entry.get('canonical'))
+# 关系引擎必须可用（2026-10-01 Phase 3）：canonical 语义的唯一来源是
+# scripts/brand_relationships.py。此前是 broad `except Exception` + 退化为
+# `entry.get('canonical')`，会把引擎自身错误吞成"看起来正常"的统计数字。
+# 现在：加载失败或执行失败都直接非 0 退出（fail-fast），不做静默 fallback。
+from brand_relationships import is_canonical_brand  # noqa: E402
 
 
 def ssot_brands():
     """品牌 SSOT（config/brands.json）。统计一律以 SSOT 为准，不从目录层级推导——
     多层物理层级（icons/<category>/<中间父>/<id>/）会让「一级子目录 = 品牌」的
-    假设失效（§21/§38：统计必须由程序从 SSOT 动态计算）。"""
+    假设失效（§21/§38：统计必须由程序从 SSOT 动态计算）。
+
+    fail-fast（2026-10-01 Phase 3）：文件缺失 / JSON 损坏 / 结构非法 / 编码错误一律立即
+    非 0 退出。**数据不存在或损坏 ≠ 空数据**——`except: return []` 会把 SSOT 故障
+    写成「0 品牌」，让 README 生成"成功"。
+    """
+    path = REPO / "config/brands.json"
+    if not path.exists():
+        raise SystemExit("ERROR: 缺少品牌 SSOT %s（数据缺失 ≠ 空数据，拒绝继续生成）" % path)
     try:
-        doc = json.loads((REPO / "config/brands.json").read_text(encoding="utf-8"))
-    except Exception:
-        return []
-    return doc.get("brands", [])
+        doc = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise SystemExit("ERROR: 品牌 SSOT %s 无法解析: %s（拒绝继续生成）" % (path, exc))
+    if not isinstance(doc, dict) or not isinstance(doc.get("brands"), list):
+        raise SystemExit("ERROR: 品牌 SSOT %s 结构非法（应为 {brands: [...]}）" % path)
+    return doc["brands"]
 
 
 def ssot_metrics():
@@ -88,11 +98,21 @@ def per_category():
 
 
 def display_to_id():
-    """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。"""
+    """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。
+
+    fail-fast（2026-10-01 Phase 3）：categories.json 缺失/损坏/结构非法一律非 0 退出，
+    不再退化为 `{}`（空映射会让分类表行静默错配）。
+    """
+    path = REPO / 'config/categories.json'
+    if not path.exists():
+        raise SystemExit("ERROR: 缺少分类 SSOT %s（数据缺失 ≠ 空数据）" % path)
     try:
-        cs = json.loads((REPO / 'config/categories.json').read_text(encoding='utf-8'))['categories']
-    except Exception:
-        return {}
+        doc = json.loads(path.read_text(encoding='utf-8'))
+    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+        raise SystemExit("ERROR: 分类 SSOT %s 无法解析: %s" % (path, exc))
+    cs = doc.get('categories') if isinstance(doc, dict) else None
+    if not isinstance(cs, list):
+        raise SystemExit("ERROR: 分类 SSOT %s 结构非法（应为 {categories: [...]}）" % path)
     return {c['display_name']: c['id'] for c in cs}
 
 
@@ -233,30 +253,72 @@ def update_readme(n_png, n_brands, n_cats, cats, spacexai_present=False):
     return missing
 
 
+def png_color_type(path):
+    """直读 PNG IHDR color type（无第三方依赖）：6 = truecolor+alpha = RGBA。
+
+    与 ci-validate-icons.py 的同一判据必须一致（同一字节、同一含义）。
+    """
+    with open(path, "rb") as fh:
+        head = fh.read(26)
+    if len(head) != 26 or head[12:16] != b"IHDR":
+        return None
+    return head[25]
+
+
 def update_quality_notes(n_png, n_brands, n_cats, reserved_ids):
-    """同步 docs/references/icon-quality-notes.md 的扫描范围句（generated 行）。
+    """同步 docs/references/icon-quality-notes.md 的 generated 统计行。
 
     正则匹配**当前真实文本**（`> 扫描范围：全库 PNG（含 N 个预留空分类 `X`）`）。
     注：文档重构后失效的旧格式（`N 个 PNG（N 个品牌目录 / N 个分类…）`）已删除，
     不恢复旧文案；预留分类变化时本行随 SSOT/文件系统实时更新。
-    返回未命中列表（非空 ⇒ 调用方以非 0 退出）。
+
+    2026-10-01 Phase 3 扩围：此前只有「扫描范围句」由本脚本生成，§6 现状表的
+    尺寸 / 模式分布 / 体积三行既不由脚本生成、也不被 CI 校验，于是长期停留在
+    293（实际 294）——一个没有事实源的数字。现在四行全部由磁盘实测推导：
+    数量来自 `icons/**/*.png` 枚举，色型来自 PNG IHDR color type 直读，
+    体积来自文件字节数。返回值按行分别报告，非空 ⇒ 调用方非 0 退出。
     """
     p = REPO / "docs/references/icon-quality-notes.md"
     if not p.exists():
         print("  · icon-quality-notes.md 不存在，跳过")
-        return ["icon-quality-notes 扫描范围句（文件不存在）"]
-    s = p.read_text()
+        return ["icon-quality-notes（文件不存在）"]
+    s = p.read_text(encoding="utf-8")
     old = s
+    files = sorted(ICONS.rglob("*.png"))
+    sizes = {f: f.stat().st_size for f in files}
+    n = len(files)
+    rgba = sum(1 for f in files if png_color_type(f) == 6)
+    total = sum(sizes.values())
+    big = max(files, key=lambda f: sizes[f]) if files else None
     ids = ''.join(' `%s`' % c for c in reserved_ids)
-    s, n = re.subn(
-        r'> 扫描范围：全库 PNG（含 \d+ 个预留空分类[^）]*）',
-        '> 扫描范围：全库 PNG（含 %d 个预留空分类%s）' % (len(reserved_ids), ids),
-        s,
-    )
+    subs = [
+        ("扫描范围句",
+         r'> 扫描范围：全库 PNG（含 \d+ 个预留空分类[^）]*）',
+         '> 扫描范围：全库 PNG（含 %d 个预留空分类%s）' % (len(reserved_ids), ids)),
+        ("尺寸行",
+         r'\*\*\d+ / \d+ = 512×512\*\*',
+         '**%d / %d = 512×512**' % (n, n)),
+        ("模式分布行",
+         r'RGBA \d+（其余色型 \d+）',
+         'RGBA %d（其余色型 %d）' % (rgba, n - rgba)),
+        ("体积行",
+         r'合计 ≈ [\d.]+ MB；平均 ≈ ?\d+ ?KB / 最大 ≈? ?\d+ ?KB（[\d,]+ B，`[^`]+`）',
+         '合计 ≈ %.1f MB；平均 ≈%.0fKB / 最大 %.0fKB（%s B，`%s`）' % (
+             total / 1e6,
+             (total / n / 1024.0) if n else 0.0,
+             (sizes[big] / 1024.0) if big else 0.0,
+             '{:,}'.format(sizes[big]) if big else '0',
+             big.relative_to(REPO).as_posix() if big else '')),
+    ]
+    missing = []
+    for label, pattern, repl in subs:
+        s, k = re.subn(pattern, lambda m, _r=repl: _r, s)
+        print(f"  {'✓' if k else '⚠'} icon-quality-notes {label}：命中 {k}")
+        if not k:
+            missing.append("icon-quality-notes %s" % label)
     if s != old:
-        p.write_text(s)
-    print(f"  {'✓' if n else '⚠'} icon-quality-notes 扫描范围句：命中 {n}")
-    return [] if n else ["icon-quality-notes 扫描范围句"]
+        p.write_text(s, encoding="utf-8")
+    return missing
 
 
 def main():

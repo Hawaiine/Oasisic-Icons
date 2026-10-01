@@ -9,10 +9,10 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 ```
 
 - 默认图标：`<品牌名>.png`，例如 `icons/Media/Netflix/Netflix.png`
-- 变体图标：命名规范保留 `<品牌名>NN.png`（两位零填充），但**当前不属于 canonical 资产模型**
-  （1 brand = 1 canonical asset = 1 surge 条目），因此**不会**进入 `config/surge-icon.json`。
-  品牌目录内出现非 canonical PNG 时，`scripts/generate-icon-json.sh` 会显式报错并退出非 0，
-  `ci-validate-icons.py` 第 8 组同样会拦截；启用变体属独立架构变更，需同步改生成器 / 校验器 / 本文档。
+- canonical-only：品牌目录内**只允许** `<品牌名>.png`（1 brand = 1 canonical asset = 1 surge 条目）。
+  出现任何第二个 PNG（`<品牌名>01.png` / `<品牌名>-dark.png` / 无关图片）时，`scripts/generate-icon-json.sh`
+  显式报错并退出非 0，`ci-validate-icons.py` 第 3 组（Naming）同样 FAIL；变体不是当前契约——
+  将来需要多风格须先立 variant schema，并同步改生成器 / 校验器 / 本文档 / README。
 
 ---
 

@@ -99,26 +99,27 @@
 - **形状**：圆角矩形（Apple 风格 squircle / 超椭圆），圆角半径 ≈ **115px**（约 22.4%，对齐 Apple iOS 图标视觉曲线），圆角外为透明
 - **背景**：**保留原始底色**（不做背景抠除，白色底图不得误杀成透明）
 - **模式**：**RGBA**（`scripts/optimize-icons.py` 重压缩时显式禁用降色型，仓库内全部为 RGBA）
-- **体积**：单文件 ≤ 300KB（实测均值见 §6 快照；`scripts/optimize-icons.py` 无损重压缩，**不做有损量化**）
+- **体积**：单文件 ≤ 300KB（实测合计/均值/最大值见 §6，该行由 `scripts/update-readme-badges.py` 生成并由 CI 第 19 组校验；`scripts/optimize-icons.py` 无损重压缩，**不做有损量化**）
+- **形状边界**：r=115 圆角**遮罩之外必须完全透明**（`outside_mask_alpha == 0`；唯一判据实现 `scripts/normalize-icons.py::outside_mask_alpha`）。CI 第 18 组逐图重算：越界即 FAIL，只有登记在 `config/icon-mask-exemptions.json` 的历史资产例外（登记值须等于实测值，修好后必须删除条目）
 
 ## 6. 现状（规范化后）
 
 | 项目 | 结果 |
 |------|------|
-| 尺寸 | **293 / 293 = 512×512**（已全量统一，2026-10-01 实测复扫） |
+| 尺寸 | **294 / 294 = 512×512**（已全量统一，2026-10-01 实测复扫） |
 | 圆角 | 统一 r=115px（≈22.4%，Apple squircle），四角透明（`alpha=0`） |
 | 用户手动更新的图标 | 新增图标（Qwen / Kimi / Manus / MiniMax / GLM 等）入库前须已合规 |
 | 规范化处理 | 历史 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
 | 窄条字标 | 曾对 4 个窄条字标素材由 `scripts/normalize-strips.py` 处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
-| 体积 | 合计 ≈ 16.4 MB；平均 ≈56KB / 最大 299KB（298,829 B，`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
-| 模式分布 | RGBA 293（其余色型 0） |
+| 体积 | 合计 ≈ 16.1 MB；平均 ≈54KB / 最大 292KB（298,829 B，`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
+| 模式分布 | RGBA 294（其余色型 0） |
 
 ## 7. 需要留意
 
 - `icons/Media/VideoMarket/VideoMarket.png`：字标在白色底块上对比度偏低（原始素材即浅灰字），如介意可从上游取新素材。
 - 部分图标由小尺寸上采样得到（原 144×144 / 108×108 → 512×512），在超大尺寸下会显得偏软。
   需要超清版本时应先替换源图（放入对应品牌目录的默认文件名），再运行规范化脚本。
-- 仓库**不做有损量化**（不改变任何图标的像素内容）：当前最大单文件 291KB（`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`），客户端按 URL 按需拉取，无实际负担。如需从源头减小体积，应替换为更小/更干净的源图后重跑 `scripts/normalize-icons.py`。
+- 仓库**不做有损量化**（不改变任何图标的像素内容）：最大单文件的实时体积见 §6 体积行（由脚本生成，不再在此处重复硬编码数字），客户端按 URL 按需拉取，无实际负担。如需从源头减小体积，应替换为更小/更干净的源图后重跑 `scripts/normalize-icons.py`。
 
 ## 8. 工具
 
@@ -127,7 +128,7 @@
 | `scripts/normalize-icons.py` | 按标准规范化：`--report` 查看待处理 / `--sheet out.png` 生成前后对比 / `--apply` 写入（幂等） |
 | `scripts/normalize-strips.py` | **LEGACY / MANUAL**：历史窄条字标素材专用（裁内容 + 对比色圆角底块）；**不属于当前 canonical 入库流水线**——CI 与生成器均无调用（2026-10-01 审计）；历史资产来源无法仅凭 PNG 反推，故不作「无历史关系」的断言 |
 | `scripts/optimize-icons.py` | pyoxipng 无损重压缩（`pip install pyoxipng`） |
-| `scripts/ci-validate-icons.py` | CI 校验：PNG 合法性、目录/命名规范、订阅 JSON 一致性 |
+| `scripts/ci-validate-icons.py` | CI 校验（19 组）：PNG 合法性、命名 canonical-only、目录/物理路径、SSOT/订阅 JSON/README 一致性、圆角遮罩边界、本文件统计行 |
 
 ## 9. 历史记录
 
@@ -137,6 +138,7 @@
 | 2026-09-17 | 结构重构（`<分类>/<品牌>/<品牌>.png` + 两位零填充变体），并把被误删的多版本变体从 `2e771d1` 恢复 |
 | 2026-09-18 | 规范化：全量统一 512×512 RGBA（圆角 r=115 (Apple squircle)），并做无损重压缩 |
 | 2026-09-19 | 规范升级：新增像素保真红线、禁止清单、自检流程；确立本仓库为独立最高上游 |
-| 2026-10-01 | 变体清理（PR #10 资产迁移，提交 `7d71a7b`）：全库移除 87 个多版本变体（39 个品牌），每个品牌只保留 `<品牌名>.png`；命名规范保留待后续重构后重新引入 |
+| 2026-10-01 | 变体清理（PR #10 资产迁移，提交 `7d71a7b`）：全库移除 87 个多版本变体（39 个品牌），每个品牌只保留 `<品牌名>.png` |
+| 2026-10-01 | Phase 3 契约收口：命名收紧为 canonical-only（生成器与 CI 第 3 组一致拒绝额外 PNG）、圆角遮罩边界入 CI（第 18 组 + `config/icon-mask-exemptions.json` 登记表）、本文件 §6 统计行纳入生成链与校验（第 19 组）、生成链 fail-fast 加固（SSOT/引擎/压缩失败不再静默） |
 
 本仓库为独立最高上游，所有图标已统一规范化；本文只记录处理方式。

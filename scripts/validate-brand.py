@@ -148,7 +148,9 @@ def validate_brand(entry, brands_doc, cats_doc, repo_root='.', include_engine=Tr
     #    icons/<category>/<中间父…>/<id>/<id>.png 也由此得到）
     #    资产模型（canonical ecosystem）：icon_status=pending 且无 icon_path 仅对
     #    ecosystem 根合法（无物理 leaf，不建目录）；generated_temporary 必须有
-    #    真实 icon_path；普通 canonical 品牌（product_brand 等）无图标一律 FAIL。
+    #    真实 icon_path；其余所有 entity_type（product_brand / country / system_icon /
+    #    tool_app / 非 pending 的 ecosystem）无图标一律 FAIL（2026-10-01 Phase 3：
+    #    删除历史 country 例外，与 ci-validate-icons.py 第 7 组保持一致）。
     _cand = dict(ssot)
     _cand[bid] = entry
     expected = expected_icon_path(bid, _cand)
@@ -164,7 +166,11 @@ def validate_brand(entry, brands_doc, cats_doc, repo_root='.', include_engine=Tr
     elif not icon:
         if et == 'ecosystem' and icon_status == 'generated_temporary':
             errors.append('icon_status=generated_temporary 必须携带真实 icon_path（生态根）: %s' % bid)
-        elif et != 'country':
+        else:
+            # canonical 契约统一（2026-10-01 Phase 3）：唯一豁免是 pending ecosystem
+            # （关系层节点，无物理 leaf）。历史 `country` 例外已删除——实测 21 个 country
+            # 条目全部带 icon_path、无数据依赖该例外、文档亦无该语义，且 CI 第 7 组
+            # 从不豁免 country（两处行为此前不一致）。
             errors.append('SSOT 条目缺 icon_path（不得无图标静默通过）: %s' % bid)
     if icon:
         if icon != expected:

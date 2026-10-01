@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "generated": false,
+  "note": "已知历史资产的显式豁免登记表（canonical 形状契约）。ci-validate-icons.py 第 18 组「Rounded mask 边界」据此判定：未登记的越界资产 = FAIL；登记值与实测不符 / 已合规 / 文件不存在 = FAIL。修复资产（重新规范化）后必须同步删除对应条目——本表不允许腐烂。数据来源：Phase 2 只读审计实测 + Phase 3 复核。",
+  "authority": "scripts/normalize-icons.py::outside_mask_alpha（唯一掩码实现）",
+  "exemptions": [
+    {
+      "path": "icons/Country/NorthKorea/NorthKorea.png",
+      "outside_mask_alpha": 88,
+      "reason": "历史资产：非 r=115 遮罩产物（Phase 2 审计量化 88 px 越界），需更换官方源图后重新规范化"
+    },
+    {
+      "path": "icons/System/Airport/Airport.png",
+      "outside_mask_alpha": 76,
+      "reason": "历史资产：非 r=115 遮罩产物（Phase 2 审计量化 76 px 越界），需更换官方源图后重新规范化"
+    },
+    {
+      "path": "icons/System/Blacklist/Blacklist.png",
+      "outside_mask_alpha": 640,
+      "reason": "历史资产：非 r=115 遮罩产物（Phase 2 审计量化 640 px 越界），需更换官方源图后重新规范化"
+    },
+    {
+      "path": "icons/System/Final/Final.png",
+      "outside_mask_alpha": 118,
+      "reason": "历史资产：非 r=115 遮罩产物（Phase 2 审计量化 118 px 越界），需更换官方源图后重新规范化"
+    },
+    {
+      "path": "icons/System/GeneralAI/GeneralAI.png",
+      "outside_mask_alpha": 20,
+      "reason": "历史资产：非 r=115 遮罩产物（Phase 2 审计量化 20 px 越界），需更换官方源图后重新规范化"
+    }
+  ]
+}

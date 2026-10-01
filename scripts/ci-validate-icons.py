@@ -4,8 +4,10 @@
 验证组（Validation Groups）：
   1. PNG integrity        文件可被 Pillow 正常解码
   2. Image spec           512×512、RGBA、四角 alpha=0（圆角卡样式图标要求）
-  3. Naming               默认图标 <品牌名>.png 存在；变体 <品牌名>NN.png 两位零填充；
-                          无 -1/-2/_1 旧式命名；无分类根目录扁平 png；品牌文件夹非空
+  3. Naming               canonical-only（2026-10-01 Phase 3 收紧）：品牌目录内**只允许**
+                          <品牌名>.png；其余任何 PNG（<品牌名>01.png / <品牌名>-dark.png /
+                          <品牌名>_1.png / 无关第二张图）一律 FAIL；无分类根目录扁平 png；
+                          品牌文件夹非空
   4. Category             icons/ 目录 ⊆ categories.json 白名单；active 分类在磁盘存在
   5. Canonical uniqueness 同一品牌名不得出现在两个分类
   6. SHA-256 uniqueness   图片内容相同即视为重复图标，直接失败
@@ -31,6 +33,17 @@
                           且标 generated: true + source=config/brands.json（不是第二个 SSOT）
  16. Review Queue         config/brand-review-queue.json 结构合法：状态 ∈ {OPEN, RESOLVED}，
                           issue_kind 合法，引用真实品牌 ID；不得用队列覆盖 SSOT
+ 17. 物理路径             递归多层嵌套一致性（expected_icon_path 与磁盘逐项一致）
+ 18. Rounded mask 边界    CLI 最终 PNG 在 r=115 圆角遮罩之外不得存在可见 alpha > 0
+                          （唯一可证伪判据；已知历史资产见 config/icon-mask-exemptions.json）
+ 19. Quality notes 统计   docs/references/icon-quality-notes.md §6 现状表数字与磁盘实测一致
+                          （PNG 数 / RGBA 数 / 体积 / 预留分类），与生成器同判据
+ 17. 物理路径             递归多层嵌套一致性（category / 中间父品牌 / canonical icon_path），
+                          且 docs/references/physical-hierarchy-audit.md 与重算逐字节一致
+ 18. Rounded mask 边界     最终 512×512 RGBA PNG 在 r=115 圆角遮罩之外不得存在可见 alpha > 0
+                          （唯一可证伪的形状判据，复用 scripts/normalize-icons.py）；
+                          已知历史资产必须在 config/icon-mask-exemptions.json 显式登记，
+                          登记值与实测不符 / 已合规 / 文件不存在一律 FAIL
 
 全部组 PASS 输出 'Validation Groups: N / All groups: PASS' 并以 exit 0 结束；
 任一组失败输出全部问题并以 exit 1 结束。
@@ -136,15 +149,16 @@ for brand_dir, pngs in brand_dirs.items():
     brand = brand_dir.name
     names = [f.name for f in pngs]
     if '%s.png' % brand not in names:
-        fail('Naming', '缺少默认图标 %s/%s.png' % (brand_dir, brand))
+        fail('Naming', '缺少 canonical 图标 %s/%s.png' % (brand_dir, brand))
     for name in names:
         if name == '%s.png' % brand:
             continue
-        if re.search(r'[-_]\d+\.png$', name):
-            fail('Naming', '旧式连字符/下划线变体命名: %s/%s' % (brand_dir, name))
-            continue
-        if not re.fullmatch(re.escape(brand) + r'\d{2}\.png', name):
-            fail('Naming', '变体命名不规范（应为 %s01.png 形式）: %s/%s' % (brand, brand_dir, name))
+        # canonical-only（2026-10-01 Phase 3）：品牌目录里除 <id>.png 之外不存在任何合法 PNG。
+        # 数字后缀（<id>01.png）/ 连字符与下划线（<id>-dark.png、<id>_1.png）/ 无关第二张图
+        # 一律 FAIL。变体不是当前契约：将来若需要多风格，必须先立正式 schema（见
+        # docs/references/brand-naming-contract.md），而不是让这里半开放地放行。
+        fail('Naming', '非 canonical PNG（品牌目录内只允许 %s.png）: %s/%s'
+             % (brand, brand_dir, name))
 
 # ---------- 4. Category 白名单 ----------
 cats = []
@@ -727,12 +741,150 @@ else:
     except Exception as _exc2:  # noqa: BLE001
         fail('物理路径', '无法校验 %s: %s' % (_PHA, str(_exc2)[:80]))
 
+# ---------- 18. Rounded mask 边界（canonical 形状契约，2026-10-01 Phase 3） ----------
+# 判据（唯一可证伪，且复用 scripts/normalize-icons.py —— 掩码逻辑的唯一来源）：
+#   最终 512×512 RGBA PNG：四角透明（第 2 组）且圆角遮罩之外不得存在可见 alpha > 0。
+# 注意：**不**声称能证明"原始制作半径"，该信息在 `alpha = alpha × mask` 时已被抹除。
+# 已知历史资产（Phase 2 审计量化）登记在 config/icon-mask-exemptions.json：
+#   - 违规但未登记 → FAIL；
+#   - 已登记但实测值不符 / 已合规 / 文件不存在 → FAIL（豁免必须与事实同步，不允许腐烂）。
+MASK_EXEMPT_PATH = Path('config/icon-mask-exemptions.json')
+_mask_mod = None
+try:
+    import importlib.util as _ilu3
+    _spec3 = _ilu3.spec_from_file_location('normalize_icons',
+                                           Path('scripts/normalize-icons.py'))
+    _mask_mod = _ilu3.module_from_spec(_spec3)
+    _spec3.loader.exec_module(_mask_mod)  # type: ignore[union-attr]
+    _MASK = _mask_mod.rounded_mask()
+except Exception as _exc3:  # noqa: BLE001  （numpy 缺失 / 模块不可加载都必须显式失败）
+    fail('Rounded mask 边界',
+         '无法加载 scripts/normalize-icons.py 的掩码实现（需要 numpy）: %s'
+         % str(_exc3)[:90])
+    _MASK = None
+
+if _MASK is not None and HAVE_PIL:
+    _exempt = {}
+    if not MASK_EXEMPT_PATH.exists():
+        fail('Rounded mask 边界', '缺少 %s（已知历史资产登记表；无豁免时为空 exemptions 数组）'
+             % MASK_EXEMPT_PATH)
+    else:
+        try:
+            _ex_doc = json.loads(MASK_EXEMPT_PATH.read_text(encoding='utf-8'))
+        except Exception as _exc4:  # noqa: BLE001
+            fail('Rounded mask 边界', '%s 无法解析: %s' % (MASK_EXEMPT_PATH, str(_exc4)[:80]))
+            _ex_doc = {}
+        if not isinstance(_ex_doc, dict) or not isinstance(_ex_doc.get('exemptions'), list):
+            fail('Rounded mask 边界', '%s 结构非法（应为 {exemptions: [...]}）' % MASK_EXEMPT_PATH)
+        else:
+            for _e in _ex_doc['exemptions']:
+                _rp = _e.get('path')
+                if not _rp:
+                    fail('Rounded mask 边界', '豁免条目缺少 path: %r' % _e)
+                    continue
+                if _rp in _exempt:
+                    fail('Rounded mask 边界', '豁免条目重复: %s' % _rp)
+                _exempt[_rp] = _e
+            for _rp in sorted(_exempt):
+                if not Path(_rp).exists():
+                    fail('Rounded mask 边界', '豁免条目指向不存在的文件: %s' % _rp)
+    for _p in all_pngs:
+        if _p.as_posix() in getattr(_mask_mod, 'SKIP_PATHS', ()):
+            continue
+        try:
+            with Image.open(_p) as _im:
+                _im.load()
+                if _im.size != (512, 512) or _im.mode != 'RGBA':
+                    continue          # 尺寸/模式问题由第 2 组报出
+                _n = _mask_mod.outside_mask_alpha(_im, _MASK)
+        except Exception as _exc5:  # noqa: BLE001
+            fail('Rounded mask 边界', '无法计算遮罩外 alpha: %s (%s)' % (_p, str(_exc5)[:60]))
+            continue
+        _rel = _p.as_posix()
+        _ex = _exempt.get(_rel)
+        if _n:
+            if _ex is None:
+                fail('Rounded mask 边界',
+                     '圆角遮罩外存在可见 alpha: %s（%d px）—— 需重新规范化'
+                     '（scripts/normalize-icons.py --apply）；若确为已知历史资产，'
+                     '须登记进 %s' % (_rel, _n, MASK_EXEMPT_PATH))
+            elif _ex.get('outside_mask_alpha') != _n:
+                fail('Rounded mask 边界',
+                     '豁免登记值与实测不符: %s（登记 %r / 实测 %d）'
+                     % (_rel, _ex.get('outside_mask_alpha'), _n))
+        elif _ex is not None:
+            fail('Rounded mask 边界',
+                 '豁免已失效（该图标现在合规）: %s —— 请从 %s 删除该条目'
+                 % (_rel, MASK_EXEMPT_PATH))
+
+# ---------- 19. Quality notes 统计（docs/references/icon-quality-notes.md） ----------
+# 背景（2026-10-01 Phase 3）：该文件 §6 现状表的数字此前既不由脚本生成、也不由 CI 校验，
+# 长期写着 293（实际 294）——典型的「无事实源统计」。现与 README 统计同标准：
+# 每个数字都必须能在 CI 中与磁盘实测证伪；判据与 update-readme-badges.py 完全一致
+# （PNG 枚举数量 / IHDR color type == 6 的 RGBA 数 / 文件字节数）。
+NOTES_PATH = Path('docs/references/icon-quality-notes.md')
+
+
+def _png_color_type(path):
+    """直读 PNG IHDR color type（无第三方依赖）：6 = RGBA（与生成器同一判据）。"""
+    with open(path, 'rb') as _fh:
+        _head = _fh.read(26)
+    if len(_head) != 26 or _head[12:16] != b'IHDR':
+        return None
+    return _head[25]
+
+
+if not NOTES_PATH.exists():
+    fail('Quality notes 统计', '缺少 %s' % NOTES_PATH)
+else:
+    _nt = NOTES_PATH.read_text(encoding='utf-8')
+    _nf = [p for p in all_pngs]
+    _n = len(_nf)
+    _sizes = {p: p.stat().st_size for p in _nf}
+    _rgba = sum(1 for p in _nf if _png_color_type(p) == 6)
+    _total = sum(_sizes.values())
+    _big = max(_nf, key=lambda p: _sizes[p]) if _nf else None
+    _cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8'))
+    _reserved = sorted(c['id'] for c in _cats_doc['categories'] if c.get('status') == 'reserved')
+    _checks = []
+    _m = re.search(r'> 扫描范围：全库 PNG（含 (\d+) 个预留空分类([^）]*)）', _nt)
+    if not _m:
+        fail('Quality notes 统计', '扫描范围句未找到')
+    else:
+        _ids = ''.join(' `%s`' % c for c in _reserved)
+        if int(_m.group(1)) != len(_reserved) or _m.group(2).strip() != _ids.strip():
+            fail('Quality notes 统计', '扫描范围句=%s 实际=%d 个预留空分类%s'
+                 % (_m.group(1), len(_reserved), _ids))
+    _m = re.search(r'\*\*(\d+) / (\d+) = 512×512\*\*', _nt)
+    if not _m:
+        fail('Quality notes 统计', '512×512 尺寸行未找到')
+    elif _m.group(1) != str(_n) or _m.group(2) != str(_n):
+        fail('Quality notes 统计', '尺寸行=%s/%s 实际=%d/%d' % (_m.group(1), _m.group(2), _n, _n))
+    _m = re.search(r'RGBA (\d+)（其余色型 (\d+)）', _nt)
+    if not _m:
+        fail('Quality notes 统计', '模式分布行未找到')
+    elif int(_m.group(1)) != _rgba or int(_m.group(2)) != (_n - _rgba):
+        fail('Quality notes 统计', '模式分布行=RGBA %s（其余 %s）实际=RGBA %d（其余 %d）'
+             % (_m.group(1), _m.group(2), _rgba, _n - _rgba))
+    _m = re.search(r'合计 ≈ ([\d.]+) MB；平均 ≈(\d+)KB / 最大 (\d+)KB（([\d,]+) B，`([^`]+)`）', _nt)
+    if not _m:
+        fail('Quality notes 统计', '体积行未找到（格式须为「合计 ≈ X MB；平均 ≈YKB / 最大 ZKB（N B，`path`）」）')
+    else:
+        _exp = ('%.1f' % (_total / 1e6), '%.0f' % ((_total / _n / 1024.0) if _n else 0.0),
+                '%.0f' % ((_sizes[_big] / 1024.0) if _big else 0.0),
+                '{:,}'.format(_sizes[_big]) if _big else '0',
+                _big.as_posix() if _big else '')
+        _got = (_m.group(1), _m.group(2), _m.group(3), _m.group(4), _m.group(5))
+        if _got != _exp:
+            fail('Quality notes 统计', '体积行=%s 实际=%s' % (str(_got), str(_exp)))
+
 # ---------- 结果：按验证组报告 ----------
 expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
                    'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
                    'Surge JSON', 'Glossary', 'Legacy paths',
                    'README 表格', '生态一致性', 'README 统计', 'README 父节点',
-                   '关系派生导出', 'Review Queue', '物理路径']
+                   '关系派生导出', 'Review Queue', '物理路径', 'Rounded mask 边界',
+                   'Quality notes 统计']
 any_fail = False
 print('Validation Groups: %d' % len(expected_groups))
 for g in expected_groups:

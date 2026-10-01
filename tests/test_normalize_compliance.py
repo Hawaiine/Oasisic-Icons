@@ -108,6 +108,19 @@ class CompliantDetectionTests(unittest.TestCase):
     def test_non_rgba_is_non_compliant(self):
         self.assertFalse(NZ.is_compliant(Image.new("RGB", (NZ.SIZE, NZ.SIZE), (1, 2, 3)), MASK))
 
+    def test_outside_mask_alpha_is_size_safe(self):
+        """非 512×512 输入返回 None（明确的"无法判定"），而不是抛底层广播异常。
+
+        2026-10-01 Phase 3：此前外边界的统计 helper 对整个数组做 mask 比较，
+        非 512 输入会抛 numpy broadcasting / ValueError，把「尺寸不合法」伪装成崩溃。
+        """
+        for size in ((256, 256), (512, 511), (1024, 1024)):
+            with self.subTest(size=size):
+                self.assertIsNone(NZ.outside_mask_alpha(Image.new("RGBA", size, (0, 0, 0, 255)), MASK))
+        # full_bleed 是「未套遮罩」的满幅图；套上遮罩后越界 alpha 必须为 0
+        self.assertEqual(NZ.outside_mask_alpha(apply_mask(full_bleed(), MASK), MASK), 0)
+        self.assertGreater(NZ.outside_mask_alpha(full_bleed(), MASK), 0)
+
 
 class IdempotencyTests(unittest.TestCase):
     def test_render_is_idempotent_on_masked_file(self):
