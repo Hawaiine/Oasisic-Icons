@@ -243,5 +243,73 @@ class AssetModelRegularBrandTests(unittest.TestCase):
                          'surge 条目数必须等于有 icon_path 的 SSOT 品牌数（pending 排除）')
 
 
+class AssetModelValidateBrandLayerTests(unittest.TestCase):
+    """scripts/validate-brand.py::validate_brand 同口径资产模型防护。"""
+
+    def setUp(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            'validate_brand_mod_am', REPO / 'scripts' / 'validate-brand.py')
+        self.VB = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.VB)  # type: ignore[union-attr]
+        self.brands_doc = json.loads(
+            (REPO / 'config' / 'brands.json').read_text(encoding='utf-8'))
+        self.cats_doc = json.loads(
+            (REPO / 'config' / 'categories.json').read_text(encoding='utf-8'))
+        # 造两个后代让新生态根满足 descendants ≥ 2
+        self.brands_doc['brands'].append({
+            'id': 'EcoChildA', 'display_name': 'EcoChildA', 'category': 'EcoZ',
+            'entity_type': 'product_brand', 'icon_path': 'icons/EcoZ/EcoChildA/EcoChildA.png',
+            'parent_brand': 'EcoZ'})
+        self.brands_doc['brands'].append({
+            'id': 'EcoChildB', 'display_name': 'EcoChildB', 'category': 'EcoZ',
+            'entity_type': 'product_brand', 'icon_path': 'icons/EcoZ/EcoChildB/EcoChildB.png',
+            'parent_brand': 'EcoZ'})
+        self.cats_doc['categories'].append({
+            'id': 'EcoZ', 'display_name': 'EcoZ', 'type': 'ecosystem', 'status': 'active'})
+
+    def _pending_entry(self, **kw):
+        e = {'id': 'EcoZ', 'display_name': 'EcoZ', 'category': 'EcoZ',
+             'entity_type': 'ecosystem', 'canonical': True, 'icon_status': 'pending'}
+        e.update(kw)
+        return e
+
+    def test_pending_ecosystem_without_icon_passes_validate_brand(self):
+        res = self.VB.validate_brand(self._pending_entry(), self.brands_doc, self.cats_doc, REPO)
+        self.assertEqual(res['errors'], [], res['errors'])
+
+    def test_pending_ecosystem_without_canonical_fails(self):
+        e = self._pending_entry(canonical=False)
+        res = self.VB.validate_brand(e, self.brands_doc, self.cats_doc, REPO)
+        self.assertTrue(any('canonical' in x for x in res['errors']), res['errors'])
+
+    def test_generated_temporary_without_icon_fails_validate_brand(self):
+        e = self._pending_entry(icon_status='generated_temporary')
+        res = self.VB.validate_brand(e, self.brands_doc, self.cats_doc, REPO)
+        self.assertTrue(any('generated_temporary' in x and 'icon_path' in x for x in res['errors']),
+                        res['errors'])
+
+    def test_regular_brand_without_icon_fails_validate_brand(self):
+        """普通 canonical 品牌不得无 icon 静默通过（CI 第 7 组同口径）。"""
+        e = {'id': 'PlainNew', 'display_name': 'PlainNew', 'category': 'EcoZ',
+             'entity_type': 'product_brand', 'parent_brand': 'EcoZ'}
+        res = self.VB.validate_brand(e, self.brands_doc, self.cats_doc, REPO)
+        self.assertTrue(any('缺 icon_path' in x for x in res['errors']), res['errors'])
+
+    def test_generated_temporary_with_real_icon_passes(self):
+        import shutil
+        import tempfile
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            # 复用 test_brand_registration 的最小合法 PNG 生成器
+            from test_brand_registration import _blank_png
+            _blank_png(root / 'icons/EcoZ/EcoZ/EcoZ.png', seed=42)
+            e = self._pending_entry(icon_status='generated_temporary',
+                                    icon_path='icons/EcoZ/EcoZ/EcoZ.png')
+            res = self.VB.validate_brand(e, self.brands_doc, self.cats_doc, root)
+            self.assertEqual(res['errors'], [], res['errors'])
+            shutil.rmtree(root, ignore_errors=True)
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
