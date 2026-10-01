@@ -17,8 +17,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install Pillow
-        run: pip install Pillow
+      - name: Install Pillow + numpy
+        # numpy 是 scripts/normalize-icons.py（被测模块）的运行依赖；
+        # 其契约测试 tests/test_normalize_compliance.py 会 import 该模块。
+        run: pip install Pillow numpy
 
       - name: Validate Oasisic-Icons repository
         run: python3 scripts/ci-validate-icons.py
