@@ -121,6 +121,14 @@
       "parent_brand": "Alibaba"
     },
     {
+      "id": "AliyunDrive",
+      "display_name": "阿里云盘",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Alibaba/AliyunDrive/AliyunDrive.png",
+      "parent_brand": "Alibaba"
+    },
+    {
       "id": "Qwen",
       "display_name": "通义千问",
       "category": "Alibaba",

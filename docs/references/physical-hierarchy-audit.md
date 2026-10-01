@@ -81,7 +81,7 @@ cross-category 关系共 **3** 条。
 
 | Ecosystem | Logical Root | Has Icon | Category | Canonical Descendants | Status |
 |:---|:---|:---|:---|:---|:---|
-| `Alibaba` | `Alibaba` | YES | `Alibaba` | 7 | Ecosystem |
+| `Alibaba` | `Alibaba` | YES | `Alibaba` | 8 | Ecosystem |
 | `Amazon` | `Amazon` | YES | `Amazon` | 5 | Ecosystem |
 | `Apple` | `Apple` | YES | `Apple` | 12 | Ecosystem |
 | `Baidu` | `Baidu` | YES | `Baidu` | 3 | Ecosystem |
@@ -103,7 +103,7 @@ cross-category 关系共 **3** 条。
 
 ## 6. 统计
 
-- canonical product brands：**235**
+- canonical product brands：**236**
 - canonical ecosystem entities：**1**
 - 物理父品牌节点：**26**
 - 深层嵌套品牌（路径 ≥ 5 段）：**7**

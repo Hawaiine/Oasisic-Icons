@@ -1,6 +1,6 @@
 # 品牌术语表 / Brand Glossary
 > 本文件由 `config/brands.json` 派生（CI 校验一致性）。
-> 共 **294** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
+> 共 **295** 个品牌 / 文件夹标识。Technical ID 为目录名；Display Name 为官方真实品牌名。
 
 ## #
 
@@ -25,6 +25,7 @@
 | AliPay | 支付宝 |
 | Alibaba | Alibaba |
 | AlibabaCloud | 阿里云 |
+| AliyunDrive | 阿里云盘 |
 | Amazon | Amazon |
 | AmazonAlexa | Amazon Alexa |
 | AmazonMusic | Amazon Music |

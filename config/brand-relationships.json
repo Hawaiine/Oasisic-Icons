@@ -325,6 +325,25 @@
       "physical_parent": null
     },
     {
+      "child": "AliyunDrive",
+      "display_name": "阿里云盘",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "parent": "Alibaba",
+      "ancestor_chain": [
+        "Alibaba"
+      ],
+      "graph_root": "Alibaba",
+      "ecosystem_root": "Alibaba",
+      "is_graph_root": false,
+      "is_ecosystem_root": false,
+      "icon_path": "icons/Alibaba/AliyunDrive/AliyunDrive.png",
+      "icon_status": "official",
+      "canonical": true,
+      "physical_path": "icons/Alibaba/AliyunDrive/AliyunDrive.png",
+      "physical_parent": null
+    },
+    {
       "child": "Amazon",
       "display_name": "Amazon",
       "category": "Amazon",
