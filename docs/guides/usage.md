@@ -33,7 +33,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/config/surge-icon.
 [Proxy Group]
 Netflix = select, HK, TW, JP, SG, icon-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
 
-Telegram = select, SG, JP, US, HK, icon-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram/Telegram.png
+Telegram = select, SG, JP, US, HK, icon-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Communication/Telegram/Telegram.png
 ```
 
 ## Clash Meta / Mihomo
@@ -50,7 +50,7 @@ proxy-groups:
   - name: Telegram
     type: select
     proxies: [SG, JP, US]
-    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram/Telegram.png
+    icon: https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Communication/Telegram/Telegram.png
 ```
 
 ## Loon
@@ -61,7 +61,7 @@ proxy-groups:
 [Proxy Group]
 Netflix = select, HK, TW, JP, SG, img-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
 
-Telegram = select, SG, JP, US, HK, img-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram/Telegram.png
+Telegram = select, SG, JP, US, HK, img-url = https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Communication/Telegram/Telegram.png
 ```
 
 ## Quantumult X
@@ -69,7 +69,7 @@ Telegram = select, SG, JP, US, HK, img-url = https://raw.githubusercontent.com/H
 ```ini
 [policy]
 static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
-static=Telegram, SG, JP, US, HK, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Social/Telegram/Telegram.png
+static=Telegram, SG, JP, US, HK, img-url=https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Communication/Telegram/Telegram.png
 ```
 
 > 图标 URL 只应出现在 `[policy]` 段，不要使用「URL 重写 / MITM 劫持」的写法。

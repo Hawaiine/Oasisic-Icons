@@ -79,7 +79,7 @@ icons/
 
 1. **每个品牌必须有独立文件夹**，即使目前只有一个图标。
 2. **默认图标永远命名为 `<品牌名>.png`**（无任何后缀），且必须存在。
-3. **一个品牌当前只包含一个 PNG**：多版本变体已在 2026-09-29 全库移除（待后续统一重构后再引入）；命名规范保留 `<品牌名>NN.png`（两位零填充）供未来使用。
+3. **一个品牌当前只包含一个 PNG**：多版本变体已在 2026-10-01 全库移除（待后续统一重构后再引入）；命名规范保留 `<品牌名>NN.png`（两位零填充）供未来使用。
 4. **品牌名使用 PascalCase**，尽量与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules/tree/main/ruleset) 的品牌名保持一致。
    - 例外：**官方品牌名的大小写优先**，保留官方写法的目录有 `iQIYI`、`friDayVideo`、`myTVSUPER` 等；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
 5. **特殊字符处理**：`+` → `Plus`（例如 `DisneyPlus`）。
@@ -117,7 +117,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/[<�
 https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Media/Netflix/Netflix.png
 
 # 单文件品牌
-https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Development/GitHub/GitHub.png
+https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Microsoft/GitHub/GitHub.png
 ```
 
 > 本仓库只提供 `raw.githubusercontent.com` 直链，**不使用 jsDelivr 等 CDN**。
@@ -275,7 +275,6 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
 - 新增 Alibaba AI 产品 → `Alibaba/<Brand>/`（AI 属性写 tags）
 - 品牌被收购 → 先查**当前**官方状态，再决定生态归属；历史收购关系不等于当前归属
 - 品牌脱离母公司 → 按当前独立状态归回功能分类
-（仅保留目录与 README），便于后续按同一规范补充图标。
 
 ---
 
