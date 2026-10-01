@@ -10,13 +10,14 @@ Parent:       —
 Graph Root:   Alibaba
 Ecosystem Root: Alibaba
 Ancestor Chain: Alibaba
-Direct Children: 7
+Direct Children: 8
 ```
 
 | Child | Display Name |
 |:---|:---|
-| `AliCloud` | 阿里云 |
 | `AliPay` | 支付宝 |
+| `AlibabaCloud` | 阿里云 |
+| `AliyunDrive` | 阿里云盘 |
 | `DingTalk` | 钉钉 |
 | `Quark` | 夸克 |
 | `Qwen` | 通义千问 |

@@ -98,14 +98,6 @@
       "parent_brand": "Quora"
     },
     {
-      "id": "AliCloud",
-      "display_name": "阿里云",
-      "category": "Alibaba",
-      "entity_type": "product_brand",
-      "icon_path": "icons/Alibaba/AliCloud/AliCloud.png",
-      "parent_brand": "Alibaba"
-    },
-    {
       "id": "AliPay",
       "display_name": "支付宝",
       "category": "Alibaba",
@@ -119,6 +111,22 @@
       "category": "Alibaba",
       "entity_type": "ecosystem",
       "icon_path": "icons/Alibaba/Alibaba/Alibaba.png"
+    },
+    {
+      "id": "AlibabaCloud",
+      "display_name": "阿里云",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Alibaba/AlibabaCloud/AlibabaCloud.png",
+      "parent_brand": "Alibaba"
+    },
+    {
+      "id": "AliyunDrive",
+      "display_name": "阿里云盘",
+      "category": "Alibaba",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Alibaba/AliyunDrive/AliyunDrive.png",
+      "parent_brand": "Alibaba"
     },
     {
       "id": "Qwen",
@@ -2017,6 +2025,14 @@
       "category": "Tencent",
       "entity_type": "ecosystem",
       "icon_path": "icons/Tencent/Tencent/Tencent.png"
+    },
+    {
+      "id": "TencentCloud",
+      "display_name": "腾讯云",
+      "category": "Tencent",
+      "entity_type": "product_brand",
+      "icon_path": "icons/Tencent/TencentCloud/TencentCloud.png",
+      "parent_brand": "Tencent"
     },
     {
       "id": "TencentVideo",

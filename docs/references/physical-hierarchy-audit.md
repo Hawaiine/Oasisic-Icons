@@ -81,7 +81,7 @@ cross-category 关系共 **3** 条。
 
 | Ecosystem | Logical Root | Has Icon | Category | Canonical Descendants | Status |
 |:---|:---|:---|:---|:---|:---|
-| `Alibaba` | `Alibaba` | YES | `Alibaba` | 7 | Ecosystem |
+| `Alibaba` | `Alibaba` | YES | `Alibaba` | 8 | Ecosystem |
 | `Amazon` | `Amazon` | YES | `Amazon` | 5 | Ecosystem |
 | `Apple` | `Apple` | YES | `Apple` | 12 | Ecosystem |
 | `Baidu` | `Baidu` | YES | `Baidu` | 3 | Ecosystem |
@@ -96,14 +96,14 @@ cross-category 关系共 **3** 条。
 | `PCCW` | `PCCW` | YES | `PCCW` | 2 | Ecosystem |
 | `SONY` | `SONY` | YES | `SONY` | 3 | Ecosystem |
 | `SpaceXAI` | `SpaceXAI` | YES | `SpaceXAI` | 3 | Ecosystem |
-| `Tencent` | `Tencent` | YES | `Tencent` | 6 | Ecosystem |
+| `Tencent` | `Tencent` | YES | `Tencent` | 7 | Ecosystem |
 | `WarnerBrosDiscovery` | `WarnerBrosDiscovery` | YES | `WarnerBrosDiscovery` | 2 | Ecosystem |
 
 生态分类共 **17** 个；其中无根图标（PENDING，登记白名单）**0** 个。
 
 ## 6. 统计
 
-- canonical product brands：**234**
+- canonical product brands：**236**
 - canonical ecosystem entities：**1**
 - 物理父品牌节点：**26**
 - 深层嵌套品牌（路径 ≥ 5 段）：**7**
