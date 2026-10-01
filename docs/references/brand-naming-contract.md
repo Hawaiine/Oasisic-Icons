@@ -43,7 +43,7 @@ icons/<category>/<中间父…>/<id>/<id>.png           同类中间父品牌下
 
 - `brands.json.icon_path` 必须等于该解析器的输出（CI 第 7/17 组拦截手写路径），
   Surge / Glossary / README / 生成器全部跟随，不得另写第二套路径规则；
-- 多层嵌套可继续加深（`icons/R/A/B/C/C.png`），不设层数上限；
+- 多层嵌套可继续加深（`icons/<category>/<a>/<b>/<brand>/<brand>.png`），不设层数上限；
 - 物理路径变化**不是** brand rename（§22）：`icons/Google/YouTubeMusic/…` →
   `icons/Google/YouTube/YouTubeMusic/…` 属 physical restructure，ID / display_name 不变；
 - 全库矩阵（多层关系 / cross-category / 无图标母公司 / 生态）见

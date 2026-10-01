@@ -23,5 +23,8 @@ jobs:
       - name: Validate Oasisic-Icons repository
         run: python3 scripts/ci-validate-icons.py
 
+      - name: Validate documentation icon references
+        run: python3 scripts/ci-validate-docs.py
+
       - name: Run brand relationship tests
         run: python3 -m unittest discover -s tests -v
