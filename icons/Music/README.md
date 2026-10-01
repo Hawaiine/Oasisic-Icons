@@ -1,6 +1,6 @@
 # 🎵 Music / 音乐服务
 
-> 共 **12** 个图标，**12** 个品牌
+> 共 **10** 个图标，**10** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -9,10 +9,8 @@
 | `MusicBrainz` | `MusicBrainz.png` |
 | `MusicJapan` | `MusicJapan.png` |
 | `Musixmatch` | `Musixmatch.png` |
-| `NetEaseCloudMusic` | `NetEaseCloudMusic.png` |
 | `Pandora` | `Pandora.png` |
 | `Qobuz` | `Qobuz.png` |
 | `SoundCloud` | `SoundCloud.png` |
 | `Spotify` | `Spotify.png` |
 | `TIDAL` | `TIDAL.png` |
-| `mora` | `mora.png` |

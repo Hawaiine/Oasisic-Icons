@@ -4,48 +4,34 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 
-BASE_URL="https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main"
-ICONS_DIR="icons"
-OUTPUT="config/surge-icon.json"
-
-python3 -c "
-import json, os
+python3 - <<'PY'
+import json
 from pathlib import Path
 
-icons_dir = Path('$ICONS_DIR')
-base_url = '$BASE_URL'
-output = '$OUTPUT'
+base_url = 'https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main'
+output = Path('config/surge-icon.json')
+brands = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))['brands']
 
 entries = []
-for cat_dir in sorted(icons_dir.iterdir()):
-    if not cat_dir.is_dir():
+for brand in sorted(brands, key=lambda e: (e.get('category', ''), e.get('id', ''))):
+    icon_path = brand.get('icon_path')
+    if not icon_path:
+        # A pending/generated ecosystem without an asset has no URL entry.
         continue
-    category = cat_dir.name
-    for brand_dir in sorted(cat_dir.iterdir()):
-        if not brand_dir.is_dir():
-            continue
-        brand = brand_dir.name
-        for png_file in sorted(brand_dir.glob('*.png')):
-            name = png_file.stem
-            url = f'{base_url}/{icons_dir.name}/{category}/{brand}/{png_file.name}'
-            entries.append({
-                'name': name,
-                'category': category,
-                'url': url,
-            })
+    directory = Path(icon_path).parent
+    for png_file in sorted(directory.glob('*.png')):
+        entries.append({
+            'name': png_file.stem,
+            'category': brand['category'],
+            'url': f'{base_url}/{directory.as_posix()}/{png_file.name}',
+        })
 
-# 按 (category, name) 稳定排序
 entries.sort(key=lambda e: (e['category'], e['name']))
-
 result = {
     'name': 'Oasisic-Icons',
     'description': 'Cross-platform Proxy Policy Group Icons / 跨平台代理策略组图标合集',
     'icons': entries,
 }
-
-with open(output, 'w', encoding='utf-8') as f:
-    json.dump(result, f, indent=2, ensure_ascii=False)
-    f.write('\n')
-
+output.write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
 print(f'✓ 已生成 {output} ({len(entries)} 个图标)')
-"
+PY

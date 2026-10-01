@@ -24,3 +24,7 @@ tmp/
 temp/
 *.bak
 *.tmp
+
+# Python bytecode cache（CI 运行校验脚本时生成）
+__pycache__/
+*.pyc

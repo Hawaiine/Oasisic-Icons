@@ -1,7 +1,7 @@
 # 上游来源参考 / Upstream Sources Reference
 
-> **重要声明**：本文档仅作历史追溯与素材来源记录，**不构成任何同步承诺**。  
-> Oasisic-Icons 现已确立为**独立最高上游**，不再自动同步任何外部图标库。  
+> **重要声明**：本文档仅作历史追溯与素材来源记录，**不构成任何同步承诺**。
+> Oasisic-Icons 现已确立为**独立最高上游**，不再自动同步任何外部图标库。
 > 如需新增/替换图标，请直接提交 PR 到本仓库，并遵循 `README.md` 与 `docs/references/icon-quality-notes.md` 的规范。
 
 ---
@@ -80,7 +80,8 @@
 | 2026-09-19 | 确立本仓库为独立最高上游；删除 `config/icon-mapping.json`、`scripts/sync-upstream.sh`、`.github/workflows/daily-sync.yml` | **停止自动同步** |
 | 2026-09-19 | 圆角半径从 r=99 更新为 r=115（Apple squircle ≈22.4%），对齐 iOS 图标视觉曲线 | 规范细化 |
 | 2026-09-19 | 规范文档全面升级：新增「强制输出规范」「像素保真红线」「禁止清单」「自检流程」 | 规范文档化 |
-| 2026-09-19 | README「自动化同步说明」改为「发布与使用」；新增 `docs/references/upstream-history.md` 和 `docs/references/brand-glossary.md` | 文档独立化 |
+| 2026-09-19 | README「自动化同步说明」改为「发布与使用」；新增 `docs/references/upstream-history.md` 和 `docs/references/brand-glossary.md` | 文档独立化 || 2026-09-30 | 全库 289 品牌归属审计：新建 7 个生态分类（Disney / NBCUniversal / WarnerBrosDiscovery / ChinaMobile / SONY / PCCW / xAI），25 个 Canonical 迁移（R100），新建 5 个生态根图标，补全 58 项 parent_brand 关系，新增 `docs/references/brand-ownership-audit.md` | 归属完整性 |
+
 
 ---
 
@@ -102,6 +103,9 @@
 | brandmark.io | 官方 logo 下载 | 仅用于缺失品牌的兜底 |
 | simple-icons | 矢量图标补充 | 矢量图转 PNG 后规范化 |
 | 用户贡献 PR | 社区素材 | 直接提交到本仓库 |
+| 2026-10-01 | 修正最终品牌树：恢复 `SpaceXAI ├── X └── xAI └── Grok`（xAI 恢复 canonical + 历史图标 R100 迁回、Grok 直接父改 xAI、X 归 SpaceXAI）；SpaceXAI 作为正式 canonical ecosystem SSOT 节点（根图标待官方标志，icon_status=pending + Review Queue）；legacy map 重设计（canonical ≠ legacy）；evidence 层降级为辅助审计；新增 `validate-brand.py`、`export-brand-relationships.py` → `config/brand-relationships.json`、`config/brand-review-queue.json`；CI 14 → 16 组 | 关系 SSOT 收口与自动化 |
+| 2026-10-01（第二轮收口） | 一致性收口：SpaceXAI 官方根图标落库（官方 Brand Guidelines 资产包 `https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` → `spacexai - symbol - black - squared.png`，按 512×512 RGBA squircle 容器规范处理，`icon_status=official`，Review Queue 对应项 RESOLVED）；统计口径显式化（SSOT entities / canonical / icon-backed / PNG / pending no-icon / categories / ecosystems）并由 CI 第 13 组逐项校验；修正 README 中「生态 16 个」「SpaceXAI 无 entity_type 条目」等旧文；新增仓库级 `AGENTS.md`；**移除 parent-edge-evidence 层**（config/parent-edge-evidence.json、scripts/gen-parent-edge-evidence.py、docs/references/parent-edge-semantic-audit.md）——评估结论：无真实消费者（CI / 生成器 / resolver / 下游均不依赖）、非 SSOT、117 条中 0 条带 source.url、分级为人工审计文字的关键词 triage，仅保留本历史说明 | 最终一致性与规范固化 |
+| 2026-10-01 | 物理层级统一：新增统一路径解析器 `expected_icon_path()`（多层嵌套 `icons/<category>/<中间父…>/<id>/<id>.png`），7 条多层关系 `git mv` R100 迁移；正式 ecosystem SSOT 的 pending icon 状态与逻辑根解析；CI 17 组（Naming 递归扫描 + 新增「物理路径」组）；生成器改为 SSOT 驱动（surge / README 统计 / 分类与父品牌 README 不再按一级目录遍历）；新增 `scripts/gen-physical-hierarchy-audit.py` → `docs/references/physical-hierarchy-audit.md` | 物理层级与路径派生 |
 
 ### 4.3 不再维护的映射关系
 
@@ -119,10 +123,11 @@
 - `docs/references/icon-quality-notes.md` — 画质规范、规范化结果、遗留项说明
 - `docs/references/icon-research.md` — 品牌分类体系、策略组命名、常见图标来源（中英对照）
 - `docs/references/brand-glossary.md` — 品牌文件夹名 ↔ 中文显示名对照表
+- `docs/references/brand-ownership-audit.md` — 全库品牌归属审计（母公司/合资/退役/特殊实体 + 证据）
 - `scripts/normalize-icons.py` — 规范化脚本（512×512 / RGBA / r=115）
 - `scripts/optimize-icons.py` — 无损重压缩脚本（不降色型）
 
 ---
 
-**最后更新**：2026-09-19  
+**最后更新**：2026-09-30
 **维护者**：Hawaiine / Oasisic-Icons Contributors

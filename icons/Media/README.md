@@ -1,6 +1,6 @@
 # 🎬 Media / 影音流媒体与视频
 
-> 共 **70** 个图标，**68** 个品牌
+> 共 **55** 个图标，**55** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
@@ -9,22 +9,17 @@
 | `BBC` | `BBC.png` |
 | `Bahamut` | `Bahamut.png` |
 | `Bangumi` | `Bangumi.png` |
-| `CATCHPLAY` | `CATCHPLAY.png` |
-| `Crunchyroll` | `Crunchyroll.png` |
+| `CATCHPLAYPlus` | `CATCHPLAYPlus.png` |
 | `DAZN` | `DAZN.png` |
 | `DMMTV` | `DMMTV.png` |
-| `DisneyPlus` | `DisneyPlus.png` |
-| `ESPN` | `ESPN.png` |
 | `Emby` | `Emby.png` |
-| `F1TV` | `F1TV.png F1TV01.png` |
+| `F1TV` | `F1TV.png` |
 | `Fan` | `Fan.png` |
 | `Fileball` | `Fileball.png` |
 | `FujiTV` | `FujiTV.png` |
-| `HBOMax` | `HBOMax.png HBOMax01.png` |
 | `HOYTV` | `HOYTV.png` |
 | `HamiVideo` | `HamiVideo.png` |
 | `Hanxiaoquan` | `Hanxiaoquan.png` |
-| `Hulu` | `Hulu.png` |
 | `Infuse` | `Infuse.png` |
 | `Jellyfin` | `Jellyfin.png` |
 | `JioHotstar` | `JioHotstar.png` |
@@ -34,18 +29,13 @@
 | `Lemino` | `Lemino.png` |
 | `LiTV` | `LiTV.png` |
 | `MangoTV` | `MangoTV.png` |
-| `Migu` | `Migu.png` |
 | `MyVideo` | `MyVideo.png` |
 | `NBA` | `NBA.png` |
-| `NBC` | `NBC.png` |
 | `NHK` | `NHK.png` |
 | `Netflix` | `Netflix.png` |
 | `Niconico` | `Niconico.png` |
-| `NowE` | `NowE.png` |
 | `ParamountPlus` | `ParamountPlus.png` |
-| `PeacockTV` | `PeacockTV.png` |
 | `Plex` | `Plex.png` |
-| `Podcasts` | `Podcasts.png` |
 | `Radiko` | `Radiko.png` |
 | `RakutenTV` | `RakutenTV.png` |
 | `ReadJapan` | `ReadJapan.png` |
@@ -62,13 +52,10 @@
 | `UNEXT` | `UNEXT.png` |
 | `VideoMarket` | `VideoMarket.png` |
 | `Vimeo` | `Vimeo.png` |
-| `Viu` | `Viu.png` |
 | `WOWOW` | `WOWOW.png` |
 | `Wallpaper` | `Wallpaper.png` |
-| `Youku` | `Youku.png` |
+| `Xiaoyuzhou` | `Xiaoyuzhou.png` |
 | `bilibili` | `bilibili.png` |
 | `dAnimeStore` | `dAnimeStore.png` |
-| `discoveryPlus` | `discoveryPlus.png` |
 | `friDayVideo` | `friDayVideo.png` |
-| `iQIYI` | `iQIYI.png` |
 | `myTVSUPER` | `myTVSUPER.png` |

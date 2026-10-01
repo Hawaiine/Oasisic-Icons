@@ -1,27 +1,27 @@
 # 🌍 Country / 国家与地区旗帜
 
-> 共 **49** 个图标，**21** 个品牌
+> 共 **21** 个图标，**21** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `Argentina` | `Argentina.png Argentina01.png` |
-| `Australia` | `Australia.png Australia01.png` |
-| `CN-Taiwan` | `CN-Taiwan.png CN-Taiwan01.png` |
+| `Argentina` | `Argentina.png` |
+| `Australia` | `Australia.png` |
+| `CN-Taiwan` | `CN-Taiwan.png` |
 | `Canada` | `Canada.png` |
-| `China` | `China.png China01.png` |
+| `China` | `China.png` |
 | `Egypt` | `Egypt.png` |
-| `Germany` | `Germany.png Germany01.png` |
-| `HongKong` | `HongKong.png HongKong01.png HongKong02.png HongKong03.png` |
-| `India` | `India.png India01.png` |
-| `Japan` | `Japan.png Japan01.png Japan02.png Japan03.png` |
-| `Korea` | `Korea.png Korea01.png` |
-| `Netherlands` | `Netherlands.png Netherlands01.png` |
-| `Nigeria` | `Nigeria.png Nigeria01.png` |
-| `NorthKorea` | `NorthKorea.png NorthKorea01.png` |
-| `Poland` | `Poland.png Poland01.png` |
-| `Singapore` | `Singapore.png Singapore01.png Singapore02.png` |
-| `Spain` | `Spain.png Spain01.png` |
-| `Thailand` | `Thailand.png Thailand01.png` |
-| `Turkey` | `Turkey.png Turkey01.png Turkey02.png Turkey03.png` |
-| `UK` | `UK.png UK01.png UK02.png` |
-| `US` | `US.png US01.png US02.png` |
+| `Germany` | `Germany.png` |
+| `HongKong` | `HongKong.png` |
+| `India` | `India.png` |
+| `Japan` | `Japan.png` |
+| `Korea` | `Korea.png` |
+| `Netherlands` | `Netherlands.png` |
+| `Nigeria` | `Nigeria.png` |
+| `NorthKorea` | `NorthKorea.png` |
+| `Poland` | `Poland.png` |
+| `Singapore` | `Singapore.png` |
+| `Spain` | `Spain.png` |
+| `Thailand` | `Thailand.png` |
+| `Turkey` | `Turkey.png` |
+| `UK` | `UK.png` |
+| `US` | `US.png` |

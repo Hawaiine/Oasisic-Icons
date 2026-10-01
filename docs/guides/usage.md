@@ -9,7 +9,7 @@ https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/<分类>/<�
 ```
 
 - 默认图标：`<品牌名>.png`，例如 `icons/Media/Netflix/Netflix.png`
-- 变体图标：`<品牌名>01.png`、`<品牌名>02.png`…，例如 `icons/Country/Japan/Japan01.png`
+- 变体图标（当前全库未使用）：`<品牌名>01.png`、`<品牌名>02.png`…，命名规范保留供后续使用
 
 ---
 

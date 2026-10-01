@@ -1,14 +1,31 @@
 # 🪟 Microsoft / 微软服务与生态
 
-> 共 **11** 个图标，**8** 个品牌
+> 共 **10** 个图标，**10** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
 | `Azure` | `Azure.png` |
 | `Bing` | `Bing.png` |
 | `Copilot` | `Copilot.png` |
-| `Microsoft` | `Microsoft.png Microsoft01.png Microsoft02.png Microsoft03.png` |
+| `GitHub` | `GitHub.png` |
+| `LinkedIn` | `LinkedIn.png` |
+| `Microsoft` | `Microsoft.png` |
 | `MicrosoftStore` | `MicrosoftStore.png` |
 | `OneDrive` | `OneDrive.png` |
 | `Outlook` | `Outlook.png` |
 | `Xbox` | `Xbox.png` |
+
+<!-- generated: ecosystem-tree (scripts/generate-category-readmes.sh) -->
+
+```text
+Microsoft
+├── Azure
+├── Bing
+├── Copilot
+├── GitHub
+├── LinkedIn
+├── MicrosoftStore
+├── OneDrive
+├── Outlook
+└── Xbox
+```
