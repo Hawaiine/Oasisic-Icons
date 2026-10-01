@@ -1,0 +1,2285 @@
+{
+  "schema_version": 3,
+  "generated_by": "scripts/gen-parent-edge-evidence.py",
+  "role": "supporting_evidence_layer",
+  "is_ssot": false,
+  "blocking": false,
+  "description": "Structured relation-type evidence for every live config/brands.json parent_brand edge. Supporting audit/review context only: it is not an SSOT, does not decide parent_brand, and is not a merge blocker.",
+  "capability_boundary": "Evidence-text triage derived from the brand-ownership-audit.md research summary. It is NOT real-world relationship proof and does not independently re-verify any primary source.",
+  "self_reference_risk": "Evidence quotes originate from a human research summary, so the classifier cannot validate that summary. Removing this risk requires a recorded source.url plus human review per edge; currently 0/117 edges carry a source URL.",
+  "relation_types": [
+    "BRAND_HIERARCHY",
+    "CORPORATE_OWNERSHIP",
+    "DEVELOPER_PROVIDER",
+    "PLATFORM_INTEGRATION",
+    "UNKNOWN"
+  ],
+  "validity_values": [
+    "CONFIRMED",
+    "OPEN_REVIEW",
+    "REJECTED"
+  ],
+  "decision_rules": [
+    {
+      "rule": "R1_GENERIC_RESTATEMENT",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "condition": "evidence is the generic restatement '既有 parent_brand 关系仍成立'"
+    },
+    {
+      "rule": "R2_DEVELOPER_PROVIDER",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "condition": "evidence contains developer/provider language (开发/推出)"
+    },
+    {
+      "rule": "R3_CORPORATE_OWNERSHIP",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "condition": "evidence contains ownership/control language (旗下/全资/多数/控股/收购/持有/股权/子公司/归属/集团/属/运营)"
+    },
+    {
+      "rule": "R4_BRAND_UMBRELLA",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "condition": "evidence contains brand-umbrella language (品牌/自有应用/自有产品/产品/服务) and no ownership/control or developer term"
+    },
+    {
+      "rule": "R5_PLATFORM_INTEGRATION",
+      "relation_type": "PLATFORM_INTEGRATION",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "condition": "evidence contains platform-access language ('平台使用' / '可通过 X' / 'available on' / '平台可访问') and no other signal"
+    },
+    {
+      "rule": "R6_DEFAULT",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "condition": "no rule matched"
+    }
+  ],
+  "edges": [
+    {
+      "child": "189",
+      "parent": "ChinaTelecom",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "189 网盘（天翼云盘）为中国电信旗下云存储产品（中国电信官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "中国电信",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AWS",
+      "parent": "Amazon",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AliCloud",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AliPay",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AmazonAlexa",
+      "parent": "Amazon",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AmazonMusic",
+      "parent": "Amazon",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppStore",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleArcade",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleBooks",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleFitnessPlus",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleMusic",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "AppleNewsPlus",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ApplePodcasts",
+      "parent": "Apple",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "Apple Podcasts 为 Apple 自有应用（Apple 官方识别规范）· 2026-09；2026-09-30 会话按 Apple 子品牌命名规范重命名 Podcasts → ApplePodcasts（目录/文件名/icon_path/display_name 全同步）",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Apple ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "AppleTV",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Azure",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "BaiduNetdisk",
+      "parent": "Baidu",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Bing",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ChinaMobileDisk",
+      "parent": "ChinaMobile",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "中国移动云盘为中国移动自有云存储产品（中国移动官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "中国移动",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Copilot",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Crunchyroll",
+      "parent": "SONY",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Crunchyroll LLC 为索尼（Sony Pictures/Aniplex）全资子公司（Sony Pictures 官方公告）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Sony Pictures ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DMMTV",
+      "parent": "DMM",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "DMM TV 由合同会社 DMM.com 运营（DMM TV 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "DMM TV ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DingTalk",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "DisneyPlus",
+      "parent": "Disney",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Disney 官方流媒体品牌（Disney+）；Disney 全资 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Doubao",
+      "parent": "ByteDance",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "豆包由字节跳动开发（字节跳动官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "字节跳动",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Douyin",
+      "parent": "ByteDance",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ESPN",
+      "parent": "Disney",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Disney 持 80%、Hearst 20%（ESPN Inc. 股权结构，Disney 财报）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "company filing",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "F1TV",
+      "parent": "LibertyMedia",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "F1 TV 属 Formula One（Liberty Media 旗下）（Liberty Media 财报）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "company filing",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Facebook",
+      "parent": "Meta",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GLM",
+      "parent": "ZhipuAI",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "GLM 由 Z.ai（原智谱 Zhipu AI）开发（Z.ai 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Z.ai ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GitHub",
+      "parent": "Microsoft",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "GitHub 为 Microsoft 全资子公司（2018 收购，GitHub/Microsoft 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "2018 收购，GitHub/Microsoft ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Gmail",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleAI",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleDrive",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleMaps",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleNews",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GooglePhotos",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GooglePlay",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleTranslate",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "GoogleVoice",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Grok",
+      "parent": "xAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "Grok 为 xAI 品牌体系中的 AI 产品（官方 Brand Guidelines 记录 SpaceXAI 品牌权利及 Grok 使用条款）；X 平台可访问，即平台集成关系，不改变品牌父级 · 2026-10-01 最终品牌树 · 品牌层级",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "HBOMax",
+      "parent": "WarnerBrosDiscovery",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "HBO Max 归属 Warner Bros. Discovery（WBD 官方/2026-08 第三方核对）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "WBD ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "HOYTV",
+      "parent": "iCABLE",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "HOY TV 由有线宽频（i-CABLE Communications）运营（i-CABLE 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "i-CABLE ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "HamiVideo",
+      "parent": "ChunghwaTelecom",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Hami Video 由中华电信（Chunghwa Telecom）运营（中华电信官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "中华电信",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Hulu",
+      "parent": "Disney",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Disney 2025 年收购 Comcast 剩余 33% 股份后 100% 持股（Disney 官方/Disney 财报）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Disney ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Instagram",
+      "parent": "Facebook",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KKBOX",
+      "parent": "KKCompany",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "KKBOX 由 KKCompany Technologies 运营（KKCompany 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "KKCompany ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KakaoTalk",
+      "parent": "Kakao",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "KakaoTalk 为 Kakao Corp. 旗下即时通讯（Kakao 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Kakao ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "KaraokeDAM",
+      "parent": "Daiichikosho",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "DAM 卡拉 OK 系统由第一興商（Daiichikosho）开发运营（第一興商官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "第一興商",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Kimi",
+      "parent": "MoonshotAI",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "Kimi 由 Moonshot AI 开发（Moonshot 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Moonshot ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Kwai",
+      "parent": "Kuaishou",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "Kwai 为快手（Kuaishou Technology）海外短视频产品（Kuaishou 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Kuaishou ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Lark",
+      "parent": "ByteDance",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "LinkedIn",
+      "parent": "Microsoft",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "LinkedIn 为 Microsoft 全资子公司（2016 收购，Microsoft 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "2016 收购，Microsoft ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "MangoTV",
+      "parent": "MangoSuperMedia",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "芒果 TV 由芒果超媒（湖南广电控股）运营（芒果超媒公开资料）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "PUBLIC_REPORTING",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Manus",
+      "parent": "ButterflyEffect",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "Manus 由 Butterfly Effect（Monica 团队）开发 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Messenger",
+      "parent": "Facebook",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "MicrosoftStore",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Migu",
+      "parent": "ChinaMobile",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "咪咕文化科技有限公司为中国移动全资子公司（中国移动官方/维基百科）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "中国移动",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Mijia",
+      "parent": "Xiaomi",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "米家为小米（Xiaomi）智能家居品牌（小米官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "小米",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "MusicBrainz",
+      "parent": "MetaBrainz",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R6_DEFAULT",
+      "evidence_quote": "MusicBrainz 为 MetaBrainz Foundation 项目（MetaBrainz 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "MetaBrainz ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "MyVideo",
+      "parent": "TaiwanMobile",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "MyVideo 为台湾大哥大（Taiwan Mobile）旗下 OTT（MyVideo 官方 ©2026 TaiwanMobile）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "MyVideo ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NBC",
+      "parent": "NBCUniversal",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "NBC 为 NBCUniversal 旗下电视网（NBCUniversal 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "NBCUniversal ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NetEaseCloudMusic",
+      "parent": "NetEase",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NetEaseMail",
+      "parent": "NetEase",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Niconico",
+      "parent": "Kadokawa",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Niconico 由 Dwango/Kadokawa 集团运营（Kadokawa 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Kadokawa ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "NowE",
+      "parent": "PCCW",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Now E / Now TV 为 PCCW/HKT 旗下（PCCW Media 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "PCCW Media ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "OneDrive",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Outlook",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Pandora",
+      "parent": "SiriusXM",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Pandora 由 SiriusXM 持有运营（SiriusXM 官方/2019 收购）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "SiriusXM ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "ParamountPlus",
+      "parent": "Paramount",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Paramount+ 为 Paramount（Paramount Skydance）旗下流媒体（Paramount 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Paramount ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Peacock",
+      "parent": "NBCUniversal",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "Peacock 为 NBCUniversal（Comcast）流媒体服务（NBCUniversal 官方财报）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "NBCUniversal ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Pipixia",
+      "parent": "ByteDance",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "皮皮虾由字节跳动旗下今日头条推出/运营（公开报道）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "PUBLIC_REPORTING",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "PlayStation",
+      "parent": "SONY",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "PlayStation 由 Sony Interactive Entertainment 运营，SIE 为索尼全资子公司（Sony 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Sony ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Poe",
+      "parent": "Quora",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Poe 为 Quora 旗下 AI 产品（Quora 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Quora ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "PrimeVideo",
+      "parent": "Amazon",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQ",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQMail",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "QQMusic",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Quark",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Qwen",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "RakutenTV",
+      "parent": "Rakuten",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Rakuten TV 为乐天集团（Rakuten Group）旗下服务（Rakuten 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Rakuten ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "RedBullTV",
+      "parent": "RedBull",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Red Bull TV 由 Red Bull GmbH 运营（Red Bull 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Red Bull ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "SiriAI",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "SlingTV",
+      "parent": "EchoStar",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Sling TV 属 EchoStar（DISH 集团）（EchoStar 财报）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "company filing",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Snapchat",
+      "parent": "Snap",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Snapchat 为 Snap Inc. 旗下产品（Snap 官方/NYSE: SNAP）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Snap ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Steam",
+      "parent": "Valve",
+      "relation_type": "DEVELOPER_PROVIDER",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R2_DEVELOPER_PROVIDER",
+      "evidence_quote": "Steam 由 Valve Corporation 开发运营（Valve 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Valve ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述开发/提供方，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TIDAL",
+      "parent": "Block",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "TIDAL 由 Block, Inc. 持多数股权（Block 官方/2026 股权结构）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Block ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TMDB",
+      "parent": "Xperi",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "TMDB 由 Xperi（TiVo）运营（TMDB 官方论坛说明）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "TMDB ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Taobao",
+      "parent": "Alibaba",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TencentVideo",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TestFlight",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Threads",
+      "parent": "Facebook",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Tieba",
+      "parent": "Baidu",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "TikTok",
+      "parent": "ByteDance",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Tubi",
+      "parent": "Fox",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Tubi 100% 归 Fox Corporation（Fox 官方/2020 收购）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Fox ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Twitch",
+      "parent": "Amazon",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "UNEXT",
+      "parent": "UNEXTHoldings",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "U-NEXT 由 U-NEXT HOLDINGS 运营（U-NEXT 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "U-NEXT ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "VideoMarket",
+      "parent": "PLAY",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "VideoMarket 由株式会社 PLAY 运营（VideoMarket 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "VideoMarket ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Viu",
+      "parent": "PCCW",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "Viu 为 PCCW Media Group 旗下 OTT（PCCW Media 官方/APOS 2026）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "PCCW Media ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WSJ",
+      "parent": "NewsCorp",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "《华尔街日报》由 Dow Jones 出版，Dow Jones 为 News Corp 子公司（News Corp 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "News Corp ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WeChat",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WeTV",
+      "parent": "Tencent",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Weibo",
+      "parent": "SINA",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "微博由新浪（Sina Corporation）控股（微博年报/公开资料）· 2026-09；2026-09-30 SINA 公司图标入库后 parent 指向带图标条目 SINA",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "company filing",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "WhatsApp",
+      "parent": "Facebook",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "X",
+      "parent": "SpaceXAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "X 为 SpaceXAI 品牌体系中的社交产品线（2026-10-01 用户确认的最终品牌树）· 品牌层级；X Corp. 与 SpaceXAI 的公司控制事实另列 corporate context 证据层，不参与品牌父级推导",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    },
+    {
+      "child": "Xbox",
+      "parent": "Microsoft",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "YouTube",
+      "parent": "Google",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "YouTubeMusic",
+      "parent": "YouTube",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "Youku",
+      "parent": "Alibaba",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "优酷为阿里巴巴集团在线视频平台（Alibaba 官方站点）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "Alibaba ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "dAnimeStore",
+      "parent": "NTTDocomo",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "d Anime Store 由 Docomo Anime Store 株式会社运营（NTT docomo 集团）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "discoveryPlus",
+      "parent": "WarnerBrosDiscovery",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R6_DEFAULT",
+      "evidence_quote": "discovery+ 归 WBD「Discovery Global」业务（discovery+ 官方页 ©2026 Warner Bros. Discovery）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "discovery+ ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "friDayVideo",
+      "parent": "FarEasTone",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "friDay 影音为远传电信（FarEasTone）旗下服务（远传官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "远传",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iCloud",
+      "parent": "Apple",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iCloudPrivateRelay",
+      "parent": "iCloud",
+      "relation_type": "UNKNOWN",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R1_GENERIC_RESTATEMENT",
+      "evidence_quote": "本次全库复核：既有 parent_brand 关系仍成立 · 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "UNRECORDED",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字为泛化复述或无法归类，不足以判断关系类型。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "iQIYI",
+      "parent": "Baidu",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "爱奇艺最大股东为百度，百度持多数投票权（爱奇艺年报/公开报道）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "company filing",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_REPORT",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "mora",
+      "parent": "SONY",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "mora 由 Sony Music Solutions（索尼音乐娱乐日本集团）运营（mora 官方）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "mora ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "myTVSUPER",
+      "parent": "TVB",
+      "relation_type": "CORPORATE_OWNERSHIP",
+      "parent_brand_validity": "OPEN_REVIEW",
+      "decision_rule": "R3_CORPORATE_OWNERSHIP",
+      "evidence_quote": "myTV SUPER 为电视广播有限公司（TVB）旗下（TVB 官方站点）· 2026-09",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": "TVB ",
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字描述归属/控制，未直接说明品牌伞状关系。",
+      "review_status": "OPEN_REVIEW"
+    },
+    {
+      "child": "xAI",
+      "parent": "SpaceXAI",
+      "relation_type": "BRAND_HIERARCHY",
+      "parent_brand_validity": "CONFIRMED",
+      "decision_rule": "R4_BRAND_UMBRELLA",
+      "evidence_quote": "xAI 为 SpaceXAI 品牌体系中的 AI 品牌（2026-10-01 用户确认的最终品牌树）· 品牌层级；2026-07-06 官方品牌标识更名后，xAI 仍作为独立 canonical 品牌与独立图标存在（非 legacy ID）",
+      "evidence_layer": "docs/references/brand-ownership-audit.md §7 全量矩阵",
+      "source": {
+        "organization": null,
+        "url": null,
+        "title": null,
+        "retrieved_at": "2026-09-30",
+        "kind": "OFFICIAL_SITE",
+        "url_status": "NOT_RECORDED"
+      },
+      "rationale": "证据文字以品牌伞状措辞描述子品牌/产品，符合当前 parent_brand 契约。",
+      "review_status": "CONFIRMED_UNDER_CURRENT_CONTRACT"
+    }
+  ]
+}

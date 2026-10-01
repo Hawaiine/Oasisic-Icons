@@ -1,10 +1,10 @@
 # ⚙️ System / 代理系统图标与通用策略
 
-> 共 **49** 个图标，**20** 个品牌
+> 共 **20** 个图标，**20** 个品牌
 
 | 品牌 | 图标文件 |
 |:---|:---|
-| `AD` | `AD.png AD01.png AD02.png AD03.png AD04.png AD05.png AD06.png` |
+| `AD` | `AD.png` |
 | `Airport` | `Airport.png` |
 | `Area` | `Area.png` |
 | `Auto` | `Auto.png` |
@@ -12,15 +12,15 @@
 | `Bot` | `Bot.png` |
 | `Direct` | `Direct.png` |
 | `Final` | `Final.png` |
-| `Game` | `Game.png Game01.png Game02.png` |
+| `Game` | `Game.png` |
 | `GeneralAI` | `GeneralAI.png` |
-| `Global` | `Global.png Global01.png Global02.png Global03.png Global04.png Global05.png` |
-| `Lightning` | `Lightning.png Lightning01.png Lightning02.png` |
-| `Mail` | `Mail.png Mail01.png Mail02.png Mail03.png Mail04.png` |
-| `Play` | `Play.png Play01.png Play02.png` |
+| `Global` | `Global.png` |
+| `Lightning` | `Lightning.png` |
+| `Mail` | `Mail.png` |
+| `Play` | `Play.png` |
 | `Proxy` | `Proxy.png` |
 | `Reject` | `Reject.png` |
 | `SSID` | `SSID.png` |
-| `Search` | `Search.png Search01.png Search02.png` |
-| `Traffic` | `Traffic.png Traffic01.png Traffic02.png Traffic03.png Traffic04.png Traffic05.png` |
-| `URL` | `URL.png URL01.png` |
+| `Search` | `Search.png` |
+| `Traffic` | `Traffic.png` |
+| `URL` | `URL.png` |

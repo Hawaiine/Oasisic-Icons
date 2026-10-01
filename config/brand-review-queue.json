@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "role": "human_decision_queue",
+  "is_ssot": false,
+  "note": "只记录「机器无法可靠判定、需要人工裁决」的候选。它不覆盖 config/brands.json：人工决定后必须把结论写回 config/brands.json（唯一关系 SSOT），再把本项状态改为 RESOLVED。CI 第 16 组校验本文件结构、ID 引用真实性与状态取值。 canonical ecosystem may legally have icon_status=pending or generated_temporary; this status is separate from canonical identity.",
+  "status_values": [
+    "OPEN",
+    "RESOLVED"
+  ],
+  "issue_kinds": [
+    "official_logo_missing",
+    "acquisition_pending",
+    "jv_or_shared_ownership",
+    "multiple_candidate_parents",
+    "historical_vs_current_brand"
+  ],
+  "items": [
+    {
+      "id": "SpaceXAI-official-logo",
+      "child": "SpaceXAI",
+      "candidate_parent": null,
+      "issue_kind": "official_logo_missing",
+      "reason": "SpaceXAI 已作为正式 canonical ecosystem SSOT 节点登记；官方 logo 下载源当前不可访问（x.ai 返回 403），本轮不伪造、不复制其它品牌资产，icon_status=pending。",
+      "next_step": "取得官方 Brand Guidelines 下载资产后，写入 SpaceXAI icon_path 并将 icon_status 改为 official，再关闭本项。",
+      "evidence": "docs/references/brand-ownership-audit.md §2 / §7（xAI 行）",
+      "status": "OPEN",
+      "source_lookup": {
+        "official_guidelines": "https://x.ai/legal/brand-guidelines",
+        "lookup_status": "blocked_403",
+        "official_asset_used": false
+      }
+    },
+    {
+      "id": "Lemino-jv-revalidation",
+      "child": "Lemino",
+      "candidate_parent": null,
+      "issue_kind": "jv_or_shared_ownership",
+      "reason": "Lemino 自 2026-10-01 起与 WOWOW 成立合资运营，属现实世界关系变动；当前 SSOT 保留既有判断，未据传闻改写 parent_brand。",
+      "next_step": "以官方公告/合资公司页面确认当前运营主体后，再决定 parent_brand 是否变化。",
+      "evidence": "docs/references/brand-ownership-audit.md §8（仍易变关系）",
+      "status": "OPEN"
+    },
+    {
+      "id": "Speedtest-acquisition-pending",
+      "child": "Speedtest",
+      "candidate_parent": null,
+      "issue_kind": "acquisition_pending",
+      "reason": "Ookla（Speedtest）出售给 Accenture 已宣布但交割状态待确认；收购事实本身也不等于品牌父级，需确认品牌归属语义。",
+      "next_step": "交割完成后按官方页面确认品牌归属；仅当出现 Brand / Product Hierarchy 证据才写入 parent_brand。",
+      "evidence": "docs/references/brand-ownership-audit.md §8（仍易变关系）",
+      "status": "OPEN"
+    },
+    {
+      "id": "discoveryPlus-wbd-split",
+      "child": "discoveryPlus",
+      "candidate_parent": "WarnerBrosDiscovery",
+      "issue_kind": "historical_vs_current_brand",
+      "reason": "WBD 拆分进行中、与 Max 的整合预期未定，当前 parent_brand 依据的是现行官方页面。",
+      "next_step": "拆分落地后复核官方归属，必要时迁移生态。",
+      "evidence": "docs/references/brand-ownership-audit.md §8（仍易变关系）",
+      "status": "OPEN"
+    }
+  ]
+}
