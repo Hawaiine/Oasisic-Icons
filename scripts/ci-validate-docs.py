@@ -21,7 +21,7 @@
 范围（显式 include / exclude，不使用关键词段落豁免）
 ---------------------------------------------------
 include（白名单）：
-    README.md, AGENTS.md, docs/guides/**/*.md,
+    README.md, docs/guides/**/*.md,
     docs/references/brand-naming-contract.md, docs/references/icon-quality-notes.md,
     icons/**/README.md
 exclude（黑名单，即使命中 include 也跳过）：
@@ -61,7 +61,6 @@ GROUP_NAME = "文档引用（concrete icon path）"
 # --- include / exclude（显式清单，路径相对仓库根） -------------------------------
 INCLUDE_EXACT = (
     "README.md",
-    "AGENTS.md",
     "docs/references/brand-naming-contract.md",
     "docs/references/icon-quality-notes.md",
 )
