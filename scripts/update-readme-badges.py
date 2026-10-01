@@ -15,6 +15,7 @@
   2. 分类表 品牌数/图标数、合计行、icon-quality-notes 扫描范围从未被脚本覆盖，
      只能手工维护 → 本次纳入自动更新。
 """
+import json
 import re
 from pathlib import Path
 from collections import Counter
@@ -23,27 +24,44 @@ REPO = Path(".")
 ICONS = REPO / "icons"
 
 
+def ssot_brands():
+    """品牌 SSOT（config/brands.json）。统计一律以 SSOT 为准，不从目录层级推导——
+    多层物理层级（icons/<category>/<中间父>/<id>/）会让「一级子目录 = 品牌」的
+    假设失效（§21/§38：统计必须由程序从 SSOT 动态计算）。"""
+    try:
+        doc = json.loads((REPO / "config/brands.json").read_text(encoding="utf-8"))
+    except Exception:
+        return []
+    return doc.get("brands", [])
+
+
 def count():
     files = list(ICONS.rglob("*.png"))
-    brands = Counter()
-    for p in files:
-        rel = p.relative_to(ICONS)
-        parts = rel.parts
-        if len(parts) >= 2:
-            brands[(parts[0], parts[1])] += 1
+    brands = ssot_brands()
     # 分类数 = icons/ 下目录总数（含预留空分类），不能从 PNG 推导
     categories = {p.name for p in ICONS.iterdir() if p.is_dir()}
     return len(files), len(brands), len(categories)
 
 
 def per_category():
-    """分类 -> (品牌数, 图标数)；预留空分类（无 PNG）返回 (0, 0)。"""
+    """分类 -> (品牌数, 图标数)；品牌数来自 SSOT，图标数来自递归扫描。
+
+    预留空分类（无 PNG）返回 (0, 0)。"""
+    by_cat = Counter(b.get("category") for b in ssot_brands())
     cats = {}
     for cat_dir in sorted(p for p in ICONS.iterdir() if p.is_dir()):
         pngs = list(cat_dir.rglob("*.png"))
-        brands = {b.name for b in cat_dir.iterdir() if b.is_dir()}
-        cats[cat_dir.name] = (len(brands), len(pngs))
+        cats[cat_dir.name] = (by_cat.get(cat_dir.name, 0), len(pngs))
     return cats
+
+
+def display_to_id():
+    """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。"""
+    try:
+        cs = json.loads((REPO / 'config/categories.json').read_text(encoding='utf-8'))['categories']
+    except Exception:
+        return {}
+    return {c['display_name']: c['id'] for c in cs}
 
 
 def update_readme(n_png, n_brands, n_cats, cats):
@@ -76,6 +94,15 @@ def update_readme(n_png, n_brands, n_cats, cats):
         s,
     )
 
+    # 活跃分类数（「其中 N 个活跃」）—— 2026-09-30 补：此前写死，Finance 等预留
+    # 空分类增减后正文数字失同步。活跃 = 目录存在且有 ≥1 个 PNG 的分类。
+    active = sum(1 for b, i in cats.values() if i > 0)
+    s, n1b = re.subn(
+        r'（其中 \d+ 个活跃',
+        f'（其中 {active} 个活跃',
+        s,
+    )
+
     # 全量规范化句
     s, n2 = re.subn(
         r'\*\*\d+ 个图标全部经过统一规范化处理\*\*',
@@ -100,9 +127,11 @@ def update_readme(n_png, n_brands, n_cats, cats):
     # 分类表逐行 —— 本次新增覆盖：| <emoji> Name | 说明 | 品牌数 | 图标数 |
     # 行首允许 emoji / 符号前缀；分类名取纯 ASCII 标识（与目录名一致）；
     # 说明列用 [^|]* 惰性匹配，避免贪婪吞并后续列。
+    d2i = display_to_id()
+
     def fix_row(m):
         prefix, name, gap, desc, sep = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)
-        actual = cats.get(name)
+        actual = cats.get(d2i.get(name, name))
         if actual is None:
             return m.group(0)          # 表里有、目录里没有 → 保持原样，不臆改
         b_real, i_real = actual
@@ -112,8 +141,9 @@ def update_readme(n_png, n_brands, n_cats, cats):
 
     # 行内空白一律 [ \t]（禁用 \s）：\s*$ 会把表格后的换行/空行一并吞进匹配，
     # 重建后空行丢失（已在 2026-09-29 测试中复现）。
+    # 分类名允许内部空格（Cloud Storage / Warner Bros. Discovery / Sony 等）
     s, n5 = re.subn(
-        r'^(\|[ \t]*(?:[^\w\s|]+[ \t]*)?)([A-Za-z][\w.]*)([ \t]*\|[ \t]*)([^|]*?)([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*$',
+        r'^(\|[ \t]*(?:[^\w\s|]+[ \t]*)?)([A-Za-z][\w.]*(?:[ \t]+[A-Za-z][\w.]*)*)([ \t]*\|[ \t]*)([^|]*?)([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*\d+([ \t]*\|)[ \t]*$',
         fix_row,
         s,
         flags=re.M,
@@ -130,9 +160,9 @@ def update_readme(n_png, n_brands, n_cats, cats):
         readme.write_text(s)
 
     print(f"✓ README 已更新：{n_png} 图标 / {n_brands} 品牌 / {n_cats} 分类")
-    print(f"    命中：统计句 {n1} / 规范化句 {n2} / 独立仓库句 {n3} / 规范化完成句 {n4} "
-          f"/ 分类表行 {n5} / 合计行 {n6}")
-    for name, hits in (("统计句", n1), ("分类表", n5), ("合计行", n6)):
+    print(f"    命中：统计句 {n1} / 活跃分类句 {n1b} / 规范化句 {n2} / 独立仓库句 {n3} "
+          f"/ 规范化完成句 {n4} / 分类表行 {n5} / 合计行 {n6}")
+    for name, hits in (("统计句", n1), ("活跃分类句", n1b), ("分类表", n5), ("合计行", n6)):
         if hits == 0:
             print(f"    ⚠ {name}未命中 —— README 措辞/格式可能已改，请同步修正本脚本正则")
 

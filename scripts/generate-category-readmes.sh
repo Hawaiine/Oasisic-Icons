@@ -1,67 +1,66 @@
 #!/usr/bin/env bash
-# generate-category-readmes.sh — 为每个分类自动生成 README 清单
-# 新结构：icons/<分类>/<品牌>/<品牌>.png + <品牌>01.png...
-# 分类定义（emoji/显示名/描述）来自 config/categories.json（SSOT），不再硬编码。
+# generate-category-readmes.sh — 生成分类 README 与父品牌 README（SSOT + resolver）
 set -euo pipefail
-
 cd "$(dirname "$0")/.."
-ICONS_DIR="icons"
 
-generate_readme() {
-  local dir="$1"
-  local name="$2"
-  local desc="$3"
-
-  local total=0
-  local brands=()
-
-  # 新结构：每个品牌是一个子目录
-  for brand_dir in "$dir"/*/; do
-    [ -d "$brand_dir" ] || continue
-    brand=$(basename "$brand_dir")
-    # 统计该品牌下所有 .png 文件
-    for f in "$brand_dir"*.png; do
-      [ -f "$f" ] || continue
-      total=$((total + 1))
-    done
-    brands+=("$brand")
-  done
-
-  cat > "$dir/README.md" << README_EOF
-# ${name} / ${desc}
-
-> 共 **${total}** 个图标，**${#brands[@]}** 个品牌
-
-| 品牌 | 图标文件 |
-|:---|:---|
-README_EOF
-
-  for brand in $(printf '%s\n' "${brands[@]}" | sort); do
-    brand_dir="$dir/$brand"
-    files=$(ls "$brand_dir"/*.png 2>/dev/null | xargs -I{} basename {} | sort | tr '\n' ' ' | sed 's/ $//')
-    echo "| \`${brand}\` | \`${files}\` |" >> "$dir/README.md"
-  done
-
-  echo "  ✓ $dir ($total icons, ${#brands[@]} brands)"
-}
-
-# 分类元数据来自 SSOT：config/categories.json
-while IFS=$'\t' read -r category name desc; do
-  generate_readme "$ICONS_DIR/$category" "$name" "$desc"
-done < <(python3 - "$ICONS_DIR" <<'PY'
-import json, os, sys
-icons_dir = sys.argv[1]
-cats = {c["id"]: c for c in json.load(open("config/categories.json"))["categories"]}
-for entry in sorted(os.scandir(icons_dir), key=lambda e: e.name):
-    if not entry.is_dir():
-        continue
-    c = cats.get(entry.name)
-    if c:
-        print(f'{entry.name}\t{c["emoji"]} {c["display_name"]}\t{c["description"]}')
-    else:
-        print(f'{entry.name}\t{entry.name}\t{entry.name}')
-PY
+python3 <<'PY'
+import json
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path('scripts').resolve()))
+from brand_relationships import (
+    PARENT_README_MARKER, ecosystem_category_ids, expected_ecosystem_readme_block,
+    expected_parent_readme, physical_parent_nodes,
 )
 
-echo ""
-echo "全部 README 生成完毕"
+brands_doc = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))
+ssot = {b['id']: b for b in brands_doc.get('brands', [])}
+aliases = set(brands_doc.get('parent_brands_without_icon', []))
+cats = json.loads(Path('config/categories.json').read_text(encoding='utf-8'))['categories']
+eco_cat_ids = ecosystem_category_ids(cats)
+ICONS = Path('icons')
+cat_dirs = sorted(p.name for p in ICONS.iterdir() if p.is_dir())
+
+for cid in cat_dirs:
+    c = next((x for x in cats if x['id'] == cid), None)
+    name = '%s %s' % (c['emoji'], c['display_name']) if c else cid
+    desc = c['description'] if c else cid
+    members = sorted(bid for bid, e in ssot.items() if e.get('category') == cid)
+    total = 0
+    rows = []
+    for bid in members:
+        icon_path = ssot[bid].get('icon_path')
+        d = Path(icon_path).parent if icon_path else None
+        files = sorted(p.name for p in d.glob('*.png')) if d and d.is_dir() else []
+        total += len(files)
+        rows.append('| `%s` | `%s` |' % (bid, ' '.join(files)))
+    lines = [
+        '# %s / %s' % (name, desc), '',
+        '> 共 **%d** 个图标，**%d** 个品牌' % (total, len(members)), '',
+        '| 品牌 | 图标文件 |', '|:---|:---|',
+    ] + rows + ['']
+    if cid in eco_cat_ids:
+        lines.append(expected_ecosystem_readme_block(cid, ssot))
+    (ICONS / cid / 'README.md').write_text('\n'.join(lines), encoding='utf-8')
+    print('  ✓ icons/%s/README.md (%d icons, %d brands)' % (cid, total, len(members)))
+
+parents = physical_parent_nodes(brands_doc)
+created = kept = skipped = 0
+for bid in sorted(parents):
+    e = ssot.get(bid)
+    if not e or not e.get('icon_path'):
+        # A pending ecosystem remains a semantic root but has no physical parent README.
+        continue
+    d = Path(e['icon_path']).parent
+    rd = d / 'README.md'
+    content = expected_parent_readme(bid, ssot, aliases, eco_cat_ids)
+    if rd.exists():
+        first = rd.read_text(encoding='utf-8').splitlines()[0] if rd.read_text(encoding='utf-8') else ''
+        if first.strip() == PARENT_README_MARKER:
+            rd.write_text(content, encoding='utf-8'); kept += 1
+        else:
+            skipped += 1
+    else:
+        rd.write_text(content, encoding='utf-8'); created += 1
+print('父品牌 README: 新建 %d / 重新生成 %d / 保留人工 %d' % (created, kept, skipped))
+PY
