@@ -543,6 +543,12 @@ if Path('README.md').exists():
         fail('README 统计', '生态根计数句未找到')
     elif int(_me.group(1)) != _real_eco:
         fail('README 统计', '生态根计数=%s 实际=%d' % (_me.group(1), _real_eco))
+    # 官方资产表述（2026-10-01）：必须区分 Official source asset / Repository asset（规范化派生）/
+    # Logo artwork，且不得声称官方原文件逐字节落库——docstring 级别的防漂移守卫。
+    for _needle in ('**Official source asset**', '**Repository asset**', '**Logo artwork**',
+                    '不是**官方原文件的逐字节落库'):
+        if _needle not in _rd:
+            fail('README 统计', '官方资产表述缺少 %r（须区分 source asset 与规范化派生）' % _needle)
     # SpaceXAI 资产状态句必须与 SSOT 一致（pending ↔ official 迁移后不得残留旧文）
     _sp = next((e for e in brands_doc.get('brands', []) if e.get('id') == 'SpaceXAI'), None)
     if _sp is not None:

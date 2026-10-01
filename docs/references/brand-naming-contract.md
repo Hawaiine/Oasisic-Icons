@@ -72,9 +72,11 @@ SpaceXAI
 
 直接父品牌：`X → SpaceXAI`、`xAI → SpaceXAI`、`Grok → xAI`。`xAI` 是**当前 canonical 品牌**
 （独立 ID / display_name / 图标），**不是 legacy 旧名**（见 `scripts/legacy_map.py` 与
- `tests/test_hardening.py`）；`SpaceXAI` 为正式 canonical 顶层生态 SSOT（descendants = 3 ≥ 2），根图标取自官方 Brand Guidelines 资产包
-（`https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` → `spacexai - symbol - black - squared.png`，2026-10-01 取得），
-按本项目容器规范（512×512 RGBA、squircle）落库为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，`icon_status=official`。
+ `tests/test_hardening.py`）；`SpaceXAI` 为正式 canonical 顶层生态 SSOT（descendants = 3 ≥ 2）。**Official source asset**：官方 Brand Guidelines
+（<https://x.ai/legal/brand-guidelines>）Logos 包 `https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` 成员
+`spacexai - symbol - black - squared.png`（2026-10-01 取得）。**Repository asset**：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，
+是**项目规范化派生**（1200×1200 → 512×512 LANCZOS + 本仓库统一 squircle 容器遮罩，512×512 RGBA、四角透明），
+**不是**官方原文件的逐字节落库；品牌图形本体未重绘 / 未改色 / 未改变字形与比例，`icon_status=official`。
 
 ## 2. Technical ID 规则
 

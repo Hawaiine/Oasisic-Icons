@@ -184,7 +184,7 @@ Yahoo Finance 同日报道）。**「法律实体更名」在 SEC / 公司登记
 | X | Social | SpaceXAI | `icons/Social/X/X.png` | `icons/SpaceXAI/X/X.png` | 用户确认的最终品牌树：`X → SpaceXAI`（取代 2026-09-30 的「移除 parent_brand」结论） |
 | Grok | AI | SpaceXAI | `icons/AI/Grok/Grok.png` | `icons/SpaceXAI/Grok/Grok.png` | 直接父品牌由扁平 `SpaceXAI` 改为 `xAI`（`Grok → xAI → SpaceXAI`） |
 | xAI | —（2026-09-30 曾被当作历史名） | SpaceXAI | 历史 `icons/xAI/xAI/xAI.png`（SHA-256 前缀 `2f53aa6…`） | `icons/SpaceXAI/xAI/xAI.png` | **恢复为 canonical 品牌**：独立 ID / display_name / 图标 / `parent_brand = SpaceXAI`；同时从 legacy 表中移除 |
-| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 官方资产已落库：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png` | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**历史中间态**：官方新标志一度未取得，曾登记 `icon_status=pending` + Review Queue；2026-10-01 已从官方 Brand Guidelines 资产包取得并落库为 `icon_status=official` |
+| SpaceXAI | AI（`product_brand`） | SpaceXAI（顶层生态） | `icons/AI/SpaceXAI/SpaceXAI.png`（资产已迁回 xAI） | 官方资产已落库：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png` | descendants = X / xAI / Grok = 3 ≥ 2 → 顶层生态成立；**Historical**：官方新标志一度未取得，曾登记 `icon_status=pending` + Review Queue；2026-10-01 已从官方 Brand Guidelines 产出规范化派生资产并置 `icon_status=official`（official source asset ≠ 官方原文件逐字节落库） |
 
 **图标口径（重要）**：仓库历史中唯一存在的相关资产只有一张 xAI 字标（blob `2f53aa6…`），
 `f219392`（xAI → SpaceXAI 更名）与 `aa6fe42`（目录迁移）均为 R100 改名，**图像内容从未更换**。

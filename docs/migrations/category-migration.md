@@ -61,4 +61,4 @@
 
 | 新分类 | 显示名 | 依据（≥2 canonical descendants） | 根图标状态 |
 |---|---|---|---|
-| `SpaceXAI` | SpaceXAI | X / xAI / Grok = 3 ≥ 2 | **官方图标已落库**：根条目在 `brands.json`，`icon_path=icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，`icon_status=official`（来源 https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip ，2026-10-01） |
+| `SpaceXAI` | SpaceXAI | X / xAI / Grok = 3 ≥ 2 | **官方图标已落库**：根条目在 `brands.json`，`icon_path=icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，`icon_status=official`（official source asset：官方 Brand Guidelines Logos 包 https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip 成员 `spacexai - symbol - black - squared.png`，2026-10-01；仓库资产为项目规范化派生，非官方文件逐字节落库） |

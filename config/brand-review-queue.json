@@ -2,7 +2,7 @@
   "schema_version": 1,
   "role": "human_decision_queue",
   "is_ssot": false,
-  "note": "只记录「机器无法可靠判定、需要人工裁决」的候选。它不覆盖 config/brands.json：人工决定后必须把结论写回 config/brands.json（唯一关系 SSOT），再把本项状态改为 RESOLVED。CI 第 16 组校验本文件结构、ID 引用真实性与状态取值。 canonical ecosystem may legally have icon_status=pending or generated_temporary; this status is separate from canonical identity.",
+  "note": "只记录「机器无法可靠判定、需要人工裁决」的候选。它不覆盖 config/brands.json：人工决定后必须把结论写回 config/brands.json（唯一关系 SSOT），再把本项状态改为 RESOLVED。CI 第 16 组校验本文件结构、ID 引用真实性与状态取值。 canonical ecosystem may legally have icon_status=pending or generated_temporary (separate from canonical identity); 当前仓库 0 个 pending no-icon 节点，SpaceXAI 根图标为 official。",
   "status_values": [
     "OPEN",
     "RESOLVED"

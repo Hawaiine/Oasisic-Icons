@@ -30,7 +30,7 @@
 - category 与 parent_brand 独立：category 等于 graph/root parent 时不重复目录；同类中间 parent 存在时递归嵌套。
 - 物理路径唯一由 `scripts/brand_relationships.py::expected_icon_path()` 派生；cross-category parent 不机械迁移；无 icon 的 parent 不制造伪目录。
 - 叶子统一为 `<id>/<id>.png`。派生链为 SSOT → resolver → README / Surge / Glossary / relationship export → CI。
-- SpaceXAI 的最终关系与路径：`SpaceXAI → X`、`SpaceXAI → xAI → Grok`，对应 `icons/SpaceXAI/X/X.png`、`icons/SpaceXAI/xAI/xAI.png`、`icons/SpaceXAI/xAI/Grok/Grok.png`；生态根自身图标为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`（官方 Brand Guidelines 资产）。
+- SpaceXAI 的最终关系与路径：`SpaceXAI → X`、`SpaceXAI → xAI → Grok`，对应 `icons/SpaceXAI/X/X.png`、`icons/SpaceXAI/xAI/xAI.png`、`icons/SpaceXAI/xAI/Grok/Grok.png`；生态根自身图标为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`（由官方 Brand Guidelines 素材按本项目容器规范规范化派生，见「生态根规则」）。
 - 统计口径必须显式区分：**SSOT entities**（`brands.json` 条目数）/ **icon-backed entities**（有 `icon_path` 的条目数）/ **PNG**（磁盘文件数）。pending ecosystem 是正式 SSOT 节点但没有 PNG，二者不得混写。
 
 ## 📖 简介 / Introduction
@@ -242,7 +242,11 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    - 生态根有 root icon → 迁入 `icons/<Root>/<Root>/<Root>.png`；没有 root icon → 仍建目录，**不得伪造 root icon**；正式 SSOT ecosystem 节点登记 `icon_status=pending`（白名单仅用于尚未进入 SSOT 的 parent，不用于正式根节点）；
    - descendants < 2 → 不建一级目录（避免一级目录爆炸），留在功能分类，生态关系只写 `parent_brand` 元数据。
    当前生态分类（17 个，随 brands.json 动态扩展，不写死数量）：Alibaba / Amazon / Apple / Baidu / ByteDance / ChinaMobile / Disney / Google / Meta / Microsoft / NBCUniversal / NetEase / PCCW / SONY / SpaceXAI / Tencent / WarnerBrosDiscovery。
-   其中 **SpaceXAI** 为 2026-10-01 新增：descendants = X / xAI / Grok = 3 ≥ 2；根节点为正式 `brands.json` SSOT 条目（`entity_type=ecosystem`、`canonical=true`、`icon_status=official`），根图标取自官方 Brand Guidelines 资产包（`https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` → `spacexai - symbol - black - squared.png`，2026-10-01 取得），**禁止伪造或复用其它品牌资产**。
+   其中 **SpaceXAI** 为 2026-10-01 新增：descendants = X / xAI / Grok = 3 ≥ 2；根节点为正式 `brands.json` SSOT 条目（`entity_type=ecosystem`、`canonical=true`、`icon_status=official`）。根图标来自官方素材，**禁止伪造、禁止复用其它品牌资产**；官方来源与派生关系必须分开描述，不得混写：
+   - **Official source asset**：SpaceXAI 官方 Brand Guidelines（<https://x.ai/legal/brand-guidelines>）Logos 下载包 `https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` 的成员 `spacexai - symbol - black - squared.png`（1200×1200，2026-10-01 取得，HTTP 200）。
+   - **Repository asset**：`icons/SpaceXAI/SpaceXAI/SpaceXAI.png` 是**项目规范化派生**（derivative）：1200×1200 → 512×512 LANCZOS 缩放 + 本仓库统一 512×512 RGBA squircle 容器遮罩（r≈115、四角透明）。它**不是**官方原文件的逐字节落库。
+   - **Logo artwork**：品牌图形本体未重绘、未改色、未改变字形或比例（仅整体缩放 + 容器遮罩；像素级比对：RGB 与缩放后的官方素材完全一致，max diff = 0）。
+   - 官方素材的使用须遵循官方 Brand Guidelines 条款；本仓库只做容器规范化，不改变品牌本体设计。
 3. **Canonical Brand 唯一**：同一品牌只允许出现在一个分类，跨语义需求用 `brands.json` 的 tags/aliases 表达，**绝不复制 PNG**；
 4. **系统图标归 `System/`**：Direct / Reject / Proxy / SSID / Traffic 等无品牌策略图标不混入品牌分类；
 5. **ownership evidence ≠ Brand Graph**：`brands.json` 是 canonical Brand / Icon / Relationship SSOT；现实世界的 corporate ownership 证据、来源与研究判断只记录在 [`docs/references/brand-ownership-audit.md`](docs/references/brand-ownership-audit.md)，不因「同属一家公司」自动新增 `parent_brand`；只有经 Brand / Product Hierarchy 语义确认的关系才进入关系图。
@@ -250,7 +254,7 @@ static=Netflix, HK, TW, JP, SG, img-url=https://raw.githubusercontent.com/Hawaii
    **entity_type** 回答「实体本身是什么」：`ecosystem` 用于生态根品牌（拥有自身一级生态分类者，当前 17 个，随 brands.json 动态扩展），子品牌与中间层品牌一律 `product_brand`；**公司品牌但未构成独立生态者（如 SINA / Xiaomi / TVB）亦为 `product_brand`**，其子公司/产品经 `parent_brand` 关联，不建一级生态目录。
    `SpaceXAI` 资产状态（generated）：`icon_status=official`；`icon_path=icons/SpaceXAI/SpaceXAI/SpaceXAI.png`。
 
-   **历史说明（Evidence 实验已移除）**：仓库曾尝试一层 `parent-edge-evidence` 辅助审计清单
+   **Historical / 历史说明（Evidence 实验已移除，非当前架构）**：仓库曾尝试一层 `parent-edge-evidence` 辅助审计清单
    （`relation_type` / `parent_brand_validity` 分级）。2026-10-01 评估后**从 active 架构中移除**：
    它没有真实消费者（不被 CI、生成器、resolver 或下游依赖），不是 SSOT，且其分级是对人工审计文字的
    关键词 triage，117 条记录中 0 条带 `source.url`，无法独立取证——保留只会制造第二套关系叙事的错觉。

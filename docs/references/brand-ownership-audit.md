@@ -1,6 +1,7 @@
 # 品牌归属审计报告 / Brand Ownership Audit
 
-> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 **16 个 ecosystem root** + 3 个 2026-09-30 会话新增品牌）
+> **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 **16 个 ecosystem root** + 3 个 2026-09-30 会话新增品牌）。
+> **Historical snapshot**：本节数字为**当日审计快照**，非当前状态；当前值见 README「仓库统计口径」（SSOT entities 293 / ecosystems 17）。
 
 > 本文件是 **研究/证据层**：记录每个品牌当前（现实世界）母公司判断与依据。
 > SSOT 仍为 `config/brands.json`（`parent_brand` / `category` / `entity_type`）——本文件不替代 SSOT。[§65 §66 §97]
@@ -56,10 +57,11 @@
 
   - `SpaceXAI`：**顶层生态根**。canonical descendants = `X` + `xAI` + `Grok` = **3 ≥ 2** →
     成立一级生态分类 `icons/SpaceXAI/`（`categories.json` `type=ecosystem`）。
-    **SpaceXAI** 是正式 SSOT 节点（`entity_type=ecosystem`、`canonical=true`）。根图标取自官方
-    Brand Guidelines 资产包（`https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip` →
-    `spacexai - symbol - black - squared.png`，2026-10-01 取得，HTTP 200），按本项目容器规范
-    （512×512 RGBA、squircle、四角透明）落库为 `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，
+    **SpaceXAI** 是正式 SSOT 节点（`entity_type=ecosystem`、`canonical=true`）。**Official source asset**：官方
+    Brand Guidelines（<https://x.ai/legal/brand-guidelines>）Logos 包 `https://data.x.ai/logos/SpaceXAI_Grok_Assets.zip`
+    成员 `spacexai - symbol - black - squared.png`（2026-10-01 取得，HTTP 200）。**Repository asset**：
+    `icons/SpaceXAI/SpaceXAI/SpaceXAI.png`，是项目规范化派生（1200×1200 → 512×512 LANCZOS + 本仓库统一
+    squircle 容器遮罩），**不是**官方原文件的逐字节落库；品牌图形本体未重绘 / 未改色 / 未改字形与比例，
     `icon_status=official`。**不得伪造、也不得把 xAI / X 图标复制为 SpaceXAI 图标**
     （CI 第 6 组同时禁止两个品牌共用同一 SHA 图标）；`config/brand-review-queue.json` 对应项已置
     `RESOLVED` 并记录官方来源。
