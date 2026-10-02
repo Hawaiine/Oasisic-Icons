@@ -98,6 +98,11 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/Taobao/Taobao.png"
     },
     {
+      "name": "TaobaoShangou",
+      "category": "Alibaba",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png"
+    },
+    {
       "name": "Youku",
       "category": "Alibaba",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Alibaba/Youku/Youku.png"
@@ -248,9 +253,9 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/ChinaMobile/ChinaMobile/ChinaMobile.png"
     },
     {
-      "name": "ChinaMobileDisk",
+      "name": "ChinaMobileCloudDrive",
       "category": "ChinaMobile",
-      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png"
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png"
     },
     {
       "name": "Migu",
@@ -468,9 +473,19 @@
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Game/Nintendo/Nintendo.png"
     },
     {
+      "name": "RockstarGames",
+      "category": "Game",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Game/RockstarGames/RockstarGames.png"
+    },
+    {
       "name": "Steam",
       "category": "Game",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Game/Steam/Steam.png"
+    },
+    {
+      "name": "Ubisoft",
+      "category": "Game",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Game/Ubisoft/Ubisoft.png"
     },
     {
       "name": "Gmail",
@@ -1156,6 +1171,11 @@
       "name": "Meituan",
       "category": "Shopping",
       "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Shopping/Meituan/Meituan.png"
+    },
+    {
+      "name": "MeituanFoodDelivery",
+      "category": "Shopping",
+      "url": "https://raw.githubusercontent.com/Hawaiine/Oasisic-Icons/main/icons/Shopping/MeituanFoodDelivery/MeituanFoodDelivery.png"
     },
     {
       "name": "Pinduoduo",

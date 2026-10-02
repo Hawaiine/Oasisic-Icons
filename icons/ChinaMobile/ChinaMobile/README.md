@@ -15,5 +15,5 @@ Direct Children: 2
 
 | Child | Display Name |
 |:---|:---|
-| `ChinaMobileDisk` | 中国移动云盘 |
+| `ChinaMobileCloudDrive` | 中国移动云盘 |
 | `Migu` | 咪咕 |

@@ -296,6 +296,17 @@ class QualityNotesStatsTests(RepoFixture):
     def test_baseline_passes(self):
         self.assertEqual(self.validator().returncode, 0)
 
+    def _counts(self):
+        """当前仓库的 (PNG 数, RGBA 数)——夹具断言必须由磁盘推导，不得硬编码统计值。"""
+        files = list((self.repo / 'icons').rglob('*.png'))
+        rgba = 0
+        for f in files:
+            with open(f, 'rb') as fh:
+                head = fh.read(26)
+            if len(head) == 26 and head[25] == 6:
+                rgba += 1
+        return len(files), rgba
+
     def _patch(self, old, new):
         q = self.repo / NOTES_REL
         t = q.read_text(encoding='utf-8')
@@ -303,11 +314,14 @@ class QualityNotesStatsTests(RepoFixture):
         return self.write(NOTES_REL, t.replace(old, new))
 
     def test_count_drift_fails(self):
-        self._patch('**294 / 294 = 512×512**', '**293 / 293 = 512×512**')
+        n, _ = self._counts()
+        self._patch('**%d / %d = 512×512**' % (n, n), '**%d / %d = 512×512**' % (n - 1, n - 1))
         self.assert_validation_fails('尺寸行')
 
     def test_mode_drift_fails(self):
-        self._patch('RGBA 294（其余色型 0）', 'RGBA 294（其余色型 3）')
+        n, rgba = self._counts()
+        self._patch('RGBA %d（其余色型 %d）' % (rgba, n - rgba),
+                    'RGBA %d（其余色型 %d）' % (rgba, (n - rgba) + 3))
         self.assert_validation_fails('模式分布行')
 
     def test_volume_drift_fails(self):
@@ -328,17 +342,20 @@ class QualityNotesStatsTests(RepoFixture):
 
     def test_deleted_stat_line_makes_generator_fail(self):
         """统计行被删除 ⇒ 生成器必须失败（generated contract 不再静默通过）。"""
-        self._patch('| 尺寸 | **294 / 294 = 512×512**', '| 尺寸 | 见上')
+        n, _ = self._counts()
+        self._patch('| 尺寸 | **%d / %d = 512×512**' % (n, n), '| 尺寸 | 见上')
         self.assert_run_fails(self.updater(), '尺寸行')
 
     def test_generator_repairs_drift(self):
-        self._patch('**294 / 294 = 512×512**', '**1 / 1 = 512×512**')
-        self._patch('RGBA 294（其余色型 0）', 'RGBA 0（其余色型 294）')
+        n, rgba = self._counts()
+        self._patch('**%d / %d = 512×512**' % (n, n), '**1 / 1 = 512×512**')
+        self._patch('RGBA %d（其余色型 %d）' % (rgba, n - rgba),
+                    'RGBA 0（其余色型 %d）' % n)
         res = self.updater()
         self.assertEqual(res.returncode, 0, res.stdout + res.stderr)
         fixed = (self.repo / NOTES_REL).read_text(encoding='utf-8')
-        self.assertIn('**294 / 294 = 512×512**', fixed)
-        self.assertIn('RGBA 294（其余色型 0）', fixed)
+        self.assertIn('**%d / %d = 512×512**' % (n, n), fixed)
+        self.assertIn('RGBA %d（其余色型 %d）' % (rgba, n - rgba), fixed)
         self.assertEqual(self.validator().returncode, 0)
 
 

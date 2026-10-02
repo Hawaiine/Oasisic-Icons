@@ -23,12 +23,13 @@ icons/<category>/<中间父…>/<id>/<id>.png           同类中间父品牌下
 | `Grok` | `xAI` | Grok → xAI → SpaceXAI | `SpaceXAI` | `icons/SpaceXAI/xAI/Grok/Grok.png` | `icons/SpaceXAI/xAI/Grok/Grok.png` | KEEP |
 | `Instagram` | `Facebook` | Instagram → Facebook → Meta | `Meta` | `icons/Meta/Facebook/Instagram/Instagram.png` | `icons/Meta/Facebook/Instagram/Instagram.png` | KEEP |
 | `Messenger` | `Facebook` | Messenger → Facebook → Meta | `Meta` | `icons/Meta/Facebook/Messenger/Messenger.png` | `icons/Meta/Facebook/Messenger/Messenger.png` | KEEP |
+| `TaobaoShangou` | `Taobao` | TaobaoShangou → Taobao → Alibaba | `Alibaba` | `icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png` | `icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png` | KEEP |
 | `Threads` | `Facebook` | Threads → Facebook → Meta | `Meta` | `icons/Meta/Facebook/Threads/Threads.png` | `icons/Meta/Facebook/Threads/Threads.png` | KEEP |
 | `WhatsApp` | `Facebook` | WhatsApp → Facebook → Meta | `Meta` | `icons/Meta/Facebook/WhatsApp/WhatsApp.png` | `icons/Meta/Facebook/WhatsApp/WhatsApp.png` | KEEP |
 | `YouTubeMusic` | `YouTube` | YouTubeMusic → YouTube → Google | `Google` | `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` | `icons/Google/YouTube/YouTubeMusic/YouTubeMusic.png` | KEEP |
 | `iCloudPrivateRelay` | `iCloud` | iCloudPrivateRelay → iCloud → Apple | `Apple` | `icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png` | `icons/Apple/iCloud/iCloudPrivateRelay/iCloudPrivateRelay.png` | KEEP |
 
-多层关系（`child.parent_brand = P` 且 `P.parent_brand != null`）共 **7** 条。
+多层关系（`child.parent_brand = P` 且 `P.parent_brand != null`）共 **8** 条。
 
 ## 3. cross-category 父品牌（VALID_CROSS_CATEGORY，不迁移）
 
@@ -69,19 +70,20 @@ cross-category 关系共 **3** 条。
 | `SiriusXM` | `Pandora` |
 | `Snap` | `Snapchat` |
 | `TaiwanMobile` | `MyVideo` |
+| `TakeTwo` | `RockstarGames` |
 | `UNEXTHoldings` | `UNEXT` |
 | `Valve` | `Steam` |
 | `Xperi` | `TMDB` |
 | `ZhipuAI` | `GLM` |
 | `iCABLE` | `HOYTV` |
 
-无图标母公司共 **30** 个（登记于 `parent_brands_without_icon`）。
+无图标母公司共 **31** 个（登记于 `parent_brands_without_icon`）。
 
 ## 5. 生态矩阵（§47）
 
 | Ecosystem | Logical Root | Has Icon | Category | Canonical Descendants | Status |
 |:---|:---|:---|:---|:---|:---|
-| `Alibaba` | `Alibaba` | YES | `Alibaba` | 8 | Ecosystem |
+| `Alibaba` | `Alibaba` | YES | `Alibaba` | 9 | Ecosystem |
 | `Amazon` | `Amazon` | YES | `Amazon` | 5 | Ecosystem |
 | `Apple` | `Apple` | YES | `Apple` | 12 | Ecosystem |
 | `Baidu` | `Baidu` | YES | `Baidu` | 3 | Ecosystem |
@@ -103,8 +105,8 @@ cross-category 关系共 **3** 条。
 
 ## 6. 统计
 
-- canonical product brands：**235**
+- canonical product brands：**239**
 - canonical ecosystem entities：**1**
-- 物理父品牌节点：**26**
-- 深层嵌套品牌（路径 ≥ 5 段）：**7**
+- 物理父品牌节点：**28**
+- 深层嵌套品牌（路径 ≥ 5 段）：**8**
 - 生态根（含逻辑生态根）：**17**

@@ -34,6 +34,7 @@ LEGACY_BRAND_IDS = {
     'PeacockTV': 'Peacock',
     'Podcasts': 'ApplePodcasts',
     'Twitter': 'X',
+    'ChinaMobileDisk': 'ChinaMobileCloudDrive',  # 2026-10-02 技术 ID 对齐官方名
 }
 
 # 旧目录前缀：旧目录名与当前 canonical 品牌 ID 同形，必须用完整前缀登记

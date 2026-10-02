@@ -184,6 +184,24 @@
 
 - `icons/Music/mora/` → `icons/SONY/mora/`
 
+## 本轮增量（2026-10-02）：重命名 + 新增（含嵌套层级）
+
+**重命名（旧 URL 失效，下游需同步）：**
+
+- `icons/ChinaMobile/ChinaMobileDisk/ChinaMobileDisk.png` → `icons/ChinaMobile/ChinaMobileCloudDrive/ChinaMobileCloudDrive.png`
+  （2026-10-02 技术 ID `ChinaMobileDisk` → `ChinaMobileCloudDrive`，目录/文件名同步；display_name 仍为「中国移动云盘」）
+
+**新增（此前无 URL）：**
+
+- `icons/Game/Ubisoft/Ubisoft.png`
+- `icons/Game/RockstarGames/RockstarGames.png`
+- `icons/Alibaba/Taobao/TaobaoShangou/TaobaoShangou.png`（同分类中间父品牌递归层级）
+- `icons/Shopping/Meituan/MeituanFoodDelivery/MeituanFoodDelivery.png`（同上）
+
+**资产替换（URL 不变，内容更新）：**
+
+- `icons/Apple/iCloud/iCloud.png`（换官方 squircle 资源）
+
 ### icons/Social/ →
 
 - `icons/Social/LinkedIn/` → `icons/Microsoft/LinkedIn/`
