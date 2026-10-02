@@ -4,7 +4,6 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 python3 <<'PY'
-import json
 import sys
 from pathlib import Path
 sys.path.insert(0, str(Path('scripts').resolve()))
@@ -12,11 +11,12 @@ from brand_relationships import (
     PARENT_README_MARKER, ecosystem_category_ids, expected_ecosystem_readme_block,
     expected_parent_readme, physical_parent_nodes,
 )
+from json_io import read_json_or_exit  # JSON 读取唯一入口（统一诊断）
 
-brands_doc = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))
+brands_doc = read_json_or_exit('config/brands.json', 'brands.json (品牌 SSOT)')
 ssot = {b['id']: b for b in brands_doc.get('brands', [])}
 aliases = set(brands_doc.get('parent_brands_without_icon', []))
-cats = json.loads(Path('config/categories.json').read_text(encoding='utf-8'))['categories']
+cats = read_json_or_exit('config/categories.json', 'categories.json (分类 SSOT)')['categories']
 eco_cat_ids = ecosystem_category_ids(cats)
 ICONS = Path('icons')
 cat_dirs = sorted(p.name for p in ICONS.iterdir() if p.is_dir())

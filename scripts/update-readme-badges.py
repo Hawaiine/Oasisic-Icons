@@ -24,7 +24,6 @@
      活跃分类句 / 独立仓库句 / 分类表行 / 合计行 / 统计口径行 / 生态计数 /
      扫描范围句）缺失时 **print ERROR + exit 1**。
 """
-import json
 import re
 import sys
 from pathlib import Path
@@ -33,10 +32,12 @@ from collections import Counter
 REPO = Path(".")
 ICONS = REPO / "icons"
 sys.path.insert(0, str((REPO / "scripts").resolve()))
+from json_io import JsonLoadError, describe, load_json  # noqa: E402
 # 关系引擎必须可用（2026-10-01 Phase 3）：canonical 语义的唯一来源是
 # scripts/brand_relationships.py。此前是 broad `except Exception` + 退化为
 # `entry.get('canonical')`，会把引擎自身错误吞成"看起来正常"的统计数字。
 # 现在：加载失败或执行失败都直接非 0 退出（fail-fast），不做静默 fallback。
+# （2026-10-02 维护强化：JSON 读取统一走 json_io，给「路径 + 行列 + 原因」诊断。）
 from brand_relationships import is_canonical_brand  # noqa: E402
 
 
@@ -45,19 +46,15 @@ def ssot_brands():
     多层物理层级（icons/<category>/<中间父>/<id>/）会让「一级子目录 = 品牌」的
     假设失效（§21/§38：统计必须由程序从 SSOT 动态计算）。
 
-    fail-fast（2026-10-01 Phase 3）：文件缺失 / JSON 损坏 / 结构非法 / 编码错误一律立即
-    非 0 退出。**数据不存在或损坏 ≠ 空数据**——`except: return []` 会把 SSOT 故障
-    写成「0 品牌」，让 README 生成"成功"。
+    fail-fast：文件缺失 / JSON 损坏 / 结构非法 / 编码错误一律立即非 0 退出。
+    **数据不存在或损坏 ≠ 空数据**——`except: return []` / `doc.get("brands", [])`
+    会把 SSOT 故障写成「0 品牌」，让 README 生成"成功"。
+    加载失败由 json_io 抛 JsonLoadError（带路径 + 行列 + 原因，main 统一转 exit 1）；
+    结构非法在此处显式拒绝（load_json 只保证「合法 JSON」，不保证 schema）。
     """
-    path = REPO / "config/brands.json"
-    if not path.exists():
-        raise SystemExit("ERROR: 缺少品牌 SSOT %s（数据缺失 ≠ 空数据，拒绝继续生成）" % path)
-    try:
-        doc = json.loads(path.read_text(encoding="utf-8"))
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-        raise SystemExit("ERROR: 品牌 SSOT %s 无法解析: %s（拒绝继续生成）" % (path, exc))
+    doc = load_json(REPO / "config" / "brands.json")
     if not isinstance(doc, dict) or not isinstance(doc.get("brands"), list):
-        raise SystemExit("ERROR: 品牌 SSOT %s 结构非法（应为 {brands: [...]}）" % path)
+        raise SystemExit("ERROR: 品牌 SSOT config/brands.json 结构非法（应为 {brands: [...]}）")
     return doc["brands"]
 
 
@@ -100,19 +97,16 @@ def per_category():
 def display_to_id():
     """分类显示名 -> 目录 id（README 表格里写的是 display_name，目录用的是 id）。
 
-    fail-fast（2026-10-01 Phase 3）：categories.json 缺失/损坏/结构非法一律非 0 退出，
+    fail-fast：categories.json 缺失/损坏/结构非法一律非 0 退出，
     不再退化为 `{}`（空映射会让分类表行静默错配）。
+    加载失败由 json_io 抛 JsonLoadError（main 统一转 exit 1）；
+    结构非法在此显式拒绝（`['categories']` 裸下标对合法但错构的 JSON 会 KeyError，
+    不如显式诊断清楚）。
     """
-    path = REPO / 'config/categories.json'
-    if not path.exists():
-        raise SystemExit("ERROR: 缺少分类 SSOT %s（数据缺失 ≠ 空数据）" % path)
-    try:
-        doc = json.loads(path.read_text(encoding='utf-8'))
-    except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-        raise SystemExit("ERROR: 分类 SSOT %s 无法解析: %s" % (path, exc))
+    doc = load_json(REPO / 'config/categories.json')
     cs = doc.get('categories') if isinstance(doc, dict) else None
     if not isinstance(cs, list):
-        raise SystemExit("ERROR: 分类 SSOT %s 结构非法（应为 {categories: [...]}）" % path)
+        raise SystemExit("ERROR: 分类 SSOT config/categories.json 结构非法（应为 {categories: [...]}）")
     return {c['display_name']: c['id'] for c in cs}
 
 
@@ -322,14 +316,23 @@ def update_quality_notes(n_png, n_brands, n_cats, reserved_ids):
 
 
 def main():
-    n_png, n_brands, n_cats = count()
-    cats = per_category()
-    reserved_ids = sorted(cid for cid, (b, i) in cats.items() if b == 0 and i == 0)
-    spacexai_present = any(b.get('id') == 'SpaceXAI' for b in ssot_brands())
-    print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类"
-          f"（预留空分类 {len(reserved_ids)} 个）")
-    missing = update_readme(n_png, n_brands, n_cats, cats, spacexai_present)
-    missing += update_quality_notes(n_png, n_brands, n_cats, reserved_ids)
+    try:
+        n_png, n_brands, n_cats = count()
+        cats = per_category()
+        reserved_ids = sorted(cid for cid, (b, i) in cats.items() if b == 0 and i == 0)
+        spacexai_present = any(b.get('id') == 'SpaceXAI' for b in ssot_brands())
+        print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类"
+              f"（预留空分类 {len(reserved_ids)} 个）")
+        # try 覆盖到写入前最后一次 SSOT 读取（display_to_id 读 categories.json）：
+        # 此前只包 count()/per_category()，categories.json 故障会漏出裸 Traceback
+        # 而非统一诊断（2026-10-02 rebase 合并 #16/#18 时由 mutation 矩阵暴露）。
+        # README 写入在 display_to_id() 之后，故此处抛错时未产生任何半写。
+        missing = update_readme(n_png, n_brands, n_cats, cats, spacexai_present)
+        missing += update_quality_notes(n_png, n_brands, n_cats, reserved_ids)
+    except JsonLoadError as exc:
+        print('ERROR: %s' % describe(exc, 'SSOT'))
+        print('       SSOT 不可读时统计/写入一律中止（不得以 0 覆盖文档）。')
+        return 1
     if missing:
         print("ERROR: 以下 generated 目标未命中（README / docs 措辞可能已改，或对应行被删除）：")
         for name in missing:

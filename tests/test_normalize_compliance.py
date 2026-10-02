@@ -6,7 +6,8 @@
 旧实现用「单像素 `(RADIUS + 1, 0)` 是否透明」反推圆角半径。但最终 PNG 的
 alpha = 原图 alpha × 圆角遮罩，该像素是否透明只取决于**内容是否覆盖**，与半径无关：
 
-  - 正确的 r=115 满幅文件被判 False（实测全库误判 225/295，`--apply` 会重写它们）；
+  - 正确的 r=115 满幅文件被判 False（**历史实测**：2026-10-01 全库误判 225/295，
+    该数字为当日观测值，非当前状态——`--apply` 当时会重写它们）；
   - 内容内缩（留白较多）的文件反而被判 True。
 
 新语义（本测试锁定的契约）
@@ -148,7 +149,7 @@ class RealRepositoryTests(unittest.TestCase):
                                 f"{rel} 不应被判为待处理")
 
     def test_false_positive_surface_stays_small(self):
-        """旧判据误判 225/295；新判据只应命中真实异常（远小于 5%）。"""
+        """旧判据历史误判 225/295（2026-10-01 实测）；新判据只应命中真实异常。"""
         files = sorted((REPO / "icons").rglob("*.png"))
         flagged = 0
         for p in files:

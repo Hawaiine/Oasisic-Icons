@@ -23,6 +23,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / 'scripts'))
+from json_io import read_json_or_exit  # noqa: E402
 
 from brand_relationships import (  # noqa: E402
     _ancestor_set_ordered,
@@ -99,8 +100,8 @@ def build(brands_doc, cats_list=None):
 
 
 def main():
-    brands_doc = json.loads(BRANDS.read_text(encoding='utf-8'))
-    cats_doc = json.loads((REPO / 'config' / 'categories.json').read_text(encoding='utf-8'))
+    brands_doc = read_json_or_exit(BRANDS, 'brands.json (品牌 SSOT)')
+    cats_doc = read_json_or_exit(REPO / 'config' / 'categories.json', 'categories.json (分类 SSOT)')
     doc = build(brands_doc, cats_doc.get('categories', []))
     OUT.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     canon = sum(1 for r in doc['brands'] if is_canonical_brand(r))

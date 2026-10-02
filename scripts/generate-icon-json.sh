@@ -27,10 +27,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path('scripts').resolve()))
 from brand_relationships import expected_icon_path  # 唯一物理路径解析器
+from json_io import read_json_or_exit  # JSON 读取唯一入口（统一诊断）
 from site_constants import ICON_RAW_BASE
 
 output = Path('config/surge-icon.json')
-brands = json.loads(Path('config/brands.json').read_text(encoding='utf-8'))['brands']
+brands = read_json_or_exit('config/brands.json', 'brands.json (品牌 SSOT)')['brands']
 ssot = {b['id']: b for b in brands}
 
 entries = []

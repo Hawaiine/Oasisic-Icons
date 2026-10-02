@@ -69,6 +69,30 @@ except ImportError:
 
 groups = {}  # group name -> list of errors
 
+# 两种失败处理（2026-10-02 审计 §6）：
+#   默认 —— 解析失败**归因到所属校验组**，其余组照常跑完并整体 exit 1（CI 用）；
+#   --strict —— 立即以统一诊断退出（本地排查用，避免在半套结果上误判）。
+_CLI_TRACE_MODE = False
+
+
+def _load_json(path):
+    """唯一 JSON 加载入口（scripts/json_io.py）。冲突时先归因、再失败；
+    --strict 时走统一诊断 + 退出码 1。返回 (data, conflict_described)。
+
+    加载失败绝不返回空数据——SSOT 不可读时「0 个品牌」会让后续全部校验静默 no-op。
+    """
+    global _CLI_TRACE_MODE
+    try:
+        return load_json(path), None
+    except JsonLoadError as e:
+        if _CLI_TRACE_MODE:
+            # --strict：SSOT 不可解析时立即以统一诊断退出（不留半套校验结果，
+            # 也不把 Python traceback 倒给维护者）
+            print('✗ %s' % describe(e))
+            sys.exit(1)
+        return None, describe(e)
+
+
 def fail(group, msg):
     groups.setdefault(group, []).append(msg)
 
@@ -88,6 +112,34 @@ from brand_relationships import (  # noqa: E402
 )
 # 发布面常量唯一来源（生成器 generate-icon-json.sh 共用同一值，禁止各自写字面量）
 from site_constants import ICON_RAW_BASE as SURGE_BASE  # noqa: E402
+# JSON 读取唯一入口（统一诊断：路径 + 行列 + 原因）
+from json_io import JsonLoadError, describe, load_json  # noqa: E402
+
+# ---------- CLI 参数（必须在读取 SSOT 之前解析：--strict 影响加载失败的处理方式）----------
+expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
+                   'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
+                   'Surge JSON', 'Glossary', 'Legacy paths',
+                   'README 表格', '生态一致性', 'README 统计', 'README 父节点',
+                   '关系派生导出', 'Review Queue', '物理路径', 'Rounded mask 边界',
+                   'Quality notes 统计']
+_only = None
+_quiet = False
+_as_json = False
+if __name__ == '__main__':
+    import argparse
+    _ap = argparse.ArgumentParser(description='Oasisic-Icons 图标契约校验器')
+    _ap.add_argument('--only', default=None, metavar='GROUP',
+                     help='只报告指定组（其余组仍执行，用于本地定位）')
+    _ap.add_argument('--quiet', action='store_true', help='只输出失败项与结论')
+    _ap.add_argument('--json', action='store_true', help='以 JSON 输出结果（供脚本消费）')
+    _ap.add_argument('--strict', action='store_true',
+                     help='JSON 解析失败时直接以统一诊断 + exit 1 退出（不归入校验组）')
+    _args = _ap.parse_args()
+    _only, _quiet, _as_json = _args.only, _args.quiet, _args.json
+    _CLI_TRACE_MODE = _args.strict          # 影响 _load_json 的失败路径
+    if _only is not None and _only not in expected_groups:
+        print('✗ 未知校验组: %s\n  可用组: %s' % (_only, ', '.join(expected_groups)))
+        sys.exit(2)
 
 # ---------- 扫描 ----------
 all_pngs = sorted(ICONS.rglob('*.png'))
@@ -161,11 +213,19 @@ for brand_dir, pngs in brand_dirs.items():
              % (brand, brand_dir, name))
 
 # ---------- 4. Category 白名单 ----------
+# CATS_LOADED / BRANDS_LOADED：SSOT 不可解析时，**下游组不做级联推断**。
+# 否则一次「分类表语法错」会被放大成数百条伪错误（README 未知分类 ×43、
+# 物理路径 category 非法 ×295…），真正的失败原因被噪声淹没（2026-10-02 审计 §6）。
+CATS_LOADED = True
 cats = []
 if not CATS_PATH.exists():
     fail('Category', '缺少 %s（分类 SSOT）' % CATS_PATH)
 else:
-    cats = json.loads(CATS_PATH.read_text(encoding='utf-8'))['categories']
+    _cats_doc, _conflict = _load_json(CATS_PATH)
+    if _conflict:
+        fail('Category', _conflict)
+    cats = (_cats_doc or {}).get('categories', []) if isinstance(_cats_doc, dict) else []
+    CATS_LOADED = isinstance(_cats_doc, dict)
     cat_ids = {c['id'] for c in cats}
     disk_cats = {d.name for d in ICONS.iterdir() if d.is_dir()}
     for c in sorted(disk_cats - cat_ids):
@@ -209,13 +269,20 @@ ENTITY_TYPES = {'ecosystem', 'product_brand', 'country', 'system_icon', 'tool_ap
 ssot = {}
 aliases = set()
 bdata = []
+BRANDS_LOADED = False
 if not BRANDS_PATH.exists():
     fail('Brands SSOT', '缺少 %s（品牌 SSOT）' % BRANDS_PATH)
 else:
-    brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8'))
-    if not isinstance(brands_doc, dict):
+    _brands_doc, _conflict = _load_json(BRANDS_PATH)
+    if _conflict:
+        fail('Brands SSOT', _conflict)
+        brands_doc = {}
+    elif not isinstance(_brands_doc, dict):
         fail('Brands SSOT', 'brands.json 根必须是对象 {brands: [...]}')
-        brands_doc = {'brands': []}
+        brands_doc = {}
+    else:
+        brands_doc = _brands_doc
+        BRANDS_LOADED = True
     aliases = set(brands_doc.get('parent_brands_without_icon', []))
     bdata = brands_doc.get('brands', [])
     _byid = {e.get('id'): e for e in bdata}
@@ -252,14 +319,13 @@ else:
         if cats and cat not in {c['id'] for c in cats}:
             fail('Brands SSOT', '引用未知分类: %s (%s)' % (cat, bid))
         expected = expected_icon_path(bid, _byid)
-        if pending_ecosystem:
-            pass  # 无物理 leaf：不检查路径一致性 / 文件存在性
-        elif ip != expected:
-            fail('Brands SSOT', 'icon_path 与路径规则不一致: %s 应为 %s' % (ip, expected))
-        elif not Path(ip).exists():
-            fail('Brands SSOT', 'icon_path 文件不存在: %s' % ip)
-        elif Path(ip).parent.name != bid:
-            fail('Brands SSOT', 'category 与目录不一致: %s (%s)' % (ip, bid))
+        if not pending_ecosystem:
+            if ip != expected:
+                fail('Brands SSOT', 'icon_path 与路径规则不一致: %s 应为 %s' % (ip, expected))
+            elif not Path(ip).exists():
+                fail('Brands SSOT', 'icon_path 文件不存在: %s' % ip)
+            elif Path(ip).parent.name != bid:
+                fail('Brands SSOT', 'category 与目录不一致: %s (%s)' % (ip, bid))
         if et not in ENTITY_TYPES:
             fail('Brands SSOT', 'entity_type 非法: %s (%s, 允许 %s)' % (et, bid, sorted(ENTITY_TYPES)))
     # parent_brand：存在、非自指、无环
@@ -290,14 +356,13 @@ else:
                 fail('Brands SSOT', 'parent_brand 链末端不存在: %s' % ' -> '.join(chain + [cur]))
     disk_brands = {str(bd.relative_to(ICONS)) for bd in brand_dirs}
     ssot_rel = {Path(e['icon_path']).parent.relative_to('icons').as_posix() for e in bdata if e.get('icon_path')}
-    # 允许的「无自身 icon 的父品牌」（仅记录归属关系，图标缺失见 docs 审计记录）
-    aliases = set()
-    if isinstance(json.loads(BRANDS_PATH.read_text(encoding='utf-8')), dict):
-        aliases = set(json.loads(BRANDS_PATH.read_text(encoding='utf-8')).get('parent_brands_without_icon', []))
-    for rel in sorted(disk_brands - ssot_rel):
-        fail('Brands SSOT', '磁盘品牌不在 brands.json: icons/%s' % rel)
-    for rel in sorted(ssot_rel - disk_brands):
-        fail('Brands SSOT', 'brands.json 品牌在磁盘不存在: %s' % rel)
+    # SSOT 不可解析时不做「磁盘 vs SSOT」双向比对：那会把「SSOT 损坏」放大成
+    # 数百条伪「磁盘品牌不在 brands.json」噪声，掩盖真正的失败原因（§6 fail-fast 归因）。
+    if brands_doc:
+        for rel in sorted(disk_brands - ssot_rel):
+            fail('Brands SSOT', '磁盘品牌不在 brands.json: icons/%s' % rel)
+        for rel in sorted(ssot_rel - disk_brands):
+            fail('Brands SSOT', 'brands.json 品牌在磁盘不存在: %s' % rel)
 
 # ---------- 8. surge-icon.json（§30-§34 双向集合一致性） ----------
 # 存在性 → 升级为「与 brands.json SSOT 逐项对应」：
@@ -309,7 +374,10 @@ entries = []
 if not JSON_PATH.exists():
     fail('Surge JSON', '缺少 %s' % JSON_PATH)
 else:
-    entries = json.loads(JSON_PATH.read_text(encoding='utf-8')).get('icons', [])
+    _surge_doc, _conflict = _load_json(JSON_PATH)
+    if _conflict:
+        fail('Surge JSON', _conflict)
+    entries = (_surge_doc or {}).get('icons', []) if isinstance(_surge_doc, dict) else []
     if len(entries) != len(all_pngs):
         fail('Surge JSON', '条目数不一致: surge-icon.json=%d, 磁盘 PNG=%d' % (len(entries), len(all_pngs)))
 
@@ -401,11 +469,13 @@ for d in scan_dirs:
             continue
         try:
             raw = f.read_bytes()
-            if b'\x00' in raw[:1024]:
-                continue  # 二进制内容（防未来新增未知后缀时再次自命中）
-            text = raw.decode('utf-8', errors='ignore')
-        except Exception:
+        except OSError as exc:
+            # 读不到 ≠ 没问题：不可读文件必须报出来（否则 legacy 引用可能藏在里面被静默跳过）
+            fail('Legacy paths', '无法读取待扫描文件: %s (%s)' % (rel, exc))
             continue
+        if b'\x00' in raw[:1024]:
+            continue  # 二进制内容（防未来新增未知后缀时再次自命中）
+        text = raw.decode('utf-8', errors='ignore')
         for pat in LEGACY_PATTERNS:
             for m in re.finditer(re.escape(pat), text):
                 line_no = text.count('\n', 0, m.start()) + 1
@@ -424,7 +494,9 @@ for c in cats:
 # ---------- 11. README 分类表结构 ----------
 # header / separator / 全量覆盖 / 无重复 / 顺序 / 计数
 README_TABLE_TITLE = '图标分类列表'
-if not Path('README.md').exists():
+if not CATS_LOADED:
+    fail('README 表格', '跳过分类表比对：config/categories.json 不可解析（原因见 Category 组）')
+elif not Path('README.md').exists():
     fail('README 表格', '缺少 README.md')
 else:
     readme = Path('README.md').read_text(encoding='utf-8')
@@ -516,10 +588,19 @@ else:
 #     正向（ecosystem→≥2）+ 反向（root ≥2→必须 ecosystem），只作用于 graph root，中间层不升级。
 # 负测（cycle / self-parent / missing parent / wrong root / threshold 双向 / canonical 过滤）
 # 见 tests/test_brand_relationships.py。
-cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8')) if CATS_PATH.exists() else {}
-brands_doc = json.loads(BRANDS_PATH.read_text(encoding='utf-8')) if BRANDS_PATH.exists() else {}
-for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
-    fail('生态一致性', _rel_err)
+_cats_doc, _cats_conflict = _load_json(CATS_PATH) if CATS_PATH.exists() else ({}, None)
+if _cats_conflict:
+    fail('生态一致性', _cats_conflict)
+_brands_doc2, _brands_conflict = _load_json(BRANDS_PATH) if BRANDS_PATH.exists() else ({}, None)
+if _brands_conflict:
+    fail('生态一致性', _brands_conflict)
+cats_doc = _cats_doc if isinstance(_cats_doc, dict) else {}
+brands_doc = _brands_doc2 if isinstance(_brands_doc2, dict) else {}
+if not (CATS_LOADED and BRANDS_LOADED):
+    fail('生态一致性', '跳过关系校验：SSOT 不可解析（原因见 Category / Brands SSOT 组）')
+else:
+    for _rel_err in validate_relationships(brands_doc, cats_doc.get('categories', [])):
+        fail('生态一致性', _rel_err)
 
 # ---------- 13. README 统计（§42-§45：badge + intro 数字 vs SSOT/文件系统） ----------
 # 主 README 的 badge 与正文统计句属 hardcoded statistics，必须与真实数据一致。
@@ -644,8 +725,6 @@ for _cid in sorted(ecosystem_category_ids(cats_doc.get('categories', []))):
     if _blk not in _ct:
         fail('README 父节点', '生态分类 README 缺/错关系树（应逐字节包含 resolver 渲染）: icons/%s/README.md'
              % _cid)
-    if _cid in ssot and _cid in ssot[_cid].get('icon_path', ''):
-        pass
 
 # ---------- 15. 关系派生导出（downstream artifact，禁止成为第二 SSOT） ----------
 # config/brand-relationships.json 由 scripts/export-brand-relationships.py 从
@@ -654,9 +733,15 @@ REL_PATH = Path('config/brand-relationships.json')
 if not REL_PATH.exists():
     fail('关系派生导出', '缺少 %s（运行 scripts/export-brand-relationships.py）' % REL_PATH)
 else:
-    import subprocess as _sp
-    _rel = json.loads(REL_PATH.read_text(encoding='utf-8'))
-    if _rel.get('generated') is not True or _rel.get('source') != 'config/brands.json':
+    _rel = None
+    _rel_doc, _conflict = _load_json(REL_PATH)
+    if _conflict:
+        fail('关系派生导出', _conflict)
+    elif not isinstance(_rel_doc, dict):
+        fail('关系派生导出', '%s 根必须是对象' % REL_PATH)
+    else:
+        _rel = _rel_doc
+    if _rel is not None and (_rel.get('generated') is not True or _rel.get('source') != 'config/brands.json'):
         fail('关系派生导出', '缺少 generated: true / source=config/brands.json 标注'
              '（派生文件必须标出来源，避免被当成第二个 SSOT）')
     _build_rel = None
@@ -669,7 +754,7 @@ else:
         _build_rel = _mod.build
     except Exception as _exc:  # noqa: BLE001
         fail('关系派生导出', '无法加载 scripts/export-brand-relationships.py: %s' % str(_exc)[:80])
-    if _build_rel is not None:
+    if _build_rel is not None and _rel is not None:
         _expected = _build_rel(brands_doc, cats_doc.get('categories', []))
         _rows = {r['child']: r for r in _rel.get('brands', [])}
         _exp_rows = {r['child']: r for r in _expected['brands']}
@@ -689,7 +774,12 @@ RQ_PATH = Path('config/brand-review-queue.json')
 if not RQ_PATH.exists():
     fail('Review Queue', '缺少 %s' % RQ_PATH)
 else:
-    _rq = json.loads(RQ_PATH.read_text(encoding='utf-8'))
+    _rq_doc, _conflict = _load_json(RQ_PATH)
+    if _conflict:
+        fail('Review Queue', _conflict)
+    _rq = _rq_doc if isinstance(_rq_doc, dict) else {}
+    if not _rq:
+        fail('Review Queue', '%s 根必须是对象' % RQ_PATH)
     _allowed_status = set(_rq.get('status_values') or [])
     _allowed_kinds = set(_rq.get('issue_kinds') or [])
     if _rq.get('is_ssot') is not False:
@@ -720,8 +810,11 @@ else:
 # ---------- 17. 物理路径（递归多层嵌套，§5/§6/§9-§11/§19-§21） ----------
 # 一级目录 = category；同类中间父品牌下的深层子品牌必须物理嵌套；icon_path 必须等于
 # 统一解析器 expected_icon_path() 的结果（禁止手工随意填写，§21）。
-for _p_err in validate_physical_paths(brands_doc, cats_doc.get('categories', []), '.'):
-    fail('物理路径', _p_err)
+if not (CATS_LOADED and BRANDS_LOADED):
+    fail('物理路径', '跳过物理路径校验：SSOT 不可解析（原因见 Category / Brands SSOT 组）')
+else:
+    for _p_err in validate_physical_paths(brands_doc, cats_doc.get('categories', []), '.'):
+        fail('物理路径', _p_err)
 
 # 审计文档（全库矩阵）必须与重算结果逐字节一致（§38/§46/§47）
 _PHA = Path('docs/references/physical-hierarchy-audit.md')
@@ -836,6 +929,10 @@ def _png_color_type(path):
 
 if not NOTES_PATH.exists():
     fail('Quality notes 统计', '缺少 %s' % NOTES_PATH)
+elif not CATS_LOADED:
+    # 与 README 表格 / 生态一致性 / 物理路径 组同一守卫模式：SSOT 不可解析时
+    # 跳过级联比对（原因见 Category 组），避免一次语法错被放大成噪声
+    fail('Quality notes 统计', '跳过质量统计：config/categories.json 不可解析（原因见 Category 组）')
 else:
     _nt = NOTES_PATH.read_text(encoding='utf-8')
     _nf = [p for p in all_pngs]
@@ -844,8 +941,11 @@ else:
     _rgba = sum(1 for p in _nf if _png_color_type(p) == 6)
     _total = sum(_sizes.values())
     _big = max(_nf, key=lambda p: _sizes[p]) if _nf else None
-    _cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8'))
-    _reserved = sorted(c['id'] for c in _cats_doc['categories'] if c.get('status') == 'reserved')
+    # 复用上方 _load_json() 的解析结果（唯一 JSON 入口，统一诊断）；
+    # 此前这里另有裸 json.loads，SSOT 损坏时会漏出 Python Traceback
+    # 压掉 Category 组归因（2026-10-02 rebase 合并 #16/#18 时由 mutation 矩阵暴露）
+    _reserved = sorted(c['id'] for c in cats_doc.get('categories', [])
+                       if isinstance(c, dict) and c.get('status') == 'reserved')
     _checks = []
     _m = re.search(r'> 扫描范围：全库 PNG（含 (\d+) 个预留空分类([^）]*)）', _nt)
     if not _m:
@@ -879,26 +979,40 @@ else:
             fail('Quality notes 统计', '体积行=%s 实际=%s' % (str(_got), str(_exp)))
 
 # ---------- 结果：按验证组报告 ----------
-expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
-                   'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
-                   'Surge JSON', 'Glossary', 'Legacy paths',
-                   'README 表格', '生态一致性', 'README 统计', 'README 父节点',
-                   '关系派生导出', 'Review Queue', '物理路径', 'Rounded mask 边界',
-                   'Quality notes 统计']
 any_fail = False
-print('Validation Groups: %d' % len(expected_groups))
-for g in expected_groups:
-    errs = groups.get(g, [])
+_results = {g: groups.get(g, []) for g in expected_groups}
+any_fail = any(_results.values())
+if _only is not None:
+    any_fail = bool(_results[_only])
+
+if _as_json:
+    print(json.dumps({
+        'groups': _results,
+        'failed_groups': [g for g in expected_groups if _results[g]],
+        'ok': not any_fail,
+        'stats': {'png': len(all_pngs), 'brands': len(brand_dirs),
+                  'categories': len([d for d in ICONS.iterdir() if d.is_dir()])},
+    }, ensure_ascii=False, indent=2))
+    sys.exit(1 if any_fail else 0)
+
+_reported = [_only] if _only is not None else expected_groups
+if not _quiet:
+    print('Validation Groups: %d' % len(expected_groups))
+for g in _reported:
+    errs = _results[g]
     if errs:
-        any_fail = True
         print('✗ %s（%d 项问题）' % (g, len(errs)))
         for e in errs[:20]:
             print('    - %s' % e)
         if len(errs) > 20:
             print('    ... 其余 %d 项省略' % (len(errs) - 20))
-    else:
+    elif not _quiet:
         print('✓ %s' % g)
 if any_fail:
+    if _only is not None:
+        _other = [g for g in expected_groups if g != _only and _results[g]]
+        if _other:
+            print('（另有其它组失败: %s）' % ', '.join(_other))
     sys.exit(1)
 print('All groups: PASS')
 print('  PNG %d / brands %d / categories %d' % (len(all_pngs), len(brand_dirs),

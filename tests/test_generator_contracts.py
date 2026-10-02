@@ -16,9 +16,7 @@
 """
 import json
 import shutil
-import subprocess
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 
@@ -28,6 +26,9 @@ sys.path.insert(0, str(SCRIPT_DIR))
 
 from brand_relationships import expected_icon_path  # noqa: E402
 from site_constants import ICON_RAW_BASE  # noqa: E402
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _harness import ScratchRepo, run_script  # noqa: E402
 
 SURGE = REPO / "config" / "surge-icon.json"
 BRANDS = REPO / "config" / "brands.json"
@@ -43,8 +44,8 @@ def load_catalog():
 
 
 def run_generator(cwd):
-    return subprocess.run(["bash", GENERATOR], cwd=str(cwd),
-                          capture_output=True, text=True, timeout=180)
+    """统一经 tests/_harness.run_script（脚本执行唯一实现）。"""
+    return run_script(GENERATOR, cwd, timeout=180)
 
 
 class CatalogShapeTests(unittest.TestCase):
@@ -92,14 +93,12 @@ class GeneratorBehaviorTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls._tmp = tempfile.TemporaryDirectory()
-        cls.root = Path(cls._tmp.name) / "repo"
-        shutil.copytree(REPO, cls.root,
-                        ignore=shutil.ignore_patterns(".git", "__pycache__"))
+        cls.repo = ScratchRepo(prefix="oasisic-gen-")
+        cls.root = cls.repo.root
 
     @classmethod
     def tearDownClass(cls):
-        cls._tmp.cleanup()
+        cls.repo.close()
 
     def test_generator_reproduces_committed_catalog(self):
         before = (self.root / "config" / "surge-icon.json").read_bytes()
