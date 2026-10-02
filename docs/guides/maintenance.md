@@ -24,7 +24,7 @@ icons/<分类>/…/<id>/<id>.png   config/surge-icon.json   config/brand-relatio
                         ▼
 README.md · docs/references/*.md · icons/**/README.md   （文档层，多为生成物）
 
-        CI：scripts/ci-validate-icons.py（17 组）+ scripts/ci-validate-docs.py
+        CI：scripts/ci-validate-icons.py（19 组）+ scripts/ci-validate-docs.py
 ```
 
 三类文档的边界（混用必然腐烂）：
@@ -124,7 +124,7 @@ python3 scripts/update-readme-badges.py
 ## 5. 校验流程
 
 ```bash
-python3 scripts/ci-validate-icons.py            # 17 组：SSOT / 命名 / 路径 / 派生物 / 文档统计 …
+python3 scripts/ci-validate-icons.py            # 19 组：SSOT / 命名 / 路径 / 派生物 / 文档统计 …
 python3 scripts/ci-validate-icons.py --quiet    # 只输出失败项与结论（本地快速复检）
 python3 scripts/ci-validate-icons.py --only Naming   # 只报告某一组（定位用）
 python3 scripts/ci-validate-icons.py --json     # 机器可读（脚本消费）
