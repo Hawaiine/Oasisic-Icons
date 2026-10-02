@@ -110,7 +110,7 @@
 | 圆角 | 统一 r=115px（≈22.4%，Apple squircle），四角透明（`alpha=0`） |
 | 用户手动更新的图标 | 新增图标（Qwen / Kimi / Manus / MiniMax / GLM 等）入库前须已合规 |
 | 规范化处理 | 历史 354 个文件由 `scripts/normalize-icons.py` 从原始尺寸（144×144 / 108×108 / 非方形）转换 |
-| 窄条字标 | 曾对 4 个窄条字标素材由 `scripts/normalize-strips.py` 处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
+| 窄条字标 | 曾对 4 个窄条字标素材做特殊处理（裁到内容后以对比色圆角底块承载）；此类素材后来大多已替换为官方方形源图 |
 | 体积 | 合计 ≈ 16.4 MB；平均 ≈54KB / 最大 292KB（298,829 B，`icons/Telecom/ChinaBroadnet/ChinaBroadnet.png`） |
 | 模式分布 | RGBA 298（其余色型 0） |
 
@@ -126,7 +126,6 @@
 | 脚本 | 作用 |
 |------|------|
 | `scripts/normalize-icons.py` | 按标准规范化：`--report` 查看待处理 / `--sheet out.png` 生成前后对比 / `--apply` 写入（幂等） |
-| `scripts/normalize-strips.py` | **LEGACY / MANUAL**：历史窄条字标素材专用（裁内容 + 对比色圆角底块）；**不属于当前 canonical 入库流水线**——CI 与生成器均无调用（2026-10-01 审计）；历史资产来源无法仅凭 PNG 反推，故不作「无历史关系」的断言 |
 | `scripts/optimize-icons.py` | pyoxipng 无损重压缩（`pip install pyoxipng`） |
 | `scripts/ci-validate-icons.py` | CI 校验（19 组）：PNG 合法性、命名 canonical-only、目录/物理路径、SSOT/订阅 JSON/README 一致性、圆角遮罩边界、本文件统计行 |
 
