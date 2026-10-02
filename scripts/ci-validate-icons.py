@@ -929,6 +929,10 @@ def _png_color_type(path):
 
 if not NOTES_PATH.exists():
     fail('Quality notes 统计', '缺少 %s' % NOTES_PATH)
+elif not CATS_LOADED:
+    # 与 README 表格 / 生态一致性 / 物理路径 组同一守卫模式：SSOT 不可解析时
+    # 跳过级联比对（原因见 Category 组），避免一次语法错被放大成噪声
+    fail('Quality notes 统计', '跳过质量统计：config/categories.json 不可解析（原因见 Category 组）')
 else:
     _nt = NOTES_PATH.read_text(encoding='utf-8')
     _nf = [p for p in all_pngs]
@@ -937,8 +941,11 @@ else:
     _rgba = sum(1 for p in _nf if _png_color_type(p) == 6)
     _total = sum(_sizes.values())
     _big = max(_nf, key=lambda p: _sizes[p]) if _nf else None
-    _cats_doc = json.loads(CATS_PATH.read_text(encoding='utf-8'))
-    _reserved = sorted(c['id'] for c in _cats_doc['categories'] if c.get('status') == 'reserved')
+    # 复用上方 _load_json() 的解析结果（唯一 JSON 入口，统一诊断）；
+    # 此前这里另有裸 json.loads，SSOT 损坏时会漏出 Python Traceback
+    # 压掉 Category 组归因（2026-10-02 rebase 合并 #16/#18 时由 mutation 矩阵暴露）
+    _reserved = sorted(c['id'] for c in cats_doc.get('categories', [])
+                       if isinstance(c, dict) and c.get('status') == 'reserved')
     _checks = []
     _m = re.search(r'> 扫描范围：全库 PNG（含 (\d+) 个预留空分类([^）]*)）', _nt)
     if not _m:

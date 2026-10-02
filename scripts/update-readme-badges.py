@@ -319,16 +319,20 @@ def main():
     try:
         n_png, n_brands, n_cats = count()
         cats = per_category()
+        reserved_ids = sorted(cid for cid, (b, i) in cats.items() if b == 0 and i == 0)
+        spacexai_present = any(b.get('id') == 'SpaceXAI' for b in ssot_brands())
+        print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类"
+              f"（预留空分类 {len(reserved_ids)} 个）")
+        # try 覆盖到写入前最后一次 SSOT 读取（display_to_id 读 categories.json）：
+        # 此前只包 count()/per_category()，categories.json 故障会漏出裸 Traceback
+        # 而非统一诊断（2026-10-02 rebase 合并 #16/#18 时由 mutation 矩阵暴露）。
+        # README 写入在 display_to_id() 之后，故此处抛错时未产生任何半写。
+        missing = update_readme(n_png, n_brands, n_cats, cats, spacexai_present)
+        missing += update_quality_notes(n_png, n_brands, n_cats, reserved_ids)
     except JsonLoadError as exc:
         print('ERROR: %s' % describe(exc, 'SSOT'))
         print('       SSOT 不可读时统计/写入一律中止（不得以 0 覆盖文档）。')
         return 1
-    reserved_ids = sorted(cid for cid, (b, i) in cats.items() if b == 0 and i == 0)
-    spacexai_present = any(b.get('id') == 'SpaceXAI' for b in ssot_brands())
-    print(f"统计：{n_png} PNG / {n_brands} 品牌 / {n_cats} 分类"
-          f"（预留空分类 {len(reserved_ids)} 个）")
-    missing = update_readme(n_png, n_brands, n_cats, cats, spacexai_present)
-    missing += update_quality_notes(n_png, n_brands, n_cats, reserved_ids)
     if missing:
         print("ERROR: 以下 generated 目标未命中（README / docs 措辞可能已改，或对应行被删除）：")
         for name in missing:

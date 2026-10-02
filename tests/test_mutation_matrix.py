@@ -247,7 +247,14 @@ class DocDriftMutations(_MutationBase):
 
     def test_readme_icon_count_tampered_fails(self):
         def m():
-            self.repo.replace('README.md', 'badge/icons-294-blue', 'badge/icons-999-blue')
+            # 徽章数字随批次漂移（#17 后 294→298）：锚点改为按当前值动态定位，
+            # 篡改值 999 保留。锚点文本过期不再让本例空转（变异未落地）。
+            import re
+            s = self.repo.read('README.md')
+            s2, n = re.subn(r'(badge/icons-)(\d+)(-blue)',
+                            lambda mm: mm.group(1) + '999' + mm.group(3), s, count=1)
+            assert n == 1, '变异未落地：README.md 中找不到 icons badge 行'
+            self.repo.write('README.md', s2)
         self.blocked(self._restore_all(), m, '✗ README 统计', 'badge icons=999')
 
     def test_readme_category_row_removed_fails(self):

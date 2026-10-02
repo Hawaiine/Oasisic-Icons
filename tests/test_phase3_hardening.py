@@ -364,11 +364,14 @@ class FailFastTests(RepoFixture):
 
     def test_missing_brands_json_fails(self):
         self.remove('config/brands.json')
-        self.assert_run_fails(self.updater(), '缺少品牌 SSOT')
+        # 2026-10-02：JSON 读取统一走 scripts/json_io.py，缺失/损坏/结构故障
+        # 一律报「<what> 解析失败: <path> — <原因>」（含行列定位），不再各自措辞。
+        # 断言锚定统一前缀 + 精确路径，保留「必须 fail-fast 且指明是哪个 SSOT」强度。
+        self.assert_run_fails(self.updater(), 'SSOT 解析失败: config/brands.json')
 
     def test_corrupt_brands_json_fails(self):
         self.write('config/brands.json', '{')
-        self.assert_run_fails(self.updater(), '无法解析')
+        self.assert_run_fails(self.updater(), 'SSOT 解析失败: config/brands.json')
 
     def test_wrong_structure_brands_json_fails(self):
         self.write('config/brands.json', '{"brands": {}}')
@@ -376,7 +379,8 @@ class FailFastTests(RepoFixture):
 
     def test_missing_categories_json_fails(self):
         self.remove('config/categories.json')
-        self.assert_run_fails(self.updater(), '缺少分类 SSOT')
+        # 走统一诊断（见 test_missing_brands_json_fails 注释）
+        self.assert_run_fails(self.updater(), 'SSOT 解析失败: config/categories.json')
 
     def test_corrupt_categories_json_fails(self):
         self.write('config/categories.json', '[]')
