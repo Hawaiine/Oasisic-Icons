@@ -69,8 +69,9 @@ except ImportError:
 
 groups = {}  # group name -> list of errors
 
-# CLI 入口（_cli()）在 --strict 模式下用：解析失败必须「先归因、后报错」，
-# 而不是把 Python traceback 直接倒给维护者（2026-10-02 审计 §6）。
+# 两种失败处理（2026-10-02 审计 §6）：
+#   默认 —— 解析失败**归因到所属校验组**，其余组照常跑完并整体 exit 1（CI 用）；
+#   --strict —— 立即以统一诊断退出（本地排查用，避免在半套结果上误判）。
 _CLI_TRACE_MODE = False
 
 
@@ -85,7 +86,10 @@ def _load_json(path):
         return load_json(path), None
     except JsonLoadError as e:
         if _CLI_TRACE_MODE:
-            raise
+            # --strict：SSOT 不可解析时立即以统一诊断退出（不留半套校验结果，
+            # 也不把 Python traceback 倒给维护者）
+            print('✗ %s' % describe(e))
+            sys.exit(1)
         return None, describe(e)
 
 
@@ -110,6 +114,32 @@ from brand_relationships import (  # noqa: E402
 from site_constants import ICON_RAW_BASE as SURGE_BASE  # noqa: E402
 # JSON 读取唯一入口（统一诊断：路径 + 行列 + 原因）
 from json_io import JsonLoadError, describe, load_json  # noqa: E402
+
+# ---------- CLI 参数（必须在读取 SSOT 之前解析：--strict 影响加载失败的处理方式）----------
+expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
+                   'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
+                   'Surge JSON', 'Glossary', 'Legacy paths',
+                   'README 表格', '生态一致性', 'README 统计', 'README 父节点',
+                   '关系派生导出', 'Review Queue', '物理路径', 'Rounded mask 边界',
+                   'Quality notes 统计']
+_only = None
+_quiet = False
+_as_json = False
+if __name__ == '__main__':
+    import argparse
+    _ap = argparse.ArgumentParser(description='Oasisic-Icons 图标契约校验器')
+    _ap.add_argument('--only', default=None, metavar='GROUP',
+                     help='只报告指定组（其余组仍执行，用于本地定位）')
+    _ap.add_argument('--quiet', action='store_true', help='只输出失败项与结论')
+    _ap.add_argument('--json', action='store_true', help='以 JSON 输出结果（供脚本消费）')
+    _ap.add_argument('--strict', action='store_true',
+                     help='JSON 解析失败时直接以统一诊断 + exit 1 退出（不归入校验组）')
+    _args = _ap.parse_args()
+    _only, _quiet, _as_json = _args.only, _args.quiet, _args.json
+    _CLI_TRACE_MODE = _args.strict          # 影响 _load_json 的失败路径
+    if _only is not None and _only not in expected_groups:
+        print('✗ 未知校验组: %s\n  可用组: %s' % (_only, ', '.join(expected_groups)))
+        sys.exit(2)
 
 # ---------- 扫描 ----------
 all_pngs = sorted(ICONS.rglob('*.png'))
@@ -942,35 +972,7 @@ else:
             fail('Quality notes 统计', '体积行=%s 实际=%s' % (str(_got), str(_exp)))
 
 # ---------- 结果：按验证组报告 ----------
-expected_groups = ['PNG integrity', 'Image spec', 'Naming', 'Category',
-                   'Canonical uniqueness', 'SHA-256 uniqueness', 'Brands SSOT',
-                   'Surge JSON', 'Glossary', 'Legacy paths',
-                   'README 表格', '生态一致性', 'README 统计', 'README 父节点',
-                   '关系派生导出', 'Review Queue', '物理路径', 'Rounded mask 边界',
-                   'Quality notes 统计']
 any_fail = False
-_only = None
-_quiet = False
-_as_json = False
-_strict = False
-if __name__ == '__main__':
-    # CLI 参数：--only <组名> 只跑/只报该组（维护者定位用，不改变校验逻辑）；
-    # --quiet 只输出结论（CI 友好）；--json 机器可读；--strict 让 JSON 解析失败
-    # 走统一诊断 + exit 1（默认已归因到所属组，二者都 fail-fast）。
-    import argparse
-    _ap = argparse.ArgumentParser(description='Oasisic-Icons 图标契约校验器')
-    _ap.add_argument('--only', default=None, metavar='GROUP',
-                     help='只报告指定组（其余组仍执行，用于本地定位）')
-    _ap.add_argument('--quiet', action='store_true', help='只输出失败项与结论')
-    _ap.add_argument('--json', action='store_true', help='以 JSON 输出结果（供脚本消费）')
-    _ap.add_argument('--strict', action='store_true',
-                     help='JSON 解析失败直接以统一诊断退出，不归入校验组')
-    _args = _ap.parse_args()
-    _only, _quiet, _as_json, _strict = _args.only, _args.quiet, _args.json, _args.strict
-    if _only is not None and _only not in expected_groups:
-        print('✗ 未知校验组: %s\n  可用组: %s' % (_only, ', '.join(expected_groups)))
-        sys.exit(2)
-
 _results = {g: groups.get(g, []) for g in expected_groups}
 any_fail = any(_results.values())
 if _only is not None:
