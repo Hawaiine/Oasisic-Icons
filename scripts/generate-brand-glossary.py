@@ -8,10 +8,13 @@
 CI 校验（Glossary 组）要求本文件与 brands.json 双向一致，任何手工改动都会被拦截。
 """
 import collections
-import json
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO / 'scripts'))
+from json_io import read_json_or_exit  # noqa: E402
+
 BRANDS = REPO / "config/brands.json"
 OUT = REPO / "docs/references/brand-glossary.md"
 
@@ -40,7 +43,7 @@ def build(brands):
 
 
 def main():
-    brands = json.loads(BRANDS.read_text(encoding="utf-8"))["brands"]
+    brands = read_json_or_exit(BRANDS, 'brands.json (品牌 SSOT)')["brands"]
     text = build(brands)
     old = OUT.read_text(encoding="utf-8") if OUT.exists() else None
     if old != text:

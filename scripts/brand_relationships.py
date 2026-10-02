@@ -589,10 +589,10 @@ def validate_relationships(brands_doc, cats_list):
 
 if __name__ == '__main__':
     # 直接运行：对当前仓库做关系校验（供手动排查）
-    import json
+    from json_io import read_json_or_exit
     repo = Path(__file__).resolve().parent.parent
-    brands_doc = json.loads((repo / 'config' / 'brands.json').read_text(encoding='utf-8'))
-    cats_doc = json.loads((repo / 'config' / 'categories.json').read_text(encoding='utf-8'))
+    brands_doc = read_json_or_exit(repo / 'config' / 'brands.json', 'brands.json (品牌 SSOT)')
+    cats_doc = read_json_or_exit(repo / 'config' / 'categories.json', 'categories.json (分类 SSOT)')
     problems = validate_relationships(brands_doc, cats_doc.get('categories', []))
     if problems:
         for p in problems:

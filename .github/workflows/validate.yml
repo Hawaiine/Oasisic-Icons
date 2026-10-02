@@ -28,5 +28,9 @@ jobs:
       - name: Validate documentation icon references
         run: python3 scripts/ci-validate-docs.py
 
-      - name: Run brand relationship tests
+      - name: Run contract tests（含 32 例校验器 mutation 矩阵）
+        # tests/test_mutation_matrix.py 对仓库副本注入 32 种已知坏状态，逐例断言
+        # 校验器/生成器非 0 退出**且**报出对应归因——这是「闸门真的会红」的可复跑证据。
+        # 成本说明：每例需要一次全量校验（≈1.5s on main / ≈4s after 遮罩组加入），
+        # 整步约 +40s；如 CI 时间敏感，可拆成独立 step 单独观测（不要删例）。
         run: python3 -m unittest discover -s tests -v

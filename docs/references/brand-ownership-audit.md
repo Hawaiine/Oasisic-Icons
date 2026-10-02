@@ -1,7 +1,9 @@
 # 品牌归属审计报告 / Brand Ownership Audit
 
 > **审计日期**：2026-09-30 · **范围**：PR #9 特性分支 `refactor/ecosystem-threshold-v2` 全库 **292** 个 Canonical Brand（含 **16 个 ecosystem root** + 3 个 2026-09-30 会话新增品牌）。
-> **Historical snapshot**：本节数字为**当日审计快照**，非当前状态；当前值见 README「仓库统计口径」（SSOT entities 293 / ecosystems 17）。
+> **Historical snapshot**：本节数字为**当日审计快照**，非当前状态，也**不在此处复述当前值**——
+> 快照里写死「当前值是 N」必然腐烂（本文件被 docs 校验排除，无人重算）。当前值请直接看
+> README 的「仓库统计口径」生成行（由 `scripts/update-readme-badges.py` 从 SSOT 实时派生）。
 
 > 本文件是 **研究/证据层**：记录每个品牌当前（现实世界）母公司判断与依据。
 > SSOT 仍为 `config/brands.json`（`parent_brand` / `category` / `entity_type`）——本文件不替代 SSOT。[§65 §66 §97]

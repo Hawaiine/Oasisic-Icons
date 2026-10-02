@@ -14,40 +14,39 @@
 所有改动都发生在仓库副本内。
 """
 import re
-import shutil
-import subprocess
 import sys
-import tempfile
 import unittest
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _harness import ScratchRepo  # noqa: E402
 
 
 class _CopyRepoMixin:
+    """仓库副本 + 定向还原（统一走 tests/_harness.py，不再各自 copytree/subprocess）。
+
+    2026-10-02 维护性审计 §7：副本创建、脚本执行、README 还原三件事此前在本文件与
+    test_generator_contracts.py 各写一份，既重复又容易漂移。现在唯一实现见 _harness。
+    """
+
     @classmethod
     def setUpClass(cls):
-        cls._tmp = tempfile.TemporaryDirectory()
-        cls.root = Path(cls._tmp.name) / "repo"
-        shutil.copytree(REPO, cls.root,
-                        ignore=shutil.ignore_patterns(".git", "__pycache__"))
+        cls.repo = ScratchRepo(prefix="oasisic-readme-")
+        cls.root = cls.repo.root
 
     @classmethod
     def tearDownClass(cls):
-        cls._tmp.cleanup()
+        cls.repo.close()
 
     def _readme(self):
-        return self.root / "README.md"
+        return self.repo.root / "README.md"
 
     def _mutate(self, old, new):
-        p = self._readme()
-        s = p.read_text(encoding="utf-8")
-        self.assertIn(old, s, "锚点文本不在 README 中：%s" % old)
-        p.write_text(s.replace(old, new, 1), encoding="utf-8")
+        self.repo.replace("README.md", old, new)
 
     def _run(self, script):
-        return subprocess.run([sys.executable, "scripts/%s" % script], cwd=str(self.root),
-                              capture_output=True, text=True, timeout=300)
+        return self.repo.run("scripts/%s" % script)
 
     def tearDown(self):
         # 每次用例后恢复 README，保证用例彼此独立

@@ -38,6 +38,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / 'scripts'))
+from json_io import read_json_or_exit  # noqa: E402
 
 from brand_relationships import (
     expected_icon_path,  # noqa: E402
@@ -208,8 +209,10 @@ def validate_brand(entry, brands_doc, cats_doc, repo_root='.', include_engine=Tr
                         if op and (root / op).exists() and _sha(root / op) == h:
                             errors.append('icon 与现有品牌图标内容相同（SHA-256 重复）: %s ↔ %s'
                                           % (bid, other))
-            except OSError:
-                pass
+            except OSError as exc:
+                # 读不到 ≠ 无重复：沉默跳过会让「唯一性」这道闸门静默失效。
+                errors.append('icon SHA-256 校验失败（无法读取，唯一性未验证）: %s (%s)'
+                              % (bid, str(exc)[:80]))
 
     # 7. 关系图（单一引擎）
     if include_engine and bid and et and not any('id 非法' in e for e in errors):
@@ -248,8 +251,8 @@ def main():
     ap.add_argument('--json', action='store_true')
     args = ap.parse_args()
 
-    brands_doc = json.loads((REPO / 'config' / 'brands.json').read_text(encoding='utf-8'))
-    cats_doc = json.loads((REPO / 'config' / 'categories.json').read_text(encoding='utf-8'))
+    brands_doc = read_json_or_exit(REPO / 'config' / 'brands.json', 'brands.json (品牌 SSOT)')
+    cats_doc = read_json_or_exit(REPO / 'config' / 'categories.json', 'categories.json (分类 SSOT)')
     entry = {'id': args.id, 'display_name': args.display_name, 'category': args.category,
              'entity_type': args.entity_type}
     if args.parent_brand:
