@@ -35,7 +35,13 @@ def outside_mask_alpha(im, mask=None):
 
     0 = 遮罩外完全透明（符合规范）。该值是判定遮罩是否真的生效的唯一可靠证据：
     mask == 0 处 alpha > 0 ⇒ 文件不是由本模块的 r=115 遮罩产生的（例如历史 r≈99 资产）。
+
+    尺寸非 512×512 时返回 None（合法性由调用方判定）：此前会抛底层
+    `ValueError: operands could not be broadcast together`，对直接调用者不可读
+    （2026-10-01 Phase 3 加固）。
     """
+    if im.size != (SIZE, SIZE):
+        return None
     m = rounded_mask() if mask is None else mask
     a = np.array(im.convert("RGBA"))[..., 3]
     return int(((m < 0.5) & (a > 0)).sum())

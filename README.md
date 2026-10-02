@@ -79,7 +79,7 @@ icons/
 
 1. **每个品牌必须有独立文件夹**，即使目前只有一个图标。
 2. **默认图标永远命名为 `<品牌名>.png`**（无任何后缀），且必须存在。
-3. **一个品牌当前只包含一个 PNG**：多版本变体已在 2026-10-01 全库移除（待后续统一重构后再引入）；命名规范保留 `<品牌名>NN.png`（两位零填充）供未来使用。
+3. **一个品牌恰好一个 canonical PNG**：品牌目录内只允许 `<品牌名>.png`。出现任何第二个 PNG（`<品牌名>01.png`、`<品牌名>-dark.png`、无关图片…）都是契约违规——`scripts/generate-icon-json.sh` 报错退出非 0，`ci-validate-icons.py` 第 3 组（Naming）同样 FAIL。变体**不属于当前架构**：将来若需要多风格，必须先立正式 variant schema 再实现，不得用数字后缀临时凑。
 4. **品牌名使用 PascalCase**，尽量与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules/tree/main/ruleset) 的品牌名保持一致。
    - 例外：**官方品牌名的大小写优先**，保留官方写法的目录有 `iQIYI`、`friDayVideo`、`myTVSUPER` 等；这些名称同时被消费方（mihomo-rules）的配置引用，不得为了「统一大小写」而改动。
 5. **特殊字符处理**：`+` → `Plus`（例如 `DisneyPlus`）。
@@ -346,11 +346,13 @@ python3 scripts/ci-validate-icons.py         # 校验 PNG / 目录 / JSON 一致
 
 **窄条字标（极少见）：** 仅当明显是横条文字标时，才可裁内容后放在对比色圆角底块上，再套 r=115；普通 logo 不要走这条路径。
 
+**圆角遮罩边界（唯一可证伪的形状判据）：** 最终 PNG 在 r=115 遮罩之外必须完全透明（`outside_mask_alpha == 0`）。`ci-validate-icons.py` 第 18 组逐图重算该值：越界即 FAIL；只有被显式登记在 `config/icon-mask-exemptions.json` 的历史资产才允许越界，且登记值必须等于实测值、资产修复后必须删除条目（否则同样 FAIL）。判据唯一实现：`scripts/normalize-icons.py::outside_mask_alpha`。
+
 ### 命名规范
 
 1. 目录：`icons/<分类>/<品牌名>/`（若直接父品牌本身也是中间品牌，则为 `icons/<分类>/<中间父>/<品牌名>/`，见上）
 2. 默认图标：`<品牌名>.png`（无后缀，必须存在）
-3. 变体图标（当前全库未使用，命名规范保留）：`<品牌名>01.png`、`<品牌名>02.png`（两位零填充，按原顺序编号）
+3. 变体图标：**当前不支持**（canonical-only）。品牌目录内只允许 `<品牌名>.png`；数字后缀（`<品牌名>01.png`）不会被写入 `surge-icon.json`，且会让生成器与 CI 直接失败（见上文「强制规则」第 3 条）
 4. 品牌名使用 PascalCase，与 [mihomo-rules](https://github.com/Hawaiine/mihomo-rules) 保持一致
 5. 特殊字符：`+` → `Plus`
 6. 官方品牌名大小写优先（`iQIYI` / `friDayVideo` / `myTVSUPER` 等保留官方写法，同时是消费方引用的路径）

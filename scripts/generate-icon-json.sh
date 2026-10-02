@@ -9,8 +9,10 @@
 #     url  = ICON_RAW_BASE + '/' + brand.icon_path
 #            （基址唯一来源 scripts/site_constants.py，生成器与校验器共用）；
 #   - icon_path 必须逐字等于关系引擎 expected_icon_path() 的推导结果，且文件必须存在；
-#   - 品牌目录内出现非 canonical PNG（`<id>01.png` 变体 / 额外图）→ 报错并 exit 1：
-#     变体命名保留供未来使用，但**不属于当前 canonical 资产模型**，不允许静默进入清单；
+#   - 品牌目录内出现非 canonical PNG（`<id>01.png` 数字后缀 / 额外图）→ 报错并 exit 1：
+#     canonical-only 契约下 `<id>.png` 是唯一合法资产名，数字后缀**不是**当前支持的契约；
+#   - 反向一致性（physical tree → SSOT）：磁盘上任何含 PNG 的品牌目录都必须对应一个
+#     SSOT canonical 条目，否则视为 orphan（未注册/已删除资产）→ 报错并 exit 1；
 #   - 无 icon_path 的条目（icon_status=pending 的生态根）不产生 surge 条目。
 #
 # 幂等：连续执行两次输出逐字节一致（CI 亦逐项校验，见 ci-validate-icons.py 第 8 组）。
@@ -65,6 +67,20 @@ for brand in sorted(brands, key=lambda e: (e.get('category', ''), e.get('id', ''
         'url': '%s/%s' % (ICON_RAW_BASE, icon_path),
     })
 
+# 反向一致性（physical tree → SSOT）：含 PNG 的品牌目录必须能对应 SSOT canonical 条目。
+# 复用关系引擎 expected_icon_path()，不在此重新实现路径解析。
+expected_paths = {p for p in (expected_icon_path(bid, ssot) for bid in ssot) if p}
+for d in sorted(Path('icons').rglob('*')):
+    if not d.is_dir():
+        continue
+    pngs = sorted(p.name for p in d.iterdir() if p.is_file() and p.suffix == '.png')
+    if not pngs:
+        continue
+    canon = '%s/%s.png' % (d.as_posix(), d.name)
+    if canon not in expected_paths:
+        errors.append('orphan physical brand directory（SSOT 无对应 canonical 条目）: '
+                      '%s（含 %d 个 PNG）' % (d.as_posix(), len(pngs)))
+
 if errors:
     print('ERROR: surge-icon.json 未生成（canonical / brand-level 资产模型校验失败）：',
           file=sys.stderr)
@@ -74,8 +90,9 @@ if errors:
           '1 brand = 1 canonical asset = 1 surge entry.', file=sys.stderr)
     print('Register/rename/remove the asset per docs/references/brand-naming-contract.md;',
           file=sys.stderr)
-    print('variant naming (<id>NN.png) is reserved for future use and is NOT part of the '
-          'current generated catalog.', file=sys.stderr)
+    print('Canonical-only: <id>.png is the only valid asset name; digit-suffixed PNGs '
+          '(<id>NN.png) are not a supported contract and are never registered.',
+          file=sys.stderr)
     sys.exit(1)
 
 entries.sort(key=lambda e: (e['category'], e['name']))

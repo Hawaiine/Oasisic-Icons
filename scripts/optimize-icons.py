@@ -10,6 +10,7 @@
   python3 scripts/optimize-icons.py [--level 4]
 """
 import argparse
+import sys
 from pathlib import Path
 
 import oxipng
@@ -56,7 +57,10 @@ def main():
     print(f"无损优化完成：{ok} 成功 / {fail} 失败；格式统一回 RGBA：{fixed} 个")
     print(f"体积 {before/1e6:.1f} MB → {after/1e6:.1f} MB")
     print("色型分布：", modes)
+    # fail-fast（2026-10-01 Phase 3）：只要有文件失败就非 0 退出。此前仅打印失败数却
+    # exit 0，批处理/CI 会把"压缩失败"当成成功。
+    return 1 if fail else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
